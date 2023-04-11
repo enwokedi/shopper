@@ -1,0 +1,89 @@
+<?php
+
+namespace App\Http\Controllers\Welcome;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class WelcomeController extends Controller
+{
+    public function HomeMain()
+    {
+        return view('frontend.index');
+    }
+
+    public function ForSale()
+    {
+        return view('frontend.sale-motorcycles');
+    }
+
+    public function RentBike()
+    {
+        return view('frontend.rentals-motorcycles');
+    }
+
+    public function RentalDetails()
+    {
+        return view('frontend.rentals-details');
+    }
+
+    public function DemoDetails()
+    {
+        return view('frontend.rentals-hondapcx125');
+    }
+
+    public function RentInformation()
+    {
+        return view('frontend.rentals-information');
+    }
+
+    public function GetServices()
+    {
+        return view('frontend.services');
+    }
+
+    public function Repairs()
+    {
+        return view('frontend.service-repairs');
+    }
+
+    public function ServiceBike()
+    {
+        return view('frontend.service-motorcycle');
+    }
+
+    public function ServiceMot()
+    {
+        return view('frontend.service-mot');
+    }
+
+    public function AccidentClaim()
+    {
+        return view('frontend.accidents');
+    }
+
+    public function GetProducts()
+    {
+        return view('frontend.products');
+    }
+
+    public function GpsTracker()
+    {
+        return view('frontend.gps-tracker');
+    }
+
+    public function SpareParts()
+    {
+        return view('frontend.spare-parts');
+    }
+
+    public function AboutMethod()
+    {
+        return view('frontend.about_page');
+    }
+
+    public function ContactMethod()
+    {
+        return view('contact');
+    }
+}
