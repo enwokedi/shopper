@@ -123,7 +123,7 @@ return [
          * `\Shopper\Framework\Models\Shop\Product\Brand` model.
          */
 
-        'brand' => \Shopper\Framework\Models\Shop\Product\Brand::class,
+        'brand' => \App\Models\Brand::class,
 
         /*
          * Eloquent model should be used to retrieve your categories. Of course,
@@ -133,7 +133,7 @@ return [
          * `\Shopper\Framework\Models\Shop\Product\Category` model.
          */
 
-        'category' => \Shopper\Framework\Models\Shop\Product\Category::class,
+        'category' => \App\Models\Category::class,
 
         /*
          * Eloquent model should be used to retrieve your collections. Of course,
@@ -143,7 +143,7 @@ return [
          * `\Shopper\Framework\Models\Shop\Product\Collection` model.
          */
 
-        'collection' => \Shopper\Framework\Models\Shop\Product\Collection::class,
+        'collection' => \App\Models\Collection::class,
 
         /*
          * Eloquent model should be used to retrieve your products. Of course,
@@ -153,7 +153,7 @@ return [
          * `\Shopper\Framework\Models\Shop\Product\Product` model.
          */
 
-        'product' => \Shopper\Framework\Models\Shop\Product\Product::class,
+        'product' => \App\Models\Stock::class,
 
     ],
 
