@@ -1,4 +1,4 @@
-<!-- Start Content -->
+<!-- Start Slidebar -->
 <section class="flat-row main-shop shop-slidebar">
     <div class="container">
         <div class="row">
@@ -17,7 +17,7 @@
                             Categories
                         </h5>
                         <ul>
-                            <li><a href="#" class="active">HELMETS</a></li>
+                            <li><a href="/products">HELMETS</a></li>
                             <li><a href="#">HELMET ACCESSORIES</a></li>
                             <li><a href="#">CLOTHING</a></li>
                             <li><a href="#">FOOTWEAR</a></li>

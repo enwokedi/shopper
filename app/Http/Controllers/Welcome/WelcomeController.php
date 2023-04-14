@@ -64,7 +64,7 @@ class WelcomeController extends Controller
 
     public function GetProducts()
     {
-        return view('frontend.products');
+        return view('frontend.shop');
     }
 
     public function GpsTracker()

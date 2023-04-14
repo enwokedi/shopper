@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
+<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-UK" lang="en-UK"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"><!--<![endif]-->
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"><!--<![endif]-->
 
 <head>
     <!-- Basic Page Needs -->
@@ -145,7 +145,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="/shop">PRODUCTS</a>
+                                    <a href="/products">PRODUCTS</a>
                                     <ul class="submenu">
                                         <li>
                                             <a href="/spare-parts">Spare Parts</a>
@@ -168,7 +168,7 @@
                     </div><!-- /.nav-wrap -->
                 </div><!-- /.container-fluid -->
             </header><!-- /header -->
-        </div><!-- /.site-header-wrap -->
+        </div>
 
         <!-- Page title -->
         <div class="page-title parallax parallax1">
@@ -176,13 +176,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="page-title-heading">
-                            <h1 class="title">Slidebar Shop</h1>
+                            <h1 class="title">@yield('title')</h1>
                         </div><!-- /.page-title-heading -->
                         <div class="breadcrumbs">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="shop-3col.html">Shop</a></li>
-                                <li><a href="shop-3col-slide.html">Slidebarshop</a></li>
+                                <li><a href="/">Honda & Yamaha Specialists</a></li>
+                                <li><a href="/product-types">@yield('title')</a></li>
                             </ul>
                         </div><!-- /.breadcrumbs -->
                     </div><!-- /.col-md-12 -->
@@ -190,30 +189,37 @@
             </div><!-- /.container -->
         </div><!-- /.page-title -->
 
+        <!-- Start Slidebar -->
         <section class="flat-row main-shop shop-slidebar">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="sidebar slidebar-shop">
-                            <div class="widget widget-search">
-                                <form role="search" method="get" class="search-form" action="#">
-                                    <label>
-                                        <input type="search" class="search-field" placeholder="Search …" value="" name="s">
-                                    </label>
-                                    <input type="submit" class="search-submit" value="Search">
-                                </form>
-                            </div><!-- /.widget-search -->
+                            <!-- div class="widget widget-search">
+                        <form role="search" method="get" class="search-form" action="#">
+                            <label>
+                                <input type="search" class="search-field" placeholder="Search …" value="" name="s">
+                            </label>
+                            <input type="submit" class="search-submit" value="Search">
+                        </form>
+                    </div --><!-- /.widget-search -->
                             <div class="widget widget-sort-by">
                                 <h5 class="widget-title">
-                                    Sort By
+                                    Categories
                                 </h5>
                                 <ul>
-                                    <li><a href="#" class="active">Default</a></li>
-                                    <li><a href="#">Popularity</a></li>
-                                    <li><a href="#">Average rating</a></li>
-                                    <li><a href="#">Newness</a></li>
-                                    <li><a href="#">Price: low to high</a></li>
-                                    <li><a href="#">Price: high to low</a></li>
+                                    <li><a href="/products/1">HELMETS</a></li>
+                                    <li><a href="#">HELMET ACCESSORIES</a></li>
+                                    <li><a href="#">CLOTHING</a></li>
+                                    <li><a href="#">FOOTWEAR</a></li>
+                                    <li><a href="#">GLOVES</a></li>
+                                    <li><a href="#">LUGGAGE</a></li>
+                                    <li><a href="#">MAINTENANCE</a></li>
+                                    <li><a href="#">ELECTRONICS</a></li>
+                                    <li><a href="#">ACCESSORIES</a></li>
+                                    <li><a href="#">HANDLEBAR ACCESSORIES</a></li>
+                                    <li><a href="#">SECURITY</a></li>
+                                    <li><a href="#">PROMOTIONAL</a></li>
                                 </ul>
                             </div><!-- /.widget-sort-by -->
                             <div class="widget widget-color">
@@ -285,46 +291,48 @@
                                     Tags
                                 </h5>
                                 <div class="tag-list">
-                                    <a href="#">All products</a>
-                                    <a href="#" class="active">Bags</a>
-                                    <a href="#">Chair</a>
-                                    <a href="#">Decoration</a>
-                                    <a href="#">Fashion</a>
-                                    <a href="#">Tie</a>
-                                    <a href="#">Furniture</a>
-                                    <a href="#">Accesories</a>
+                                    <a href="#">Pinloc</a>
+                                    <a href="#" class="active">Waterproof</a>
+                                    <a href="#">Winter</a>
+                                    <a href="#">Top Box</a>
+                                    <a href="#">Tracker</a>
+                                    <a href="#">Intercom</a>
+                                    <a href="#">Locks</a>
+                                    <a href="#">Heated Grips</a>
                                 </div>
                             </div><!-- /.widget -->
                         </div><!-- /.sidebar -->
                     </div><!-- /.col-md-3 -->
+
                     <div class="col-md-9">
                         <div class="filter-shop clearfix">
                             <p class="showing-product float-right">
-                                Showing 1–12 of 56 Products
+                                Need to find something fast? Call: 0208 314 1498
                             </p>
                         </div><!-- /.filte-shop -->
+
                         <div class="product-content product-threecolumn product-slidebar clearfix">
                             <ul class="product style2 sd1">
                                 @foreach($products as $product)
                                 <li class="product-item">
                                     <div class="product-thumb clearfix">
                                         <a href="#" class="product-thumb">
-                                            <img src="images/shop/sh-4/10.jpg" alt="image">
+                                            <img src="{{ $product->image_url }}" alt="image">
                                         </a>
-                                        <span class="new sale">Sale</span>
+                                        <!-- span class="new sale">Sale</span -->
                                     </div>
                                     <div class="product-info clearfix">
-                                        <span class="product-title">Cotton White Underweaer Block Out Edition</span>
+                                        <span class="product-title">{{ $product->description }}</span>
                                         <div class="price">
                                             <del>
-                                                <span class="regular">$150.00</span>
+                                                <!-- span class="regular">£150.00</span -->
                                             </del>
                                             <ins>
-                                                <span class="amount">$120.00</span>
+                                                <span class="amount">£{{ $product->price }}</span>
                                             </ins>
                                         </div>
                                         <ul class="flat-color-list">
-                                            <li>
+                                            <!-- li>
                                                 <a href="#" class="red"></a>
                                             </li>
                                             <li>
@@ -332,7 +340,7 @@
                                             </li>
                                             <li>
                                                 <a href="#" class="black"></a>
-                                            </li>
+                                            </li -->
                                         </ul>
                                     </div>
                                     <div class="add-to-cart text-center">
@@ -359,6 +367,7 @@
             </div><!-- /.container -->
         </section><!-- /.flat-row -->
 
+        <div class="divider h68"></div>
         <section class="flat-row mail-chimp">
             <div class="container">
                 <div class="row">
@@ -383,7 +392,6 @@
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                             </ul><!-- /.flat-social -->
                         </div><!-- /.subscribe -->
@@ -392,7 +400,6 @@
             </div>
         </section><!-- /.mail-chimp -->
 
-        <!-- Footer -->
         <footer class="footer">
             <div class="container">
                 <div class="row">
@@ -479,7 +486,6 @@
         </a>
 
     </div>
-
     <!-- Javascript -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/tether.min.js"></script>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Welcome\WelcomeController;
 use App\Http\Controllers\Welcome\ContactController;
+use App\Http\Controllers\OxfordsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,12 @@ Route::controller(WelcomeController::class)->group(function () {
     Route::get('/contact', 'ContactMethod')->name('contact.page');
 });
 
-// Contact Routes
+// Oxford Product Routes
+Route::controller(OxfordsController::class)->group(function () {
+    Route::get('/shop', 'getOxfordProducts')->name('categories.oxford-products');
+    Route::get('/products/{brand}', 'getHelmets')->name('categories.helmets');
+});
+
 // Contact All Routes 
 Route::controller(ContactController::class)->group(function () {
     Route::get('/contact', 'Contact')->name('contact.me');
