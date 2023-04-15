@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Welcome\WelcomeController;
 use App\Http\Controllers\Welcome\ContactController;
-use App\Http\Controllers\OxfordsController;
+use App\Http\Controllers\OxfordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +36,11 @@ Route::controller(WelcomeController::class)->group(function () {
 });
 
 // Oxford Product Routes
-Route::controller(OxfordsController::class)->group(function () {
+Route::controller(OxfordController::class)->group(function () {
     Route::get('/helmets', 'getHelmets')->name('categories.helmets');
     Route::get('/helmet-accessories', 'getHelmetAccessories')->name('categories.helmet-accessories');
+
+    Route::get('/product/{id}', 'getOxfordProduct')->name('product.details');
 });
 
 // Contact All Routes 

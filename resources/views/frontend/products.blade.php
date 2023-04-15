@@ -7,7 +7,7 @@
         @foreach($chunk as $product)
         <li class="product-item">
             <div class="product-thumb clearfix">
-                <a href="#" class="product-thumb">
+                <a href="/product/{{ $product->id }}" class="product-thumb">
                     <img src="{{ $product->image_url }}" alt="image">
                 </a>
                 <!-- span class="new sale">Sale</span -->
