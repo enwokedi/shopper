@@ -59,9 +59,10 @@ class OxfordController extends Controller
     {
         $product = Oxford::find($id);
 
+        $category = strtolower($product->category);
         $cookie = strtolower($product->description);
         $title = $product->description;
 
-        return view('frontend.product-details', compact('product', 'title', 'cookie'));
+        return view('frontend.product', compact('product', 'title', 'cookie', 'category'));
     }
 }
