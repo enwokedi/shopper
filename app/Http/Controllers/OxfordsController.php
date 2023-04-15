@@ -10,15 +10,13 @@ use View;
 
 class OxfordsController extends Controller
 {
-    public function getCategoryProducts($category)
+    public function getHelmetAccessories()
     {
-        $products = Oxford::select('id', 'image_url', 'description', 'sku', 'vat_price', 'category')
-            ->where('category', $category)
+        $products = Oxford::select('id', 'ean', 'image_url', 'description', 'sku', 'price', 'brand', 'category')
+            ->where('category_id', 14)
             ->paginate(24);
 
-        $category = ucwords($category);
-
-        return view('frontend.products', compact('products', 'category'));
+        return view('frontend.products', compact('products'));
     }
 
     public function getHelmets()
@@ -31,19 +29,22 @@ class OxfordsController extends Controller
 
         $cat = Oxford::select('category')
             ->where('category_id', 1)
-            ->get();
+            ->first();
 
-        $category = ucfirst($cat);
+        $cookie = strtolower($cat->category);
+        $title = ucfirst($cookie);
 
-        return view('frontend.products', compact('products', 'category'));
+        return view('frontend.products', compact('products', 'title', 'cookie'));
     }
 
-    public function getHelmetAccessories()
+    public function getCategoryProducts($category)
     {
-        $products = Oxford::select('id', 'image_url', 'description', 'sku', 'price', 'brand', 'category')
-            ->where('category_id', 14)
+        $products = Oxford::select('id', 'image_url', 'description', 'sku', 'vat_price', 'category')
+            ->where('category', $category)
             ->paginate(24);
 
-        return view('frontend.products', compact('products'));
+        $category = ucwords($category);
+
+        return view('frontend.products', compact('products', 'category'));
     }
 }

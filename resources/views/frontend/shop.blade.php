@@ -3,30 +3,7 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"><!--<![endif]-->
 
-<head>
-    <!-- Basic Page Needs -->
-    <meta charset="utf-8">
-    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>NGM</title>
-
-    <meta name="author" content="Emmanuel Nwokedi">
-
-    <!-- Mobile Specific Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/colors/color1.css">
-
-    <!-- Favicon and touch icons  -->
-    <link href="{{url('img/logo.png')}}" rel="shortcut icon">
-
-    <!--[if lt IE 9]>
-        <script src="javascript/html5shiv.js"></script>
-        <script src="javascript/respond.min.js"></script>
-    <![endif]-->
-</head>
+@include('frontend.body.head')
 
 <body class="header_sticky header-style-2 has-menu-extra">
     <!-- Preloader -->
@@ -37,137 +14,9 @@
     <!-- Boxed -->
     <div class="boxed">
         <div id="site-header-wrap">
-            <!-- Header -->
-            <header id="header" class="header clearfix">
 
-                <!-- Start Top Nav -->
-                <nav class="navbar navbar-expand navbar-dark bg-dark d-none d-lg-block">
-                    <div class="container">
-                        <div class="w-100 d-flex justify-content-between">
-                            <div>
-                                <i class="fa fa-envelope mx-2"></i>
-                                <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@neguinhomotors.co.uk">info@neguinhomotors.co.uk</a>
-                                <i class="fa fa-phone mx-2"></i>
-                                <a class="navbar-sm-brand text-light text-decoration-none" href="tel:02083141498">Catford: 0208 314 1498</a>
-                                <i class="fa fa-phone mx-2"></i>
-                                <a class="navbar-sm-brand text-light text-decoration-none" href="tel:02034095478">Tooting: 0203 409 5478</a>
-                                <i class="fa fa-bell mx-2"></i>
-                                <a class="navbar-sm-brand text-light text-decoration-none" href="#">Request Callback</a>
-                            </div>
-                            <div>
-                                <a class="text-light" style="padding-right: 10px;" href="/login">Login</a>
-                                <a class="text-light" style="padding-right: 5px;" href="/register">Register</a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-                <!-- Close Top Nav -->
+            @include('frontend.body.header')
 
-                <div class="container-fluid container-width-93 clearfix" id="site-header-inner">
-                    <div id="logo" class="logo float-left">
-                        <a href="/" title="logo">
-                            <img src="{{url('img/logo.png')}}" alt="image" width="54" height="12" data-retina="{{url('img/logo@2x.png')}}" data-width="54" data-height="12">
-                        </a>
-                    </div><!-- /.logo -->
-                    <div class="mobile-button"><span></span></div>
-                    <ul class="menu-extra">
-                        <li class="box-search">
-                            <a class="icon_search header-search-icon" href="#"></a>
-                            <form role="search" method="get" class="header-search-form" action="#">
-                                <input type="text" value="" name="s" class="header-search-field" placeholder="Search...">
-                                <button type="submit" class="header-search-submit" title="Search">Search</button>
-                            </form>
-                        </li>
-                        <li class="box-login">
-                            <a class="icon_login" href="/login"></a>
-                        </li>
-                        <li class="box-cart nav-top-cart-wrapper">
-                            <a class="icon_cart nav-cart-trigger active" href="#"><span></span></a>
-                            <div class="nav-shop-cart">
-                                <div class="widget_shopping_cart_content">
-                                    <div class="woocommerce-min-cart-wrap">
-                                        <ul class="woocommerce-mini-cart cart_list product_list_widget ">
-                                            <li class="woocommerce-mini-cart-item mini_cart_item">
-                                                <span>No Items in Shopping Cart</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="nav-wrap">
-                        <nav id="mainnav" class="mainnav">
-                            <ul class="menu">
-                                <li>
-                                    <a href="/sale-motorcycles">SALES</a>
-                                    <ul class="submenu">
-                                        <li>
-                                            <a href="#">Sale Information</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Finance</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Bike Insurance</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Fleet</a>
-                                        </li>
-                                        <li>
-                                            <a href="/accident-management-services">Accident Management</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="/rentals-motorcycle">RENTALS</a>
-                                    <ul class="submenu">
-                                        <li>
-                                            <a href="/rentals-information">Rental Information</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="/services">SERVICES</a>
-                                    <ul class="submenu">
-                                        <li>
-                                            <a href="/service-repairs">Motorcycle Repairs</a>
-                                        </li>
-                                        <li>
-                                            <a href="/service-motorcycle">Book a Service</a>
-                                        </li>
-                                        <li>
-                                            <a href="/service-mot">Book MOT</a>
-                                        </li>
-                                        <li>
-                                            <a href="/accident-management-services">Accident Management</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="/category/1">PRODUCTS</a>
-                                    <ul class="submenu">
-                                        <li>
-                                            <a href="/spare-parts">Spare Parts</a>
-                                        </li>
-                                        <li>
-                                            <a href="gps-tracker">GPS Tracker</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="/contact">CONTACT</a>
-                                    <ul class="submenu">
-                                        <li>
-                                            <a href="/about">About</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav><!-- /.mainnav -->
-                    </div><!-- /.nav-wrap -->
-                </div><!-- /.container-fluid -->
-            </header><!-- /header -->
         </div>
 
         <!-- Page title -->
@@ -176,12 +25,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="page-title-heading">
-                            <h1 class="title"></h1>
+                            <h1 class="title">{{$title}}</h1>
                         </div><!-- /.page-title-heading -->
                         <div class="breadcrumbs">
                             <ul>
                                 <li><a href="/">Honda & Yamaha Specialists</a></li>
-                                <li><a href="/product-types">@yield('title')</a></li>
+                                <li><a href="/shop">Shop</a></li>
+                                <li><a href="/{{$cookie}}">{{$title}}</a></li>
                             </ul>
                         </div><!-- /.breadcrumbs -->
                     </div><!-- /.col-md-12 -->
@@ -311,50 +161,8 @@
                             </p>
                         </div><!-- /.filte-shop -->
 
-                        <div class="product-content product-threecolumn product-slidebar clearfix">
-                            <ul class="product style2 sd1">
-                                @foreach($products->chunk(3) as $chunk)
-                                <li class="product-item">
-                                    @foreach($chunk as $product)
-                                    <div class="product-thumb clearfix">
-                                        <a href="#" class="product-thumb">
-                                            <img src="{{ $product->image_url }}" alt="image">
-                                        </a>
-                                        <!-- span class="new sale">Sale</span -->
-                                    </div>
-                                    <div class="product-info clearfix">
-                                        <span class="product-title">{{ $product->description }}</span>
-                                        <div class="price">
-                                            <del>
-                                                <!-- span class="regular">£150.00</span -->
-                                            </del>
-                                            <ins>
-                                                <span class="amount">£{{ $product->price }}</span>
-                                            </ins>
-                                        </div>
-                                        <ul class="flat-color-list">
-                                            <!--li><a href="#" class="red"></a>
-                                            </li-->
-                                            <!--li>
-                                                <a href="#" class="blue"></a>
-                                            </li-->
-                                            <!--li>
-                                                <a href="#" class="black"></a>
-                                            </li-->
-                                        </ul>
-                                    </div>
-                                    <div class="add-to-cart text-center">
-                                        <a href="#">ADD TO CART</a>
-                                    </div>
-                                    <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
-                                    @endforeach
-                                </li>
-                                @endforeach
-                            </ul><!-- /.product -->
-                        </div><!-- /.product-content -->
-                        <div class="product-pagination text-center clearfix">
-                            {{ $products->links() }}
-                        </div>
+                        @yield('content')
+
                     </div><!-- /.col-md-9 -->
                 </div><!-- /.row -->
             </div><!-- /.container -->

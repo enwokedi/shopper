@@ -36,11 +36,10 @@ Route::controller(WelcomeController::class)->group(function () {
 });
 
 // Oxford Product Routes
-Route::get('/products/{category}', [OxfordsController::class, 'getCategoryProducts'])->name('categories.getCategoryProducts');
-// Route::controller(OxfordsController::class)->group(function () {
-//     Route::get('/helmets', 'getHelmets')->name('categories.helmets');
-//     Route::get('/helmet-accessories', 'getHelmetAccessories')->name('categories.helmet-accessories');
-// });
+Route::controller(OxfordsController::class)->group(function () {
+    Route::get('/helmets', 'getHelmets')->name('categories.helmets');
+    Route::get('/helmet-accessories', 'getHelmetAccessories')->name('categories.helmet-accessories');
+});
 
 // Contact All Routes 
 Route::controller(ContactController::class)->group(function () {
