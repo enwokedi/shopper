@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '660752f35a5e7565e9dbd29a7cca0c86f250f365',
+        'reference' => '123a10c53c695fdc2fb9da98bb6fbb111340dc23',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -69,15 +69,6 @@
             'replaced' => array(
                 0 => '*',
             ),
-        ),
-        'darryldecode/cart' => array(
-            'pretty_version' => '4.2.2',
-            'version' => '4.2.2.0',
-            'reference' => 'bc5ff0e1c7d20d621fa63b3218532f2ae7cbf841',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../darryldecode/cart',
-            'aliases' => array(),
-            'dev_requirement' => false,
         ),
         'dasprid/enum' => array(
             'pretty_version' => '1.0.4',
@@ -529,7 +520,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '660752f35a5e7565e9dbd29a7cca0c86f250f365',
+            'reference' => '123a10c53c695fdc2fb9da98bb6fbb111340dc23',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

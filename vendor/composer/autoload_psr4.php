@@ -123,7 +123,6 @@ return array(
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Database\\Seeders\\' => array($baseDir . '/database/seeders', $vendorDir . '/laravel/pint/database/seeders', $vendorDir . '/shopper/framework/database/seeders'),
     'Database\\Factories\\' => array($baseDir . '/database/factories', $vendorDir . '/laravel/pint/database/factories'),
-    'Darryldecode\\' => array($vendorDir . '/darryldecode/cart/src/Darryldecode'),
     'DASPRiD\\Enum\\' => array($vendorDir . '/dasprid/enum/src'),
     'Cron\\' => array($vendorDir . '/dragonmantank/cron-expression/src/Cron'),
     'Composer\\Semver\\' => array($vendorDir . '/composer/semver/src'),
