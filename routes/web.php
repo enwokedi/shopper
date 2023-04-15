@@ -37,6 +37,7 @@ Route::controller(WelcomeController::class)->group(function () {
 
 // Oxford Product Routes
 Route::controller(OxfordController::class)->group(function () {
+    Route::get('/category/{category_id}', 'getProductCategory')->name('product.category');
     Route::get('/helmets', 'getHelmets')->name('categories.helmets');
     Route::get('/helmet-accessories', 'getHelmetAccessories')->name('categories.helmet-accessories');
 

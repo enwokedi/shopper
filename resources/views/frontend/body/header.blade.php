@@ -109,10 +109,10 @@
                         <a href="/shop">SHOP</a>
                         <ul class="submenu">
                             <li>
-                                <a href="/helmets">HELMETS</a>
+                                <a href="/category/1">HELMETS</a>
                             </li>
                             <li>
-                                <a href="/helmet-accssories">HELMET ACCESSORIES</a>
+                                <a href="/category/14">HELMET ACCESSORIES</a>
                             </li>
                         </ul>
                     </li>

@@ -31,7 +31,8 @@
                             <ul>
                                 <li><a href="/">Honda & Yamaha Specialists</a></li>
                                 <li><a href="/shop">Shop</a></li>
-                                <li><a href="/{{$cookie}}">{{$title}}</a></li>
+                                <li><a href="/category/{{$category_id}}">{{ucfirst($category)}}</a></li>
+                                <li><a href="/product/{{$product_id}}">{{$title}}</a></li>
                             </ul>
                         </div><!-- /.breadcrumbs -->
                     </div><!-- /.col-md-12 -->

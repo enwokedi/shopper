@@ -25,13 +25,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="page-title-heading">
-                            <h1 class="title">{{$title}}</h1>
+                            <h1 class="title">{{ucfirst($category)}}</h1>
                         </div><!-- /.page-title-heading -->
                         <div class="breadcrumbs">
                             <ul>
                                 <li><a href="/">Honda & Yamaha Specialists</a></li>
                                 <li><a href="/shop">Shop</a></li>
-                                <li><a href="/{{$cookie}}">{{$title}}</a></li>
+                                <li><a href="/category/{{$category_id}}">{{ucfirst($category)}}</a></li>
                             </ul>
                         </div><!-- /.breadcrumbs -->
                     </div><!-- /.col-md-12 -->
