@@ -10,8 +10,8 @@ class OxfordCategory extends Model
 {
     use HasFactory;
 
-    // public function oxfords()
-    // {
-    //     return $this->hasManyThrough(Oxford::class, Oxford::class, 'category_id');
-    // }
+    public function oxfords()
+    {
+        return $this->hasManyThrough(Oxford::class, Oxford::class, 'category_id');
+    }
 }

@@ -115,10 +115,15 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="/shop">PRODUCTS</a>
+                                    <a href="/products/helmets">PRODUCTS</a>
                                     <ul class="submenu">
                                         <li>
                                             <a href="/spare-parts">Spare Parts</a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    <a href="#">Third Level Example</a>
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li>
                                             <a href="gps-tracker">GPS Tracker</a>

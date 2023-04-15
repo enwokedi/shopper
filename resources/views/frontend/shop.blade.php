@@ -145,7 +145,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="/products">PRODUCTS</a>
+                                    <a href="/category/1">PRODUCTS</a>
                                     <ul class="submenu">
                                         <li>
                                             <a href="/spare-parts">Spare Parts</a>
@@ -176,7 +176,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="page-title-heading">
-                            <h1 class="title">@yield('title')</h1>
+                            <h1 class="title"></h1>
                         </div><!-- /.page-title-heading -->
                         <div class="breadcrumbs">
                             <ul>
@@ -208,7 +208,7 @@
                                     Categories
                                 </h5>
                                 <ul>
-                                    <li><a href="/products/1">HELMETS</a></li>
+                                    <li><a href="/shop/1">HELMETS</a></li>
                                     <li><a href="#">HELMET ACCESSORIES</a></li>
                                     <li><a href="#">CLOTHING</a></li>
                                     <li><a href="#">FOOTWEAR</a></li>
@@ -313,8 +313,9 @@
 
                         <div class="product-content product-threecolumn product-slidebar clearfix">
                             <ul class="product style2 sd1">
-                                @foreach($products as $product)
+                                @foreach($products->chunk(3) as $chunk)
                                 <li class="product-item">
+                                    @foreach($chunk as $product)
                                     <div class="product-thumb clearfix">
                                         <a href="#" class="product-thumb">
                                             <img src="{{ $product->image_url }}" alt="image">
@@ -332,35 +333,27 @@
                                             </ins>
                                         </div>
                                         <ul class="flat-color-list">
-                                            <!-- li>
-                                                <a href="#" class="red"></a>
-                                            </li>
-                                            <li>
+                                            <!--li><a href="#" class="red"></a>
+                                            </li-->
+                                            <!--li>
                                                 <a href="#" class="blue"></a>
-                                            </li>
-                                            <li>
+                                            </li-->
+                                            <!--li>
                                                 <a href="#" class="black"></a>
-                                            </li -->
+                                            </li-->
                                         </ul>
                                     </div>
                                     <div class="add-to-cart text-center">
                                         <a href="#">ADD TO CART</a>
                                     </div>
                                     <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
+                                    @endforeach
                                 </li>
                                 @endforeach
                             </ul><!-- /.product -->
                         </div><!-- /.product-content -->
                         <div class="product-pagination text-center clearfix">
-                            <ul class="flat-pagination">
-                                <li class="prev">
-                                    <a href="#"><i class="fa fa-angle-left"></i></a>
-                                </li>
-                                <li><a href="#">1</a></li>
-                                <li class="active"><a href="#" title="">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                            </ul><!-- /.flat-pagination -->
+                            {{ $products->links() }}
                         </div>
                     </div><!-- /.col-md-9 -->
                 </div><!-- /.row -->

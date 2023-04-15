@@ -28,7 +28,7 @@ Route::controller(WelcomeController::class)->group(function () {
     Route::get('/service-motorcycle', 'ServiceBike')->name('service-motorcycle');
     Route::get('/service-mot', 'ServiceMot')->name('service-mot');
     Route::get('/accident-management-services', 'AccidentClaim')->name('road-traffic-accidents');
-    Route::get('/products', 'GetProducts')->name('get-products');
+    // Route::get('/shop', 'GetProducts')->name('get-products');
     Route::get('/gps-tracker', 'GpsTracker')->name('gps-tracker');
     Route::get('/spare-parts', 'SpareParts')->name('spare-parts');
     Route::get('/about', 'AboutMethod')->name('about.page');
@@ -36,10 +36,11 @@ Route::controller(WelcomeController::class)->group(function () {
 });
 
 // Oxford Product Routes
-Route::controller(OxfordsController::class)->group(function () {
-    Route::get('/shop', 'getOxfordProducts')->name('categories.oxford-products');
-    Route::get('/products/{brand}', 'getHelmets')->name('categories.helmets');
-});
+Route::get('/products/{category}', [OxfordsController::class, 'getCategoryProducts'])->name('categories.getCategoryProducts');
+// Route::controller(OxfordsController::class)->group(function () {
+//     Route::get('/helmets', 'getHelmets')->name('categories.helmets');
+//     Route::get('/helmet-accessories', 'getHelmetAccessories')->name('categories.helmet-accessories');
+// });
 
 // Contact All Routes 
 Route::controller(ContactController::class)->group(function () {

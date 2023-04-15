@@ -93,7 +93,7 @@
                             <div class="thumb">
                                 <img src="{{ url('assets/images/home/products610x377.jpg') }}" alt="Image">
                                 <div class="text-wrap text-center">
-                                    <h2 class="font-size-30 line-height-36 font-weight-600"><a class="text-white" href="/products">PRODUCTS</a></h2>
+                                    <h2 class="font-size-30 line-height-36 font-weight-600"><a class="text-white" href="/helmets">PRODUCTS</a></h2>
                                 </div>
                                 <div class="overlay-effect bg-color-2"></div>
                             </div>
