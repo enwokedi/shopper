@@ -2,10 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Product extends Model implements Buyable
 {
-    use HasFactory;
+    public function getBuyableIdentifier($options = null)
+    {
+        return $this->id;
+    }
+    public function getBuyableDescription($options = null)
+    {
+        return $this->name;
+    }
+    public function getBuyablePrice($options = null)
+    {
+        return $this->price;
+    }
+    public function getBuyableWeight($options = null)
+    {
+        return $this->weight;
+    }
 }

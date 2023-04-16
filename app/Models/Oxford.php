@@ -2,37 +2,52 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\OxfordCategory;
 
-class Oxford extends Model
+class Oxford extends Model implements Buyable
 {
-    use HasFactory;
+    public function getBuyableIdentifier($options = null)
+    {
+        return $this->id;
+    }
+    public function getBuyableDescription($options = null)
+    {
+        return $this->name;
+    }
+    public function getBuyablePrice($options = null)
+    {
+        return $this->price;
+    }
+    public function getBuyableWeight($options = null)
+    {
+        return $this->weight;
+    }
 
-    protected $fillable = [
-        'sku',
-        'description',
-        'ean',
-        'price',
-        'vat_price',
-        'stock',
-        'estimated_delivery',
-        'image_name',
-        'vatable',
-        'obsolete',
-        'dead',
-        'replacement_product',
-        'brand',
-        'extended_description',
-        'variation',
-        'date_added',
-        'prod_id',
-        'super_product_name',
-        'colour',
-        'image_url',
-        'category',
-        'model',
-        'category_id'
-    ];
+    // protected $fillable = [
+    //     'sku',
+    //     'description',
+    //     'ean',
+    //     'price',
+    //     'vat_price',
+    //     'stock',
+    //     'estimated_delivery',
+    //     'image_name',
+    //     'vatable',
+    //     'obsolete',
+    //     'dead',
+    //     'replacement_product',
+    //     'brand',
+    //     'extended_description',
+    //     'variation',
+    //     'date_added',
+    //     'prod_id',
+    //     'super_product_name',
+    //     'colour',
+    //     'image_url',
+    //     'category',
+    //     'model',
+    //     'category_id'
+    // ];
 }

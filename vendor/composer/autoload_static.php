@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb3047d1bfaaf86c253de9573aadca487
+class ComposerStaticInitaefe6f6eded9b98ee8896c64b6d07a52
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -7086,6 +7086,11 @@ class ComposerStaticInitb3047d1bfaaf86c253de9573aadca487
         'Spatie\\Ignition\\ErrorPage\\ErrorPageViewModel' => __DIR__ . '/..' . '/spatie/ignition/src/ErrorPage/ErrorPageViewModel.php',
         'Spatie\\Ignition\\ErrorPage\\Renderer' => __DIR__ . '/..' . '/spatie/ignition/src/ErrorPage/Renderer.php',
         'Spatie\\Ignition\\Ignition' => __DIR__ . '/..' . '/spatie/ignition/src/Ignition.php',
+        'Spatie\\Ignition\\Solutions\\OpenAi\\DummyCache' => __DIR__ . '/..' . '/spatie/ignition/src/Solutions/OpenAi/DummyCache.php',
+        'Spatie\\Ignition\\Solutions\\OpenAi\\OpenAiPromptViewModel' => __DIR__ . '/..' . '/spatie/ignition/src/Solutions/OpenAi/OpenAiPromptViewModel.php',
+        'Spatie\\Ignition\\Solutions\\OpenAi\\OpenAiSolution' => __DIR__ . '/..' . '/spatie/ignition/src/Solutions/OpenAi/OpenAiSolution.php',
+        'Spatie\\Ignition\\Solutions\\OpenAi\\OpenAiSolutionProvider' => __DIR__ . '/..' . '/spatie/ignition/src/Solutions/OpenAi/OpenAiSolutionProvider.php',
+        'Spatie\\Ignition\\Solutions\\OpenAi\\OpenAiSolutionResponse' => __DIR__ . '/..' . '/spatie/ignition/src/Solutions/OpenAi/OpenAiSolutionResponse.php',
         'Spatie\\Ignition\\Solutions\\SolutionProviders\\BadMethodCallSolutionProvider' => __DIR__ . '/..' . '/spatie/ignition/src/Solutions/SolutionProviders/BadMethodCallSolutionProvider.php',
         'Spatie\\Ignition\\Solutions\\SolutionProviders\\MergeConflictSolutionProvider' => __DIR__ . '/..' . '/spatie/ignition/src/Solutions/SolutionProviders/MergeConflictSolutionProvider.php',
         'Spatie\\Ignition\\Solutions\\SolutionProviders\\SolutionProviderRepository' => __DIR__ . '/..' . '/spatie/ignition/src/Solutions/SolutionProviders/SolutionProviderRepository.php',
@@ -8734,10 +8739,10 @@ class ComposerStaticInitb3047d1bfaaf86c253de9573aadca487
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb3047d1bfaaf86c253de9573aadca487::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb3047d1bfaaf86c253de9573aadca487::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitb3047d1bfaaf86c253de9573aadca487::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitb3047d1bfaaf86c253de9573aadca487::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitaefe6f6eded9b98ee8896c64b6d07a52::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitaefe6f6eded9b98ee8896c64b6d07a52::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitaefe6f6eded9b98ee8896c64b6d07a52::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitaefe6f6eded9b98ee8896c64b6d07a52::$classMap;
 
         }, null, ClassLoader::class);
     }
