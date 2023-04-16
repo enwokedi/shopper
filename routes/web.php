@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OxfordCartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Welcome\WelcomeController;
 use App\Http\Controllers\Welcome\ContactController;
@@ -38,10 +39,15 @@ Route::controller(WelcomeController::class)->group(function () {
 // Oxford Product Routes
 Route::controller(OxfordController::class)->group(function () {
     Route::get('/category/{category_id}', 'getProductCategory')->name('product.category');
-    Route::get('/helmets', 'getHelmets')->name('categories.helmets');
-    Route::get('/helmet-accessories', 'getHelmetAccessories')->name('categories.helmet-accessories');
+    Route::get('/item/{id}', 'getOxfordProduct')->name('item.details');
+});
 
-    Route::get('/product/{id}', 'getOxfordProduct')->name('product.details');
+// Cart Routes
+Route::controller(OxfordController::class)->group(function () {
+    Route::get('/product-cart', 'oxfordCart')->name('product.cart');
+    Route::get('/product/{id}', 'addProductCart')->name('addproduct.cart');
+    Route::patch('/update-product-cart', 'updateCart')->name('update.product.cart');
+    Route::patch('/delete-cart-product', 'deleteProduct')->name('delete.cart.product');
 });
 
 // Contact All Routes 

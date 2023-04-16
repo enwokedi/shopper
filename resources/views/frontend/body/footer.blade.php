@@ -6,7 +6,7 @@
                     <ul>
                         <li><a href="#">Contact Us</a></li>
                         <li><a href="#">My Account</a></li>
-                        <li><a href="#">My Cart</a></li>
+                        <li><a href="{{ route('product.cart') }}">My Cart</a></li>
                         <li><a href="#">My Wishlist Items</a></li>
                         <li><a href="#">My Checkout</a></li>
                         <li><a href="#">Delivery</a></li>

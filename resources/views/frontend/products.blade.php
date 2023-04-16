@@ -7,7 +7,7 @@
         @foreach($chunk as $product)
         <li class="product-item">
             <div class="product-thumb clearfix">
-                <a href="/product/{{ $product->id }}" class="product-thumb">
+                <a href="/item/{{ $product->id }}" class="product-thumb">
                     <img src="{{ $product->image_url }}" alt="image">
                 </a>
                 <!-- span class="new sale">Sale</span -->
@@ -22,19 +22,13 @@
                         <span class="amount">£{{ $product->price }}</span>
                     </ins>
                 </div>
-                <ul class="flat-color-list">
-                    <!--li><a href="#" class="red"></a>
-                                            </li-->
-                    <!--li>
-                                                <a href="#" class="blue"></a>
-                                            </li-->
-                    <!--li>
-                                                <a href="#" class="black"></a>
-                                            </li-->
+                <ul>
+                    <li>{{ $product->colour }}</li>
+                    <li>{{ $product->sku }}</li>
                 </ul>
             </div>
             <div class="add-to-cart text-center">
-                <a href="#">ADD TO CART</a>
+                <a href="{{ route('addproduct.cart', $product->id) }}">ADD TO CART</a>
             </div>
             <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
         </li>

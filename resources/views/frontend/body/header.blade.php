@@ -43,7 +43,7 @@
                 <a class="icon_login" href="/login"></a>
             </li>
             <li class="box-cart nav-top-cart-wrapper">
-                <a class="icon_cart nav-cart-trigger active" href="#"><span></span></a>
+                <a class="icon_cart nav-cart-trigger active" href="{{ route('product.cart') }}"><span></span></a>
                 <div class="nav-shop-cart">
                     <div class="widget_shopping_cart_content">
                         <div class="woocommerce-min-cart-wrap">

@@ -93,7 +93,7 @@
                                             <span class="dec quantity-button">-</span>
                                         </div>
                                         <div class="add-to-cart">
-                                            <a href="#">ADD TO CART</a>
+                                            <a href="{{ route('addproduct.cart', $product->id) }}">ADD TO CART</a>
                                         </div>
                                         <div class="box-like">
                                             <a href="#" class="like"><i class="fa fa-heart-o"></i></a>

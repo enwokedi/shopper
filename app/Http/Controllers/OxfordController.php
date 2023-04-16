@@ -12,7 +12,7 @@ class OxfordController extends Controller
 {
     public function getProductCategory($category_id)
     {
-        $products = Oxford::select('id', 'ean', 'image_url', 'description', 'sku', 'price', 'brand', 'category')
+        $products = Oxford::select('id', 'ean', 'image_url', 'description', 'sku', 'price', 'colour', 'brand', 'category')
             ->where('category_id', $category_id)
             ->where('stock', '=>', 1)
             ->paginate(24);
@@ -37,5 +37,51 @@ class OxfordController extends Controller
         $title = $product->description;
 
         return view('frontend.product', compact('product', 'title', 'cookie', 'category', 'category_id', 'product_id'));
+    }
+
+    public function oxfordCart()
+    {
+        return view('frontend.cart');
+    }
+
+    public function addProductCart($id)
+    {
+        $product = Oxford::findOrFail($id);
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                "sku" => $product->sku,
+                "name" => $product->description,
+                "quantity" => 1,
+                "price" => $product->price,
+                "image" => $product->image_url
+            ];
+        }
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product has been added to cart!');
+    }
+
+    public function updateCart(Request $request)
+    {
+        if ($request->id && $request->quantity) {
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Product added to cart.');
+        }
+    }
+
+    public function deleteProduct(Request $request)
+    {
+        if ($request->id) {
+            $cart = session()->get('cart');
+            if (isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product removed from your shopping cart.');
+        }
     }
 }
