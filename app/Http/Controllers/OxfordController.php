@@ -54,7 +54,7 @@ class OxfordController extends Controller
             $cart[$id] = [
                 "sku" => $product->sku,
                 "name" => $product->description,
-                "quantity" => 1,
+                "quantity" => $product->quantity,
                 "price" => $product->price,
                 "image" => $product->image_url
             ];
@@ -68,7 +68,7 @@ class OxfordController extends Controller
         if ($request->id && $request->quantity) {
             $cart = session()->get('cart');
             $cart[$request->id]["quantity"] = $request->quantity;
-            session()->put('cart', $cart);
+            session()->put('cart', 1);
             session()->flash('success', 'Product added to cart.');
         }
     }

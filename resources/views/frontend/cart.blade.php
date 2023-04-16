@@ -22,8 +22,6 @@
 
 <section class="flat-row main-shop shop-detail style-1">
     <div class="container">
-
-
         @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -34,7 +32,8 @@
             <table id="cart" class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Product</th>
+                        <th>Product $product->quantity</th>
+                        <th>Name</th>
                         <th>Price</th>
                         <th>Total</th>
                         <th></th>
