@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\OxfordCartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Welcome\WelcomeController;
 use App\Http\Controllers\Welcome\ContactController;
 use App\Http\Controllers\OxfordController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,12 +43,14 @@ Route::controller(OxfordController::class)->group(function () {
 });
 
 // Cart Routes
-Route::controller(OxfordController::class)->group(function () {
-    Route::get('/product-cart', 'oxfordCart')->name('product.cart');
-    Route::get('/product/{id}', 'addProductCart')->name('addproduct.cart');
-    Route::patch('/update-product-cart', 'updateCart')->name('update.product.cart');
-    Route::patch('/delete-cart-product', 'deleteProduct')->name('delete.cart.product');
-});
+Route::get('/cart', [CartController::class, 'index'])->name('product.cart');
+Route::get('/add-product/{id}', [CartController::class, 'add'])->name('addproduct.cart');
+
+// Route::controller(CartController::class)->group(function () {
+//     Route::get('/cart', 'index')->name('product.cart');
+//     Route::get('/add-product/{id}', 'add')->name('addproduct.cart');
+//     Route::post('/cart', 'store')->name('cart.store');
+// });
 
 // Contact All Routes 
 Route::controller(ContactController::class)->group(function () {

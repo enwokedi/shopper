@@ -16,7 +16,6 @@
                     <a class="navbar-sm-brand text-light text-decoration-none" href="#">Request Callback</a>
                 </div>
                 <div>
-                    <a class="text-light" style="padding-right: 10px;" href="/login">Login</a>
                     <a class="text-light" style="padding-right: 5px;" href="/register">Register</a>
                 </div>
             </div>
@@ -43,18 +42,7 @@
                 <a class="icon_login" href="/login"></a>
             </li>
             <li class="box-cart nav-top-cart-wrapper">
-                <a class="icon_cart nav-cart-trigger active" href="{{ route('product.cart') }}"><span></span></a>
-                <div class="nav-shop-cart">
-                    <div class="widget_shopping_cart_content">
-                        <div class="woocommerce-min-cart-wrap">
-                            <ul class="woocommerce-mini-cart cart_list product_list_widget ">
-                                <li class="woocommerce-mini-cart-item mini_cart_item">
-                                    <span>No Items in Shopping Cart</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <a class="icon_cart nav-cart-trigger " href="{{ route('product.cart') }}"><span> 6</span></a>
             </li>
         </ul>
         <div class="nav-wrap">

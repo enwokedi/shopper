@@ -8,6 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Oxford extends Model implements Buyable
 {
+    protected $fillable = [
+        'sku',
+        'description',
+        'ean',
+        'price',
+        'vat_price',
+        'stock',
+        'vatable',
+        'obsolete',
+        'dead',
+        'brand',
+        'extended_description',
+        'variation',
+        'super_product_name',
+        'colour',
+        'image_url',
+        'category_id',
+        'category',
+        'model',
+    ];
+
     public function getBuyableIdentifier($options = null)
     {
         return $this->id;
@@ -24,30 +45,4 @@ class Oxford extends Model implements Buyable
     {
         return $this->weight;
     }
-
-    // protected $fillable = [
-    //     'sku',
-    //     'description',
-    //     'ean',
-    //     'price',
-    //     'vat_price',
-    //     'stock',
-    //     'estimated_delivery',
-    //     'image_name',
-    //     'vatable',
-    //     'obsolete',
-    //     'dead',
-    //     'replacement_product',
-    //     'brand',
-    //     'extended_description',
-    //     'variation',
-    //     'date_added',
-    //     'prod_id',
-    //     'super_product_name',
-    //     'colour',
-    //     'image_url',
-    //     'category',
-    //     'model',
-    //     'category_id'
-    // ];
 }
