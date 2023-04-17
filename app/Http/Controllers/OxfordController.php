@@ -28,15 +28,15 @@ class OxfordController extends Controller
 
     public function getOxfordProduct($id)
     {
-        $product = Oxford::find($id);
+        $data = Oxford::find($id);
 
-        $product_id = $id;
-        $category_id = $product->category_id;
-        $category = strtolower($product->category);
-        $cookie = strtolower($product->description);
-        $title = $product->description;
+        // $product_id = $id;
+        // $category_id = $product->category_id;
+        // $category = strtolower($product->category);
+        // $cookie = strtolower($product->description);
+        // $title = $product->description;
 
-        return view('frontend.product', compact('product', 'title', 'cookie', 'category', 'category_id', 'product_id'));
+        return view('frontend.product', ['item' => $data]);
     }
 
     public function oxfordCart()

@@ -59,55 +59,54 @@
                         <div class="divider h0"></div>
                         <div class="product-detail">
                             <div class="inner">
-                                <form action="{{ route('store.cart', $product->id) }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="content-detail form-group">
-                                        <h2 class="product-title form-control" value=" {{$product->description}}" name="name">{{$product->description}}</h2>
-                                        <div class="flat-star style-1">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                            <span>(1)</span>
-                                        </div>
-                                        <p>{{ html_entity_decode($product->extended_description) }}</p>
-                                        <div class="price margin-top-24">
-                                            <ins><span class="amount" value="{{$product->price}}" name="price" id="price">£{{$product->price}}</span></ins>
-                                        </div>
-                                        <ul class="product-infor style-1">
-                                            <li><span>Size: {{ $product->variation }}</span></li>
-                                            <li><span>Colour: {{ $product->colour }}</span></li>
-                                        </ul>
-                                        <div class="product-categories margin-top-22">
-                                            <span>SKU: </span><a href="#">{{ $product->sku }}</a>
-                                        </div>
-                                        <div class="product-categories margin-top-22">
-                                            <span>Category: </span><a href="#">{{ucfirst($category)}}</a>
-                                        </div>
-                                        <div class="product-tags">
-                                            <span>Tags: </span><a href="#"></a> <a href="#"></a> <a href="#"></a> <a href="#"></a>
-                                        </div>
-                                        <div class="product-quantity margin-top-35">
-                                            <div class="quantity">
-                                                <input type="text" value="1" name="quantity" class="quantity-number">
-                                                <span class="inc quantity-button">+</span>
-                                                <span class="dec quantity-button">-</span>
-                                            </div>
-                                            <button type="submit" class="add-to-cart">ADD TO CART</button>
-                                            <div class="box-like">
-                                                <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
-                                            </div>
-                                        </div>
-                                        <ul class="flat-socials margin-top-46">
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
+                                <div class="content-detail">
+                                    <h2 class="product-title">{{$product->description}}</h2>
+                                    <div class="flat-star style-1">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                        <span>(1)</span>
                                     </div>
-                                </form>
+                                    <p>{{ html_entity_decode($product->extended_description) }}</p>
+                                    <div class="price margin-top-24">
+                                        <ins><span class="amount">£{{$product->price}}</span></ins>
+                                    </div>
+                                    <ul class="product-infor style-1">
+                                        <li><span>Size: {{ $product->variation }}</span></li>
+                                        <li><span>Colour: {{ $product->colour }}</span></li>
+                                    </ul>
+                                    <div class="product-categories margin-top-22">
+                                        <span>SKU: </span><a href="#">{{ $product->sku }}</a>
+                                    </div>
+                                    <div class="product-categories margin-top-22">
+                                        <span>Category: </span><a href="#">{{ucfirst($category)}}</a>
+                                    </div>
+                                    <div class="product-tags">
+                                        <span>Tags: </span><a href="#"></a> <a href="#"></a> <a href="#"></a> <a href="#"></a>
+                                    </div>
+                                    <div class="product-quantity margin-top-35">
+                                        <div class="quantity">
+                                            <input type="text" value="1" name="quantity-number" class="quantity-number">
+                                            <span class="inc quantity-button">+</span>
+                                            <span class="dec quantity-button">-</span>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a href="{{ route('addproduct.cart', $product->id) }}">ADD TO CART</a>
+                                        </div>
+                                        <div class="box-like">
+                                            <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
+                                        </div>
+                                    </div>
+                                    <ul class="flat-socials margin-top-46">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div><!-- /.product-detail -->
                     </div>
