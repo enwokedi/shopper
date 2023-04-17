@@ -15,6 +15,8 @@ class CartController extends Controller
      */
     public function index()
     {
+        Cart::count();
+
         return view('frontend.cart', [
             'cartItems' => Cart::instance('default')->content(),
         ]);
@@ -46,5 +48,18 @@ class CartController extends Controller
 
         /* Redirect to prevend re-adding on refreshing */
         return redirect()->route('product.cart')->withSuccess('Product has been successfully added to the Cart.');
+    }
+
+    public function store(Request $request)
+    {
+        dd($request);
+        Cart::instance('default')->add($request->id, $request->name, $request->quantity, $request->price, 0, ['totalQty' => $request->totalQty, 'product_code' => $request->product_code, 'image' => $request->image, 'slug' => $request->slug, 'details' => $request->details])->associate('App\Models\Oxford');
+    }
+
+    public function checkout()
+    {
+        Cart::count();
+
+        return view('frontend.checkout');
     }
 }

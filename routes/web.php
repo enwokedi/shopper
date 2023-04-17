@@ -44,7 +44,9 @@ Route::controller(OxfordController::class)->group(function () {
 
 // Cart Routes
 Route::get('/cart', [CartController::class, 'index'])->name('product.cart');
-Route::get('/add-product/{id}', [CartController::class, 'add'])->name('addproduct.cart');
+Route::get('/add-product', [CartController::class, 'add'])->name('addproduct.cart');
+Route::post('/cart', [CartController::class, 'store'])->name('store.cart');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('product.checkout');
 
 // Route::controller(CartController::class)->group(function () {
 //     Route::get('/cart', 'index')->name('product.cart');
