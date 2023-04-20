@@ -2,21 +2,21 @@
 <header id="header" class="header clearfix">
 
     <!-- Start Top Nav -->
-    <nav class="navbar navbar-expand navbar-dark bg-dark d-none d-lg-block">
+    <nav class="navbar navbar-expand navbar-dark bg-dark d-none d-lg-block" style="background-color: #343434;">
         <div class="container">
             <div class="w-100 d-flex justify-content-between">
                 <div>
-                    <i class="fa fa-envelope mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@neguinhomotors.co.uk">info@neguinhomotors.co.uk</a>
-                    <i class="fa fa-phone mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:02083141498">Catford: 0208 314 1498</a>
-                    <i class="fa fa-phone mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:02034095478">Tooting: 0203 409 5478</a>
-                    <i class="fa fa-bell mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="#">Request Callback</a>
+                    <i class="fa fa-envelope mx-2" style="color:white;"></i>
+                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@neguinhomotors.co.uk">info@neguinhomotors.co.uk</a>
+                    <i class="fa fa-phone mx-2" style="color:white;"></i>
+                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="tel:02083141498">Catford: 0208 314 1498</a>
+                    <i class="fa fa-phone mx-2" style="color:white;"></i>
+                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="tel:02034095478">Tooting: 0203 409 5478</a>
+                    <i class="fa fa-bell mx-2" style="color:white;"></i>
+                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="#">Request Callback</a>
                 </div>
                 <div>
-                    <a class="text-light" style="padding-right: 5px;" href="/register">Register</a>
+                    <a style="color: white;" class="text-light" style="padding-right: 5px;" href="/register" style="color:white;">Register</a>
                 </div>
             </div>
         </div>
