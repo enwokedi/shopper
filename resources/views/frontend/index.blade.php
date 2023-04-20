@@ -64,11 +64,13 @@
                     <div class="item data-effect-item">
                         <div class="inner">
                             <div class="thumb">
-                                <img src="{{ url('/img/home/accidents.jpg') }}" alt="Image">
-                                <div class="text-wrap text-center">
-                                    <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;"><a href="/accident-management-services">ACCIDENT MANAGEMENT SERVICES</a></h2>
-                                </div>
-                                <div class="overlay-effect bg-overlay-black"></div>
+                                <a href="/accident-management-services">
+                                    <img src="{{ url('/img/home/accidents.jpg') }}" alt="Image">
+                                    <div class="text-wrap text-center">
+                                        <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">ACCIDENT MANAGEMENT SERVICES</h2>
+                                    </div>
+                                    <div class="overlay-effect bg-overlay-black"></div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -79,7 +81,7 @@
                                 <a href="/spare-parts">
                                     <img src="{{ url('/img/home/spare-parts.jpg') }}" alt="Image">
                                     <div class="text-wrap text-center">
-                                        <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">SPARE<br>PARTS</h2>
+                                        <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">SPARE PARTS</h2>
                                     </div>
                                     <div class="overlay-effect bg-overlay-black"></div>
                                 </a>
