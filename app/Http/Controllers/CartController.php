@@ -50,9 +50,9 @@ class CartController extends Controller
         return redirect()->route('product.cart')->withSuccess('Product has been successfully added to the Cart.');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $product_id)
     {
-        dd($request);
+        dd($product_id);
         Cart::instance('default')->add($request->id, $request->name, $request->quantity, $request->price, 0, ['totalQty' => $request->totalQty, 'product_code' => $request->product_code, 'image' => $request->image, 'slug' => $request->slug, 'details' => $request->details])->associate('App\Models\Oxford');
     }
 
