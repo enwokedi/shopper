@@ -8,19 +8,18 @@
         <div class="row gutter-10">
             <div class="col-md-6">
                 <div class="divider h0"></div>
-                <div class="flat-image-box style-2 absolute-right flat-carousel-box" data-gap="0" data-auto="false" data-column="1" data-column2="1" data-column3="1">
-                    <div class="owl-carousel owl-theme">
+                <div class="flat-image-box style-1 absolute-center row2 data-effect clearfix">
+                    <div class="featured-post data-effect-item">
                         <div class="item">
                             <div class="inner">
                                 <div class="thumb">
-                                    <img src="{{ url('assets/images/home/for-sale.jpg') }}" alt="Image">
-                                    <div class="text-wrap text-center">
-                                        <!-- p class="sub-title font-size-18 font-weight-400" id="section1">NEW & USED MOTORCYCLES</p -->
-                                        <h2 class="title">Motorcycles <span class="text-accent">For Sale</span></h2>
-                                        <div class="elm-btn">
-                                            <a href="/sale-motorcycles" class="themesflat-button outline ol-accent has-padding-41 margin-top-24">ENTER SHOWROOM</a>
+                                    <a href="/sale-motorcycles">
+                                        <img src="{{ url('/img/home/for-sale.jpg') }}" alt="Image">
+                                        <div class="text-wrap text-center">
+                                            <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">MOTORCYCLES FOR SALE</h2>
                                         </div>
-                                    </div>
+                                        <div class="overlay-effect bg-overlay-black"></div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -30,14 +29,16 @@
             <div class="col-md-3">
                 <div class="divider h0"></div>
                 <div class="flat-image-box style-1 absolute-center row2 data-effect clearfix">
-                    <div class="item data-effect-item">
+                    <div class="featured-post data-effect-item">
                         <div class="inner">
                             <div class="thumb">
-                                <img src="{{ url('assets/images/home/tyres.jpg') }}" alt="Image">
-                                <div class="text-wrap text-center">
-                                    <h2 class="font-size-30 line-height-36 font-weight-600"><a href="/shop-tyres">TYRES</a></h2>
-                                </div>
-                                <div class="overlay-effect bg-color-2"></div>
+                                <a href="/shop-tyres">
+                                    <img src="{{ url('/img/home/tyres.jpg') }}" alt="Image">
+                                    <div class="text-wrap text-center">
+                                        <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">TYRES</h2>
+                                    </div>
+                                    <div class="overlay-effect bg-overlay-black"></div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -45,11 +46,13 @@
                     <div class="item data-effect-item">
                         <div class="inner">
                             <div class="thumb">
-                                <img src="{{ url('assets/images/home/rentals.jpg') }}" alt="Image">
-                                <div class="text-wrap text-center">
-                                    <h2 class="font-size-30 line-height-36 font-weight-600"><a href="/rentals-motorcycle">RENTALS</a></h2>
-                                </div>
-                                <div class="overlay-effect bg-color-2"></div>
+                                <a href="/rentals-motorcycle">
+                                    <img src="{{ url('/img/home/motorcycle-rentals.jpg') }}" alt="Image">
+                                    <div class="text-wrap text-center">
+                                        <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">RENTALS</h2>
+                                    </div>
+                                    <div class="overlay-effect bg-overlay-black"></div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -61,11 +64,11 @@
                     <div class="item data-effect-item">
                         <div class="inner">
                             <div class="thumb">
-                                <img src="{{ url('assets/images/home/accidents.jpg') }}" alt="Image">
+                                <img src="{{ url('/img/home/accidents.jpg') }}" alt="Image">
                                 <div class="text-wrap text-center">
-                                    <h2 class="font-size-30 line-height-36 font-weight-600"><a href="/accident-management-services">ACCIDENT MANAGEMENT SERVICES</a></h2>
+                                    <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;"><a href="/accident-management-services">ACCIDENT MANAGEMENT SERVICES</a></h2>
                                 </div>
-                                <div class="overlay-effect bg-color-2"></div>
+                                <div class="overlay-effect bg-overlay-black"></div>
                             </div>
                         </div>
                     </div>
@@ -73,11 +76,13 @@
                     <div class="item data-effect-item">
                         <div class="inner">
                             <div class="thumb">
-                                <img src="{{ url('assets/images/home/spare-parts.jpg') }}" alt="Image">
-                                <div class="text-wrap text-center">
-                                    <h2 class="font-size-30 line-height-36 font-weight-600"><a href="/spare-parts">SPARE<br>PARTS</a></h2>
-                                </div>
-                                <div class="overlay-effect bg-color-2"></div>
+                                <a href="/spare-parts">
+                                    <img src="{{ url('/img/home/spare-parts.jpg') }}" alt="Image">
+                                    <div class="text-wrap text-center">
+                                        <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">SPARE<br>PARTS</h2>
+                                    </div>
+                                    <div class="overlay-effect bg-overlay-black"></div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -91,11 +96,11 @@
                     <div class="item data-effect-item">
                         <div class="inner">
                             <div class="thumb">
-                                <img src="{{ url('assets/images/home/products610x377.jpg') }}" alt="Image">
+                                <img src="{{ url('/img/home/motorcycle-accessories-shop.jpg') }}" alt="Image">
                                 <div class="text-wrap text-center">
-                                    <h2 class="font-size-30 line-height-36 font-weight-600"><a class="text-white" href="/shop">SHOP</a></h2>
+                                    <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;"><a class="text-white" href="/shop">SHOP</a></h2>
                                 </div>
-                                <div class="overlay-effect bg-color-2"></div>
+                                <div class="overlay-effect bg-overlay-black"></div>
                             </div>
                         </div>
                     </div>
@@ -107,11 +112,13 @@
                     <div class="item data-effect-item">
                         <div class="inner">
                             <div class="thumb">
-                                <img src="{{ url('assets/images/home/gps-tracker.jpg') }}" alt="Image">
-                                <div class="text-wrap text-center">
-                                    <h2 class="font-size-30 line-height-36 font-weight-600"><a href="/gps-tracker">GPS TRACKER</a></h2>
-                                </div>
-                                <div class="overlay-effect bg-color-2"></div>
+                                <a href="/gps-tracker">
+                                    <img src="{{ url('/img/home/gps-tracker.jpg') }}" alt="Image">
+                                    <div class="text-wrap text-center">
+                                        <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">GPS TRACKER</h2>
+                                    </div>
+                                    <div class="overlay-effect bg-overlay-black"></div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -123,11 +130,13 @@
                     <div class="item data-effect-item">
                         <div class="inner">
                             <div class="thumb">
-                                <img src="{{ url('assets/images/home/services.jpg') }}" alt="Image">
-                                <div class="text-wrap text-center">
-                                    <h2 class="font-size-30 line-height-36 font-weight-600"><a href="/services">MOT<br>SERVICING<br>REPAIRS</a></h2>
-                                </div>
-                                <div class="overlay-effect bg-color-2"></div>
+                                <a href="/services">
+                                    <img src="{{ url('/img/home/services.jpg') }}" alt="Image">
+                                    <div class="text-wrap text-center">
+                                        <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">SERVICES</h2>
+                                    </div>
+                                    <div class="overlay-effect bg-overlay-black"></div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -147,9 +156,9 @@
                 <div class="flat-animation-block bg-section row-1">
                     <div class="divider h99"></div>
                     <div class="title-section width-before-17 bg-before-white margin-bottom-14">
-                        <div class="sup-title"><span>WANT TO SAVE MONEY?</span></div>
-                        <h2 class="title font-size-52 line-height-76">Discount Collection</h2>
-                        <div class="sub-title"><span>Save Money on Everything</span></div>
+                        <!-- <div class="sup-title"><span>WANT TO SAVE MONEY?</span></div> -->
+                        <h2 class="title font-size-52 line-height-76" style="color: white;">Discount Collection</h2>
+                        <div class="sub-title" style="color: white;"><span>Save Money on Everything</span></div>
                     </div>
                     <div class="elm-btn text-center">
                         <a href="#" class="themesflat-button bg-accent has-padding-36">Start Now</a>
