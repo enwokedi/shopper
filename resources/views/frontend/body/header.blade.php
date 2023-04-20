@@ -102,6 +102,53 @@
                             <li>
                                 <a href="/category/14">HELMET ACCESSORIES</a>
                             </li>
+                            <li>
+                                <a href="/category/2">ESSENTIALS</a>
+                            </li>
+                            <li>
+                                <a href="/category/11">CLOTHING</a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="/category/10">HEADWEAR</a>
+                                    </li>
+                                    <li>
+                                        <a href="/category/3">HEATED CLOTHING</a>
+                                    </li>
+                                    <li>
+                                        <a href="/category/26">OXFORD CLOTHING</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/category/6">LOCKS</a>
+                            </li>
+                            <li>
+                                <a href="/category/7">PAINT PROTECTION</a>
+                            </li>
+                            <li>
+                                <a href="/category/8">HANDLEBAR ACCESSORIES</a>
+                            </li>
+                            <li>
+                                <a href="/category/9">REFLECTIVES</a>
+                            </li>
+                            <li>
+                                <a href="/category/12">LIGHTING</a>
+                            </li>
+                            <li>
+                                <a href="/category/13">LUGGAGE</a>
+                            </li>
+                            <li>
+                                <a href="/category/15">BATTERY CARE</a>
+                            </li>
+                            <li>
+                                <a href="/category/16">CYCLE ACCESSORIES</a>
+                            </li>
+                            <li>
+                                <a href="/category/25">INTERCOMS</a>
+                            </li>
+                            <li>
+                                <a href="/category/35">MINT</a>
+                            </li>
                         </ul>
                     </li>
                     <li>
