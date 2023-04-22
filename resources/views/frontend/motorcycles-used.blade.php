@@ -66,7 +66,7 @@
                                 <a href="/new-motorcycle/{{ $motorcycle->id }}">
                                     <img src="{{url('assets/images/rentals/2022-Yamaha-YZF1000R1-EU-Yamaha_Black-Studio-001-03.jpg')}}" alt="image">
                                 </a>
-                                <span class="new">New</span>
+                                <span class="new">Used</span>
                             </div>
                             <div class="product-info clearfix">
                                 <span class="product-title">{{ $motorcycle->name }}</span>

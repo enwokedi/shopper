@@ -72,13 +72,13 @@
                                 <span class="product-title">{{ $motorcycle->name }}</span>
                                 <div class="price">
                                     <ins>
-                                        <span class="amount">£5000.00</span>
+                                        <span class="amount">{{ $motorcycle->name }}</span>
                                     </ins>
                                 </div>
                             </div>
                             <span class="regular">Super Sport</span>
                             <div class="add-to-cart text-center">
-                                <a href="#">ADD TO CART</a>
+                                <a href="/new-motorcycle/{{ $motorcycle->id }}">MORE INFORMATION</a>
                             </div>
                             <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
                         </li>

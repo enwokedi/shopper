@@ -21,7 +21,7 @@ class WelcomeController extends Controller
     public function NewForSale()
     {
         $motorcycles = Category::findOrFail(77)->products()->paginate(9);
-        dd($motorcycles);
+        // dd($motorcycles);
         return view('frontend.motorcycles-new', compact('motorcycles'));
     }
 
