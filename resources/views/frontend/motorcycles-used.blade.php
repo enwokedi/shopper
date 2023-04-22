@@ -8,13 +8,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-title-heading">
-                    <h1 class="title">Used Motorcycles for Sale</h1>
+                    <h1 class="title">New Bikes For Sale</h1>
                 </div><!-- /.page-title-heading -->
                 <div class="breadcrumbs">
                     <ul>
                         <li><a href="/">Honda & Yamaha Specialists</a></li>
                         <li><a href="/motorcycle-sales">Motorcycle Sales</a></li>
-                        <li><a href="/motorcycles-used">Used Motorcycle for Sale</a></li>
+                        <li><a href="/motorcycles-new">New Motorcycles for Sales</a></li>
                     </ul>
                 </div><!-- /.breadcrumbs -->
             </div><!-- /.col-md-12 -->
@@ -40,7 +40,7 @@
                             SORT BY
                         </h5>
                         <ul>
-                            <li class="active"><a href="#" data-filter="*">ALL MODELS</a></li>
+                            <li class="active"><a href="#" data-filter="*">ALL MAKES</a></li>
                             <li><a href="#" data-filter=".new">NEW MOTORCYCLES</a></li>
                             <li><a href="#">USED MOTORCYCLES</a></li>
                             <!-- li><a href="#">Average rating</a></li>
@@ -58,16 +58,18 @@
                     </p>
                 </div><!-- /.filte-shop -->
                 <div class="product-content product-threecolumn product-slidebar clearfix">
+                    @foreach($motorcycles->chunk(3) as $chunk)
                     <ul class="product style2 sd1">
+                        @foreach($chunk as $motorcycle)
                         <li class="product-item new">
                             <div class="product-thumb clearfix">
-                                <a href="#">
+                                <a href="/new-motorcycle/{{ $motorcycle->id }}">
                                     <img src="{{url('assets/images/rentals/2022-Yamaha-YZF1000R1-EU-Yamaha_Black-Studio-001-03.jpg')}}" alt="image">
                                 </a>
                                 <span class="new">New</span>
                             </div>
                             <div class="product-info clearfix">
-                                <span class="product-title">YAMAHA R1</span>
+                                <span class="product-title">{{ $motorcycle->name }}</span>
                                 <div class="price">
                                     <ins>
                                         <span class="amount">£5000.00</span>
@@ -80,183 +82,15 @@
                             </div>
                             <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
                         </li>
-                        <li class="product-item">
-                            <div class="product-thumb clearfix">
-                                <a href="#" class="product-thumb">
-                                    <img src="{{url('assets/images/rentals/2023-Yamaha-MT125-EU-Icon_Blue_-Studio-001-03.jpg')}}" alt="image">
-                                </a>
-                            </div>
-                            <div class="product-info clearfix">
-                                <span class="product-title">YAMAHA MT125</span>
-                                <div class="price">
-                                    <ins>
-                                        <span class="amount">£5000.00</span>
-                                    </ins>
-                                </div>
-                            </div>
-                            <span class="regular">Hyper Naked</span>
-                            <div class="add-to-cart text-center">
-                                <a href="#">ADD TO CART</a>
-                            </div>
-                            <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
-                        </li>
-                        <li class="product-item">
-                            <div class="product-thumb clearfix">
-                                <a href="#">
-                                    <img src="{{url('assets/images/rentals/2023-Yamaha-G125YM-EU-Ruby_Red-Studio-001-03.jpg')}}" alt="image">
-                                </a>
-                                <span class="new">New</span>
-                            </div>
-                            <div class="product-info clearfix">
-                                <span class="product-title">YAMAHA NMAX 125</span>
-                                <div class="price">
-                                    <ins>
-                                        <span class="amount">£5000.00</span>
-                                    </ins>
-                                </div>
-                            </div>
-                            <span class="regular">Urban Mobility</span>
-                            <div class="add-to-cart text-center">
-                                <a href="#">ADD TO CART</a>
-                            </div>
-                            <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
-                        </li>
-                        <li class="product-item">
-                            <div class="product-thumb clearfix">
-                                <a href="#" class="product-thumb">
-                                    <img src="{{url('assets/images/rentals/2023-Yamaha-G125YM-EU-Milky_White-Studio-001-03.jpg')}}" alt="image">
-                                </a>
-                                <span class="new sale">Sale</span>
-                            </div>
-                            <div class="product-info clearfix">
-                                <span class="product-title">YAMAHA NMAX 125</span>
-                                <div class="price">
-                                    <ins>
-                                        <span class="amount">£5000.00</span>
-                                    </ins>
-                                </div>
-                            </div>
-                            <span class="regular">Urban Mobility</span>
-                            <div class="add-to-cart text-center">
-                                <a href="#">ADD TO CART</a>
-                            </div>
-                            <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
-                        </li>
-                        <li class="product-item">
-                            <div class="product-thumb clearfix">
-                                <a href="#" class="product-thumb">
-                                    <img src="{{url('assets/images/rentals/2023-Yamaha-G125YM-EU-Deep_Blue-Studio-001-03.jpg')}}" alt="image">
-                                </a>
-                            </div>
-                            <div class="product-info clearfix">
-                                <span class="product-title">HONDA PCX 125</span>
-                                <div class="price">
-                                    <ins>
-                                        <span class="amount">£5000.00</span>
-                                    </ins>
-                                </div>
-                            </div>
-                            <span class="regular">Urban Mobility</span>
-                            <div class="add-to-cart text-center">
-                                <a href="#">ADD TO CART</a>
-                            </div>
-                            <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
-                        </li>
-                        <li class="product-item">
-                            <div class="product-thumb clearfix">
-                                <a href="#" class="product-thumb">
-                                    <img src="{{url('assets/images/rentals/2023-Yamaha-G125YM-EU-Milky_White-Studio-001-03.jpg')}}" alt="image">
-                                </a>
-                                <span class="new sale">Sale</span>
-                            </div>
-                            <div class="product-info clearfix">
-                                <span class="product-title">HONDA PCX 125</span>
-                                <div class="price">
-                                    <del>
-                                        <ins>
-                                            <span class="amount">£5000.00</span>
-                                        </ins>
-                                </div>
-                            </div>
-                            <span class="regular">Urban Mobility</span>
-                            <div class="add-to-cart text-center">
-                                <a href="#">ADD TO CART</a>
-                            </div>
-                            <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
-                        </li>
-                        <li class="product-item">
-                            <div class="product-thumb clearfix">
-                                <a href="#" class="product-thumb">
-                                    <img src="{{url('assets/images/rentals/2022-Yamaha-YZF1000R1-EU-Icon_Blue-Studio-001-03.jpg')}}" alt="image">
-                                </a>
-                                <span class="new sale">Sale</span>
-                            </div>
-                            <div class="product-info clearfix">
-                                <span class="product-title">YAMAHA R1</span>
-                                <div class="price">
-                                    <ins>
-                                        <span class="amount">£5000.00</span>
-                                    </ins>
-                                </div>
-                            </div>
-                            <span class="regular">Super Sport</span>
-                            <div class="add-to-cart text-center">
-                                <a href="#">ADD TO CART</a>
-                            </div>
-                            <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
-                        </li>
-                        <li class="product-item">
-                            <div class="product-thumb clearfix">
-                                <a href="#" class="product-thumb">
-                                    <img src="{{url('assets/images/rentals/2023-Yamaha-G125YM-EU-Ruby_Red-Studio-001-03.jpg')}}" alt="image">
-                                </a>
-                            </div>
-                            <div class="product-info clearfix">
-                                <span class="product-title">HONDA PCX 125</span>
-                                <div class="price">
-                                    <ins>
-                                        <span class="amount">£5000.00</span>
-                                    </ins>
-                                </div>
-                            </div>
-                            <span class="regular">Urban Mobility</span>
-                            <div class="add-to-cart text-center">
-                                <a href="#">ADD TO CART</a>
-                            </div>
-                            <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
-                        </li>
-                        <li class="product-item">
-                            <div class="product-thumb clearfix">
-                                <a href="#" class="product-thumb">
-                                    <img src="{{url('assets/images/rentals/2023-Yamaha-G125YM-EU-Deep_Blue-Studio-001-03.jpg')}}" alt="image">
-                                </a>
-                                <span class="new sale">Sale</span>
-                            </div>
-                            <div class="product-info clearfix">
-                                <span class="product-title">HONDA PCX 125</span>
-                                <div class="price">
-                                    <ins>
-                                        <span class="amount">£5000.00</span>
-                                    </ins>
-                                </div>
-                            </div>
-                            <span class="regular">Urban Mobility</span>
-                            <div class="add-to-cart text-center">
-                                <a href="#">ADD TO CART</a>
-                            </div>
-                            <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
-                        </li>
+                        @endforeach
                     </ul><!-- /.product -->
+                    @endforeach
                 </div><!-- /.product-content -->
                 <div class="product-pagination text-center clearfix">
                     <ul class="flat-pagination">
-                        <li class="prev">
-                            <a href="#"><i class="fa fa-angle-left"></i></a>
+                        <li>
+                            {{ $motorcycles->links() }}
                         </li>
-                        <li class="active"><a href="#" title="">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                     </ul><!-- /.flat-pagination -->
                 </div>
             </div><!-- /.col-md-9 -->

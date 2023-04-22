@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Welcome;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class WelcomeController extends Controller
 {
@@ -19,7 +20,9 @@ class WelcomeController extends Controller
 
     public function NewForSale()
     {
-        return view('frontend.motorcycles-new');
+        $motorcycles = Category::findOrFail(77)->products()->paginate(9);
+        dd($motorcycles);
+        return view('frontend.motorcycles-new', compact('motorcycles'));
     }
 
     public function UsedForSale()

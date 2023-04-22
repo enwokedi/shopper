@@ -58,16 +58,18 @@
                     </p>
                 </div><!-- /.filte-shop -->
                 <div class="product-content product-threecolumn product-slidebar clearfix">
+                    @foreach($motorcycles->chunk(3) as $chunk)
                     <ul class="product style2 sd1">
+                        @foreach($chunk as $motorcycle)
                         <li class="product-item new">
                             <div class="product-thumb clearfix">
-                                <a href="#">
+                                <a href="/new-motorcycle/{{ $motorcycle->id }}">
                                     <img src="{{url('assets/images/rentals/2022-Yamaha-YZF1000R1-EU-Yamaha_Black-Studio-001-03.jpg')}}" alt="image">
                                 </a>
                                 <span class="new">New</span>
                             </div>
                             <div class="product-info clearfix">
-                                <span class="product-title">YAMAHA R1</span>
+                                <span class="product-title">{{ $motorcycle->name }}</span>
                                 <div class="price">
                                     <ins>
                                         <span class="amount">£5000.00</span>
@@ -80,17 +82,15 @@
                             </div>
                             <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
                         </li>
+                        @endforeach
                     </ul><!-- /.product -->
+                    @endforeach
                 </div><!-- /.product-content -->
                 <div class="product-pagination text-center clearfix">
                     <ul class="flat-pagination">
-                        <li class="prev">
-                            <a href="#"><i class="fa fa-angle-left"></i></a>
+                        <li>
+                            {{ $motorcycles->links() }}
                         </li>
-                        <li class="active"><a href="#" title="">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                     </ul><!-- /.flat-pagination -->
                 </div>
             </div><!-- /.col-md-9 -->
