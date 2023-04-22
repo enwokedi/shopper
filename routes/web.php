@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Welcome\WelcomeController;
 use App\Http\Controllers\Welcome\ContactController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\OxfordController;
 use App\Http\Controllers\CartController;
 
@@ -21,10 +22,6 @@ use App\Http\Controllers\CartController;
 Route::controller(WelcomeController::class)->group(function () {
     Route::get('/', 'HomeMain')->name('home');
     Route::get('/motorcycle-sales', 'BikesForSale')->name('sale-motorcycles');
-    Route::get('/new-motorcycles', 'NewForSale')->name('sale-motorcycles');
-    Route::get('/used-motorcycles', 'UsedForSale')->name('sale-motorcycles');
-    Route::get('/rentals-motorcycle', 'RentBike')->name('rentals-motorcycle');
-    Route::get('/rentals-honda-pcx-125', 'DemoDetails')->name('rental-details');
     Route::get('/rentals-information', 'RentInformation')->name('rental-information');
     Route::get('/services', 'GetServices')->name('services');
     Route::get('/service-repairs', 'Repairs')->name('service-repairs');
@@ -36,6 +33,16 @@ Route::controller(WelcomeController::class)->group(function () {
     Route::get('/spare-parts', 'SpareParts')->name('spare-parts');
     Route::get('/about', 'AboutMethod')->name('about.page');
     Route::get('/contact', 'ContactMethod')->name('contact.page');
+});
+
+// Motorcycle Sales & Rental Routes
+Route::controller(SalesController::class)->group(function () {
+    Route::get('/new-motorcycles', 'NewForSale')->name('new.motorcycles');
+    Route::get('/new-motorcycle/{id}', 'NewBikeDetails')->name('detail.new-motorcycle');
+    Route::get('/used-motorcycles', 'UsedForSale')->name('used.motorcycles');
+    Route::get('/used-motorcycle/{id}', 'UsedBikeDetails')->name('detail.used-motorcycle');
+    Route::get('/rentals-motorcycle', 'RentBike')->name('rental.motorcycles');
+    Route::get('/rentals-motorcycle/{id}', 'RentalBikeDetails')->name('detail.rental-motorcycle');
 });
 
 // Oxford Product Routes

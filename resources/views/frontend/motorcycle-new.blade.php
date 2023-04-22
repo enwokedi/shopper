@@ -25,14 +25,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="page-title-heading">
-                            <h1 class="title">{{$title}}</h1>
+                            <h1 class="title">title</h1>
                         </div><!-- /.page-title-heading -->
                         <div class="breadcrumbs">
                             <ul>
                                 <li><a href="/">Honda & Yamaha Specialists</a></li>
                                 <li><a href="/shop">Shop</a></li>
-                                <li><a href="/category/{{$category_id}}">{{ucfirst($category)}}</a></li>
-                                <li><a href="/product/{{$product_id}}">{{$title}}</a></li>
+                                <li><a href="/category/category_id">category</a></li>
+                                <li><a href="/product/product_id">title</a></li>
                             </ul>
                         </div><!-- /.breadcrumbs -->
                     </div><!-- /.col-md-12 -->
@@ -48,7 +48,7 @@
                             <div class="inner padding-top-4">
                                 <ul class="product-list-fix-image">
                                     <li>
-                                        <img src="{{$product->image_url}}" alt="Image">
+                                        <img src="product->image_url" alt="Image">
                                     </li>
                                 </ul>
                             </div>
@@ -59,10 +59,10 @@
                         <div class="divider h0"></div>
                         <div class="product-detail">
                             <div class="inner">
-                                <form action="{{ route('store.cart', $product->id) }}" method="POST" enctype="multipart/form-data">
+                                <form action="#" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="content-detail form-group">
-                                        <h2 class="product-title" value="{{$product->description}}" name="name">{{$product->description}}</h2>
+                                        <h2 class="product-title" value="" name="name">product->description</h2>
                                         <div class="flat-star style-1">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -71,19 +71,19 @@
                                             <i class="fa fa-star-half-o"></i>
                                             <span>(1)</span>
                                         </div>
-                                        <p>{{ html_entity_decode($product->extended_description) }}</p>
+                                        <p>product->extended_description</p>
                                         <div class="price margin-top-24">
-                                            <ins><span class="amount" value="{{$product->price}}" name="price" id="price">£{{$product->price}}</span></ins>
+                                            <ins><span class="amount" value="" name="price" id="price">Contact Tel</span></ins>
                                         </div>
                                         <ul class="product-infor style-1">
-                                            <li><span>Size: {{ $product->variation }}</span></li>
-                                            <li><span>Colour: {{ $product->colour }}</span></li>
+                                            <li><span>Info</span></li>
+                                            <li><span>Info</span></li>
                                         </ul>
                                         <div class="product-categories margin-top-22">
-                                            <span>SKU: </span><a href="#">{{ $product->sku }}</a>
+                                            <span>SKU: </span><a href="#">sku</a>
                                         </div>
                                         <div class="product-categories margin-top-22">
-                                            <span>Category: </span><a href="#">{{ucfirst($category)}}</a>
+                                            <span>Category: </span><a href="#">category</a>
                                         </div>
                                         <div class="product-tags">
                                             <span>Tags: </span><a href="#"></a> <a href="#"></a> <a href="#"></a> <a href="#"></a>

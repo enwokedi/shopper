@@ -18,33 +18,6 @@ class WelcomeController extends Controller
         return view('frontend.motorcycle-sales');
     }
 
-    public function NewForSale()
-    {
-        $motorcycles = Category::findOrFail(77)->products()->paginate(9);
-        // dd($motorcycles);
-        return view('frontend.motorcycles-new', compact('motorcycles'));
-    }
-
-    public function UsedForSale()
-    {
-        return view('frontend.motorcycles-used');
-    }
-
-    public function RentBike()
-    {
-        return view('frontend.rentals-motorcycles');
-    }
-
-    public function RentalDetails()
-    {
-        return view('frontend.rentals-details');
-    }
-
-    public function DemoDetails()
-    {
-        return view('frontend.rentals-hondapcx125');
-    }
-
     public function RentInformation()
     {
         return view('frontend.rentals-information');

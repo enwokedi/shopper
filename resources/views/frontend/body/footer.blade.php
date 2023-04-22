@@ -28,7 +28,7 @@
             </div><!-- /.col-md-3 -->
             <div class="col-sm-6 col-md-4">
                 <div class="widget widget-brand">
-                    <h3 class="text-center">START A TRADE ACCOUNT</h3>
+                    <h3 class="">Got one? Get one...</h3>
                     <A href="#">
                         <img src="{{url('img/home/trade_account_card.jpg')}}" alt="image" width="100%">
                     </a>
