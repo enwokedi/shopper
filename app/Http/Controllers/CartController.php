@@ -50,10 +50,17 @@ class CartController extends Controller
         return redirect()->route('product.cart')->withSuccess('Product has been successfully added to the Cart.');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $product_id)
     {
-        dd($request);
-        Cart::instance('default')->add($request->id, $request->name, $request->quantity, $request->price, 0, ['totalQty' => $request->totalQty, 'product_code' => $request->product_code, 'image' => $request->image, 'slug' => $request->slug, 'details' => $request->details])->associate('App\Models\Oxford');
+        $product = Oxford::select('id', 'sku', 'description', 'price', 'image_url', 'extended_description')
+            ->where('id', $product_id)
+            ->get();
+
+        // dd($product[0]->price);
+        Cart::instance('default')->add($product_id, $product[0]->description, $request->quantity, $product[0]->price, 0, ['product_code' => $product[0]->sku, 'image' => $product[0]->image_url, 'details' => $product[0]->extended_description])->associate('App\Models\Oxford');
+
+        /* Redirect to prevend re-adding on refreshing */
+        return redirect()->route('product.cart')->withSuccess('Product has been successfully added to the Cart.');
     }
 
     public function checkout()

@@ -12,9 +12,19 @@ class WelcomeController extends Controller
         return view('frontend.index');
     }
 
-    public function ForSale()
+    public function BikesForSale()
     {
-        return view('frontend.sale-motorcycles');
+        return view('frontend.motorcycle-sales');
+    }
+
+    public function NewForSale()
+    {
+        return view('frontend.motorcycles-new');
+    }
+
+    public function UsedForSale()
+    {
+        return view('frontend.motorcycles-used');
     }
 
     public function RentBike()

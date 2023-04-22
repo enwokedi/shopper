@@ -43,8 +43,8 @@
                                     </div>
                                 </td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->price }}</td>
-                                <td>{{ $item->total }}</td>
+                                <td>£{{ $item->price }}</td>
+                                <td>£{{ $item->total }}</td>
                             </tr>
                             @endforeach
                         </tbody>

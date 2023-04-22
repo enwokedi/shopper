@@ -16,8 +16,8 @@ return [
     'discount_use' => '{1} Limit of 1 use|[2,*] Limit of :count uses',
 
     'dashboard' => [
-        'welcome_message' => 'Welcome to <span>Shopper</span> Dashboard',
-        'header' => 'Start with the basic for your online store',
+        'welcome_message' => 'Welcome to the <span>Neguinho Motors</span> Dashboard',
+        'header' => 'System data analytics will go here...',
         'description' => ' To begin building your new store with Laravel Shopper, we recommend starting with these steps. The framework allows you to create
                            your store and configure it exactly as you want. You can make <span>integrations</span> to go faster if you want.',
         'cards' => [

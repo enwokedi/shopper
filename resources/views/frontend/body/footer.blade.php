@@ -15,27 +15,32 @@
                     </ul>
                 </div><!-- /.widget -->
             </div><!-- /.col-md-3 -->
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-2">
                 <div class="widget widget-link link-login">
                     <ul>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Promotional Terms & Conditions</a></li>
+                        <li><a href="#">Terms of Use</a></li>
                         <li><a href="#">Cookie Policy</a></li>
                         <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
                     </ul>
                 </div><!-- /.widget -->
             </div><!-- /.col-md-3 -->
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4">
                 <div class="widget widget-brand">
-                    <ul class="flat-contact">
-                        <li class="area"></li>
-                    </ul><!-- /.flat-contact -->
+                    <h3 class="text-center">START A TRADE ACCOUNT</h3>
+                    <A href="#">
+                        <img src="{{url('img/home/trade_account_card.jpg')}}" alt="image" width="100%">
+                    </a>
                 </div><!-- /.widget -->
             </div><!-- /.col-md-3 -->
             <div class="col-sm-6 col-md-4">
                 <div class="widget widget-brand">
                     <ul class="flat-contact">
-                        <li class="area">NGM CATFORD</li>
+                        <li class="area"><a href="/" title="logo">
+                                <img src="{{url('img/neguinhomotors3.png')}}" alt="image" width="100%" data-retina="{{url('img/neguinhomotors3.png')}}" data-width="100%">
+                            </a></li>
+                        <li class="area">CATFORD</li>
                         <li>
                             <i class="fa fa-phone mx-2"></i>
                             <a class="phone" href="tel:0208314498">0208 314 1498</a>
@@ -48,7 +53,7 @@
                             <i class="fa fa-map-marker mx-2"></i>
                             <a class="address">Unit 1179, 9 Catford Hill, London SE6 4NU</a>
                         </li>
-                        <li class="area">NGM TOOTING</li>
+                        <li class="area">TOOTING</li>
                         <li>
                             <i class="fa fa-phone mx-2"></i>
                             <a class="phone" href="tel:02034095478">0203 409 5478</a>
