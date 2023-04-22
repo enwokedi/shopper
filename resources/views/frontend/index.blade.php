@@ -173,4 +173,4 @@
 </section>
 <!-- END ANIMATION BOX -->
 
-@stop
+@endsection

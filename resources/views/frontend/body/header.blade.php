@@ -26,7 +26,7 @@
     <div class="container-fluid container-width-93 clearfix" id="site-header-inner">
         <div id="logo" class="logo float-left">
             <a href="/" title="logo">
-                <img src="{{url('img/logo.png')}}" alt="image" width="54" height="12" data-retina="{{url('img/logo@2x.png')}}" data-width="54" data-height="12">
+                <img src="{{url('img/neguinhomotors3.png')}}" alt="image" width="30%">
             </a>
         </div><!-- /.logo -->
         <div class="mobile-button"><span></span></div>
@@ -42,7 +42,7 @@
                 <a class="icon_login" href="/login"></a>
             </li>
             <li class="box-cart nav-top-cart-wrapper">
-                <a class="icon_cart nav-cart-trigger " href="{{ route('product.cart') }}"><span> 6</span></a>
+                <a class="icon_cart nav-cart-trigger " href="{{ route('product.cart') }}"><span> {{ Cart::instance('default')->count() }}</span></a>
             </li>
         </ul>
         <div class="nav-wrap">
