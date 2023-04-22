@@ -35,13 +35,22 @@ return [
             'root' => storage_path('app'),
             'throw' => false,
         ],
+        'uploads' => [
+            'driver' => 'local',
+            'root' => storage_path('uploads'),
+        ],
+
+        'avatars' => [
+            'driver' => 'local',
+            'root' => storage_path('avatars'),
+        ],
 
         'ftp' => [
             'driver' => 'ftp',
             'host' => env('FTP_HOST'),
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
-         
+
             // Optional FTP Settings...
             // 'port' => env('FTP_PORT', 21),
             // 'root' => env('FTP_ROOT'),
@@ -53,7 +62,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -85,6 +94,8 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('uploads') => storage_path('app/uploads'),
+        public_path('avatars') => storage_path('app/avatars'),
     ],
 
 ];

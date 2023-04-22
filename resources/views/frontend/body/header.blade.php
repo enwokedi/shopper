@@ -2,21 +2,21 @@
 <header id="header" class="header clearfix">
 
     <!-- Start Top Nav -->
-    <nav class="navbar navbar-expand navbar-dark bg-dark d-none d-lg-block" style="background-color: #343434;">
+    <nav class="navbar navbar-expand navbar-dark bg-dark d-none d-lg-block" style="background-color: #101111;">
         <div class="container">
             <div class="w-100 d-flex justify-content-between">
                 <div>
                     <i class="fa fa-envelope mx-2" style="color:white;"></i>
-                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@neguinhomotors.co.uk">info@neguinhomotors.co.uk</a>
+                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@neguinhomotors.co.uk" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">info@neguinhomotors.co.uk</a>
                     <i class="fa fa-phone mx-2" style="color:white;"></i>
-                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="tel:02083141498">Catford: 0208 314 1498</a>
+                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="tel:02083141498" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Catford: 0208 314 1498</a>
                     <i class="fa fa-phone mx-2" style="color:white;"></i>
-                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="tel:02034095478">Tooting: 0203 409 5478</a>
+                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="tel:02034095478" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Tooting: 0203 409 5478</a>
                     <i class="fa fa-bell mx-2" style="color:white;"></i>
-                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="#">Request Callback</a>
+                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="#" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Request Callback</a>
                 </div>
                 <div>
-                    <a style="color: white;" class="text-light" style="padding-right: 5px;" href="/register" style="color:white;">Register</a>
+                    <a style="color: white;" class="text-light" style="padding-right: 5px;" href="/register" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Register</a>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
     <div class="container-fluid container-width-93 clearfix" id="site-header-inner">
         <div id="logo" class="logo float-left">
             <a href="/" title="logo">
-                <img src="{{url('img/neguinhomotors3.png')}}" alt="image" width="30%">
+                <img src="{{url('img/neguinhomotors3.png')}}" alt="image" width="30%" data-retina="{{url('img/neguinhomotors3.png')}}" data-width="30%">
             </a>
         </div><!-- /.logo -->
         <div class="mobile-button"><span></span></div>
@@ -39,7 +39,7 @@
                 </form>
             </li>
             <li class="box-login">
-                <a class="icon_login" href="/login"></a>
+                <a class="icon_login" href="/shopper/login"></a>
             </li>
             <li class="box-cart nav-top-cart-wrapper">
                 <a class="icon_cart nav-cart-trigger " href="{{ route('product.cart') }}"><span> {{ Cart::instance('default')->count() }}</span></a>
@@ -49,22 +49,28 @@
             <nav id="mainnav" class="mainnav">
                 <ul class="menu">
                     <li>
-                        <a href="/sale-motorcycles">SALES</a>
+                        <a href="/motorcycle-sales">SALES</a>
                         <ul class="submenu">
                             <li>
-                                <a href="#">Sale Information</a>
+                                <a href="/new-motorcycles">BRAND NEW BIKES</a>
                             </li>
                             <li>
-                                <a href="#">Finance</a>
+                                <a href="/used-motorcycles">SECOND HAND BIKES</a>
                             </li>
                             <li>
-                                <a href="#">Bike Insurance</a>
+                                <a href="#">SALES INFORMATION</a>
                             </li>
                             <li>
-                                <a href="#">Fleet</a>
+                                <a href="#">FINANCE</a>
                             </li>
                             <li>
-                                <a href="/accident-management-services">Accident Management</a>
+                                <a href="#">MOTORCYCLE INSURANCE</a>
+                            </li>
+                            <li>
+                                <a href="#">FLEET</a>
+                            </li>
+                            <li>
+                                <a href="/accident-management-services">ACCIDENT MANAGEMENT</a>
                             </li>
                         </ul>
                     </li>
@@ -72,7 +78,7 @@
                         <a href="/rentals-motorcycle">RENTALS</a>
                         <ul class="submenu">
                             <li>
-                                <a href="/rentals-information">Rental Information</a>
+                                <a href="/rentals-information">RENTAL INFORMATION</a>
                             </li>
                         </ul>
                     </li>
@@ -80,16 +86,16 @@
                         <a href="/services">SERVICES</a>
                         <ul class="submenu">
                             <li>
-                                <a href="/service-repairs">Motorcycle Repairs</a>
+                                <a href="/service-repairs">MOTORCYCLE REPAIRS</a>
                             </li>
                             <li>
-                                <a href="/service-motorcycle">Book a Service</a>
+                                <a href="/service-motorcycle">BOOK A SERVICE</a>
                             </li>
                             <li>
-                                <a href="/service-mot">Book MOT</a>
+                                <a href="/service-mot">BOOK YOUR MOT</a>
                             </li>
                             <li>
-                                <a href="/accident-management-services">Accident Management</a>
+                                <a href="/accident-management-services">ACCIDENT MANAGEMENT</a>
                             </li>
                         </ul>
                     </li>
@@ -155,7 +161,7 @@
                         <a href="/contact">CONTACT</a>
                         <ul class="submenu">
                             <li>
-                                <a href="/about">About</a>
+                                <a href="/about">ABOUT</a>
                             </li>
                         </ul>
                     </li>

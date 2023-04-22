@@ -20,7 +20,9 @@ use App\Http\Controllers\CartController;
 // Welcome Routes
 Route::controller(WelcomeController::class)->group(function () {
     Route::get('/', 'HomeMain')->name('home');
-    Route::get('/sale-motorcycles', 'ForSale')->name('sale-motorcycles');
+    Route::get('/motorcycle-sales', 'BikesForSale')->name('sale-motorcycles');
+    Route::get('/new-motorcycles', 'NewForSale')->name('sale-motorcycles');
+    Route::get('/used-motorcycles', 'UsedForSale')->name('sale-motorcycles');
     Route::get('/rentals-motorcycle', 'RentBike')->name('rentals-motorcycle');
     Route::get('/rentals-honda-pcx-125', 'DemoDetails')->name('rental-details');
     Route::get('/rentals-information', 'RentInformation')->name('rental-information');

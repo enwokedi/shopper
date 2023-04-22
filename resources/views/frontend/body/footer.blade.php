@@ -15,28 +15,30 @@
                     </ul>
                 </div><!-- /.widget -->
             </div><!-- /.col-md-3 -->
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-2">
                 <div class="widget widget-link link-login">
                     <ul>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Promotional Terms & Conditions</a></li>
+                        <li><a href="#">Terms of Use</a></li>
                         <li><a href="#">Cookie Policy</a></li>
                         <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
                     </ul>
                 </div><!-- /.widget -->
             </div><!-- /.col-md-3 -->
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4">
                 <div class="widget widget-brand">
-                    <ul class="flat-contact">
-                        <li class="area"></li>
-                    </ul><!-- /.flat-contact -->
+                    <h3 class="text-center">START A TRADE ACCOUNT</h3>
+                    <A href="#">
+                        <img src="{{url('img/home/trade_account_card.jpg')}}" alt="image" width="100%">
+                    </a>
                 </div><!-- /.widget -->
             </div><!-- /.col-md-3 -->
             <div class="col-sm-6 col-md-4">
                 <div class="widget widget-brand">
                     <ul class="flat-contact">
                         <li class="area"><a href="/" title="logo">
-                                <img src="{{url('img/neguinhomotors3.png')}}" alt="image" width="100%">
+                                <img src="{{url('img/neguinhomotors3.png')}}" alt="image" width="100%" data-retina="{{url('img/neguinhomotors3.png')}}" data-width="100%">
                             </a></li>
                         <li class="area">CATFORD</li>
                         <li>
