@@ -71,7 +71,7 @@
                                             <i class="fa fa-star-half-o"></i>
                                             <span>(1)</span>
                                         </div>
-                                        <p>{{ html_entity_decode($product->extended_description) }}</p>
+                                        <p>{!! $product->extended_description !!}</p>
                                         <div class="price margin-top-24">
                                             <ins><span class="amount" value="{{$product->price}}" name="price" id="price">£{{$product->price}}</span></ins>
                                         </div>

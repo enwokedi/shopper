@@ -23,4 +23,9 @@ class Product extends Model implements Buyable
     {
         return $this->weight;
     }
+
+    public function brand()
+    {
+        return $this->belongsTo(Category::class, 'brand_id');
+    }
 }

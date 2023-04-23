@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Welcome\WelcomeController;
 use App\Http\Controllers\Welcome\ContactController;
-use App\Http\Controllers\SalesController;
-use App\Http\Controllers\OxfordController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\Shopper\SalesController;
+use App\Http\Controllers\Shopper\OxfordController;
+use App\Http\Controllers\Shopper\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,17 +37,17 @@ Route::controller(WelcomeController::class)->group(function () {
 
 // Motorcycle Sales & Rental Routes
 Route::controller(SalesController::class)->group(function () {
-    Route::get('/new-motorcycles', 'NewForSale')->name('new.motorcycles');
-    Route::get('/new-motorcycle/{id}', 'NewBikeDetails')->name('detail.new-motorcycle');
-    Route::get('/used-motorcycles', 'UsedForSale')->name('used.motorcycles');
+    Route::get('/category/{slug}', 'NewForSale')->name('motorcycles.new');
+    Route::get('/new-motorcycle/{id}', 'NewBikeDetails')->name('new-motorcycle.detail');
+    Route::get('/used-motorcycles', 'UsedForSale')->name('motorcycles.used');
     Route::get('/used-motorcycle/{id}', 'UsedBikeDetails')->name('detail.used-motorcycle');
-    Route::get('/rentals-motorcycle', 'RentBike')->name('rental.motorcycles');
-    Route::get('/rentals-motorcycle/{id}', 'RentalBikeDetails')->name('detail.rental-motorcycle');
+    Route::get('/rentals-motorcycle', 'RentBike')->name('motorcycle.rentals');
+    Route::get('/rentals-motorcycle/{id}', 'RentalBikeDetails')->name('rental-motorcycle.detail');
 });
 
 // Oxford Product Routes
 Route::controller(OxfordController::class)->group(function () {
-    Route::get('/category/{category_id}', 'getProductCategory')->name('product.category');
+    Route::get('/oxcat/{category_id}', 'getProductCategory')->name('product.category');
     Route::get('/item/{id}', 'getOxfordProduct')->name('item.details');
 });
 

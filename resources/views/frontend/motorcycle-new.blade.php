@@ -25,13 +25,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="page-title-heading">
-                            <h1 class="title">title</h1>
+                            <h1 class="title">{{ $product->name }}</h1>
                         </div><!-- /.page-title-heading -->
                         <div class="breadcrumbs">
                             <ul>
                                 <li><a href="/">Honda & Yamaha Specialists</a></li>
-                                <li><a href="/shop">Shop</a></li>
-                                <li><a href="/category/category_id">category</a></li>
+                                <li><a href="/motorcycle-sales">Motorcycle Sales</a></li>
+                                <li><a href="/new-motorcycle/{{ $product->slug }}">category</a></li>
                                 <li><a href="/product/product_id">title</a></li>
                             </ul>
                         </div><!-- /.breadcrumbs -->
@@ -62,7 +62,7 @@
                                 <form action="#" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="content-detail form-group">
-                                        <h2 class="product-title" value="" name="name">product->description</h2>
+                                        <h2 class="product-title" value="" name="name">{{ $product->name }}</h2>
                                         <div class="flat-star style-1">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -71,30 +71,26 @@
                                             <i class="fa fa-star-half-o"></i>
                                             <span>(1)</span>
                                         </div>
-                                        <p>product->extended_description</p>
-                                        <div class="price margin-top-24">
-                                            <ins><span class="amount" value="" name="price" id="price">Contact Tel</span></ins>
-                                        </div>
-                                        <ul class="product-infor style-1">
-                                            <li><span>Info</span></li>
-                                            <li><span>Info</span></li>
-                                        </ul>
+                                        <p>{!! $product->description !!}</p>
                                         <div class="product-categories margin-top-22">
-                                            <span>SKU: </span><a href="#">sku</a>
+                                            <span>SKU: </span><a href="#">{{ $product->sku }}</a>
                                         </div>
                                         <div class="product-categories margin-top-22">
-                                            <span>Category: </span><a href="#">category</a>
+                                            <span>Category: </span><a href="#"></a>
                                         </div>
                                         <div class="product-tags">
-                                            <span>Tags: </span><a href="#"></a> <a href="#"></a> <a href="#"></a> <a href="#"></a>
+                                            <span>Tags: </span><a href="#"></a>{{ $product->slug }}<a href="#"></a> <a href="#"></a> <a href="#"></a>
+                                        </div>
+                                        <div class="price margin-top-24">
+                                            <ins><span class="amount" value="" name="price" id="price">Tel: <a href="tel:02083141498">0208 314 1498</a> or...</span></ins>
                                         </div>
                                         <div class="product-quantity margin-top-35">
-                                            <div class="quantity">
+                                            <!--div class="quantity">
                                                 <input type="text" value="1" name="quantity" class="quantity-number">
                                                 <span class="inc quantity-button">+</span>
                                                 <span class="dec quantity-button">-</span>
-                                            </div>
-                                            <button type="submit" class="add-to-cart">ADD TO CART</button>
+                                            </div-->
+                                            <button type="submit" class="add-to-cart">CONTACT SALES</button>
                                             <div class="box-like">
                                                 <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
                                             </div>

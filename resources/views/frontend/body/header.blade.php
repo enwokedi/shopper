@@ -16,7 +16,7 @@
                     <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="#" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Request Callback</a>
                 </div>
                 <div>
-                    <a style="color: white;" class="text-light" style="padding-right: 5px;" href="/register" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Register</a>
+                    <a style="color: white;" class="text-light" style="padding-right: 5px;" href="/shopper/register" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Register</a>
                 </div>
             </div>
         </div>
@@ -52,10 +52,10 @@
                         <a href="/motorcycle-sales">SALES</a>
                         <ul class="submenu">
                             <li>
-                                <a href="/new-motorcycles">BRAND NEW BIKES</a>
+                                <a href="/category/motorcycles-new">BRAND NEW BIKES</a>
                             </li>
                             <li>
-                                <a href="/used-motorcycles">SECOND HAND BIKES</a>
+                                <a href="/category/motorcycles-used">SECOND HAND BIKES</a>
                             </li>
                             <li>
                                 <a href="#">SALES INFORMATION</a>
@@ -103,57 +103,57 @@
                         <a href="/shop">SHOP</a>
                         <ul class="submenu">
                             <li>
-                                <a href="/category/1">HELMETS</a>
+                                <a href="/oxcat/1">HELMETS</a>
                             </li>
                             <li>
-                                <a href="/category/14">HELMET ACCESSORIES</a>
+                                <a href="/oxcat/14">HELMET ACCESSORIES</a>
                             </li>
                             <li>
-                                <a href="/category/2">ESSENTIALS</a>
+                                <a href="/oxcat/2">ESSENTIALS</a>
                             </li>
                             <li>
-                                <a href="/category/11">CLOTHING</a>
+                                <a href="/oxcat/11">CLOTHING</a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="/category/10">HEADWEAR</a>
+                                        <a href="/oxcat/10">HEADWEAR</a>
                                     </li>
                                     <li>
-                                        <a href="/category/3">HEATED CLOTHING</a>
+                                        <a href="/oxcat/3">HEATED CLOTHING</a>
                                     </li>
                                     <li>
-                                        <a href="/category/26">OXFORD CLOTHING</a>
+                                        <a href="/oxcat/26">OXFORD CLOTHING</a>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="/category/6">LOCKS</a>
+                                <a href="/oxcat/6">LOCKS</a>
                             </li>
                             <li>
-                                <a href="/category/7">PAINT PROTECTION</a>
+                                <a href="/oxcat/7">PAINT PROTECTION</a>
                             </li>
                             <li>
-                                <a href="/category/8">HANDLEBAR ACCESSORIES</a>
+                                <a href="/oxcat/8">HANDLEBAR ACCESSORIES</a>
                             </li>
                             <li>
-                                <a href="/category/9">REFLECTIVES</a>
+                                <a href="/oxcat/9">REFLECTIVES</a>
                             </li>
                             <li>
-                                <a href="/category/12">LIGHTING</a>
+                                <a href="/oxcat/12">LIGHTING</a>
                             </li>
                             <li>
-                                <a href="/category/13">LUGGAGE</a>
+                                <a href="/oxcat/13">LUGGAGE</a>
                             </li>
                             <li>
-                                <a href="/category/15">BATTERY CARE</a>
+                                <a href="/oxcat/15">BATTERY CARE</a>
                             </li>
                             <li>
-                                <a href="/category/16">CYCLE ACCESSORIES</a>
+                                <a href="/oxcat/16">CYCLE ACCESSORIES</a>
                             </li>
                             <li>
-                                <a href="/category/25">INTERCOMS</a>
+                                <a href="/oxcat/25">INTERCOMS</a>
                             </li>
                             <li>
-                                <a href="/category/35">MINT</a>
+                                <a href="/oxcat/35">MINT</a>
                             </li>
                         </ul>
                     </li>
