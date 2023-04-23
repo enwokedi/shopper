@@ -31,7 +31,7 @@
                             <ul>
                                 <li><a href="/">Honda & Yamaha Specialists</a></li>
                                 <li><a href="/motorcycle-sales">Motorcycle Sales</a></li>
-                                <li><a href="/new-motorcycle/{{ $product->slug }}">category</a></li>
+                                <li><a href="/new-motorcycle/{{ $product->slug }}">{{ $product->name }}</a></li>
                                 <li><a href="/product/product_id">title</a></li>
                             </ul>
                         </div><!-- /.breadcrumbs -->
@@ -63,6 +63,7 @@
                                     @csrf
                                     <div class="content-detail form-group">
                                         <h2 class="product-title" value="" name="name">{{ $product->name }}</h2>
+                                        <h3 class="product-title" value="" name="name">{{ $brand[0]->name }}</h3>
                                         <div class="flat-star style-1">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>

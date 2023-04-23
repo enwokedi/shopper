@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="text">
-                    <h3>Sign up for Send Newsletter</h3>
+                    <h3>Get Monthly Offers & Discounts</h3>
                 </div>
             </div>
             <div class="col-md-8">
@@ -15,7 +15,7 @@
                                 <input type="email" name="subscribe-email" placeholder="Your Email">
                             </div>
                             <div class="button">
-                                <button type="button">SUBCRIBE</button>
+                                <button type="button">SUBSCRIBE</button>
                             </div>
                         </div>
                     </form>

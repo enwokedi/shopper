@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Shopper;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -22,14 +23,17 @@ class SalesController extends Controller
     public function NewBikeDetails($id)
     {
         $product = Product::findOrFail($id);
-        // $brand
+        $b = Brand::all()
+            ->where('id', $product->brand_id);
         // $category
         // $image
 
-        // dd($product);
+        $brand = json_decode($b);
+        // dd($product->brand_id);
+        // dd($brand[0]->name);
         return view('frontend.motorcycle-new', [
             'product' => $product,
-            // 'brand' => $brand
+            'brand' => $brand
         ]);
     }
 
