@@ -129,7 +129,7 @@
                                             <div class="grid-row image-left clearfix">
                                                 <div class="grid-item">
                                                     <div class="thumb text-center">
-                                                        <img src="" alt="Image">
+                                                        <img src="BRAND->IMAGE" alt="Image">
                                                     </div>
                                                 </div><!-- /.grid-item -->
                                                 <div class="grid-item">

@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Brand;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Bloodline;
+use system;
 
 class SalesController extends Controller
 {
@@ -23,13 +26,15 @@ class SalesController extends Controller
     public function NewBikeDetails($id)
     {
         $product = Product::findOrFail($id);
+
         $b = Brand::all()
             ->where('id', $product->brand_id);
+        $brand = json_decode($b);
+
         // $category
         // $image
 
-        $brand = json_decode($b);
-        // dd($product->brand_id);
+        dd($product->getFirstMediaUrl(config('shopper.system.storage.disks.uploads')));
         // dd($brand[0]->name);
         return view('frontend.motorcycle-new', [
             'product' => $product,

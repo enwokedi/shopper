@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Product extends Model implements Buyable
+class Product extends Model implements HasMedia
 {
     public function getBuyableIdentifier($options = null)
     {

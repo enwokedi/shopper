@@ -21,26 +21,37 @@
     </div><!-- /.container -->
 </div><!-- /.page-title -->
 
-<section class="flat-row flat-iconbox">
+<section class="blog-posts blog-detail">
     <div class="container">
-        <div class="title-section">
-            <h3>Make a claim today</h3>
-            <p>We are driven to keeping you moving.</p>
-        </div>
-        <div class="row align-items-start">
+        <div class="row">
             <div class="col">
-                <div class="featured-post">
-                    <img src="https://mc-ams.co.uk/wp-content/themes/mcams/assets/img/mcams-team-alt.webp" alt="image" loading="lazy">
-                </div>
+                <div class="title-section">
+                    <div class="post-wrap detail">
+                        <article class="post clearfix">
+                            <div class="title-post">
+                                <h2>Make a claim today</h2>
+                            </div><!-- /.title-post -->
 
-                <div class="entry-post">
-                    <p>When you’re involved in a motorcycle accident, the last thing you want is any more hassle.</p>
-                    <p>Fortunately, our expert advisors are here to help.</p>
-                    <p>Please complete our simple form and our helpful team will be in touch.</p>
-                    <p>If you’d prefer to pick up the phone, please call our claims hotline at any time on <a href="tel:03450541000" class="font-bold">0345 054 1000</a>.</p>
-                </div>
-                <div>
-                    <strong>We are available 24/7 365 days a year</strong>
+                            <p>We are driven to keeping you moving.</p>
+                            <div class="content-post">
+                                <div class="col">
+                                    <div class="featured-post">
+                                        <img src="{{ url('/img/home/accident-assistance.jpg') }}" alt="image" loading="lazy">
+                                    </div>
+
+                                    <div class="entry-post">
+                                        <p>When you’re involved in a motorcycle accident, the last thing you want is any more hassle.</p>
+                                        <p>Fortunately, our expert advisors are here to help.</p>
+                                        <p>Please complete our simple form and our helpful team will be in touch.</p>
+                                        <p>If you’d prefer to pick up the phone, please call our claims hotline at any time on <a href="tel:02083141498 " class="font-bold">0208 314 1498 </a>.</p>
+                                    </div>
+                                    <div>
+                                        <strong>We are available 24/7 365 days a year</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
                 </div>
             </div>
             <div class="col">
@@ -60,8 +71,9 @@
                         </div>
                     </div>
 
-                    <div id="field_6_6" class="gfield gfield--type-select gfield_contains_required field_sublabel_above gfield--no-description field_description_below gfield_visibility_visible" data-js-reload="field_6_6"><label class='gfield_label gform-field-label' for='input_6_6'>Language Preference<span class="gfield_required"><span class="gfield_required gfield_required_text">(Required)</span></span></label>
-                        <div class='ginput_container ginput_container_select'><select name='input_6' id='input_6_6' class='large gfield_select' aria-required="true" aria-invalid="false">
+                    <div>
+                        <label>Language Preference<span><span>(Required)</span></span></label>
+                        <div><select name='input_6' id='input_6_6' class='' aria-required="true" aria-invalid="false">
                                 <option value='English'>English</option>
                                 <option value='Arabic'>Arabic</option>
                                 <option value='Bengali'>Bengali</option>
@@ -72,15 +84,16 @@
                                 <option value='Spanish'>Spanish</option>
                             </select></div>
                     </div>
-                    <div id="field_6_7" class="gfield gfield--type-select gfield_contains_required field_sublabel_above gfield--no-description field_description_below gfield_visibility_visible" data-js-reload="field_6_7"><label class='gfield_label gform-field-label' for='input_6_7'>Relevant Vehicle Type<span class="gfield_required"><span class="gfield_required gfield_required_text">(Required)</span></span></label>
-                        <div class='ginput_container ginput_container_select'><select name='input_7' id='input_6_7' class='large gfield_select' aria-required="true" aria-invalid="false">
-                                <option value='Van'>Van</option>
-                                <option value='Car'>Car</option>
-                                <option value='Bicycle'>Bicycle</option>
-                                <option value='Motorcycle' selected='selected'>Motorcycle</option>
-                            </select></div>
+                    <div><label>Relevant Vehicle Type<span><span>(Required)</span></span></label>
+                        <div>
+                            <option value='Van'>Van</option>
+                            <option value='Car'>Car</option>
+                            <option value='Bicycle'>Bicycle</option>
+                            <option value='Motorcycle' selected='selected'>Motorcycle</option>
+                            </select>
+                        </div>
                     </div>
-                    <div id="field_6_8" class="gfield gfield--type-text gfield_contains_required field_sublabel_above gfield--no-description field_description_below gfield_visibility_visible" data-js-reload="field_6_8"><label class='gfield_label gform-field-label' for='input_6_8'>Where did you hear about us?<span class="gfield_required"><span class="gfield_required gfield_required_text">(Required)</span></span></label>
+                    <div><label>Where did you hear about us?<span><span>(Required)</span></span></label>
                         <div class='ginput_container ginput_container_text'><input name='input_8' id='input_6_8' type='text' value='' class='large' aria-required="true" aria-invalid="false" /> </div>
                     </div>
                     <fieldset id="field_6_9" class="gfield gfield--type-consent gfield--type-choice gfield--width-full gfield_contains_required field_sublabel_above gfield--no-description field_description_below gfield_visibility_visible" data-js-reload="field_6_9">
