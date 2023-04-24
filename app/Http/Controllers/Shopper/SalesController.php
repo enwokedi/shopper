@@ -14,12 +14,12 @@ use system;
 
 class SalesController extends Controller
 {
-    public function NewForSale($slug)
+    public function NewForSale()
     {
-        $category = Category::where('slug', $slug)->first();
-        $motorcycles = $category->products()->orderBy('created_at')->paginate(12);
+        // $category = Category::where('slug', $slug)->first();
+        // $motorcycles = $category->products()->orderBy('created_at')->paginate(12);
 
-        // $motorcycles = Category::findOrFail(77)->products()->paginate(9);
+        $motorcycles = Category::findOrFail(77)->products()->paginate(9);
         return view('frontend.motorcycles-new', compact('motorcycles'));
     }
 
@@ -47,12 +47,34 @@ class SalesController extends Controller
 
     public function UsedForSale()
     {
-        return view('frontend.motorcycles-used');
+        // $category = Category::where('slug', $slug)->first();
+        // $motorcycles = $category->products()->orderBy('created_at')->paginate(12);
+
+        $motorcycles = Category::findOrFail(80)->products()->paginate(9);
+        // dd($motorcycles);
+        return view('frontend.motorcycles-used', compact('motorcycles'));
     }
 
     public function UsedBikeDetails($id)
     {
-        return view('frontend.motorcycle-new');
+        $product = Product::findOrFail($id);
+
+        $image = Media::all()
+            ->where('model_type', 'product')
+            ->where('model_id', $id);
+
+        $brand_image = Media::all()
+            ->where('model_type', 'brand')
+            ->where('model_id', $product['brand']->id);
+
+        // dd($brand_image);
+        // $brand_image = $product['brand']->id;
+        // dd($brand_image[1]->id);
+        return view('frontend.motorcycle-used', [
+            'product' => $product,
+            'image' => $image,
+            'brand_image' => $brand_image
+        ]);
     }
 
     public function RentBike()

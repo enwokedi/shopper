@@ -8,13 +8,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-title-heading">
-                    <h1 class="title">New Bikes For Sale</h1>
+                    <h1 class="title">Used Bikes For Sale</h1>
                 </div><!-- /.page-title-heading -->
                 <div class="breadcrumbs">
                     <ul>
                         <li><a href="/">Honda & Yamaha Specialists</a></li>
                         <li><a href="/motorcycle-sales">Motorcycle Sales</a></li>
-                        <li><a href="/motorcycles-new">New Motorcycles for Sales</a></li>
+                        <li><a href="/motorcycles-used">Used Motorcycles for Sales</a></li>
                     </ul>
                 </div><!-- /.breadcrumbs -->
             </div><!-- /.col-md-12 -->
@@ -63,7 +63,7 @@
                         @foreach($chunk as $motorcycle)
                         <li class="product-item new">
                             <div class="product-thumb clearfix">
-                                <a href="/new-motorcycle/{{ $motorcycle->id }}">
+                                <a href="/used-motorcycle/{{ $motorcycle->id }}">
                                     <img src="{{url('assets/images/rentals/2022-Yamaha-YZF1000R1-EU-Yamaha_Black-Studio-001-03.jpg')}}" alt="image">
                                 </a>
                                 <span class="new">Used</span>
@@ -72,7 +72,7 @@
                                 <span class="product-title">{{ $motorcycle->name }}</span>
                                 <div class="price">
                                     <ins>
-                                        <span class="amount">£5000.00</span>
+                                        <span class="amount">£{{ $motorcycle->price_amount }}</span>
                                     </ins>
                                 </div>
                             </div>

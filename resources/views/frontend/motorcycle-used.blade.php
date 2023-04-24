@@ -25,14 +25,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="page-title-heading">
-                            <h1 class="title">{{$title}}</h1>
+                            <h1 class="title">{{ $product->name }}</h1>
                         </div><!-- /.page-title-heading -->
                         <div class="breadcrumbs">
                             <ul>
                                 <li><a href="/">Honda & Yamaha Specialists</a></li>
-                                <li><a href="/shop">Shop</a></li>
-                                <li><a href="/category/{{$category_id}}">{{ucfirst($category)}}</a></li>
-                                <li><a href="/product/{{$product_id}}">{{$title}}</a></li>
+                                <li><a href="/motorcycle-sales">Motorcycle Sales</a></li>
+                                <li><a href="/new-motorcycle/{{ $product->slug }}">{{ $product->name }}</a></li>
                             </ul>
                         </div><!-- /.breadcrumbs -->
                     </div><!-- /.col-md-12 -->
@@ -48,7 +47,7 @@
                             <div class="inner padding-top-4">
                                 <ul class="product-list-fix-image">
                                     <li>
-                                        <img src="{{$product->image_url}}" alt="Image">
+                                        <img src="/{{ $image[7]->id }}/{{ $image[7]->file_name }}" alt="Image">
                                     </li>
                                 </ul>
                             </div>
@@ -62,7 +61,8 @@
                                 <form action="{{ route('store.cart', $product->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="content-detail form-group">
-                                        <h2 class="product-title" value="{{$product->description}}" name="name">{{$product->description}}</h2>
+                                        <h2 class="product-title" value="{{$product->description}}" name="name">{{ $product->name }}</h2>
+                                        <h3 class="product-title" value="" name="name">{{$product['brand']->name}}</h3>
                                         <div class="flat-star style-1">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -71,22 +71,16 @@
                                             <i class="fa fa-star-half-o"></i>
                                             <span>(1)</span>
                                         </div>
-                                        <p>{{ html_entity_decode($product->extended_description) }}</p>
-                                        <div class="price margin-top-24">
-                                            <ins><span class="amount" value="{{$product->price}}" name="price" id="price">£{{$product->price}}</span></ins>
-                                        </div>
+                                        <p>{!! $product->description !!}</p>
                                         <ul class="product-infor style-1">
-                                            <li><span>Size: {{ $product->variation }}</span></li>
-                                            <li><span>Colour: {{ $product->colour }}</span></li>
+                                            <li><span>Body Type: </span></li>
+                                            <li><span>Engine CC: </span></li>
+                                            <li><span>Engine Power: </span></li>
+                                            <li><span>Gearbox: </span></li>
+                                            <li><span>Fuel Type: </span></li>
                                         </ul>
-                                        <div class="product-categories margin-top-22">
-                                            <span>SKU: </span><a href="#">{{ $product->sku }}</a>
-                                        </div>
-                                        <div class="product-categories margin-top-22">
-                                            <span>Category: </span><a href="#">{{ucfirst($category)}}</a>
-                                        </div>
-                                        <div class="product-tags">
-                                            <span>Tags: </span><a href="#"></a> <a href="#"></a> <a href="#"></a> <a href="#"></a>
+                                        <div class="price margin-top-24">
+                                            <ins><span class="amount" value="{{$product->price}}" name="price" id="price">£{{$product->price_amount}}</span></ins>
                                         </div>
                                         <div class="product-quantity margin-top-35">
                                             <div class="quantity">
@@ -98,6 +92,12 @@
                                             <div class="box-like">
                                                 <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
                                             </div>
+                                        </div>
+                                        <div class="product-categories margin-top-22">
+                                            <span>Category: </span><a href="#"> </a>
+                                        </div>
+                                        <div class="product-tags">
+                                            <span>Tags: </span><a href="#"></a> <a href="#"></a> <a href="#"></a> <a href="#"></a>
                                         </div>
                                         <ul class="flat-socials margin-top-46">
                                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -132,7 +132,7 @@
                                             <div class="grid-row image-left clearfix">
                                                 <div class="grid-item">
                                                     <div class="thumb text-center">
-                                                        <img src="" alt="Image">
+                                                        <img src="/{{ $brand_image[0]->id }}/{{ $brand_image[0]->file_name }}" alt="Image" style="width: 50%;">
                                                     </div>
                                                 </div><!-- /.grid-item -->
                                                 <div class="grid-item">

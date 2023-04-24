@@ -37,7 +37,7 @@ Route::controller(WelcomeController::class)->group(function () {
 
 // Motorcycle Sales & Rental Routes
 Route::controller(SalesController::class)->group(function () {
-    Route::get('/category/{slug}', 'NewForSale')->name('motorcycles.new');
+    Route::get('/new-motorcycles', 'NewForSale')->name('motorcycles.new');
     Route::get('/new-motorcycle/{id}', 'NewBikeDetails')->name('new-motorcycle.detail');
     Route::get('/used-motorcycles', 'UsedForSale')->name('motorcycles.used');
     Route::get('/used-motorcycle/{id}', 'UsedBikeDetails')->name('detail.used-motorcycle');

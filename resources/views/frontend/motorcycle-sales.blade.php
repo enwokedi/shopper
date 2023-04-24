@@ -13,7 +13,7 @@
                         <div class="item">
                             <div class="inner">
                                 <div class="thumb">
-                                    <a href="/category/motorcycles-new">
+                                    <a href="/new-motorcycles">
                                         <img src="{{ url('/img/sales/brand-new-motorcycles.jpg') }}" alt="Image">
                                         <div class="text-wrap text-center">
                                             <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white; background-color:#C31924; opacity: 0.8;">BRAND NEW MOTORCYCLES FOR SALE</h2>
@@ -34,7 +34,7 @@
                         <div class="item">
                             <div class="inner">
                                 <div class="thumb">
-                                    <a href="/category/motorcycles-used">
+                                    <a href="/used-motorcycles">
                                         <img src="{{ url('/img/sales/used-motorcycles.jpg') }}" alt="Image">
                                         <div class="text-wrap text-center">
                                             <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white; background-color:#C31924; opacity: 0.8;">SECOND HAND MOTORCYCLES FOR SALE</h2>

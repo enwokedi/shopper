@@ -52,10 +52,10 @@
                         <a href="/motorcycle-sales">SALES</a>
                         <ul class="submenu">
                             <li>
-                                <a href="/category/motorcycles-new">BRAND NEW BIKES</a>
+                                <a href="/new-motorcycles">BRAND NEW BIKES</a>
                             </li>
                             <li>
-                                <a href="/category/motorcycles-used">SECOND HAND BIKES</a>
+                                <a href="/used-motorcycles">SECOND HAND BIKES</a>
                             </li>
                             <li>
                                 <a href="#">SALES INFORMATION</a>
