@@ -128,13 +128,13 @@
                                             <div class="grid-row image-left clearfix">
                                                 <div class="grid-item">
                                                     <div class="thumb text-center">
-                                                        <img src="/8/{{ $image[6]->file_name }}" alt="Image">
+                                                        <img src="/{{ $brand_image[1]->id }}/{{ $brand_image[1]->file_name }}" alt="Image" style="width: 50%;">
                                                     </div>
                                                 </div><!-- /.grid-item -->
                                                 <div class="grid-item">
                                                     <div class="text-wrap">
                                                         <h6 class="title"></h6>
-                                                        <p> {{ $image[6]->file_name }}</p>
+                                                        <p> </p>
                                                     </div>
                                                 </div>
                                             </div><!-- /.grid-row -->

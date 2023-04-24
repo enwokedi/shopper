@@ -31,16 +31,17 @@ class SalesController extends Controller
             ->where('model_type', 'product')
             ->where('model_id', $id);
 
-        $brand_img = Media::all()
+        $brand_image = Media::all()
             ->where('model_type', 'brand')
             ->where('model_id', $product['brand']->id);
 
-        $brand_image = $product['brand']->id;
+        // $brand_image = $product['brand']->id;
 
-        dd($brand_image);
+        // dd($brand_image[1]->id);
         return view('frontend.motorcycle-new', [
             'product' => $product,
-            'image' => $image
+            'image' => $image,
+            'brand_image' => $brand_image
         ]);
     }
 
