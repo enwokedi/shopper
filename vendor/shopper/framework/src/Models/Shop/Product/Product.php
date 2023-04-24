@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Models\Shop\Product;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -9,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Shopper\Framework\Contracts\ReviewRateable;
+// use Shopper\Framework\Helpers\Price;
 use Shopper\Framework\Models\Shop\Channel;
 use Shopper\Framework\Models\Traits\CanHaveDiscount;
 use Shopper\Framework\Models\Traits\HasPrice;
@@ -78,6 +81,7 @@ class Product extends Model implements HasMedia, ReviewRateable
         'featured' => 'boolean',
         'is_visible' => 'boolean',
         'requires_shipping' => 'boolean',
+        'backorder' => 'boolean',
         'published_at' => 'datetime',
     ];
 
@@ -101,13 +105,13 @@ class Product extends Model implements HasMedia, ReviewRateable
         }
 
         return $this->price_amount
-                ? $this->formattedPrice($this->price_amount)
-                : null;
+            ? $this->formattedPrice($this->price_amount)
+            : null;
     }
 
     public function getPriceAttribute(): ?Price
     {
-        if (! $this->price_amount) {
+        if (!$this->price_amount) {
             return null;
         }
 

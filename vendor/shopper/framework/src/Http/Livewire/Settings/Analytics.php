@@ -1,18 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Http\Livewire\Settings;
 
+use Filament\Notifications\Notification;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Shopper\Framework\Models\System\Setting;
-use WireUi\Traits\Actions;
 
 class Analytics extends Component
 {
-    use Actions;
     use WithFileUploads;
 
     public $google_analytics_tracking_id;
@@ -29,7 +31,7 @@ class Analytics extends Component
 
     public bool $credentials_json = false;
 
-    public function mount()
+    public function mount(): void
     {
         $ga_add_js = Setting::query()->where('key', 'google_analytics_add_js')->first();
         $this->google_analytics_tracking_id = env('ANALYTICS_TRACKING_ID');
@@ -40,7 +42,7 @@ class Analytics extends Component
         $this->credentials_json = File::exists(storage_path('app/analytics/service-account-credentials.json'));
     }
 
-    public function store()
+    public function store(): void
     {
         Artisan::call('config:clear');
 
@@ -64,7 +66,11 @@ class Analytics extends Component
             Artisan::call('config:cache');
         }
 
-        $this->notification()->success(__('Updated'), __('Your analytics configurations have been correctly updated.'));
+        Notification::make()
+            ->title(__('shopper::layout.status.updated'))
+            ->body(__('Your analytics configurations have been correctly updated'))
+            ->success()
+            ->send();
     }
 
     public function downloadJson(): string
@@ -72,7 +78,7 @@ class Analytics extends Component
         return Storage::url('/app/analytics/service-account-credentials.json');
     }
 
-    public function render()
+    public function render(): View
     {
         return view('shopper::livewire.settings.analytics');
     }

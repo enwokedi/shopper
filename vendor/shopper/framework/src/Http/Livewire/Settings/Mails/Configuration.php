@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Http\Livewire\Settings\Mails;
 
+use Filament\Notifications\Notification;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Artisan;
 use Livewire\Component;
 use Shopper\Framework\Rules\RealEmailValidator;
-use WireUi\Traits\Actions;
 
 class Configuration extends Component
 {
-    use Actions;
-
     public ?string $mail_mailer = null;
 
     public ?string $mail_host = null;
@@ -63,13 +64,14 @@ class Configuration extends Component
             Artisan::call('config:cache');
         }
 
-        $this->notification()->success(
-            __('shopper::status.updated'),
-            __('shopper::pages/settings.settings.notifications.email_config'),
-        );
+        Notification::make()
+            ->title(__('shopper::layout.status.updated'))
+            ->body(__('shopper::pages/settings.settings.notifications.email_config'))
+            ->success()
+            ->send();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('shopper::livewire.settings.mails.configuration');
     }

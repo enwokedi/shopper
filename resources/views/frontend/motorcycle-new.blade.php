@@ -32,7 +32,6 @@
                                 <li><a href="/">Honda & Yamaha Specialists</a></li>
                                 <li><a href="/motorcycle-sales">Motorcycle Sales</a></li>
                                 <li><a href="/new-motorcycle/{{ $product->slug }}">{{ $product->name }}</a></li>
-                                <li><a href="/product/product_id">title</a></li>
                             </ul>
                         </div><!-- /.breadcrumbs -->
                     </div><!-- /.col-md-12 -->
@@ -48,7 +47,7 @@
                             <div class="inner padding-top-4">
                                 <ul class="product-list-fix-image">
                                     <li>
-                                        <img src="product->image_url" alt="Image">
+                                        <img src="/{{ $image[6]->id }}/{{ $image[6]->file_name }}" alt="Image">
                                     </li>
                                 </ul>
                             </div>
@@ -63,7 +62,7 @@
                                     @csrf
                                     <div class="content-detail form-group">
                                         <h2 class="product-title" value="" name="name">{{ $product->name }}</h2>
-                                        <h3 class="product-title" value="" name="name">{{ $brand[0]->name }}</h3>
+                                        <h3 class="product-title" value="" name="name">{{$product['brand']->name}}</h3>
                                         <div class="flat-star style-1">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -129,13 +128,13 @@
                                             <div class="grid-row image-left clearfix">
                                                 <div class="grid-item">
                                                     <div class="thumb text-center">
-                                                        <img src="BRAND->IMAGE" alt="Image">
+                                                        <img src="/8/{{ $image[6]->file_name }}" alt="Image">
                                                     </div>
                                                 </div><!-- /.grid-item -->
                                                 <div class="grid-item">
                                                     <div class="text-wrap">
                                                         <h6 class="title"></h6>
-                                                        <p> </p>
+                                                        <p> {{ $image[6]->file_name }}</p>
                                                     </div>
                                                 </div>
                                             </div><!-- /.grid-row -->

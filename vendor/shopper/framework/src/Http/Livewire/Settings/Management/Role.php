@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Http\Livewire\Settings\Management;
 
+use Filament\Notifications\Notification;
+use Illuminate\Contracts\View\View;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Shopper\Framework\Models\User\Role as RoleModel;
-use WireUi\Traits\Actions;
 
 class Role extends Component
 {
-    use Actions;
-
     public RoleModel $role;
 
     public string $name;
@@ -19,14 +20,14 @@ class Role extends Component
 
     public ?string $description = null;
 
-    public function mount(RoleModel $role)
+    public function mount(RoleModel $role): void
     {
         $this->name = $role->name;
         $this->display_name = $role->display_name;
         $this->description = $role->description;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate([
             'name' => [
@@ -44,10 +45,14 @@ class Role extends Component
             'description' => $this->description,
         ]);
 
-        $this->notification()->success(__('Updated'), __('Role updated successfully!'));
+        Notification::make()
+            ->title(__('shopper::components.tables.status.updated'))
+            ->body(__('Role updated successfully'))
+            ->success()
+            ->send();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('shopper::livewire.settings.management.role');
     }

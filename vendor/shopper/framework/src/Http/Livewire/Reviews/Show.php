@@ -1,35 +1,36 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Http\Livewire\Reviews;
 
+use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Shopper\Framework\Models\Shop\Review;
-use WireUi\Traits\Actions;
 
 class Show extends Component
 {
-    use Actions;
-
     public Review $review;
 
     public bool $approved;
 
-    public function mount(Review $review)
+    public function mount(Review $review): void
     {
         $this->review = $review->load(['reviewrateable', 'author']);
         $this->approved = $review->approved;
     }
 
-    public function updatedApproved()
+    public function updatedApproved(): void
     {
         $this->approved = ! $this->review->approved;
         $this->review->update(['approved' => ! $this->review->approved]);
 
-        $this->notification()->success(
-            __('shopper::layout.status.updated'),
-            __('shopper::pages/products.reviews.approved_message')
-        );
+        Notification::make()
+            ->title(__('shopper::layout.status.updated'))
+            ->body(__('shopper::pages/products.reviews.approved_message'))
+            ->success()
+            ->send();
     }
 
     public function render(): View

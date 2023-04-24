@@ -1,12 +1,12 @@
 <div>
-    <x-shopper::breadcrumb back="shopper.collections.index">
+    <x-shopper::breadcrumb :back="route('shopper.collections.index')">
         <x-heroicon-s-chevron-left class="shrink-0 h-5 w-5 text-secondary-400" />
-        <x-shopper::breadcrumb.link :link="route('shopper.collections.index')" title="shopper::layout.sidebar.collections" />
+        <x-shopper::breadcrumb.link :link="route('shopper.collections.index')" :title="__('shopper::layout.sidebar.collections')" />
     </x-shopper::breadcrumb>
 
     <x-shopper::heading class="mt-3">
         <x-slot name="title">
-            {{ __('shopper::messages.actions_label.add_new', ['name' => 'collection']) }}
+            {{ __('shopper::messages.actions_label.add_new', ['name' => __('collection')]) }}
         </x-slot>
 
         <x-slot name="action">
@@ -17,20 +17,22 @@
         </x-slot>
     </x-shopper::heading>
 
-    <div class="mt-6 grid sm:grid-cols-6 gap-4 lg:gap-6">
-        <div class="sm:col-span-4 space-y-5">
+    <div class="mt-6 space-y-5 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
+        <div class="lg:col-span-4 space-y-5">
             <div class="bg-white rounded-lg shadow p-4 sm:p-5 dark:bg-secondary-800">
-                <x-shopper::forms.group label="shopper::layout.forms.label.name" for="name" isRequired :error="$errors->first('name')">
+                <x-shopper::forms.group :label="__('shopper::layout.forms.label.name')" for="name" isRequired :error="$errors->first('name')">
                     <x-shopper::forms.input wire:model.defer="name" id="name" type="text" autocomplete="off" placeholder="{{ __('Summers Collections, Christmas promotions...') }}" />
                 </x-shopper::forms.group>
                 <div class="mt-5">
-                    <x-shopper::forms.group label="shopper::layout.forms.label.description" for="description">
+                    <x-shopper::forms.group :label="__('shopper::layout.forms.label.description')" for="description">
                         <livewire:shopper-forms.trix :value="$description" />
                     </x-shopper::forms.group>
                 </div>
             </div>
             <div class="bg-white rounded-lg shadow overflow-hidden pt-4 sm:pt-5 dark:bg-secondary-800">
-                <h3 class="text-base text-secondary-900 leading-6 px-4 sm:px-5 font-medium dark:text-white">{{ __('shopper::pages/collections.filter_type') }}</h3>
+                <h3 class="text-base text-secondary-900 leading-6 px-4 sm:px-5 font-medium dark:text-white">
+                    {{ __('shopper::pages/collections.filter_type') }}
+                </h3>
                 <div
                     x-data="{
                         active: {{ $type === 'auto' ? 1 : 0 }},
@@ -80,19 +82,27 @@
                 </div>
                 @if($type === 'auto')
                     <div class="border-t border-secondary-200 p-4 sm:p-5 space-y-5 dark:border-secondary-700">
-                        <h3 class="text-base text-secondary-900 leading-6 font-medium dark:text-white">{{ __('shopper::pages/collections.conditions.title') }}</h3>
+                        <h3 class="text-base text-secondary-900 leading-6 font-medium dark:text-white">
+                            {{ __('shopper::pages/collections.conditions.title') }}
+                        </h3>
                         <div class="flex items-center space-x-6">
-                            <p class="text-sm leading-5 text-secondary-500 dark:text-secondary-400">{{ __('shopper::pages/collections.conditions.products_match') }}</p>
+                            <p class="text-sm leading-5 text-secondary-500 dark:text-secondary-400">
+                                {{ __('shopper::pages/collections.conditions.products_match') }}
+                            </p>
                             <div class="flex items-center">
                                 <x-shopper::forms.radio wire:model.lazy="condition_match" id="all" value="all" />
                                 <label for="all" class="ml-3 cursor-pointer">
-                                    <span class="block text-sm leading-5 font-medium text-secondary-700 dark:text-secondary-300">{{ __('shopper::pages/collections.conditions.all') }}</span>
+                                    <span class="block text-sm leading-5 font-medium text-secondary-700 dark:text-secondary-300">
+                                        {{ __('shopper::pages/collections.conditions.all') }}
+                                    </span>
                                 </label>
                             </div>
                             <div class="flex items-center">
                                 <x-shopper::forms.radio wire:model.lazy="condition_match" id="any" value="any" />
                                 <label for="any" class="ml-3 cursor-pointer">
-                                    <span class="block text-sm leading-5 font-medium text-secondary-700 dark:text-secondary-300">{{ __('shopper::pages/collections.conditions.any') }}</span>
+                                    <span class="block text-sm leading-5 font-medium text-secondary-700 dark:text-secondary-300">
+                                        {{ __('shopper::pages/collections.conditions.any') }}
+                                    </span>
                                 </label>
                             </div>
                         </div>
@@ -157,7 +167,7 @@
                 :canUpdate="$updateSeo"
             />
         </div>
-        <div class="sm:col-span-2">
+        <div class="lg:col-span-2">
             <aside class="sticky top-6 space-y-5">
                 <div class="bg-white rounded-md shadow p-4 sm:p-5 dark:bg-secondary-800">
                     <x-datetime-picker

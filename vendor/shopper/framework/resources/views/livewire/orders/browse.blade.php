@@ -5,7 +5,7 @@
 <div>
     <x-shopper::heading>
         <x-slot name="title">
-            {{ __('Orders') }}
+            {{ __('shopper::layout.sidebar.orders') }}
         </x-slot>
     </x-shopper::heading>
 
@@ -120,7 +120,7 @@
         </div>
     @endif
 
-    <x-shopper::learn-more name="shopper::layout.sidebar.orders" link="orders" />
+    <x-shopper::learn-more :name="__('shopper::layout.sidebar.orders')" link="orders" />
 </div>
 
 @push('scripts')

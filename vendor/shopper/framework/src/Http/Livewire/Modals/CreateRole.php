@@ -1,23 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Http\Livewire\Modals;
 
+use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use LivewireUI\Modal\ModalComponent;
 use Shopper\Framework\Models\User\Role;
-use WireUi\Traits\Actions;
 
 class CreateRole extends ModalComponent
 {
-    use Actions;
-
     public string $name = '';
 
     public string $display_name = '';
 
     public string $description = '';
 
-    public function save()
+    public function save(): void
     {
         $this->validate(['name' => 'required|unique:roles'], [
             'name.required' => __('The role name is required.'),
@@ -32,7 +32,11 @@ class CreateRole extends ModalComponent
 
         $this->emit('onRoleAdded');
 
-        $this->notification()->success(__('Saved'), __('A role has been successfully created!'));
+        Notification::make()
+            ->title(__('Saved'))
+            ->body(__('A role has been successfully created'))
+            ->success()
+            ->send();
 
         $this->closeModal();
     }

@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Http\Livewire\Settings\Payments;
 
+use Filament\Notifications\Notification;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Shopper\Framework\Models\Shop\PaymentMethod;
 use Shopper\Framework\Models\System\Currency;
-use WireUi\Traits\Actions;
 
 class Stripe extends Component
 {
-    use Actions;
-
     public string $stripe_key = '';
 
     public string $stripe_secret = '';
@@ -21,7 +22,7 @@ class Stripe extends Component
 
     public string $message = '...';
 
-    public function mount()
+    public function mount(): void
     {
         $this->enabled = ($stripe = PaymentMethod::where('slug', 'stripe')->first())
             ? $stripe->is_enabled
@@ -30,9 +31,9 @@ class Stripe extends Component
         $this->stripe_secret = env('STRIPE_SECRET', '');
     }
 
-    public function enabledStripe()
+    public function enabledStripe(): void
     {
-        PaymentMethod::create([
+        PaymentMethod::query()->create([
             'title' => 'Stripe',
             'slug' => 'stripe',
             'link_url' => 'https://github.com/stripe/stripe-php',
@@ -42,13 +43,14 @@ class Stripe extends Component
 
         $this->enabled = true;
 
-        $this->notification()->success(
-            __('shopper::layout.status.success'),
-            __('shopper::pages/settings.notifications.stripe_enable')
-        );
+        Notification::make()
+            ->title(__('shopper::layout.status.success'))
+            ->body(__('shopper::pages/settings.notifications.stripe_enable'))
+            ->success()
+            ->send();
     }
 
-    public function store()
+    public function store(): void
     {
         Artisan::call('config:clear');
 
@@ -57,13 +59,14 @@ class Stripe extends Component
             'stripe_secret' => $this->stripe_secret,
         ]);
 
-        $this->notification()->success(
-            __('shopper::layout.status.updated'),
-            __('shopper::pages/settings.notifications.stripe')
-        );
+        Notification::make()
+            ->title(__('shopper::layout.status.updated'))
+            ->body(__('shopper::pages/settings.notifications.stripe'))
+            ->success()
+            ->send();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('shopper::livewire.settings.payments.stripe', [
             'currencies' => Cache::rememberForever('currencies', fn () => Currency::all()),

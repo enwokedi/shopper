@@ -1,18 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Http\Livewire\Settings;
 
+use Filament\Notifications\Notification;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Shopper\Framework\Models\System\Country;
 use Shopper\Framework\Models\System\Currency;
 use Shopper\Framework\Models\System\Setting;
-use WireUi\Traits\Actions;
 
 class General extends Component
 {
-    use Actions;
     use WithFileUploads;
 
     public string $shop_name;
@@ -53,7 +55,7 @@ class General extends Component
         'trix:valueUpdated' => 'onTrixValueUpdate',
     ];
 
-    public function mount()
+    public function mount(): void
     {
         $settings = Setting::whereIn('key', [
             'shop_name',
@@ -80,12 +82,12 @@ class General extends Component
         }
     }
 
-    public function onTrixValueUpdate($value)
+    public function onTrixValueUpdate(string $value): void
     {
         $this->shop_about = $value;
     }
 
-    public function store()
+    public function store(): void
     {
         $this->validate($this->rules());
 
@@ -106,30 +108,37 @@ class General extends Component
         ];
 
         foreach ($keys as $key) {
-            Setting::query()->updateOrCreate(['key' => $key], [
-                'value' => $this->{$key},
-                'display_name' => Setting::lockedAttributesDisplayName($key),
-                'locked' => true,
-            ]);
+            $this->createUpdateSetting(key: $key, value: $this->{$key});
         }
 
         if ($this->logo) {
-            Setting::query()->updateOrCreate(['key' => 'shop_logo'], [
-                'value' => $this->logo->store('/', config('shopper.system.storage.disks.uploads')),
-                'display_name' => Setting::lockedAttributesDisplayName('shop_logo'),
-                'locked' => true,
-            ]);
+            $this->createUpdateSetting(
+                key: 'shop_logo',
+                value: $this->logo->store('/', config('shopper.system.storage.disks.uploads'))
+            );
         }
 
         if ($this->cover) {
-            Setting::query()->updateOrCreate(['key' => 'shop_cover'], [
-                'value' => $this->cover->store('/', config('shopper.system.storage.disks.uploads')),
-                'display_name' => Setting::lockedAttributesDisplayName('shop_cover'),
-                'locked' => true,
-            ]);
+            $this->createUpdateSetting(
+                key: 'shop_cover',
+                value: $this->cover->store('/', config('shopper.system.storage.disks.uploads'))
+            );
         }
 
-        $this->notification()->success(__('shopper::layout.status.updated'), __('Shop informations have been correctly updated!'));
+        Notification::make()
+            ->title(__('shopper::layout.status.updated'))
+            ->body(__('Shop informations have been correctly updated'))
+            ->success()
+            ->send();
+    }
+
+    public function createUpdateSetting(string $key, mixed $value): void
+    {
+        Setting::query()->updateOrCreate(['key' => $key], [
+            'value' => $value,
+            'display_name' => Setting::lockedAttributesDisplayName($key),
+            'locked' => true,
+        ]);
     }
 
     public function rules(): array
@@ -148,12 +157,12 @@ class General extends Component
         ];
     }
 
-    public function removeCover()
+    public function removeCover(): void
     {
         $this->cover = null;
     }
 
-    public function deleteCover()
+    public function deleteCover(): void
     {
         Setting::query()->updateOrCreate(['key' => 'shop_cover'], [
             'value' => null,
@@ -163,10 +172,14 @@ class General extends Component
 
         $this->shop_cover = null;
 
-        $this->notification()->success(__('shopper::layout.status.delete'), __('Shop cover have been correctly removed!'));
+        Notification::make()
+            ->title(__('shopper::layout.status.delete'))
+            ->body(__('Shop cover have been correctly removed'))
+            ->success()
+            ->send();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('shopper::livewire.settings.general', [
             'countries' => Cache::rememberForever('countries', fn () => Country::query()->orderBy('name')->get()),

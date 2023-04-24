@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Http\Livewire\Modals;
 
+use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use Shopper\Framework\Models\Shop\PaymentMethod;
-use WireUi\Traits\Actions;
 
 class CreatePaymentMethod extends ModalComponent
 {
-    use Actions;
     use WithFileUploads;
 
     public string $title = '';
@@ -28,7 +29,7 @@ class CreatePaymentMethod extends ModalComponent
         return 'lg';
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate([
             'title' => 'required|unique:' . shopper_table('payment_methods'),
@@ -50,7 +51,11 @@ class CreatePaymentMethod extends ModalComponent
             ]);
         }
 
-        $this->notification()->success(__('Saved'), __('Your payment method have been correctly added!'));
+        Notification::make()
+            ->title(__('Saved'))
+            ->body(__('Your payment method have been correctly added!'))
+            ->success()
+            ->send();
 
         $this->emit('onPaymentMethodAdded');
 

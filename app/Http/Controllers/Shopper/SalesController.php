@@ -27,18 +27,20 @@ class SalesController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        $b = Brand::all()
-            ->where('id', $product->brand_id);
-        $brand = json_decode($b);
+        $image = Media::all()
+            ->where('model_type', 'product')
+            ->where('model_id', $id);
 
-        // $category
-        // $image
+        $brand_img = Media::all()
+            ->where('model_type', 'brand')
+            ->where('model_id', $product['brand']->id);
 
-        dd($product->getFirstMediaUrl(config('shopper.system.storage.disks.uploads')));
-        // dd($brand[0]->name);
+        $brand_image = $product['brand']->id;
+
+        dd($brand_image);
         return view('frontend.motorcycle-new', [
             'product' => $product,
-            'brand' => $brand
+            'image' => $image
         ]);
     }
 

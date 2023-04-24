@@ -10,9 +10,9 @@
         currentTab: 'profile'
     }"
 >
-    <x-shopper::breadcrumb back="shopper.customers.index">
+    <x-shopper::breadcrumb :back="route('shopper.customers.index')">
         <x-heroicon-s-chevron-left class="shrink-0 h-5 w-5 text-secondary-400" />
-        <x-shopper::breadcrumb.link :link="route('shopper.customers.index')" title="shopper::layout.sidebar.customers" />
+        <x-shopper::breadcrumb.link :link="route('shopper.customers.index')" :title="__('shopper::layout.sidebar.customers')" />
     </x-shopper::breadcrumb>
 
     <div class="mt-5 md:flex md:items-center md:justify-between relative z-20">
@@ -32,7 +32,9 @@
                             @else
                                 <x-heroicon-s-shield-exclamation class="w-5 h-5 text-red-500" />
                             @endif
-                            <span class="ml-1.5 text-sm leading-5 text-secondary-500 dark:text-secondary-400">{{ $customer->email }}</span>
+                            <span class="ml-1.5 text-sm leading-5 text-secondary-500 dark:text-secondary-400">
+                                {{ $customer->email }}
+                            </span>
                         </div>
                         <p class="pl-2 text-sm text-secondary-500 leading-5 dark:text-secondary-400">
                             {{ __('shopper::pages/customers.period', ['period' => $customer->created_at->diffForHumans()]) }}

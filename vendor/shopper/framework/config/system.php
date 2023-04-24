@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -12,6 +14,8 @@ return [
     */
 
     'brand' => null,
+
+    'mapbox_token' => env('MAPBOX_PUBLIC_TOKEN', null),
 
     /*
     |--------------------------------------------------------------------------

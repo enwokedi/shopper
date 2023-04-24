@@ -1,18 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Http\Livewire\Modals;
 
+use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use LivewireUI\Modal\ModalComponent;
-use WireUi\Traits\Actions;
 
 class DeleteMailable extends ModalComponent
 {
-    use Actions;
-
     public string $item;
 
-    public function mount(string $item)
+    public function mount(string $item): void
     {
         $this->item = $item;
     }
@@ -22,14 +22,18 @@ class DeleteMailable extends ModalComponent
         return 'lg';
     }
 
-    public function delete()
+    public function delete(): void
     {
         $mailableFile = config('shopper.mails.mailables_dir') . $this->item . '.php';
 
         if (file_exists($mailableFile)) {
             unlink($mailableFile);
 
-            $this->notification()->success(__('Removed'), __('You have removed the :class', ['class' => $this->item]));
+            Notification::make()
+                ->title(__('Removed'))
+                ->body(__('You have removed the :class', ['class' => $this->item]))
+                ->success()
+                ->send();
         } else {
             session()->flash('error', __("This file don't exist."));
         }

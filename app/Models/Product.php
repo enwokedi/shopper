@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Product extends Model implements HasMedia
+class Product extends Model implements Buyable
 {
     public function getBuyableIdentifier($options = null)
     {
@@ -29,5 +30,10 @@ class Product extends Model implements HasMedia
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'brand_id');
+    }
+
+    public function product_image($id)
+    {
+        return $this->Media::all()->where('model_type', 'product')->where('model_id', $id);
     }
 }

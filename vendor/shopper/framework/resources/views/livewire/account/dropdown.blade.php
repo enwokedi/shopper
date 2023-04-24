@@ -3,7 +3,9 @@
         <button class="max-w-xs flex items-center text-sm rounded-full overflow-hidden focus:outline-none hover:bg-secondary-50 dark:focus:bg-secondary-700 dark:hover:bg-secondary-800 lg:p-1.5 lg:rounded-md">
             <img class="h-8 w-8 rounded-full" src="{{ $picture }}" alt="{{ $email }}" />
             <span class="hidden ml-3 text-secondary-900 dark:text-white text-sm leading-5 font-medium lg:block">{{ $full_name }}</span>
-            <x-heroicon-s-chevron-down class="hidden shrink-0 ml-1 h-5 w-5 text-secondary-400 lg:block" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="hidden shrink-0 ml-1 h-5 w-5 text-secondary-400 lg:inline">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+            </svg>
         </button>
     </x-slot>
 
@@ -20,7 +22,7 @@
             <div class="border-t border-secondary-100 dark:border-secondary-700"></div>
             <div class="py-1">
                 <x-shopper::dropdown-link :href="route('shopper.products.create')">
-                    <x-heroicon-o-plus-sm  class="mr-3 h-5 w-5 text-secondary-400 group-hover:text-secondary-500 group-focus:text-secondary-500"/>
+                    <x-heroicon-o-plus-sm class="mr-3 h-5 w-5 text-secondary-400 group-hover:text-secondary-500 group-focus:text-secondary-500" />
                     {{ __('shopper::layout.account_dropdown.add_product') }}
                 </x-shopper::dropdown-link>
             </div>
@@ -53,7 +55,9 @@
                 :href="route('shopper.logout')"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
             >
-                <x-heroicon-o-login class="mr-3 h-5 w-5 text-secondary-400 group-hover:text-secondary-500 group-focus:text-secondary-500" />
+                <svg class="mr-3 h-5 w-5 text-secondary-400 group-hover:text-secondary-500 group-focus:text-secondary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                </svg>
                 {{ __('shopper::layout.account_dropdown.sign_out') }}
             </x-shopper::dropdown-link>
             <form id="logout-form" action="{{ route('shopper.logout') }}" method="POST" style="display: none;">

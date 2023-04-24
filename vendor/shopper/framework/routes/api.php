@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Route;
-use Shopper\Framework\Http\Controllers\Api;
+use Shopper\Framework\Http\Controllers\Api\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,4 +13,4 @@ use Shopper\Framework\Http\Controllers\Api;
 |
 */
 
-Route::get('/brands', Api\BrandController::class)->name('brands');
+Route::get('/brands', BrandController::class)->name('brands');

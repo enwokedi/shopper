@@ -1,5 +1,4 @@
 <div>
-
     <x-shopper::heading>
         <x-slot name="title">
             {{ __('shopper::layout.sidebar.products') }}
@@ -11,7 +10,7 @@
                     <div class="flex space-x-3">
                         <span class="shadow-sm rounded-md">
                             <x-shopper::buttons.primary :link="route('shopper.products.create')">
-                                {{ __('shopper::messages.actions_label.add_new', ['name' => 'product']) }}
+                                {{ __('shopper::messages.actions_label.add_new', ['name' => __('product')]) }}
                             </x-shopper::buttons.primary>
                         </span>
                     </div>
@@ -24,7 +23,7 @@
         <x-shopper::empty-state
             :title="__('shopper::pages/products.title')"
             :content="__('shopper::pages/products.content')"
-            :button="__('shopper::messages.actions_label.add_new', ['name' => 'product'])"
+            :button="__('shopper::messages.actions_label.add_new', ['name' => __('product')])"
             permission="add_products"
             :url="route('shopper.products.create')"
             class="lg:pb-0"
@@ -259,6 +258,6 @@
         </div>
     @endif
 
-    <x-shopper::learn-more name="shopper::layout.sidebar.products" link="products" />
+    <x-shopper::learn-more :name="__('shopper::layout.sidebar.products')" link="products" />
 
 </div>

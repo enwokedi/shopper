@@ -1,17 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Http\Livewire\Modals;
 
+use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use Shopper\Framework\Models\Shop\PaymentMethod;
-use WireUi\Traits\Actions;
 
 class UpdatePaymentMethod extends ModalComponent
 {
-    use Actions;
     use WithFileUploads;
 
     public PaymentMethod $paymentMethod;
@@ -28,7 +29,7 @@ class UpdatePaymentMethod extends ModalComponent
 
     public $logo;
 
-    public function mount(int $id)
+    public function mount(int $id): void
     {
         $this->paymentMethod = $paymentMethod = PaymentMethod::find($id);
         $this->title = $paymentMethod->title;
@@ -43,7 +44,7 @@ class UpdatePaymentMethod extends ModalComponent
         return 'lg';
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate([
             'title' => [
@@ -67,7 +68,11 @@ class UpdatePaymentMethod extends ModalComponent
             ]);
         }
 
-        $this->notification()->success(__('Updated'), __('Your payment method have been correctly updated.'));
+        Notification::make()
+            ->title(__('shopper::components.tables.status.updated'))
+            ->body(__('Your payment method have been correctly updated'))
+            ->success()
+            ->send();
 
         $this->emit('onPaymentMethodAdded');
 
