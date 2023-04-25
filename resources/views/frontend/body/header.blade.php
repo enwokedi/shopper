@@ -75,7 +75,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/rentals-motorcycle">RENTALS</a>
+                        <a href="/motorcycle-rentals">RENTALS</a>
                         <ul class="submenu">
                             <li>
                                 <a href="/rentals-information">RENTAL INFORMATION</a>

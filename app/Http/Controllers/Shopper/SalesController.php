@@ -16,9 +16,6 @@ class SalesController extends Controller
 {
     public function NewForSale()
     {
-        // $category = Category::where('slug', $slug)->first();
-        // $motorcycles = $category->products()->orderBy('created_at')->paginate(12);
-
         $motorcycles = Category::findOrFail(77)->products()->paginate(9);
         return view('frontend.motorcycles-new', compact('motorcycles'));
     }
@@ -35,9 +32,6 @@ class SalesController extends Controller
             ->where('model_type', 'brand')
             ->where('model_id', $product['brand']->id);
 
-        // $brand_image = $product['brand']->id;
-
-        // dd($brand_image[1]->id);
         return view('frontend.motorcycle-new', [
             'product' => $product,
             'image' => $image,
@@ -47,11 +41,8 @@ class SalesController extends Controller
 
     public function UsedForSale()
     {
-        // $category = Category::where('slug', $slug)->first();
-        // $motorcycles = $category->products()->orderBy('created_at')->paginate(12);
-
         $motorcycles = Category::findOrFail(80)->products()->paginate(9);
-        // dd($motorcycles);
+
         return view('frontend.motorcycles-used', compact('motorcycles'));
     }
 
@@ -67,9 +58,6 @@ class SalesController extends Controller
             ->where('model_type', 'brand')
             ->where('model_id', $product['brand']->id);
 
-        // dd($brand_image);
-        // $brand_image = $product['brand']->id;
-        // dd($brand_image[1]->id);
         return view('frontend.motorcycle-used', [
             'product' => $product,
             'image' => $image,
@@ -79,12 +67,38 @@ class SalesController extends Controller
 
     public function RentBike()
     {
-        return view('frontend.rentals-motorcycles');
+        $motorcycles = Category::findOrFail(78)->products()->paginate(9);
+        // dd($motorcycles[0]->id); // 4
+        $images = Media::all()
+            ->where('model_type', 'product')
+            ->where('model_id', $motorcycles[0]->id);
+        // dd($images[8]->id);
+        return view('frontend.motorcycle-rentals', [
+            'motorcycles' => $motorcycles,
+            'image' => $images
+        ]);
     }
 
-    public function RentalDetails()
+    public function RentalDetails($id)
     {
-        return view('frontend.rentals-details');
+        $product = Product::findOrFail($id);
+
+        $image = Media::select()
+            ->where('model_type', 'product')
+            ->where('model_id', $id);
+
+        $brand_image = Media::all()
+            ->where('model_type', 'brand')
+            ->where('model_id', $product['brand']->id);
+
+        // dd($product);
+        // $brand_image = $product['brand']->id;
+        // dd($brand_image[1]->id);
+        return view('frontend.motorcycle-rental', [
+            'product' => $product,
+            'image' => $image,
+            'brand_image' => $brand_image
+        ]);
     }
 
     public function RentalBikeDetails()

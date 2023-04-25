@@ -30,7 +30,7 @@
                         <div class="breadcrumbs">
                             <ul>
                                 <li><a href="/">Honda & Yamaha Specialists</a></li>
-                                <li><a href="/motorcycle-sales">Motorcycle Sales</a></li>
+                                <li><a href="/motorcycle-sales">Motorcycle Rental</a></li>
                                 <li><a href="/new-motorcycle/{{ $product->slug }}">{{ $product->name }}</a></li>
                             </ul>
                         </div><!-- /.breadcrumbs -->
@@ -47,7 +47,7 @@
                             <div class="inner padding-top-4">
                                 <ul class="product-list-fix-image">
                                     <li>
-                                        <img src="/{{ $images[8]->id }}/{{ $image[8]->file_name }}" alt="Image">
+                                        <img src="/{{ $image[10]->id }}/{{ $image[10]->file_name }}" alt="Image">
                                     </li>
                                 </ul>
                             </div>
