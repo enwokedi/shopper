@@ -56,13 +56,26 @@ class SalesController extends Controller
     public function UsedForSale()
     {
         $motorcycles = Category::findOrFail(80)->products()->paginate(9);
+        $motorcycle_id = $motorcycles[0]->id;
+        $brand_id = $motorcycles[0]->brand_id;
 
-        return view('frontend.motorcycles-used', compact('motorcycles'));
+        $images = Media::all()
+            ->where('model_type', 'product')
+            ->where('model_id', $motorcycle_id);
+
+        $brand = Brand::all()
+            ->where('id', $brand_id);
+
+        return view('frontend.motorcycles-used', [
+            'motorcycles' => $motorcycles,
+            'image' => $images,
+            'brand' => $brand
+        ]);
     }
 
     public function UsedBikeDetails($id)
     {
-        $product = Product::findOrFail($id);
+        $motorcycle = Product::findOrFail($id);
 
         $image = Media::all()
             ->where('model_type', 'product')
@@ -70,10 +83,10 @@ class SalesController extends Controller
 
         $brand_image = Media::all()
             ->where('model_type', 'brand')
-            ->where('model_id', $product['brand']->id);
+            ->where('model_id', $motorcycle['brand']->id);
 
         return view('frontend.motorcycle-used', [
-            'product' => $product,
+            'motorcycle' => $motorcycle,
             'image' => $image,
             'brand_image' => $brand_image
         ]);
@@ -103,17 +116,15 @@ class SalesController extends Controller
     {
         $motorcycle = Product::findOrFail($id);
 
-        $image = Media::select()
+        $image = Media::all()
             ->where('model_type', 'product')
             ->where('model_id', $id);
+        // dd($image);
 
         $brand_image = Media::all()
             ->where('model_type', 'brand')
             ->where('model_id', $motorcycle['brand']->id);
 
-        // dd($product);
-        // $brand_image = $product['brand']->id;
-        // dd($brand_image[1]->id);
         return view('frontend.motorcycle-rental', [
             'motorcycle' => $motorcycle,
             'image' => $image,

@@ -69,12 +69,7 @@
                                 <span class="new">New</span>
                             </div>
                             <div class="product-info clearfix">
-                                <span class="product-title">{{ $motorcycle->name }}</span>
-                                <div class="price">
-                                    <ins>
-                                        <span class="amount">{{ $motorcycle->name }}</span>
-                                    </ins>
-                                </div>
+                                <span class="product-title">{{ $brand[0]->name }} {{ $motorcycle->name }}</span>
                             </div>
                             <span class="regular">Super Sport</span>
                             <div class="add-to-cart text-center">

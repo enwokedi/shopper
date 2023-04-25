@@ -25,13 +25,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="page-title-heading">
-                            <h1 class="title">{{ $product->name }}</h1>
+                            <h1 class="title">{{$product['brand']->name}} {{ $product->name }}</h1>
                         </div><!-- /.page-title-heading -->
                         <div class="breadcrumbs">
                             <ul>
                                 <li><a href="/">Honda & Yamaha Specialists</a></li>
                                 <li><a href="/motorcycle-sales">Motorcycle Sales</a></li>
-                                <li><a href="/new-motorcycle/{{ $product->slug }}">{{ $product->name }}</a></li>
+                                <li><a href="/new-motorcycle/{{ $product->slug }}">{{$product['brand']->name}} {{ $product->name }}</a></li>
                             </ul>
                         </div><!-- /.breadcrumbs -->
                     </div><!-- /.col-md-12 -->
@@ -61,8 +61,7 @@
                                 <form action="#" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="content-detail form-group">
-                                        <h2 class="product-title" value="" name="name">{{ $product->name }}</h2>
-                                        <h3 class="product-title" value="" name="name">{{$product['brand']->name}}</h3>
+                                        <h2 class="product-title" value="" name="name">{{$product['brand']->name}} {{ $product->name }}</h2>
                                         <div class="flat-star style-1">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
