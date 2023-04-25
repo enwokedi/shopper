@@ -71,13 +71,6 @@
                                             <span>(1)</span>
                                         </div>
                                         <p>{!! $motorcycle->description !!}</p>
-                                        <ul class="product-infor style-1">
-                                            <li><span>Body Type: </span></li>
-                                            <li><span>Engine CC: </span></li>
-                                            <li><span>Engine Power: </span></li>
-                                            <li><span>Gearbox: </span></li>
-                                            <li><span>Fuel Type: </span></li>
-                                        </ul>
                                         <div class="price margin-top-24">
                                             <ins><span class="amount" value="{{$motorcycle->price}}" name="price" id="price">£{{$motorcycle->price_amount}} per day</span></ins>
                                         </div>
@@ -122,7 +115,7 @@
                             <div class="inner">
                                 <ul class="menu-tab">
                                     <li class="active">Description</li>
-                                    <li>Additional information</li>
+                                    <li>Specifications</li>
                                     <li>Reviews</li>
                                 </ul>
                                 <div class="content-tab">
@@ -137,7 +130,7 @@
                                                 <div class="grid-item">
                                                     <div class="text-wrap">
                                                         <h6 class="title"></h6>
-                                                        <p> </p>
+                                                        <p>{!! $motorcycle['brand']->description !!}</p>
                                                     </div>
                                                 </div>
                                             </div><!-- /.grid-row -->
@@ -147,19 +140,23 @@
                                         <div class="inner max-width-40">
                                             <table>
                                                 <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
+                                                    <td>Body Type:</td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td></td>
+                                                    <td>Engine CC:</td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
+                                                    <td>Engine Power:</td>
                                                     <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Gearbox:</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Fuel Type:</td>
                                                     <td></td>
                                                 </tr>
                                             </table>

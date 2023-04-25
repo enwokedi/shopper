@@ -138,7 +138,7 @@
                                                 <div class="grid-item">
                                                     <div class="text-wrap">
                                                         <h6 class="title"></h6>
-                                                        <p> </p>
+                                                        <p> {!! $motorcycle['brand']->description !!}</p>
                                                     </div>
                                                 </div>
                                             </div><!-- /.grid-row -->
