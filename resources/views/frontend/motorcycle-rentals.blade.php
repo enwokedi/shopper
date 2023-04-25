@@ -51,14 +51,14 @@
                                 </a>
                             </div>
                             <div class="product-info clearfix">
-                                <span class="product-title">{{$motorcycle->name}}</span>
+                                <span class="product-title">{{ $brand[0]->name }} {{$motorcycle->name}}</span>
                                 <div class="price">
                                     <ins>
-                                        <span class="amount">£{{ $motorcycle->price_amount }} / Day</span>
+                                        <span class="amount">£{{ $motorcycle->price_amount }} per day</span>
                                     </ins>
                                 </div>
                             </div>
-                            <span class="regular">Urban Mobility</span>
+                            <!-- <span class="regular">Urban Mobility</span> -->
                             <div class="add-to-cart text-center">
                                 <a href="/rentals-motorcycle/{{ $motorcycle->id }}">MORE INFORMATION</a>
                             </div>

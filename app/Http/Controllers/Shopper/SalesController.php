@@ -17,7 +17,21 @@ class SalesController extends Controller
     public function NewForSale()
     {
         $motorcycles = Category::findOrFail(77)->products()->paginate(9);
-        return view('frontend.motorcycles-new', compact('motorcycles'));
+        $motorcycle_id = $motorcycles[0]->id;
+        $brand_id = $motorcycles[0]->brand_id;
+
+        $images = Media::all()
+            ->where('model_type', 'product')
+            ->where('model_id', $motorcycle_id);
+
+        $brand = Brand::all()
+            ->where('id', $brand_id);
+
+        return view('frontend.motorcycles-new', [
+            'motorcycles' => $motorcycles,
+            'image' => $images,
+            'brand' => $brand
+        ]);
     }
 
     public function NewBikeDetails($id)
@@ -68,20 +82,26 @@ class SalesController extends Controller
     public function RentBike()
     {
         $motorcycles = Category::findOrFail(78)->products()->paginate(9);
-        // dd($motorcycles[0]->id); // 4
+        $motorcycle_id = $motorcycles[0]->id;
+        $brand_id = $motorcycles[0]->brand_id;
+
         $images = Media::all()
             ->where('model_type', 'product')
-            ->where('model_id', $motorcycles[0]->id);
-        // dd($images[8]->id);
+            ->where('model_id', $motorcycle_id);
+
+        $brand = Brand::all()
+            ->where('id', $brand_id);
+
         return view('frontend.motorcycle-rentals', [
             'motorcycles' => $motorcycles,
-            'image' => $images
+            'image' => $images,
+            'brand' => $brand
         ]);
     }
 
     public function RentalDetails($id)
     {
-        $product = Product::findOrFail($id);
+        $motorcycle = Product::findOrFail($id);
 
         $image = Media::select()
             ->where('model_type', 'product')
@@ -89,13 +109,13 @@ class SalesController extends Controller
 
         $brand_image = Media::all()
             ->where('model_type', 'brand')
-            ->where('model_id', $product['brand']->id);
+            ->where('model_id', $motorcycle['brand']->id);
 
         // dd($product);
         // $brand_image = $product['brand']->id;
         // dd($brand_image[1]->id);
         return view('frontend.motorcycle-rental', [
-            'product' => $product,
+            'motorcycle' => $motorcycle,
             'image' => $image,
             'brand_image' => $brand_image
         ]);
