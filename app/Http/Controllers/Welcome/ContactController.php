@@ -17,6 +17,12 @@ class ContactController extends Controller
     {
         return view('frontend.contact');
     }
+
+    public function TradeAccount()
+    {
+        return view('frontend.contactTradeAccount');
+    }
+
     public function ContactNewSales($id)
     {
         $motorcycle = Product::findOrFail($id);

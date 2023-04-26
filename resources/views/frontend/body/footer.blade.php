@@ -29,7 +29,7 @@
             <div class="col-sm-6 col-md-4">
                 <div class="widget widget-brand">
                     <h3 class="">Got one? Get one...</h3>
-                    <A href="#">
+                    <A href="/contact/trade-account">
                         <img src="{{url('img/home/trade_account_card.jpg')}}" alt="image" width="100%">
                     </a>
                 </div><!-- /.widget -->
