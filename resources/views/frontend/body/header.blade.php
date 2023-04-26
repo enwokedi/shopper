@@ -7,7 +7,7 @@
             <div class="w-100 d-flex justify-content-between">
                 <div>
                     <i class="fa fa-envelope mx-2" style="color:white;"></i>
-                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@neguinhomotors.co.uk" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">info@neguinhomotors.co.uk</a>
+                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@neguinhomotors.co.uk" target="_newtab" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">info@neguinhomotors.co.uk</a>
                     <i class="fa fa-phone mx-2" style="color:white;"></i>
                     <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="tel:02083141498" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Catford: 0208 314 1498</a>
                     <i class="fa fa-phone mx-2" style="color:white;"></i>
@@ -42,7 +42,7 @@
                 <a class="icon_login" href="/shopper/login"></a>
             </li>
             <li class="box-cart nav-top-cart-wrapper">
-                <a class="icon_cart nav-cart-trigger " href="{{ route('product.cart') }}"><span> {{ Cart::instance('default')->count() }}</span></a>
+                <a class="icon_cart nav-cart-trigger " href="/cart"><span> {{ Cart::instance('default')->count() }}</span></a>
             </li>
         </ul>
         <div class="nav-wrap">

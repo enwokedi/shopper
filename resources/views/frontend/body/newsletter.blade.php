@@ -9,13 +9,14 @@
             </div>
             <div class="col-md-8">
                 <div class="subscribe clearfix">
-                    <form action="#" method="post" accept-charset="utf-8" id="subscribe-form">
+                    <form action="/subscribe" method="post" accept-charset="utf-8" id="subscribe-form">
+                        @csrf
                         <div class="subscribe-content">
                             <div class="input">
                                 <input type="email" name="subscribe-email" placeholder="Your Email">
                             </div>
                             <div class="button">
-                                <button type="button">SUBSCRIBE</button>
+                                <button class="contact-submit" type="button">SUBSCRIBE</button>
                             </div>
                         </div>
                     </form>

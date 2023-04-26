@@ -9,18 +9,24 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class WelcomeUser extends Mailable
+class ContactUs extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $name;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($name)
     {
-        //
+        $this->name = $name;
+    }
+
+    public function build()
+    {
+        return $this->from('admin@neguinhomotors.co.uk')->markdown('emails.ContactUsView');
     }
 
     /**
@@ -31,7 +37,7 @@ class WelcomeUser extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Welcome User',
+            subject: 'Contact Us',
         );
     }
 
@@ -43,7 +49,7 @@ class WelcomeUser extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.ContactUsView',
         );
     }
 

@@ -6,7 +6,7 @@
                     <ul>
                         <li><a href="#">Contact Us</a></li>
                         <li><a href="#">My Account</a></li>
-                        <li><a href="{{ route('product.cart') }}">My Cart</a></li>
+                        <li><a href="/cart">My Cart</a></li>
                         <li><a href="#">My Wishlist Items</a></li>
                         <li><a href="#">My Checkout</a></li>
                         <li><a href="#">Delivery</a></li>
@@ -38,7 +38,7 @@
                 <div class="widget widget-brand">
                     <ul class="flat-contact">
                         <li class="area"><a href="/" title="logo">
-                                <img src="{{url('img/neguinhomotors3.png')}}" alt="image" width="100%" data-retina="{{url('img/neguinhomotors3.png')}}" data-width="100%">
+                                <img src="{{url('/img/neguinhomotors3.png')}}" alt="image" width="100%" data-retina="{{url('i/mg/neguinhomotors3.png')}}" data-width="100%">
                             </a></li>
                         <li class="area">CATFORD</li>
                         <li>
@@ -47,7 +47,7 @@
                         </li>
                         <li>
                             <i class="fa fa-envelope mx-2"></i>
-                            <a class="email" href="mailto:info@neguinhomotors.co.uk">info@neguinhomotors.co.uk</a>
+                            <a class="email" href="mailto:info@neguinhomotors.co.uk" target="_newtab">info@neguinhomotors.co.uk</a>
                         </li>
                         <li>
                             <i class="fa fa-map-marker mx-2"></i>

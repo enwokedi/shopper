@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\MailController;
 
 class ContactController extends Controller
 {
@@ -16,6 +18,14 @@ class ContactController extends Controller
 
     public function StoreMessage(Request $request)
     {
+        // dd($request);
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'messages' => 'required',
+        ]);
+
         Contact::insert([
             'name' => $request->name,
             'email' => $request->email,

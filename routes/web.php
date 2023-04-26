@@ -6,6 +6,7 @@ use App\Http\Controllers\Welcome\ContactController;
 use App\Http\Controllers\Shopper\SalesController;
 use App\Http\Controllers\Shopper\OxfordController;
 use App\Http\Controllers\Shopper\CartController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,8 +42,8 @@ Route::controller(SalesController::class)->group(function () {
     Route::get('/new-motorcycle/{id}', 'NewBikeDetails')->name('new-motorcycle.detail');
     Route::get('/used-motorcycles', 'UsedForSale')->name('motorcycles.used');
     Route::get('/used-motorcycle/{id}', 'UsedBikeDetails')->name('detail.used-motorcycle');
-    Route::get('/motorcycle-rentals', 'RentBike')->name('motorcycle.rentals');
-    Route::get('/rentals-motorcycle/{id}', 'RentalDetails')->name('rental-motorcycle.detail');
+    Route::get('/motorcycle', 'RentBike')->name('motorcycle.rentals');
+    Route::get('/rentals-motorcycle/{id}', 'RentalBikeDetails')->name('rental-motorcycle.detail');
 });
 
 // Oxford Product Routes
@@ -70,3 +71,8 @@ Route::controller(ContactController::class)->group(function () {
     Route::get('/contact/message', 'ContactMessage')->name('contact.message');
     Route::get('/delete/message/{id}', 'DeleteMessage')->name('delete.message');
 });
+
+Route::post('/mail', [MailController::class, 'sendMail']);
+
+// Subscriber Route
+Route::post('/subscribe', [SubscriberController::class, 'subscribe']);

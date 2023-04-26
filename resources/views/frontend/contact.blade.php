@@ -21,4 +21,61 @@
     </div><!-- /.container -->
 </div><!-- /.page-title -->
 
+<section class="flat-row flat-contact">
+    <div class="container">
+
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-section margin_bottom_17">
+                    <h2 class="title">
+                        Send Us Email
+                    </h2>
+                </div><!-- /.title-section -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="wrap-contact style2">
+                <form novalidate="" class="contact-form" id="contactform" method="post" action="/mail">
+                    @csrf
+                    <div class="form-text-wrap clearfix {{ $errors->has('name') ? 'has-error' : '' }}">
+                        <div class="contact-name">
+                            <label></label>
+                            <input type="text" placeholder="Name" aria-required="true" size="30" value="" name="name" id="name">
+                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                        </div>
+                        <div class="contact-email">
+                            <label></label>
+                            <input type="email" size="30" placeholder="Email" value="" name="email" id="email">
+                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                        </div>
+                        <div class="contact-name">
+                            <label></label>
+                            <input type="text" placeholder="Phone" aria-required="true" size="30" value="" name="phone" id="phone">
+                            <span class="text-danger">{{ $errors->first('phone') }}</span>
+                        </div>
+                        <div class="contact-subject">
+                            <label></label>
+                            <input type="text" placeholder="Subject" aria-required="true" size="30" value="" name="subject" id="subject">
+                        </div>
+                    </div>
+                    <div class="contact-message clearfix">
+                        <label></label>
+                        <textarea class="" tabindex="4" placeholder="Message" name="message" required></textarea>
+                        <span class="text-danger">{{ $errors->first('message') }}</span>
+                    </div>
+                    <div class="form-submit">
+                        <button class="contact-submit">SEND</button>
+                    </div>
+                </form>
+            </div><!-- /.wrap-contact -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.flat-row -->
+
 @stop
