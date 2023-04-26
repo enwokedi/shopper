@@ -27,7 +27,7 @@
             <div class="col-md-12">
                 <div class="title-section margin_bottom_17">
                     <h2 class="title">
-                        Send Us Email
+                        I'm interested in...
                     </h2>
                 </div><!-- /.title-section -->
             </div><!-- /.col-md-12 -->
@@ -54,13 +54,12 @@
                         </div>
                         <div class="contact-subject">
                             <label></label>
-                            <input type="text" placeholder="Subject" aria-required="true" size="30" value="" name="subject" id="subject">
+                            <input type="text" placeholder="Subject" aria-required="true" size="30" value="{{ $motorcycle['brand']->name }} {{ $motorcycle->name }}" name="subject" id="subject">
                         </div>
                     </div>
                     <div class="contact-message clearfix">
                         <label></label>
-                        <textarea class="" tabindex="4" placeholder="Message" name="message" required></textarea>
-                        <span class="text-danger">{{ $errors->first('message') }}</span>
+                        <textarea class="" tabindex="4" placeholder="Message" name="message" required>I'm interested in your {{ $motorcycle['brand']->name }} {{ $motorcycle->name }}.</textarea>
                     </div>
                     <div class="form-submit">
                         <button class="contact-submit">SEND</button>

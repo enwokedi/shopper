@@ -8,6 +8,7 @@
 <!-- /#site-header-wrap -->
 
 <body class="header_sticky header-style-2 has-menu-extra">
+
     <!-- Preloader -->
     <div id="loading-overlay">
         <div class="loader"></div>

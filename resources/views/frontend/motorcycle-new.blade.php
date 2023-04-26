@@ -89,7 +89,9 @@
                                                 <span class="inc quantity-button">+</span>
                                                 <span class="dec quantity-button">-</span>
                                             </div-->
-                                            <button type="submit" class="add-to-cart">CONTACT SALES</button>
+                                            <div class="add-to-cart text-center">
+                                                <a href="/contact/new-motorcycle/{{ $product->id }}">MORE INFORMATION</a>
+                                            </div>
                                             <div class="box-like">
                                                 <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
                                             </div>

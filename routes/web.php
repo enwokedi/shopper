@@ -67,6 +67,7 @@ Route::get('/checkout', [CartController::class, 'checkout'])->name('product.chec
 // Contact All Routes 
 Route::controller(ContactController::class)->group(function () {
     Route::get('/contact', 'Contact')->name('contact.me');
+    Route::get('/contact/new-motorcycle/{id}', 'ContactNewSales')->name('contact.new-sales');
     Route::post('/store/message', 'StoreMessage')->name('store.message');
     Route::get('/contact/message', 'ContactMessage')->name('contact.message');
     Route::get('/delete/message/{id}', 'DeleteMessage')->name('delete.message');

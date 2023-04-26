@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Welcome;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Mail;
 use App\Models\Contact;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\MailController;
+use App\Models\Product;
 
 class ContactController extends Controller
 {
@@ -15,25 +17,79 @@ class ContactController extends Controller
     {
         return view('frontend.contact');
     }
+    public function ContactNewSales($id)
+    {
+        $motorcycle = Product::findOrFail($id);
+
+        return view('frontend.contactNewSales', compact('motorcycle'));
+    }
 
     public function StoreMessage(Request $request)
     {
-        // dd($request);
+        // dd($request->message);
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'messages' => 'required',
+            'message' => 'required',
         ]);
 
-        Contact::insert([
-            'name' => $request->name,
-            'email' => $request->email,
-            'subject' => $request->subject,
-            'phone' => $request->phone,
-            'message' => $request->message,
-            'created_at' => Carbon::now(),
+        $contact = new Contact;
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->subject = $request->subject;
+        $contact->phone = $request->phone;
+        $contact->message = $request->message;
+        $contact->save();
+
+        $mail = new MailController();
+        $mail->sendMail($request->name);
+
+        // Contact::insert([
+        // 'name' => $request->name,
+        // 'email' => $request->email,
+        // 'subject' => $request->subject,
+        // 'phone' => $request->phone,
+        // 'message' => $request->message,
+        // 'created_at' => Carbon::now(),
+        // ]);
+
+        $notification = array(
+            'message' => 'Your Message Submited Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+    public function ContactSales(Request $request)
+    {
+        // dd($request->message);
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'message' => 'required',
         ]);
+
+        $contact = new Contact;
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->subject = $request->subject;
+        $contact->phone = $request->phone;
+        $contact->message = $request->message;
+        $contact->save();
+
+        $mail = new MailController();
+        $mail->sendMail($request->name);
+
+        // Contact::insert([
+        // 'name' => $request->name,
+        // 'email' => $request->email,
+        // 'subject' => $request->subject,
+        // 'phone' => $request->phone,
+        // 'message' => $request->message,
+        // 'created_at' => Carbon::now(),
+        // ]);
 
         $notification = array(
             'message' => 'Your Message Submited Successfully',
