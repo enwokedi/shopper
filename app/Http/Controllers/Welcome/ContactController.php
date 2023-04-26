@@ -18,6 +18,11 @@ class ContactController extends Controller
         return view('frontend.contact');
     }
 
+    public function CallMeBack()
+    {
+        return view('frontend.contactCallBack');
+    }
+
     public function TradeAccount()
     {
         return view('frontend.contactTradeAccount');

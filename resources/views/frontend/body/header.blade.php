@@ -13,7 +13,7 @@
                     <i class="fa fa-phone mx-2" style="color:white;"></i>
                     <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="tel:02034095478" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Tooting: 0203 409 5478</a>
                     <i class="fa fa-bell mx-2" style="color:white;"></i>
-                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="#" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Request Callback</a>
+                    <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="/contact/call-back" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Request Callback</a>
                 </div>
                 <div>
                     <a style="color: white;" class="text-light" style="padding-right: 5px;" href="/shopper/register" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Register</a>
@@ -58,16 +58,10 @@
                                 <a href="/used-motorcycles">SECOND HAND BIKES</a>
                             </li>
                             <li>
-                                <a href="#">SALES INFORMATION</a>
-                            </li>
-                            <li>
                                 <a href="#">FINANCE</a>
                             </li>
                             <li>
                                 <a href="#">MOTORCYCLE INSURANCE</a>
-                            </li>
-                            <li>
-                                <a href="#">FLEET</a>
                             </li>
                             <li>
                                 <a href="/accident-management-services">ACCIDENT MANAGEMENT</a>
@@ -76,11 +70,6 @@
                     </li>
                     <li>
                         <a href="/motorcycle-rentals">RENTALS</a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="/rentals-information">RENTAL INFORMATION</a>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <a href="/services">SERVICES</a>

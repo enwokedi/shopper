@@ -42,7 +42,7 @@ Route::controller(SalesController::class)->group(function () {
     Route::get('/new-motorcycle/{id}', 'NewBikeDetails')->name('new-motorcycle.detail');
     Route::get('/used-motorcycles', 'UsedForSale')->name('motorcycles.used');
     Route::get('/used-motorcycle/{id}', 'UsedBikeDetails')->name('detail.used-motorcycle');
-    Route::get('/motorcycle', 'RentBike')->name('motorcycle.rentals');
+    Route::get('/motorcycle-rentals', 'RentBike')->name('motorcycle.rentals');
     Route::get('/rentals-motorcycle/{id}', 'RentalBikeDetails')->name('rental-motorcycle.detail');
 });
 
@@ -67,6 +67,7 @@ Route::get('/checkout', [CartController::class, 'checkout'])->name('product.chec
 // Contact All Routes 
 Route::controller(ContactController::class)->group(function () {
     Route::get('/contact', 'Contact')->name('contact.me');
+    Route::get('/contact/call-back', 'CallMeBack')->name('contact.call-back');
     Route::get('/contact/trade-account', 'TradeAccount')->name('contact.trade-account');
     Route::get('/contact/new-motorcycle/{id}', 'ContactNewSales')->name('contact.new-sales');
     Route::post('/store/message', 'StoreMessage')->name('store.message');

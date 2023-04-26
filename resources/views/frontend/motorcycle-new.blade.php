@@ -81,7 +81,7 @@
                                             <span>Tags: </span><a href="#"></a>{{ $product->slug }}<a href="#"></a> <a href="#"></a> <a href="#"></a>
                                         </div>
                                         <div class="price margin-top-24">
-                                            <ins><span class="amount" value="" name="price" id="price">Tel: <a href="tel:02083141498">0208 314 1498</a> or...</span></ins>
+                                            <ins><span class="amount" value="" name="price" id="price">Tel: <a href="tel:02083141498">0208 314 1498</a></span></ins>
                                         </div>
                                         <div class="product-quantity margin-top-35">
                                             <!--div class="quantity">
@@ -90,7 +90,7 @@
                                                 <span class="dec quantity-button">-</span>
                                             </div-->
                                             <div class="add-to-cart text-center">
-                                                <a href="/contact/new-motorcycle/{{ $product->id }}">MORE INFORMATION</a>
+                                                <a href="/contact/new-motorcycle/{{ $product->id }}">CONTACT SALES TEAM</a>
                                             </div>
                                             <div class="box-like">
                                                 <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
