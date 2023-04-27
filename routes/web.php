@@ -21,7 +21,7 @@ use App\Http\Controllers\MailController;
 
 // Welcome Routes
 Route::controller(WelcomeController::class)->group(function () {
-    Route::get('/', 'HomeMain')->name('home');
+    // Route::get('/', 'HomeMain')->name('home');
     Route::get('/motorcycle-sales', 'BikesForSale')->name('sale-motorcycles');
     Route::get('/rentals-information', 'RentInformation')->name('rental-information');
     Route::get('/services', 'GetServices')->name('services');
@@ -79,3 +79,32 @@ Route::post('/mail', [MailController::class, 'sendMail']);
 
 // Subscriber Route
 Route::post('/subscribe', [SubscriberController::class, 'subscribe']);
+
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    /**
+     * Home Routes
+     */
+    Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('/dashboard', 'HomeController@dashboard')->name('home.dashboard');
+
+    Route::group(['middleware' => ['guest']], function () {
+        /**
+         * Register Routes
+         */
+        Route::get('/register', 'RegisterController@show')->name('register.show');
+        Route::post('/register', 'RegisterController@register')->name('register.perform');
+
+        /**
+         * Login Routes
+         */
+        Route::get('/login', 'LoginController@show')->name('login.show');
+        Route::post('/login', 'LoginController@login')->name('login.perform');
+    });
+
+    Route::group(['middleware' => ['auth']], function () {
+        /**
+         * Logout Routes
+         */
+        Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+    });
+});
