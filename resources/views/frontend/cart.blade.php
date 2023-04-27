@@ -12,7 +12,7 @@
                     <ul>
                         <li><a href="/">Honda & Yamaha Specialists</a></li>
                         <li><a href="/products">Shop</a></li>
-                        <li><a href="/service-mot">Shopping Cart</a></li>
+                        <li><a href="/cart">Shopping Cart</a></li>
                     </ul>
                 </div><!-- /.breadcrumbs -->
             </div><!-- /.col-md-12 -->
@@ -22,28 +22,26 @@
 <section class="flat-row shop-detail-content">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-9">
                 <div class="flat-tabs style-1 has-border">
                     @if (count(Cart::content()))
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Image</th>
+                                <th scope="col">SKU</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Price</th>
+                                <th class="text-center" scope="col">Quantity</th>
                                 <th scope="col">Total inc. VAT</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (Cart::content() as $item)
                             <tr>
-                                <td>
-                                    <div class="product-thumb clearfix">
-                                        <img src="{{ $item->image_url }}" alt="image">{{ $item->image_url }}
-                                    </div>
-                                </td>
+                                <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>£{{ $item->price }}</td>
+                                <td class="text-center">{{ $item->qty }}</td>
                                 <td>£{{ $item->total }}</td>
                             </tr>
                             @endforeach
@@ -56,14 +54,53 @@
                     @endif
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="parallax parallax1">
+                    <form action="{{ route('product.checkout') }}">
+                        <div class="title text-center" style="padding-top: 10px;">
+                            <strong>Total (Before Tax & Discounts)</strong>
+                        </div>
+                        <div class="title text-center">
+                            <strong>£{{ $cartSubtotal }}</strong>
+                        </div>
+                        <div class="button text-center">
+                            <button class="btn" type="button">SECURE CHECKOUT</button>
+                        </div>
+                        <div class="divider h10"></div>
+                        <div class="title text-center">
+                            <strong>Order Summary</strong>
+                        </div>
+                        <div class="title text-center">
+                            Items <strong>{{ $cartCount }}</strong>
+                        </div>
+                        <div class="title text-center">
+                            Shipping <strong>TBD</strong>
+                        </div>
+                        <div class="title text-center">
+                            Discount Code (CODE) <strong>-$ AMOUNT</strong>
+                        </div>
+                        <div class="title text-center">
+                            VAT Tax Rate <strong>{{ $cartTaxRate }}%</strong>
+                        </div>
+                        <div class="title text-center">
+                            Estimated Tax <strong>£{{ $cartTax }}</strong>
+                        </div>
+                        <div class="title text-center">
+                            Order Total <strong>£{{ $newTotal }}</strong>
+                        </div>
+                        <div class="divider h10"></div>
+                        <div class="button text-center" style="padding-bottom: 20px;">
+                            <button type="submit" class="btn" type="button">SECURE CHECKOUT</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="row">
+        <div class="divider h20"></div>
+        <div class="row ">
             <div class="col-md-12">
                 <p>
-                    The price and availability of items at NeguinhoMotors.co.uk are subject to change.
-                </p>
-                <p>
-                    The shopping basket is a temporary place to store a list of your items and reflects each item's most recent price.
+                    The price and availability of items at NeguinhoMotors.co.uk are subject to change. The shopping basket is a temporary place to store a list of your items and reflects each item's most recent price.
                 </p>
                 <p>
                     All prices are subject to VAT.

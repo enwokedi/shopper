@@ -31,8 +31,9 @@
     <div class="row g-5">
         <div class="col-md-4 order-md-last">
             <h3>
-                <span class="text-muted">Your cart</span>
-                <span class="badge bg-primary rounded-pill">3</span>
+                <span class="text-muted">Your cart has</span>
+                <span class="badge bg-primary rounded-pill">{{ Cart::instance('default')->count() }}</span>
+                <span class="text-muted"> items</span>
             </h3>
 
             <ul class="list-group mb-3">

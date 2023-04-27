@@ -26,7 +26,7 @@
     <div class="container-fluid container-width-93 clearfix" id="site-header-inner">
         <div id="logo" class="logo float-left">
             <a href="/" title="logo">
-                <img src="{{url('img/neguinhomotors3.png')}}" alt="image" width="30%" data-retina="{{url('img/neguinhomotors3.png')}}" data-width="30%">
+                <img src="{{url('img/neguinhomotors3.png')}}" alt="image" width="25%" data-retina="{{url('img/neguinhomotors3.png')}}" data-width="25%">
             </a>
         </div><!-- /.logo -->
         <div class="mobile-button"><span></span></div>
@@ -147,12 +147,10 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="/about">ABOUT</a>
+                    </li>
+                    <li>
                         <a href="/contact">CONTACT</a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="/about">ABOUT</a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </nav><!-- /.mainnav -->
