@@ -9,8 +9,8 @@
     @endauth
 
     @guest
-    <h1>Homepage</h1>
-    <p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
+    <h1>Restricted</h1>
+    <p class="lead">Your are viewing a restricted area. Please login to view the restricted data.</p>
     @endguest
 </div>
 @endsection
