@@ -15,16 +15,10 @@
                     <i class="fa fa-bell mx-2" style="color:white;"></i>
                     <a style="color: white;" class="navbar-sm-brand text-light text-decoration-none" href="/contact/call-back" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Request Callback</a>
                 </div>
-                @php
-                $id = Auth::user()->id;
-                $adminData = App\Models\User::find($id);
-
-                @endphp
 
                 @auth
-                {{auth()->user()->name}}
                 <div>
-                    <a style="color: white;" class="text-light" style="padding-right: 5px;" href="{{ route('home.dashboard') }}" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Welcome {{ $adminData->first_name}}</a>
+                    <a style="color: white;" class="text-light" style="padding-right: 5px;" href="{{ route('home.dashboard') }}" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Welcome {{ auth()->user()->first_name }}</a>
                 </div>
                 <div>
                     <a style="color: white;" class="text-light" style="padding-right: 5px;" href="{{ route('logout.perform') }}" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Logout</a>
@@ -33,7 +27,7 @@
 
                 @guest
                 <div>
-                    <a style="color: white;" class="text-light" style="padding-right: 5px;" href="{{ route('login.perform') }}" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Login</a>
+                    <a style="color: white;" class="text-light" style="padding-right: 5px;" href="{{ route('login.perform') }}" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Login </a> /
                     <a style="color: white;" class="text-light" style="padding-right: 5px;" href="{{ route('register.perform') }}" onmouseover="this.style.color='#f63440'" onMouseOut="this.style.color='#fff'">Register</a>
                 </div>
                 @endguest

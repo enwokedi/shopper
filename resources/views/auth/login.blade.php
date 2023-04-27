@@ -6,7 +6,8 @@
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
     <img class="mb-4" src="{!! url('img/logo.png') !!}" alt="" width="25%">
 
-    <h1 class="h3 mb-3 fw-normal">Login</h1>
+    <h1 class="h3 mb-3 fw-normal">Welcome Back!</h1>
+    <p>Or <a href="/">Return to Neguinho Motors website</a></p>
 
     @include('layouts.partials.messages')
 
