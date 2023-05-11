@@ -163,6 +163,7 @@ class ComposerStaticInitaefe6f6eded9b98ee8896c64b6d07a52
             'League\\Uri\\' => 11,
             'League\\MimeTypeDetection\\' => 25,
             'League\\Glide\\' => 13,
+            'League\\Flysystem\\Local\\' => 23,
             'League\\Flysystem\\Ftp\\' => 21,
             'League\\Flysystem\\' => 17,
             'League\\Config\\' => 14,
@@ -595,6 +596,10 @@ class ComposerStaticInitaefe6f6eded9b98ee8896c64b6d07a52
         array (
             0 => __DIR__ . '/..' . '/league/glide/src',
         ),
+        'League\\Flysystem\\Local\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/flysystem-local',
+        ),
         'League\\Flysystem\\Ftp\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem-ftp',
@@ -846,6 +851,9 @@ class ComposerStaticInitaefe6f6eded9b98ee8896c64b6d07a52
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Auth\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/HomeController.php',
+        'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
+        'App\\Http\\Controllers\\Auth\\LogoutController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LogoutController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoginController.php',
@@ -4647,8 +4655,8 @@ class ComposerStaticInitaefe6f6eded9b98ee8896c64b6d07a52
         'League\\Flysystem\\Ftp\\UnableToSetFtpOption' => __DIR__ . '/..' . '/league/flysystem-ftp/UnableToSetFtpOption.php',
         'League\\Flysystem\\InvalidStreamProvided' => __DIR__ . '/..' . '/league/flysystem/src/InvalidStreamProvided.php',
         'League\\Flysystem\\InvalidVisibilityProvided' => __DIR__ . '/..' . '/league/flysystem/src/InvalidVisibilityProvided.php',
-        'League\\Flysystem\\Local\\FallbackMimeTypeDetector' => __DIR__ . '/..' . '/league/flysystem/src/Local/FallbackMimeTypeDetector.php',
-        'League\\Flysystem\\Local\\LocalFilesystemAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Local/LocalFilesystemAdapter.php',
+        'League\\Flysystem\\Local\\FallbackMimeTypeDetector' => __DIR__ . '/..' . '/league/flysystem-local/FallbackMimeTypeDetector.php',
+        'League\\Flysystem\\Local\\LocalFilesystemAdapter' => __DIR__ . '/..' . '/league/flysystem-local/LocalFilesystemAdapter.php',
         'League\\Flysystem\\MountManager' => __DIR__ . '/..' . '/league/flysystem/src/MountManager.php',
         'League\\Flysystem\\PathNormalizer' => __DIR__ . '/..' . '/league/flysystem/src/PathNormalizer.php',
         'League\\Flysystem\\PathPrefixer' => __DIR__ . '/..' . '/league/flysystem/src/PathPrefixer.php',
@@ -7317,7 +7325,6 @@ class ComposerStaticInitaefe6f6eded9b98ee8896c64b6d07a52
         'Shopper\\Framework\\Helpers\\Price' => __DIR__ . '/..' . '/shopper/framework/src/Helpers/Price.php',
         'Shopper\\Framework\\Http\\Composers\\GlobalComposer' => __DIR__ . '/..' . '/shopper/framework/src/Http/Composers/GlobalComposer.php',
         'Shopper\\Framework\\Http\\Composers\\SidebarCreator' => __DIR__ . '/..' . '/shopper/framework/src/Http/Composers/SidebarCreator.php',
-        'Shopper\\Framework\\Http\\Controllers\\Api\\BrandController' => __DIR__ . '/..' . '/shopper/framework/src/Http/Controllers/Api/BrandController.php',
         'Shopper\\Framework\\Http\\Controllers\\AttributeController' => __DIR__ . '/..' . '/shopper/framework/src/Http/Controllers/AttributeController.php',
         'Shopper\\Framework\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/..' . '/shopper/framework/src/Http/Controllers/Auth/ForgotPasswordController.php',
         'Shopper\\Framework\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/..' . '/shopper/framework/src/Http/Controllers/Auth/LoginController.php',
@@ -8707,6 +8714,11 @@ class ComposerStaticInitaefe6f6eded9b98ee8896c64b6d07a52
         'Symfony\\Component\\HttpKernel\\RebootableInterface' => __DIR__ . '/..' . '/symfony/http-kernel/RebootableInterface.php',
         'Symfony\\Component\\HttpKernel\\TerminableInterface' => __DIR__ . '/..' . '/symfony/http-kernel/TerminableInterface.php',
         'Symfony\\Component\\HttpKernel\\UriSigner' => __DIR__ . '/..' . '/symfony/http-kernel/UriSigner.php',
+        'Symfony\\Component\\Mailer\\Bridge\\Mailgun\\Transport\\MailgunApiTransport' => __DIR__ . '/..' . '/symfony/mailgun-mailer/Transport/MailgunApiTransport.php',
+        'Symfony\\Component\\Mailer\\Bridge\\Mailgun\\Transport\\MailgunHeadersTrait' => __DIR__ . '/..' . '/symfony/mailgun-mailer/Transport/MailgunHeadersTrait.php',
+        'Symfony\\Component\\Mailer\\Bridge\\Mailgun\\Transport\\MailgunHttpTransport' => __DIR__ . '/..' . '/symfony/mailgun-mailer/Transport/MailgunHttpTransport.php',
+        'Symfony\\Component\\Mailer\\Bridge\\Mailgun\\Transport\\MailgunSmtpTransport' => __DIR__ . '/..' . '/symfony/mailgun-mailer/Transport/MailgunSmtpTransport.php',
+        'Symfony\\Component\\Mailer\\Bridge\\Mailgun\\Transport\\MailgunTransportFactory' => __DIR__ . '/..' . '/symfony/mailgun-mailer/Transport/MailgunTransportFactory.php',
         'Symfony\\Component\\Mailer\\Command\\MailerTestCommand' => __DIR__ . '/..' . '/symfony/mailer/Command/MailerTestCommand.php',
         'Symfony\\Component\\Mailer\\DataCollector\\MessageDataCollector' => __DIR__ . '/..' . '/symfony/mailer/DataCollector/MessageDataCollector.php',
         'Symfony\\Component\\Mailer\\DelayedEnvelope' => __DIR__ . '/..' . '/symfony/mailer/DelayedEnvelope.php',

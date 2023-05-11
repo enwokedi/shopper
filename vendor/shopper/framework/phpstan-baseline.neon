@@ -46,26 +46,6 @@ parameters:
 			path: src/Helpers/helpers.php
 
 		-
-			message: "#^Access to an undefined property Illuminate\\\\Http\\\\Request\\:\\:\\$search\\.$#"
-			count: 2
-			path: src/Http/Controllers/Api/BrandController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Http\\\\Request\\:\\:\\$selected\\.$#"
-			count: 1
-			path: src/Http/Controllers/Api/BrandController.php
-
-		-
-			message: "#^Method Shopper\\\\Framework\\\\Http\\\\Controllers\\\\Api\\\\BrandController\\:\\:__invoke\\(\\) should return Illuminate\\\\Database\\\\Eloquent\\\\Collection but returns array\\<Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Query\\\\Builder\\>\\|Illuminate\\\\Support\\\\Collection\\.$#"
-			count: 1
-			path: src/Http/Controllers/Api/BrandController.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of method Illuminate\\\\Database\\\\Query\\\\Builder\\:\\:when\\(\\) expects \\(callable\\(Illuminate\\\\Database\\\\Query\\\\Builder, mixed\\)\\: Illuminate\\\\Database\\\\Eloquent\\\\Builder\\)\\|null, Closure\\(Illuminate\\\\Database\\\\Eloquent\\\\Builder\\)\\: Illuminate\\\\Database\\\\Eloquent\\\\Builder given\\.$#"
-			count: 1
-			path: src/Http/Controllers/Api/BrandController.php
-
-		-
 			message: "#^Method Shopper\\\\Framework\\\\Http\\\\Controllers\\\\Auth\\\\LoginController\\:\\:guard\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\StatefulGuard but returns Illuminate\\\\Contracts\\\\Auth\\\\Guard\\.$#"
 			count: 1
 			path: src/Http/Controllers/Auth/LoginController.php
@@ -1331,6 +1311,11 @@ parameters:
 			path: src/Models/Shop/Product/Product.php
 
 		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\MorphMany\\:\\:delete\\(\\)\\.$#"
+			count: 1
+			path: src/Models/Shop/Product/Product.php
+
+		-
 			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\MorphMany\\:\\:orderBy\\(\\)\\.$#"
 			count: 1
 			path: src/Models/Shop/Product/Product.php
@@ -1338,6 +1323,11 @@ parameters:
 		-
 			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\MorphMany\\:\\:selectRaw\\(\\)\\.$#"
 			count: 17
+			path: src/Models/Shop/Product/Product.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\MorphMany\\:\\:where\\(\\)\\.$#"
+			count: 2
 			path: src/Models/Shop/Product/Product.php
 
 		-
@@ -1356,22 +1346,7 @@ parameters:
 			path: src/Models/Shop/Product/Product.php
 
 		-
-			message: "#^Call to method create\\(\\) on an unknown class Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\morphMany\\.$#"
-			count: 1
-			path: src/Models/Shop/Product/Product.php
-
-		-
-			message: "#^Call to method delete\\(\\) on an unknown class Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\morphMany\\.$#"
-			count: 1
-			path: src/Models/Shop/Product/Product.php
-
-		-
-			message: "#^Call to method where\\(\\) on an unknown class Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\morphMany\\.$#"
-			count: 2
-			path: src/Models/Shop/Product/Product.php
-
-		-
-			message: "#^Method Shopper\\\\Framework\\\\Models\\\\Shop\\\\Product\\\\Product\\:\\:inventoryHistories\\(\\) has invalid return type Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\morphMany\\.$#"
+			message: "#^Method Shopper\\\\Framework\\\\Models\\\\Shop\\\\Product\\\\Product\\:\\:createStockMutation\\(\\) should return Shopper\\\\Framework\\\\Models\\\\Shop\\\\Inventory\\\\InventoryHistory but returns Illuminate\\\\Database\\\\Eloquent\\\\Model\\.$#"
 			count: 1
 			path: src/Models/Shop/Product/Product.php
 
@@ -1577,13 +1552,8 @@ parameters:
 
 		-
 			message: "#^Constant SHOPPER_PATH not found\\.$#"
-			count: 3
+			count: 2
 			path: src/Providers/RouteServiceProvider.php
-
-		-
-			message: "#^Call to an undefined method Shopper\\\\Framework\\\\Providers\\\\ShopperServiceProvider\\:\\:dispatchBrowserEvent\\(\\)\\.$#"
-			count: 1
-			path: src/Providers/ShopperServiceProvider.php
 
 		-
 			message: "#^Call to an undefined method Shopper\\\\Framework\\\\Providers\\\\ShopperServiceProvider\\:\\:where\\(\\)\\.$#"

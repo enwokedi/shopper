@@ -11,14 +11,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Shopper\Framework\Contracts\ReviewRateable;
-// use Shopper\Framework\Helpers\Price;
+use Shopper\Framework\Helpers\Price;
 use Shopper\Framework\Models\Shop\Channel;
 use Shopper\Framework\Models\Traits\CanHaveDiscount;
 use Shopper\Framework\Models\Traits\HasPrice;
 use Shopper\Framework\Models\Traits\HasSlug;
 use Shopper\Framework\Models\Traits\HasStock;
 use Shopper\Framework\Models\Traits\ReviewRateable as ReviewRateableTrait;
-use Shopper\Helpers\Price;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -68,6 +67,7 @@ class Product extends Model implements HasMedia, ReviewRateable
         'depth_value',
         'depth_unit',
         'volume_value',
+        'volume_unit',
         'seo_title',
         'seo_description',
     ];
@@ -85,17 +85,11 @@ class Product extends Model implements HasMedia, ReviewRateable
         'published_at' => 'datetime',
     ];
 
-    /**
-     * Get the table associated with the model.
-     */
     public function getTable(): string
     {
         return shopper_table('products');
     }
 
-    /**
-     * Get the formatted price value.
-     */
     public function getFormattedPriceAttribute(): ?string
     {
         if ($this->parent_id) {
@@ -105,22 +99,19 @@ class Product extends Model implements HasMedia, ReviewRateable
         }
 
         return $this->price_amount
-            ? $this->formattedPrice($this->price_amount)
-            : null;
+                ? $this->formattedPrice($this->price_amount)
+                : null;
     }
 
     public function getPriceAttribute(): ?Price
     {
-        if (!$this->price_amount) {
+        if (! $this->price_amount) {
             return null;
         }
 
         return Price::from($this->price_amount);
     }
 
-    /**
-     * Get the stock of all variations.
-     */
     public function getVariationsStockAttribute(): int
     {
         $stock = 0;

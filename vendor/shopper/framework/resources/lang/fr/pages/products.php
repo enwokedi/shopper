@@ -32,7 +32,7 @@ return [
     'current_qty_inventory' => 'Quantité actuelle de cet inventaire',
 
     'modals' => [
-        'title' => 'Supprimer ce(tte) :item',
+        'title' => 'Supprimer ce/cette :item',
         'message' => 'Êtes-vous sûr de vouloir supprimer ce produit ? Toutes les informations associées à ce produit seront supprimées.',
 
         'variants' => [
@@ -45,6 +45,7 @@ return [
         'title' => 'Variations de produits',
         'description' => 'Toutes les variantes de votre produit. Les variations peuvent avoir chacune leur stock et leur prix.',
         'add' => 'Ajouter une variante',
+        'variant_title' => 'Variantes ~ :name',
         'empty' => 'Aucune variante trouvée',
         'search_label' => 'Recherche de variantes',
         'search_placeholder' => 'Rechercher une variante du produit',
@@ -90,7 +91,7 @@ return [
         'title' => 'Attributs de produit',
         'description' => 'Tous les attributs associés à ce produit.',
         'add' => 'Ajouter attribut',
-        'empty_values' => 'Aucun attributs',
+        'empty_values' => 'Aucun attribut',
 
         'session' => [
             'delete' => 'Attribut supprimé',
