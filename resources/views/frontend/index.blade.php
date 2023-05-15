@@ -13,7 +13,7 @@
                             <div class="inner">
                                 <div class="thumb">
                                     <a href="/motorcycle-sales">
-                                        <img src="{{ url('/img/home/for-sale.jpg') }}" alt="Image">
+                                        <img src="{{ url('/img/home/for-sale.jpg') }}" alt="Image" style="width: 100%">
                                         <div class="text-wrap text-center">
                                             <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">MOTORCYCLES FOR SALE</h2>
                                         </div>
@@ -32,7 +32,7 @@
                         <div class="inner">
                             <div class="thumb">
                                 <a href="/shop-tyres">
-                                    <img src="{{ url('/img/home/tyres.jpg') }}" alt="Image">
+                                    <img src="{{ url('/img/home/tyres.jpg') }}" alt="Image" style="width: 100%">
                                     <div class="text-wrap text-center">
                                         <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">TYRES</h2>
                                     </div>
@@ -46,7 +46,7 @@
                         <div class="inner">
                             <div class="thumb">
                                 <a href="/rentals-motorcycle">
-                                    <img src="{{ url('/img/home/motorcycle-rentals.jpg') }}" alt="Image">
+                                    <img src="{{ url('/img/home/motorcycle-rentals.jpg') }}" alt="Image" style="width: 100%">
                                     <div class="text-wrap text-center">
                                         <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">RENTALS</h2>
                                     </div>
@@ -64,7 +64,7 @@
                         <div class="inner">
                             <div class="thumb">
                                 <a href="/accident-management-services">
-                                    <img src="{{ url('/img/home/accidents.jpg') }}" alt="Image">
+                                    <img src="{{ url('/img/home/accidents.jpg') }}" alt="Image" style="width: 100%">
                                     <div class="text-wrap text-center">
                                         <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">ACCIDENT MANAGEMENT SERVICES</h2>
                                     </div>
@@ -78,7 +78,7 @@
                         <div class="inner">
                             <div class="thumb">
                                 <a href="/spare-parts">
-                                    <img src="{{ url('/img/home/spare-parts.jpg') }}" alt="Image">
+                                    <img src="{{ url('/img/home/spare-parts.jpg') }}" alt="Image" style="width: 100%">
                                     <div class="text-wrap text-center">
                                         <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">SPARE PARTS</h2>
                                     </div>
@@ -97,7 +97,7 @@
                     <div class="item data-effect-item">
                         <div class="inner">
                             <div class="thumb">
-                                <img src="{{ url('/img/home/motorcycle-accessories-shop.jpg') }}" alt="Image">
+                                <img src="{{ url('/img/home/motorcycle-accessories-shop.jpg') }}" alt="Image" style="width: 100%">
                                 <div class="text-wrap text-center">
                                     <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;"><a class="text-white" href="/shop">SHOP</a></h2>
                                 </div>
@@ -114,7 +114,7 @@
                         <div class="inner">
                             <div class="thumb">
                                 <a href="/gps-tracker">
-                                    <img src="{{ url('/img/home/gps-tracker.jpg') }}" alt="Image">
+                                    <img src="{{ url('/img/home/gps-tracker.jpg') }}" alt="Image" style="width: 100%">
                                     <div class="text-wrap text-center">
                                         <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">GPS TRACKER</h2>
                                     </div>
@@ -132,7 +132,7 @@
                         <div class="inner">
                             <div class="thumb">
                                 <a href="/services">
-                                    <img src="{{ url('/img/home/services.jpg') }}" alt="Image">
+                                    <img src="{{ url('/img/home/services.jpg') }}" alt="Image" style="width: 100%">
                                     <div class="text-wrap text-center">
                                         <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white;">SERVICES</h2>
                                     </div>
