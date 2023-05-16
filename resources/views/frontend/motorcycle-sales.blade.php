@@ -37,7 +37,7 @@
                                     <a href="/used-motorcycles">
                                         <img src="{{ url('/img/sales/used-motorcycles.jpg') }}" alt="Image" style="width: 100%">
                                         <div class="text-wrap text-center">
-                                            <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white; background-color:#C31924; opacity: 0.8;">SECOND HAND MOTORCYCLES FOR SALE</h2>
+                                            <h2 class="font-size-30 line-height-36 font-weight-600" style="color: white; background-color:#C31924; opacity: 0.8; width: 100%;">SECOND HAND MOTORCYCLES FOR SALE</h2>
                                         </div>
                                         <div class="overlay-effect bg-overlay-black"></div>
                                     </a>
