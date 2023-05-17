@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Traits\HasRoles;
 use DB;
 use Laravel\Cashier\Billable;
+use Illuminate\Database\Eloquent\relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -61,5 +62,13 @@ class User extends Authenticatable
     public function UserOnline()
     {
         return Cache::has('user-is-online' . $this->id);
+    }
+
+    /**
+     * Get the rental contracts for the user.
+     */
+    public function rentals(): HasMany
+    {
+        return $this->hasMany(Rental::class);
     }
 }

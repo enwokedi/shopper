@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Welcome\WelcomeController;
-use App\Http\Controllers\Welcome\ContactController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\RentalController;
+use App\Http\Controllers\Shopper\CartController;
 use App\Http\Controllers\Shopper\SalesController;
 use App\Http\Controllers\Shopper\OxfordController;
-use App\Http\Controllers\Shopper\CartController;
-use App\Http\Controllers\MailController;
+use App\Http\Controllers\Welcome\ContactController;
+use App\Http\Controllers\Welcome\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +112,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 });
 
 // Admin Route Grouping
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
-    Route::resource('products', 'ProductController');
-});
+// Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+//     Route::resource('rentals', [RentalController::class]);
+//     // Route::resource('products', 'ProductController');
+// });
+Route::get('/rentals-admin', [RentalController::class, 'index'])->name('rentals.admin');
