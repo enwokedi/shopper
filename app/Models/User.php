@@ -67,7 +67,7 @@ class User extends Authenticatable
     /**
      * Get the rental contracts for the user.
      */
-    public function rentals(): HasMany
+    public function rentals()
     {
         return $this->hasMany(Rental::class);
     }

@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Motorcycle extends Model
 {
     use HasFactory;
+
+    public function rental()
+    {
+        return $this->belongsTo(Rental::class);
+    }
 }

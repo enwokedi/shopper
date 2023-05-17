@@ -16,11 +16,30 @@ class RentalController extends Controller
      */
     public function index()
     {
-        $r = Rental::all();
+
+        $u = User::whereHas('rentals', function ($query) {
+            return $query->where('user_id', '>', 0);
+        })->get();
+
+        $rent = User::all();
+        // $u = $rent->user;
+
+        $users = json_decode($u);
+
+        foreach ($users as $user) {
+            $r = Rental::all()
+                ->where('user_id', $user->id);
+        }
+
         $rentals = json_decode($r);
         $count_rentals = $r->count();
-        // dd($count_rentals);
-        return view("home.dashboard", compact('rentals'))->with('count_rentals');
+        dd($rent);
+        // return view("home.dashboard", compact("rentals"))->with("users");
+        return view('home.dashboard', [
+            'users' => $users,
+            'rentals' => $rentals,
+            // 'motorcycles' => $motorcycles
+        ]);
     }
 
     /**

@@ -22,7 +22,7 @@ class Rental extends Model
     /**
      * Get the motorcycles for this rental agreement.
      */
-    public function motorcycle(): HasMany
+    public function motorcycle()
     {
         return $this->hasMany(Motorcycle::class);
     }
