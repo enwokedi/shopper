@@ -29,7 +29,21 @@
             </h2>
             <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    Client details...
+                    <div class="container text-center">
+                        <div class="row align-items-start">
+                            <div class="col">
+                                @foreach ($users as $user )
+                                First Name: {{ $user->first_name }}
+                                @endf
+                            </div>
+                            <div class="col">
+
+                            </div>
+                            <div class="col">
+                                One of three columns
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

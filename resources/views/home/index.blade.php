@@ -3,7 +3,7 @@
 @section('content')
 <div class="bg-light p-5 rounded">
     @auth
-    <h1>Rentals</h1>
+    <h1>{{ count($rentals) }} Rental Payments</h1>
 
     <table class="table">
         <thead>

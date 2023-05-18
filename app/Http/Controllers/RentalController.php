@@ -88,7 +88,14 @@ class RentalController extends Controller
      */
     public function show($id)
     {
-        return view('home.show');
+        $r = Rental::find($id);
+        $uid = $r->user_id;
+        $users = User::find($uid);
+
+        $rentals = json_decode($r);
+
+        // dd($user->first_name);
+        return View::make('home.show', compact("rentals", "users"));
     }
 
     /**
