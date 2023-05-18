@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Motorcycle;
+use Illuminate\View\View;
 
 class MotorcycleController extends Controller
 {
@@ -45,7 +47,11 @@ class MotorcycleController extends Controller
      */
     public function show($id)
     {
-        //
+        $m = Motorcycle::find($id);
+        $motorcycle = json_decode($m);
+
+        // dd($motorcycles);
+        return view('home.bike_details')->with('motorcycle', $motorcycle);
     }
 
     /**

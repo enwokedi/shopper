@@ -37,7 +37,7 @@
                                     <td>{{ $motorcycle->rental_deposit }}</td>
                                     <td>{{ $motorcycle->rental_price }}</td>
                                     <td>
-                                        <a class="btn btn-small btn-info" href="{{ URL::to('rentals/' . $motorcycle->id) }}">Details</a>
+                                        <a class="btn btn-small btn-info" href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
                                     </td>
                                 </tr>
                                 @endforeach

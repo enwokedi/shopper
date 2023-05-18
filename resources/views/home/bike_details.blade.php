@@ -36,8 +36,8 @@
                                 Insurance:<br>
                             </div>
                             <div class="col">
-                                {{ $rental->start_date }}<br>
-                                <strong>{{ $motorcycle[0]->motorcycle_reg }}</strong><br>
+                                {{ $motorcycle->rental_start_date }}<br>
+                                <strong>{{ $motorcycle->motorcycle_reg }}</strong><br>
 
                                 <br>
                             </div>
@@ -67,9 +67,9 @@
                                     Nationality:<br>
                                 </div>
                                 <div class="col">
-                                    {{ $user->first_name }} {{ $user->last_name }}<br>
-                                    {{ $user->phone_number }}<br>
-                                    {{ $user->email }}
+                                    <br>
+                                    <br>
+
                                 </div>
                                 <div class="col">
 
