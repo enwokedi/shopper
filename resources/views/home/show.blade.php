@@ -12,7 +12,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    <strong>Vehicles</strong>
+                    <strong>Rented Vehicles</strong>
                 </button>
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
@@ -30,15 +30,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($motorcycles as $motorcycle)
                                 <tr>
-                                    <th scope="row"></th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <th scope="row">{{ $motorcycle->rental_start_date }}</th>
+                                    <td>{{ $motorcycle->motorcycle_reg }}</td>
+                                    <td>{{ $motorcycle->rental_deposit }}</td>
+                                    <td>{{ $motorcycle->rental_price }}</td>
                                     <td>
-                                        <a class="btn btn-small btn-info" href="">Details</a>
+                                        <a class="btn btn-small btn-info" href="{{ URL::to('rentals/' . $motorcycle->id) }}">Details</a>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

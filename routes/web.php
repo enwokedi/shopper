@@ -92,6 +92,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     // Route::get('/rentals/edit/{id}', [RentalController::class, 'edit'])->name('rentals.edit');
     Route::resource('rentals', 'RentalController');
 
+    Route::resource('motorcycles', 'MotorcycleController');
+
     Route::group(['middleware' => ['guest']], function () {
         /**
          * Register Routes

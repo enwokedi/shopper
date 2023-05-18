@@ -75,7 +75,7 @@ class RentalController extends Controller
         // Get specific rental agreement
         $rental = Rental::find($id);
 
-        // Show the view and passw the rental to it
+        // Show the view and pass1 the rental to it
         return View::make('home.show')
             ->with('rental', $rental);
     }
@@ -99,7 +99,7 @@ class RentalController extends Controller
         $use = User::find($uid);
         $user = json_decode($use);
 
-        // dd($motorcycle);
+        // dd($motorcycles);
         return view("home.show", compact("rental", "user", "motorcycles"));
     }
 
