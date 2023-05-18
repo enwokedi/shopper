@@ -6,9 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\user;
 use App\Models\Motorcycle;
 use App\Models\Rental;
+use Illuminate\View\View;
 
 class RentalController extends Controller
 {
+    // /**
+    //  * Display a listing of the resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function index()
+    // {
+    //     $rentals = User::find(5)->rentals;
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +31,6 @@ class RentalController extends Controller
             return $query->where('user_id', '>', 0);
         })->get();
 
-        $rent = User::all();
-        // $u = $rent->user;
-
         $users = json_decode($u);
 
         foreach ($users as $user) {
@@ -32,18 +39,13 @@ class RentalController extends Controller
         }
 
         $rentals = json_decode($r);
-        $count_rentals = $r->count();
-        dd($rent);
-        // return view("home.dashboard", compact("rentals"))->with("users");
-        return view('home.dashboard', [
-            'users' => $users,
-            'rentals' => $rentals,
-            // 'motorcycles' => $motorcycles
-        ]);
+        // dd($rentals);
+
+        return view("home.index", compact("rentals", "users"));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new rental.
      *
      * @return \Illuminate\Http\Response
      */
@@ -53,14 +55,29 @@ class RentalController extends Controller
     }
 
     /**
+     * Show the form for creating a new motorbike.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createMotorbike()
+    {
+        echo "Add MotorBike";
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id)
     {
-        //
+        // Get specific rental agreement
+        $rental = Rental::find($id);
+
+        // Show the view and passw the rental to it
+        return View::make('home.show')
+            ->with('rental', $rental);
     }
 
     /**
@@ -71,7 +88,7 @@ class RentalController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('home.show');
     }
 
     /**
@@ -82,7 +99,7 @@ class RentalController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('home.edit');
     }
 
     /**

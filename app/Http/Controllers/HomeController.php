@@ -13,6 +13,6 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        return view('home.dashboard');
+        return view('home.index');
     }
 }

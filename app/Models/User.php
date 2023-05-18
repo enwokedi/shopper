@@ -12,12 +12,10 @@ use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Traits\HasRoles;
 use DB;
 use Laravel\Cashier\Billable;
-use Illuminate\Database\Eloquent\relations\HasMany;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, Billable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -69,6 +67,6 @@ class User extends Authenticatable
      */
     public function rentals()
     {
-        return $this->hasMany(Rental::class);
+        return $this->hasMany(Rental::class, 'user_id', 'id');
     }
 }

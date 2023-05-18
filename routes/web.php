@@ -87,7 +87,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
      * Home Routes
      */
     // Route::get('/', 'HomeController@index')->name('home.index');
-    Route::get('/dashboard', 'HomeController@dashboard')->name('home.dashboard');
+    Route::get('/dashboard', 'HomeController@dashboard')->name('home.index'); // Edit later to use the correct controller
+    // Route::get('/rentals-admin', [RentalController::class, 'index'])->name('rentals.admin');
+    // Route::get('/rentals/edit/{id}', [RentalController::class, 'edit'])->name('rentals.edit');
+    Route::resource('rentals', 'RentalController');
 
     Route::group(['middleware' => ['guest']], function () {
         /**
@@ -116,4 +119,3 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 //     Route::resource('rentals', [RentalController::class]);
 //     // Route::resource('products', 'ProductController');
 // });
-Route::get('/rentals-admin', [RentalController::class, 'index'])->name('rentals.admin');
