@@ -18,29 +18,33 @@
             <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                     <div class="container">
-                        <!-- List of vehicles rented should go here with link to each vehicles details -->
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Start Date</th>
-                                    <th scope="col">Registration</th>
-                                    <th scope="col">Deposit</th>
-                                    <th scope="col">Weekly Rental</th>
-                                    <th scope="col">More Info</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <a class="btn btn-small btn-info" href="">Details</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="row align-items-start">
+                            <div class="col">
+                                Start Date:<br>
+                                Registration:<br>
+                                Make:<br>
+                                Model:<br>
+                                Colour:<br>
+                                CC:<br>
+                                Road Tax:<br>
+                                MOT:<br>
+                                Insurance:<br>
+                                Deposit:<br>
+                                Deposit:<br>
+                                MOT:<br>
+                                Road TAX:<br>
+                                Insurance:<br>
+                            </div>
+                            <div class="col">
+                                {{ $rental->start_date }}<br>
+                                <strong>{{ $motorcycle[0]->motorcycle_reg }}</strong><br>
+
+                                <br>
+                            </div>
+                            <div class="col">
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

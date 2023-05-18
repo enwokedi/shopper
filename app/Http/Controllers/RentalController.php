@@ -89,13 +89,18 @@ class RentalController extends Controller
     public function show($id)
     {
         $r = Rental::find($id);
+        $rental = json_decode($r);
+
+        $m = Motorcycle::all()
+            ->where('rental_id', $id);
+        $motorcycles = json_decode($m);
+
         $uid = $r->user_id;
-        $users = User::find($uid);
+        $use = User::find($uid);
+        $user = json_decode($use);
 
-        $rentals = json_decode($r);
-
-        // dd($user->first_name);
-        return View::make('home.show', compact("rentals", "users"));
+        // dd($motorcycle);
+        return view("home.show", compact("rental", "user", "motorcycles"));
     }
 
     /**
