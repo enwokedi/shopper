@@ -9,6 +9,8 @@ class Motorcycle extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function rental()
     {
         return $this->belongsTo(Rental::class);

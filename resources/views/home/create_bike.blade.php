@@ -6,8 +6,11 @@
     <h1>Add Motorcycle</h1>
     <p class="lead">Only authenticated users can access this section.</p>
 
-    <form act>
+    <form method="post" action="/motorcycles">
         @csrf
+        <div class="mb-3">
+            <input class="form-control" type="text" placeholder="Registration" aria-label="default input example" name="registration" id="registration">
+        </div>
         <div class="mb-3">
             <select class="form-select" aria-label="Default select example" name="make" id="make">
                 <option value="" selected="selected">Select Make</option>
@@ -24,7 +27,7 @@
             </select>
         </div>
         <div class="mb-3">
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="displacement" id="displacement">
                 <option selected>CC</option>
                 <option value="110">110</option>
                 <option value="115">115</option>
@@ -45,23 +48,24 @@
             </select>
         </div>
         <div class="mb-3">
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="colour" id="colour">
                 <option selected>Select Colour</option>
-                <option value="grey">Grey</option>
-                <option value="white">White</option>
-                <option value="red">Red</option>
-                <option value="blue">Blue</option>
-                <option value="black">Black</option>
+                <option value="Grey">Grey</option>
+                <option value="White">White</option>
+                <option value="Red">Red</option>
+                <option value="Blue">Blue</option>
+                <option value="Black">Black</option>
+                <option value="Black">Silver</option>
             </select>
         </div>
         <div class="mb-3">
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="availability" id="availability">
                 <option selected>Availability</option>
-                <option value="catford">Catford</option>
-                <option value="tooting">Tooting</option>
-                <option value="sold">Sold</option>
-                <option value="rented">Rented</option>
-                <option value="unallocated">Unallocated</option>
+                <option value="Catford">Catford</option>
+                <option value="Tooting">Tooting</option>
+                <option value="Sold">Sold</option>
+                <option value="Rented">Rented</option>
+                <option value="Unallocated">Unallocated</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
