@@ -15,7 +15,10 @@ class MotorcycleController extends Controller
      */
     public function index()
     {
-        //
+        $m = Motorcycle::all();
+        $motorcycles = json_decode($m);
+        // dd($motorcycles);
+        return view('home.index_bike', compact('motorcycles'));
     }
 
     /**
@@ -25,7 +28,7 @@ class MotorcycleController extends Controller
      */
     public function create()
     {
-        //
+        return view('home.create_bike');
     }
 
     /**

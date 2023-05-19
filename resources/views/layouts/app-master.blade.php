@@ -6,6 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NGM Rental Mgt.</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
+
+    <script>
+        $("#category").change(function() {
+            var category = $(this).val();
+            //loop through second selects options
+            $('#items option').each(function() {
+                //if option has default class
+                if ($(this).hasClass(category) || $(this).hasClass("default")) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+
+            $('.selectpicker').selectpicker("refresh");
+            $('#items').val("0").trigger('change'); //set default value as selected
+
+
+        });
+    </script>
 </head>
 
 <body>
@@ -21,3 +43,9 @@
 </body>
 
 </html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>

@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="bg-light p-5 rounded">
+<div class="container">
     @auth
     <h1>{{ count($rentals) }} Rental Payments</h1>
 

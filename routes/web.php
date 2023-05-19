@@ -88,8 +88,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
      */
     // Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/dashboard', 'HomeController@dashboard')->name('home.index'); // Edit later to use the correct controller
-    // Route::get('/rentals-admin', [RentalController::class, 'index'])->name('rentals.admin');
-    // Route::get('/rentals/edit/{id}', [RentalController::class, 'edit'])->name('rentals.edit');
     Route::resource('rentals', 'RentalController');
 
     Route::resource('motorcycles', 'MotorcycleController');

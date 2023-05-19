@@ -55,16 +55,6 @@ class RentalController extends Controller
     }
 
     /**
-     * Show the form for creating a new motorbike.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createMotorbike()
-    {
-        echo "Add MotorBike";
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
