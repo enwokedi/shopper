@@ -9,6 +9,7 @@ use App\Http\Controllers\Shopper\SalesController;
 use App\Http\Controllers\Shopper\OxfordController;
 use App\Http\Controllers\Welcome\ContactController;
 use App\Http\Controllers\Welcome\WelcomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,7 +91,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/dashboard', 'HomeController@dashboard')->name('home.index'); // Edit later to use the correct controller
     Route::resource('rentals', 'RentalController');
 
+    // Motorcycle Resources
     Route::resource('motorcycles', 'MotorcycleController');
+
+    // User Resources
+    Route::resource('users', 'UserController');
 
     Route::group(['middleware' => ['guest']], function () {
         /**
