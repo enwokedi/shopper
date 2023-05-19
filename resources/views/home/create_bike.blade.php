@@ -5,46 +5,42 @@
     @auth
     <h1>Add Motorcycle</h1>
     <p class="lead">Only authenticated users can access this section.</p>
-    <form>
-        <select class="selectpicker" id="category">
-
-            <option value="1"> Fruit </option>
-
-            <option value="2"> Animal</option>
-
-        </select>
-
-        <select class="selectpicker" id="items">
-            <!--added this just to keep default value selcted-->
-            <option class="default" value="0"> --Select-- </option>
-            <option class="1" value="1"> Banana </option>
-
-            <option class="1" value="2"> Apple </option>
-
-            <option class="2" value="3"> Cat </option>
-
-            <option class="2" value="4"> Dog</option>
-
-        </select>
-    </form>
 
     <form>
         <div class="mb-3">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Select Make</option>
-                <option class="honda" value="honda">Honda</option>
-                <option class="yamaha" value="yamaha">Yamaha</option>
+            <select class="form-select" aria-label="Default select example" name="make" id="make">
+                <option value="" selected="selected">Select Make</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example" name="model" id="model">
+                <option value="" selected="selected">Select Model</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example" name="year" id="year">
+                <option value="" selected="selected">Select Year</option>
             </select>
         </div>
         <div class="mb-3">
             <select class="form-select" aria-label="Default select example">
-                <option selected>Select Model</option>
-                <option class="honda" value="honda">Vision</option>
-                <option class="honda" value="honda">PCX</option>
-                <option class="honda" value="honda">SH</option>
-                <option class="honda" value="honda">Forza</option>
-                <option class="yamaha" value="yamaha">NMAX</option>
-                <option class="yamaha" value="yamaha">XMAX</option>
+                <option selected>CC</option>
+                <option value="110">110</option>
+                <option value="115">115</option>
+                <option value="125">125</option>
+                <option value="150">150</option>
+                <option value="250">250</option>
+                <option value="300">300</option>
+                <option value="350">350</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
+                <option value="600">600</option>
+                <option value="650">650</option>
+                <option value="750">750</option>
+                <option value="900">900</option>
+                <option value="950">950</option>
+                <option value="1000">1000</option>
+                <option value="1200">1200</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

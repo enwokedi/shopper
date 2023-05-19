@@ -28,7 +28,7 @@
                             Motorcycles
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/motorcycles">List</a></li>
+                            <li><a class="dropdown-item" href="/motorcycles">Rentals</a></li>
                             <li><a class="dropdown-item" href="/motorcycles/create">Create</a></li>
                             <li>
                                 <hr class="dropdown-divider">

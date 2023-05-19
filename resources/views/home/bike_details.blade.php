@@ -37,7 +37,7 @@
                             </div>
                             <div class="col">
                                 {{ $motorcycle->rental_start_date }}<br>
-                                <strong>{{ $motorcycle->motorcycle_reg }}</strong><br>
+                                <strong>{{ $motorcycle->registration }}</strong><br>
 
                                 <br>
                             </div>

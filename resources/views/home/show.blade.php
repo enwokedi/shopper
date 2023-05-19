@@ -33,7 +33,7 @@
                                 @foreach ($motorcycles as $motorcycle)
                                 <tr>
                                     <th scope="row">{{ $motorcycle->rental_start_date }}</th>
-                                    <td>{{ $motorcycle->motorcycle_reg }}</td>
+                                    <td>{{ $motorcycle->registration }}</td>
                                     <td>{{ $motorcycle->rental_deposit }}</td>
                                     <td>{{ $motorcycle->rental_price }}</td>
                                     <td>
