@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Motorcycle;
 use Illuminate\View\View;
+use App\Models\Motorcycle;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
+use Symfony\Component\Console\Input\Input;
 
 class MotorcycleController extends Controller
 {
@@ -32,14 +34,34 @@ class MotorcycleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Adds newly created motorcycles to the Motorcycles database table
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'make' => 'required',
+            'model' => 'required',
+            'year' => 'required',
+            'displacement' => 'required',
+            'colour' => 'required',
+            'availability' => 'required',
+        ]);
+
+        $motorcycle = new Motorcycle();
+
+        $motorcycle->make = $request->make;
+        $motorcycle->model = $request->model;
+        $motorcycle->year = $request->year;
+        $motorcycle->displacement = $request->displacement;
+        $motorcycle->colour = $request->colour;
+        $motorcycle->availability = $request->availability;
+
+        $motorcycle->save();
+
+        return redirect('/motorcycles');
     }
 
     /**

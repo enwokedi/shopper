@@ -6,7 +6,8 @@
     <h1>Add Motorcycle</h1>
     <p class="lead">Only authenticated users can access this section.</p>
 
-    <form>
+    <form act>
+        @csrf
         <div class="mb-3">
             <select class="form-select" aria-label="Default select example" name="make" id="make">
                 <option value="" selected="selected">Select Make</option>
@@ -41,6 +42,26 @@
                 <option value="950">950</option>
                 <option value="1000">1000</option>
                 <option value="1200">1200</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Select Colour</option>
+                <option value="grey">Grey</option>
+                <option value="white">White</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="black">Black</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Availability</option>
+                <option value="catford">Catford</option>
+                <option value="tooting">Tooting</option>
+                <option value="sold">Sold</option>
+                <option value="rented">Rented</option>
+                <option value="unallocated">Unallocated</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
