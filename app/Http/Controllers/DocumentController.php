@@ -3,21 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\Models\Documents;
-use App\Traits\Upload; //import the trait
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 
-class DocumentsController extends Controller
+class DocumentController extends Controller
 {
-    use Upload; //add this trait
-
-    public function store(Request $request)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(): View
     {
-        if ($request->hasFile('file')) {
-            $path = $this->UploadFile($request->file('file'), 'Products'); //use the method in the trait
-            Documents::create([
-                'path' => $path
-            ]);
-            return redirect()->route('files.index')->with('success', 'File uploaded successfully');
-        }
+        return view('fileUpload');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'file' => 'required|mimes:pdf,xlx,csv,jpg,png|max:2048',
+        ]);
+
+        $fileName = time() . '.' . $request->file->extension();
+
+        Storage::disk('local')->put($fileName, 'Contents');
+        // $request->file->move(public_path('uploads'), $fileName);
+
+        /*  
+            Write Code Here for
+            Store $fileName name in DATABASE from HERE 
+        */
+
+
+        return back()
+            ->with('success', 'You have successfully upload file.')
+            ->with('file', $fileName);
     }
 }
