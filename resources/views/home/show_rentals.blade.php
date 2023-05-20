@@ -22,18 +22,20 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Mobile</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">Start Date</th>
+                                    <th scope="col">Registration</th>
+                                    <th scope="col">Deposit</th>
+                                    <th scope="col">Weekly Rental</th>
                                     <th scope="col">More Info</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($usse as $use)
+                                @foreach ($motorcycles as $motorcycle)
                                 <tr>
-                                    <th scope="row">Name</th>
-                                    <td>Mobile</td>
-                                    <td>Email</td>
+                                    <th scope="row">{{ $motorcycle->rental_start_date }}</th>
+                                    <td>{{$motorcycle->registration}}</td>
+                                    <td>{{$motorcycle->rental_deposit}}</td>
+                                    <td>{{$motorcycle->rental_price}}</td>
                                     <td>
                                         <a class="btn btn-small btn-info" href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
                                     </td>

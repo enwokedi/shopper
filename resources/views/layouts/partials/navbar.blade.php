@@ -12,10 +12,10 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Users
+                            Clients
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/users">Clients</a></li>
+                            <li><a class="dropdown-item" href="/users">Rentals</a></li>
                             <li><a class="dropdown-item" href="#">Create</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -38,10 +38,10 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Rentals
+                            Payments
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/rentals">Payments Due</a></li>
+                            <li><a class="dropdown-item" href="/rentals">Rentals</a></li>
                             <li><a class="dropdown-item" href="#">Menu Item</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -64,7 +64,7 @@
 
                     @guest
                     <div class="text-end">
-                        <a href="{{ route('login.perform') }}" class="btn btn-outline-light me-2">Login</a>
+                        <a href="{{ route('login.perform') }}" class="btn btn-outline-danger me-2">Login</a>
                         <a href="{{ route('register.perform') }}" class="btn btn-warning">Sign-up</a>
                     </div>
                     @endguest

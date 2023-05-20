@@ -12,7 +12,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    <strong>Rented Vehicles</strong>
+                    <strong>Clients</strong>
                 </button>
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
@@ -22,25 +22,24 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Start Date</th>
-                                    <th scope="col">Registration</th>
-                                    <th scope="col">Deposit</th>
-                                    <th scope="col">Weekly Rental</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Mobile</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">More Info</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($motorcycles as $motorcycle)
+
                                 <tr>
-                                    <th scope="row">{{ $motorcycle->rental_start_date }}</th>
-                                    <td>{{$motorcycle->registration}}</td>
-                                    <td>{{$motorcycle->rental_deposit}}</td>
-                                    <td>{{$motorcycle->rental_price}}</td>
+                                    <th scope="row">Name</th>
+                                    <td>Mobile</td>
+                                    <td>Email</td>
+                                    <td>Nationality</td>
                                     <td>
-                                        <a class="btn btn-small btn-info" href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
+                                        <a class="btn btn-small btn-info" href="">Details</a>
                                     </td>
                                 </tr>
-                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -49,7 +48,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                        <strong>Cient Details</strong>
+                        <strong>Addresses</strong>
                     </button>
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -65,9 +64,7 @@
                                     Nationality:<br>
                                 </div>
                                 <div class="col">
-                                    {{ $user->first_name }} {{ $user->last_name }}<br>
-                                    {{ $user->phone_number }}<br>
-                                    {{ $user->email }}
+
                                 </div>
                                 <div class="col">
 
@@ -80,12 +77,13 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        <strong>Payment History</strong>
+                        <strong>Documents</strong>
                     </button>
                 </h2>
                 <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
-                        Payment history...
+                        Client documents:
+                        1.
                     </div>
                 </div>
             </div>

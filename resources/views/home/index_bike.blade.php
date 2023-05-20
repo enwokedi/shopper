@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     @auth
-    <h1>Rental Bikes</h1>
+    <h1>Motorcycle Admin</h1>
 
     <table class="table">
         <thead>

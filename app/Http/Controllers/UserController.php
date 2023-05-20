@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserAddress;
+use Illuminate\Support\Js;
 
 class UserController extends Controller
 {
@@ -17,7 +18,7 @@ class UserController extends Controller
     {
         $users = User::all()->where('is_client', 1);
         // dd($users);
-        return view('home.show_users');
+        return view('home.index_users', compact('users'));
     }
 
     /**
@@ -49,7 +50,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $u = User::find($id);
+        $user = json_decode($u);
+
+        $address = UserAddress::all()->where('user_id', $id);
+        // $address = json_decode($a);
+        // dd($a[1]->street_address);
+        return view("home.show_user", compact("user", "address"));
     }
 
     /**

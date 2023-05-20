@@ -41,7 +41,7 @@ class RentalController extends Controller
         $rentals = json_decode($r);
         // dd($rentals);
 
-        return view("home.index", compact("rentals", "users"));
+        return view("home.index_rentals", compact("rentals", "users"));
     }
 
     /**
@@ -66,7 +66,7 @@ class RentalController extends Controller
         $rental = Rental::find($id);
 
         // Show the view and pass1 the rental to it
-        return View::make('home.show')
+        return View::make('home.show_rentals')
             ->with('rental', $rental);
     }
 
