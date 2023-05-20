@@ -1439,6 +1439,15 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
+        'spatie/laravel-image-optimizer' => array(
+            'pretty_version' => '1.7.1',
+            'version' => '1.7.1.0',
+            'reference' => 'cd8945e47b9fd01bc7b770eecd57c56f46c47422',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../spatie/laravel-image-optimizer',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'spatie/laravel-medialibrary' => array(
             'pretty_version' => '10.9.2',
             'version' => '10.9.2.0',

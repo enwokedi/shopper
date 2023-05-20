@@ -10,6 +10,7 @@ use App\Http\Controllers\Shopper\OxfordController;
 use App\Http\Controllers\Welcome\ContactController;
 use App\Http\Controllers\Welcome\WelcomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,10 @@ Route::post('/mail', [MailController::class, 'sendMail']);
 // Subscriber Route
 Route::post('/subscribe', [SubscriberController::class, 'subscribe']);
 
+// Document Upload Route via Optimize Images Middleware
+Route::post('upload-files', [DocumentController::class, 'store'])->middleware('optimizeImages');
+
+// Home Routes
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     /**
      * Home Routes
