@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\user;
 use App\Models\Motorcycle;
 use App\Models\Rental;
+use App\models\Payment;
 use Illuminate\View\View;
 
 class RentalController extends Controller
@@ -89,8 +90,11 @@ class RentalController extends Controller
         $use = User::find($uid);
         $user = json_decode($use);
 
+        $p = Payment::all()->where('user_id', $uid);
+        $payments = json_decode($p);
+
         // dd($motorcycles);
-        return view("home.show", compact("rental", "user", "motorcycles"));
+        return view("home.show", compact("rental", "user", "motorcycles", "payments"));
     }
 
     /**

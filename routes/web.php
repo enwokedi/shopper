@@ -85,7 +85,8 @@ Route::post('/mail', [MailController::class, 'sendMail']);
 Route::post('/subscribe', [SubscriberController::class, 'subscribe']);
 
 // Document Upload Route via Optimize Images Middleware
-Route::post('upload-files', [DocumentController::class, 'store'])->middleware('optimizeImages');
+Route::get('file-upload', [DocumentController::class, 'index']);
+Route::post('file-upload', [DocumentController::class, 'store'])->name('file.store');
 
 // Home Routes
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
