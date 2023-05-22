@@ -64,11 +64,21 @@ class UserController extends Controller
         $p = Payment::orderBy('payment_due_date', 'DESC')->where('user_id', $id)->get();
         $payments = json_decode($p);
 
-        $now = now();
+        $now = Carbon::now();
+        $toDate = Carbon::parse("2023-05-29");
+        $fromDate = Carbon::parse("2022-08-20");
+
+        $days = $toDate->diffInDays($now);
+        $months = $toDate->diffInMonths($fromDate);
+        $years = $toDate->diffInYears($fromDate);
+
+        // print_r("In Days: " . $days . "<br>");
+        // print_r("In Months: " . $months . "<br>");
+        // print_r("In Years: " . $years);
 
         $address = UserAddress::all()->where('user_id', $id);
-        // dd($now);
-        return view("home.show_user", compact("user", "address", "motorcycles", "payments", "now"));
+        // dd($days);
+        return view("home.show_user", compact("user", "address", "motorcycles", "payments", "days"));
     }
 
     /**

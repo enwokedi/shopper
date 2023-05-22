@@ -88,6 +88,9 @@ Route::post('/subscribe', [SubscriberController::class, 'subscribe']);
 Route::get('file-upload', [DocumentController::class, 'index']);
 Route::post('file-upload', [DocumentController::class, 'store'])->name('file.store');
 
+Route::get('/upload-file', [FileUpload::class, 'createForm']);
+Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
+
 // Home Routes
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     /**

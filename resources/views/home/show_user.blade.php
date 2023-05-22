@@ -52,33 +52,23 @@
                     <div class="accordion-body">
                         <div class="container">
                             <div class="row align-items-start">
-                                Documents area...
+                                <div class="col">
+                                    <p>
+                                        <strong>Nationality: </strong>{{ $user->nationality }}<br>
+                                        <strong>Driving Licence: </strong>{{ $user->driving_licence }}<br>
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-outline-dark">Add Documents</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row align-items-start">
                                 <div class="container">
                                     <div class="panel-body">
 
-                                        @if ($message = Session::get('success'))
-                                        <div class="alert alert-success alert-block">
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                        @endif
-
-                                        <form action="{{ route('file.store') }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-
-                                            <div class="mb-3">
-                                                <label class="form-label" for="inputFile">File:</label>
-                                                <input type="file" name="file" id="inputFile" class="form-control @error('file') is-invalid @enderror">
-
-                                                @error('file')
-                                                <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <button type="submit" class="btn btn-success">Upload</button>
-                                            </div>
-
-                                        </form>
+                                        // Documents display area
 
                                     </div>
                                 </div>
@@ -134,7 +124,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapse0Four">
-                        <strong>Payments</strong>
+                        <strong>Payments - Next Payment in {{$days}} Days</strong>
                     </button>
                 </h2>
                 <div id="flush-collapseFour" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
