@@ -11,6 +11,7 @@ use App\Http\Controllers\Welcome\ContactController;
 use App\Http\Controllers\Welcome\WelcomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\FileUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,8 +89,11 @@ Route::post('/subscribe', [SubscriberController::class, 'subscribe']);
 Route::get('file-upload', [DocumentController::class, 'index']);
 Route::post('file-upload', [DocumentController::class, 'store'])->name('file.store');
 
-Route::get('/upload-file', [FileUpload::class, 'createForm']);
-Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
+Route::get('/upload-files/{id}', [FileUploadController::class, 'createForm']);
+Route::post('/upload-file/{id}', [FileUploadController::class, 'fileUpload'])->name('fileUpload');
+Route::post('/file-dl-front/{id}', [FileUploadController::class, 'createDlBack'])->name('frontUpload');
+Route::get('/file-dl-back/{id}', [FileUploadController::class, 'createDlBack'])->name('createDlBack');
+Route::post('/upload-back/{id}', [FileUploadController::class, 'dlBack'])->name('dlBack');
 
 // Home Routes
 Route::group(['namespace' => 'App\Http\Controllers'], function () {

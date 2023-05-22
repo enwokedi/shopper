@@ -1,30 +1,13 @@
-<!doctype html>
-<html lang="en">
+@extends('layouts.app-master')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <title>Laravel File Upload</title>
-    <style>
-        .container {
-            max-width: 500px;
-        }
+@section('content')
+<div class="container">
+    @auth
+    <h1>NGM Document Upload</h1>
 
-        dl,
-        ol,
-        ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-    </style>
-</head>
-
-<body>
     <div class="container mt-5">
-        <form action="{{route('file-upload/dl-front/' . $user_id)}}" method="post" enctype="multipart/form-data">
-            <h3 class="text-center mb-5">NGM Document Upload System</h3>
+        <form action="/upload-back/' . $user_id" method="post" enctype="multipart/form-data">
+            <h3 class="text-center mb-5">Upload Back of Driving Licence</h3>
             @csrf
             @if ($message = Session::get('success'))
             <div class="alert alert-success">
@@ -48,7 +31,16 @@
                 Upload Files
             </button>
         </form>
+        <div class="col">
+            <a class="btn btn-outline-dark" href="/upload-back/$user_id">Add DL Back</a>
+        </div>
     </div>
-</body>
 
-</html>
+    @endauth
+
+    @guest
+    <h1>Homepage</h1>
+    <p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
+    @endguest
+</div>
+@endsection

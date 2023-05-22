@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserAddress;
 use App\Models\Motorcycle;
+use App\Models\File;
 use App\models\Payment;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Js;
+use Nette\Utils\Json;
 
 class UserController extends Controller
 {
@@ -72,13 +74,17 @@ class UserController extends Controller
         $months = $toDate->diffInMonths($fromDate);
         $years = $toDate->diffInYears($fromDate);
 
+        $d = File::all()->where('user_id', $id);
+        $documents = json_decode($d);
+        $dlFront = "Driving Licence Front";
+
         // print_r("In Days: " . $days . "<br>");
         // print_r("In Months: " . $months . "<br>");
         // print_r("In Years: " . $years);
 
         $address = UserAddress::all()->where('user_id', $id);
         // dd($days);
-        return view("home.show_user", compact("user", "address", "motorcycles", "payments", "days"));
+        return view("home.show_user", compact("user", "address", "documents", "dlFront", "motorcycles", "payments", "days"));
     }
 
     /**

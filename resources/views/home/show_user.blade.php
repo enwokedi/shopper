@@ -59,16 +59,74 @@
                                     </p>
                                 </div>
                                 <div class="col">
-                                    <button type="button" class="btn btn-outline-dark">Add Documents</button>
+                                    <!-- <a class="btn btn-outline-dark" href="{{ URL::to('/upload-files/' . $user->id) }}">Add Documents</a> -->
                                 </div>
                             </div>
                         </div>
+                        <br>
+                        <div class="container text-center">
+                            <div class="row align-items-start">
+                                <div class="col">
+                                    <div class="col">
+                                        <a class="btn btn-outline-dark" href="{{ URL::to('/upload-files/' . $user->id) }}">Add DL Front</a>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="col">
+                                        <a class="btn btn-outline-dark" href="{{ URL::to('/file-dl-back/' . $user->id) }}">Add DL Back</a>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="col">
+                                        <a class="btn btn-outline-dark" href="{{ URL::to('/upload-files/' . $user->id) }}">Add CBT</a>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="col">
+                                        <a class="btn btn-outline-dark" href="{{ URL::to('/upload-files/' . $user->id) }}">Add ID</a>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="col">
+                                        <a class="btn btn-outline-dark" href="{{ URL::to('/upload-files/' . $user->id) }}">Add Address</a>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="col">
+                                        <a class="btn btn-outline-dark" href="{{ URL::to('/upload-files/' . $user->id) }}">Add Insurance</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
                         <div class="container">
                             <div class="row align-items-start">
                                 <div class="container">
                                     <div class="panel-body">
-
-                                        // Documents display area
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Document Type</th>
+                                                    <th scope="col"></th>
+                                                    <th scope="col"></th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($documents as $docuemnt)
+                                                <tr>
+                                                    <td>{{ $docuemnt->name }}</td>
+                                                    <td>{{ $docuemnt->document_type }}</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>
+                                                        <a class="btn btn-small btn-info" href="">Details</a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
 
                                     </div>
                                 </div>
@@ -134,7 +192,7 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">amount</th>
+                                        <th scope="col">Amount</th>
                                         <th scope="col">Due Date</th>
                                         <th scope="col">Received</th>
                                         <th scope="col">Payment Date</th>
