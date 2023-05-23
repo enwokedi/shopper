@@ -3,49 +3,25 @@
 @section('content')
 <div class="container">
     @auth
-    <h1>Client Details</h1>
-    <!-- This area is used to dispay errors -->
-
-    <p class="text-center">Only authenticated users can access this section.</p>
-
+    <div class="container-fluid">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-success" href="{{ URL::to('users/') }}">Client List</a>
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-success" href="{{ URL::to('users/' . $user->id . '/edit') }}">Edit Client</a>
+        </div>
+    </div>
+    <br>
+    <h1>{{$user->first_name}} {{$user->last_name}}</h1>
+    <a href="{{  $user->phone_number }}">{{$user->phone_number}}</a><br>
+    <a href="{{  $user->email }}">{{$user->email}}</a>
+    <p>{{$user->street_address}}, {{$user->street_address_plus}}, {{$user->city}} {{$user->post_code}}</p>
     <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    <strong>Client:&nbsp;</strong> {{$user->first_name}} {{$user->last_name}}&nbsp;&nbsp;&nbsp;<strong>Mobile:&nbsp;</strong>{{$user->phone_number}}&nbsp;&nbsp;&nbsp;<strong>Email:&nbsp;</strong>{{$user->email}}
-                </button>
-            </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
-                <div class="container">
-                    <div class="row align-items-start">
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-body">
-                    <div class="container">
-                        <strong>Address</strong>
-                        <p>
-                            {{$address[1]->street_address}}<br>
-                            {{$address[1]->street_address_plus}}<br>
-                            {{$address[1]->city}}<br>
-                            {{$address[1]->zipcode}}<br>
-                        </p>
-
-                    </div>
-                </div>
-            </div>
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                        <strong>Documents</strong>
+                        <h4>Documents</h4>
                     </button>
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
@@ -67,33 +43,33 @@
                         <div class="container text-center">
                             <div class="row align-items-start">
                                 <div class="col">
-                                    <div class="col">
-                                        <a class="btn btn-outline-dark" href="{{ URL::to('/file-dl-front/' . $user->id) }}">Add DL Front</a>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a class="btn btn-outline-success" href="{{ URL::to('/file-dl-front/' . $user->id) }}">Add DL Front</a>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="col">
-                                        <a class="btn btn-outline-dark" href="{{ URL::to('/file-dl-back/' . $user->id) }}">Add DL Back</a>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a class="btn btn-outline-success" href="{{ URL::to('/file-dl-back/' . $user->id) }}">Add DL Back</a>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="col">
-                                        <a class="btn btn-outline-dark" href="{{ URL::to('/file-pocbt/' . $user->id) }}">Add CBT</a>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a class="btn btn-outline-success" href="{{ URL::to('/file-pocbt/' . $user->id) }}">Add CBT</a>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="col">
-                                        <a class="btn btn-outline-dark" href="{{ URL::to('/file-poid/' . $user->id) }}">Add ID</a>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a class="btn btn-outline-success" href="{{ URL::to('/file-poid/' . $user->id) }}">Add ID</a>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="col">
-                                        <a class="btn btn-outline-dark" href="{{ URL::to('/file-poadd/' . $user->id) }}">Add Address</a>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a class="btn btn-outline-success" href="{{ URL::to('/file-poadd/' . $user->id) }}">Add Address</a>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="col">
-                                        <a class="btn btn-outline-dark" href="{{ URL::to('/file-poins/' . $user->id) }}">Add Insurance</a>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a class="btn btn-outline-success" href="{{ URL::to('/file-poins/' . $user->id) }}">Add Insurance</a>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +86,7 @@
                                                     <th scope="col">Document Type</th>
                                                     <th scope="col"></th>
                                                     <th scope="col"></th>
-                                                    <th scope="col"></th>
+                                                    <th scope="col"><a class="btn btn-outline-success" href="">View All Docs</a></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -121,7 +97,7 @@
                                                     <td></td>
                                                     <td></td>
                                                     <td>
-                                                        <a class="btn btn-small btn-info" href="">Details</a>
+                                                        <a class="btn btn-outline-success" href="/remove-upload/{{$document->id}}">Delete</a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -138,12 +114,22 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        <strong>Motorcycles</strong>
+                        <h4>Motorcycles</h4>
                     </button>
                 </h2>
                 <div id="flush-collapseThree" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <div class="accordion-body">
+                            <div class="container text-center">
+                                <div class="row align-items-start">
+                                    <div class="col">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a class="btn btn-outline-success" href="{{ URL::to('/file-dl-front/' . $user->id) }}">Add Motorcycle</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
                             <div class="container">
                                 <!-- List of vehicles rented should go here with link to each vehicles details -->
                                 <table class="table table-striped">
@@ -168,7 +154,7 @@
                                             <td>{{$motorcycle->year}}</th>
                                             <td>{{$motorcycle->colour}}</th>
                                             <td>
-                                                <a class="btn btn-small btn-info" href="{{ URL::to('users/' . $user->id) }}">Details</a>
+                                                <a class="btn btn-outline-success" href="{{ URL::to('users/' . $user->id) }}">Details</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -182,7 +168,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapse0Four">
-                        <strong>Payments - Next Payment in {{$days}} Days</strong>
+                        <h4>Payments</h4>
                     </button>
                 </h2>
                 <div id="flush-collapseFour" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
@@ -207,7 +193,7 @@
                                         <td>{{$payment->received}}</th>
                                         <td>{{$payment->payment_date}}</th>
                                         <td>
-                                            <a class="btn btn-small btn-info" href="{{ URL::to('users/' . $user->id) }}">Details</a>
+                                            <a class="btn btn-outline-success" href="{{ URL::to('users/' . $user->id) }}">Details</a>
                                         </td>
                                     </tr>
                                     @endforeach

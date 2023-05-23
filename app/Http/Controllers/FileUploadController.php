@@ -252,4 +252,12 @@ class FileUploadController extends Controller
                 ->with('user_id', $user_id);
         }
     }
+
+    public function delete($id)
+    {
+        File::findOrFail($id)->delete();
+
+        return back()
+            ->with('success', 'File has been deleted.');
+    }
 }

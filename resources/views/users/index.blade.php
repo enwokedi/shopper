@@ -3,9 +3,8 @@
 @section('content')
 <div class="container">
     @auth
-    <div class="btn-group pull-right" role="group" aria-label="Basic example">
-        <a class="btn btn-primary" href="{{ URL::to('users/') }}">Clients</a>
-        <a class="btn btn-primary" href="{{ URL::to('users/create') }}">Create New User</a>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a class="btn btn-outline-success" href="{{ URL::to('users/create') }}">Create New User</a>
     </div>
     <h1>Clients</h1>
 
@@ -47,7 +46,7 @@
                     <td>{{$user->email}}</td>
                     <td></td>
                     <td>
-                        <a class="btn btn-small btn-info" href="{{ URL::to('users/' . $user->id) }}">Details</a>
+                        <a class="btn btn-outline-success" href="{{ URL::to('users/' . $user->id) }}">Details</a>
                     </td>
                 </tr>
                 @endforeach

@@ -4,7 +4,7 @@
 <div class="container">
     @auth
     <div class="btn-group pull-right" role="group" aria-label="Basic example">
-        <a class="btn btn-primary" href="{{ URL::to('users/') }}">All Users</a>
+        <a class="btn btn-outline-success" href="{{ URL::to('users/') }}">All Users</a>
     </div>
     <div class="container-fluid">
         <h1>Create New Client</h1>
@@ -32,30 +32,48 @@
     <div class="container">
         <form action="/users" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="mb-3">
-                <input class="form-control" type="text" placeholder="First Name*" aria-label="default input example" name="first_name" id="first_name">
+            <div>
+                <h4>Details</h4>
             </div>
             <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Last Name*" aria-label="default input example" name="last_name" id="last_name">
+                <input class="form-control" type="text" placeholder="First Name*" aria-label="default input example" name="first_name" id="first_name" value="{{old('first_name')}}">
             </div>
             <div class="mb-3">
-                <select class="form-select" aria-label="Select Gender" name="gender" id="gender">
+                <input class="form-control" type="text" placeholder="Last Name*" aria-label="default input example" name="last_name" id="last_name" value="{{old('last_name')}}">
+            </div>
+            <div class="mb-3">
+                <select class="form-select" aria-label="Select Gender" name="gender" id="gender" value="{{old('gender')}}">
                     <option selected>Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>
             </div>
             <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Phone Number*" aria-label="default input example" name="phone_number" id="phone_number">
+                <input class="form-control" type="text" placeholder="Phone Number*" aria-label="default input example" name="phone_number" id="phone_number" value="{{old('phone_number')}}">
             </div>
             <div class="mb-3">
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email Address*">
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email Address*" value="{{old('email')}}">
             </div>
             <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Nationality*" aria-label="default input example" name="nationality" id="nationality">
+                <input class="form-control" type="text" placeholder="Nationality*" aria-label="default input example" name="nationality" id="nationality" value="{{old('nationality')}}">
             </div>
             <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Driving Licence*" aria-label="default input example" name="driving_licence" id="driving_licence">
+                <input class="form-control" type="text" placeholder="Driving Licence*" aria-label="default input example" name="driving_licence" id="driving_licence" value="{{old('driving_licence')}}">
+            </div>
+            <div>
+                <h4>Address</h4>
+            </div>
+            <div class="mb-3">
+                <input class="form-control" type="text" placeholder="Address Line 1*" aria-label="default input example" name="street_address" id="street_address" value="{{old('street_address')}}">
+            </div>
+            <div class="mb-3">
+                <input class="form-control" type="text" placeholder="Secondary Address Line" aria-label="default input example" name="street_address_plus" id="street_address_plus" value="{{old('street_address_plus')}}">
+            </div>
+            <div class="mb-3">
+                <input class="form-control" type="text" placeholder="City" aria-label="default input example" name="city" id="city" value="{{old('city')}}">
+            </div>
+            <div class="mb-3">
+                <input class="form-control" type="text" placeholder="Post Code" aria-label="default input example" name="post_code" id="post_code" value="{{old('post_code')}}">
             </div>
 
             <!-- <div class="mb-3">
@@ -66,7 +84,7 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div> -->
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-outline-success">Submit</button>
         </form>
     </div>
     @endauth

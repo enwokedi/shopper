@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\File;
 use App\Models\User;
 use Nette\Utils\Json;
@@ -54,7 +55,15 @@ class UserController extends Controller
             'email' => 'required',
             'nationality' => 'required',
             'driving_licence' => 'required',
+            'street_address' => 'required',
+            'city' => 'required',
+            'post_code' => 'required',
         ]);
+
+        $a = 0;
+        for ($i = 0; $i < 6; $i++) {
+            $a .= mt_rand(0, 9);
+        }
 
         $user = new User();
         $user->first_name = $request->first_name;
@@ -64,10 +73,16 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->nationality = $request->nationality;
         $user->driving_licence = $request->driving_licence;
+        $user->username = $request->first_name . $a . $request->last_name;
+        $user->street_address = $request->street_address;
+        $user->street_address_plus = $request->street_address_plus;
+        $user->city = $request->city;
+        $user->post_code = $request->post_code;
+        $user->is_client = 1;
         $user->save();
 
-        return back()
-            ->with('success', 'File has been uploaded.');
+        return redirect('/users')
+            ->with('success', 'Client has been added to NGM client list.');
     }
 
     /**
@@ -107,7 +122,7 @@ class UserController extends Controller
 
         $address = UserAddress::all()->where('user_id', $id);
         // dd($days);
-        return view("home.show_user", compact("user", "address", "documents", "dlFront", "motorcycles", "payments", "days"));
+        return view("users.show", compact("user", "address", "documents", "dlFront", "motorcycles", "payments", "days"));
     }
 
     /**
@@ -118,7 +133,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('users.edit', compact('user'));
     }
 
     /**
