@@ -90,10 +90,10 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($documents as $docuemnt)
+                                                @foreach ($documents as $document)
                                                 <tr>
-                                                    <td>{{ $docuemnt->name }}</td>
-                                                    <td>{{ $docuemnt->document_type }}</td>
+                                                    <td>{{ $document->name }}</td>
+                                                    <td>{{ $document->document_type }}</td>
                                                     <td></td>
                                                     <td></td>
                                                     <td>

@@ -219,6 +219,8 @@ class FileUploadController extends Controller
 
     public function createCbt($id)
     {
+        $previousUrl = URL()->previous();
+        dd($previousUrl);
         $user_id = $id;
         // dd($user_id);
         return view('home.upload-pocbt')->with('user_id', $user_id);
@@ -232,7 +234,7 @@ class FileUploadController extends Controller
         } else {
             //Your URL didn't match.  This may or may not be a bad thing.
         }
-        // dd($user_id);
+        dd($previousUrl);
 
         $req->validate([
             'file' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,png|max:2048'
@@ -246,18 +248,21 @@ class FileUploadController extends Controller
             $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
-            return back()
+            return redirect($previousUrl)
                 ->with('success', 'CBT has been uploaded.')
                 ->with('file', $fileName)
                 ->with('user_id', $user_id);
         }
     }
 
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
-        File::findOrFail($id)->delete();
+        $file = File::findOrFail($id);
+        $file->delete();
 
-        return back()
+        $previousUrl = URL()->previous();
+
+        return redirect($previousUrl)
             ->with('success', 'File has been deleted.');
     }
 }
