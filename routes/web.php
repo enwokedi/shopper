@@ -110,7 +110,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
      * Home Routes
      */
     // Route::get('/', 'HomeController@index')->name('home.index');
-    Route::get('/dashboard', 'HomeController@dashboard')->name('home.index'); // Edit later to use the correct controller
+    Route::get('/dashboard', 'HomeController@dashboard')->name('home.dashboard'); // Edit later to use the correct controller
     Route::resource('rentals', 'RentalController');
 
     // Motorcycle Resources

@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\UserAddress;
-use App\Models\Motorcycle;
 use App\Models\File;
-use App\models\Payment;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Js;
+use App\Models\User;
 use Nette\Utils\Json;
+use App\models\Payment;
+use App\Models\Motorcycle;
+use Illuminate\Support\Js;
+use App\Models\UserAddress;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -23,7 +25,7 @@ class UserController extends Controller
     {
         $users = User::all()->where('is_client', 1);
         // dd($users);
-        return view('home.index_users', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -33,7 +35,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -44,7 +46,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate and store the new client information
+        $validated = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone_number' => 'required',
+            'email' => 'required',
+            'nationality' => 'required',
+            'driving_licence' => 'required',
+        ]);
+
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->gender = $request->gender;
+        $user->phone_number = $request->phone_number;
+        $user->email = $request->email;
+        $user->nationality = $request->nationality;
+        $user->driving_licence = $request->driving_licence;
+        $user->save();
+
+        return back()
+            ->with('success', 'File has been uploaded.');
     }
 
     /**

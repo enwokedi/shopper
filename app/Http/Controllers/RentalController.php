@@ -94,7 +94,7 @@ class RentalController extends Controller
         $payments = json_decode($p);
 
         // dd($motorcycles);
-        return view("home.show", compact("rental", "user", "motorcycles", "payments"));
+        return view("home.show-payments-due", compact("rental", "user", "motorcycles", "payments"));
     }
 
     /**
