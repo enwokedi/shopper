@@ -68,7 +68,7 @@
                             <div class="row align-items-start">
                                 <div class="col">
                                     <div class="col">
-                                        <a class="btn btn-outline-dark" href="{{ URL::to('/upload-files/' . $user->id) }}">Add DL Front</a>
+                                        <a class="btn btn-outline-dark" href="{{ URL::to('/file-dl-front/' . $user->id) }}">Add DL Front</a>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -78,22 +78,22 @@
                                 </div>
                                 <div class="col">
                                     <div class="col">
-                                        <a class="btn btn-outline-dark" href="{{ URL::to('/upload-files/' . $user->id) }}">Add CBT</a>
+                                        <a class="btn btn-outline-dark" href="{{ URL::to('/file-pocbt/' . $user->id) }}">Add CBT</a>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="col">
-                                        <a class="btn btn-outline-dark" href="{{ URL::to('/upload-files/' . $user->id) }}">Add ID</a>
+                                        <a class="btn btn-outline-dark" href="{{ URL::to('/file-poid/' . $user->id) }}">Add ID</a>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="col">
-                                        <a class="btn btn-outline-dark" href="{{ URL::to('/upload-files/' . $user->id) }}">Add Address</a>
+                                        <a class="btn btn-outline-dark" href="{{ URL::to('/file-poadd/' . $user->id) }}">Add Address</a>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="col">
-                                        <a class="btn btn-outline-dark" href="{{ URL::to('/upload-files/' . $user->id) }}">Add Insurance</a>
+                                        <a class="btn btn-outline-dark" href="{{ URL::to('/file-poins/' . $user->id) }}">Add Insurance</a>
                                     </div>
                                 </div>
                             </div>

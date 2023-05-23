@@ -27,6 +27,9 @@
                 <input type="file" name="file" class="custom-file-input" id="chooseFile">
                 <label class="custom-file-label" for="chooseFile">Select file</label>
             </div>
+            <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
+                Upload Files
+            </button>
         </form>
     </div>
 

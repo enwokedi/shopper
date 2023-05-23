@@ -44,35 +44,7 @@ class FileUploadController extends Controller
         return view('home.upload-front')->with('user_id', $user_id);
     }
 
-    public function DlFront(Request $req, $id)
-    {
-        $user_id = $id;
-
-        $req->validate([
-            'file' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,png|max:2048'
-        ]);
-        $fileModel = new File;
-        if ($req->file()) {
-            $fileName = time() . '_' . $req->file->getClientOriginalName();
-            $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
-            $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
-            $fileModel->file_path = '/storage/' . $filePath;
-            $fileModel->save();
-            return back()
-                ->with('success', 'File has been uploaded.')
-                ->with('file', $fileName)
-                ->with('user_id', $user_id);
-        }
-    }
-
-    public function createDlBack($id)
-    {
-        $user_id = $id;
-        // dd($user_id);
-        return view("home.upload-back", compact("user_id")); //->with('user_id', $user_id);
-    }
-
-    public function dlBack(Request $req)
+    public function DlFront(Request $req)
     {
         $previousUrl = URL()->previous();
         if (preg_match("/\/(\d+)$/", $previousUrl, $matches)) {
@@ -87,7 +59,43 @@ class FileUploadController extends Controller
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . 'DL Back'; // $req->file->getClientOriginalName();
+            $fileName = time() . '_' . 'DL Front'; // $req->file->getClientOriginalName();
+            $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
+            $fileModel->user_id = $user_id;
+            $fileModel->document_type = "DL Front";
+            $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
+            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->save();
+            return back()
+                ->with('success', 'The front of the driving licence has been uploaded.')
+                ->with('file', $fileName)
+                ->with('user_id', $user_id);
+        }
+    }
+
+    public function createDlBack($id)
+    {
+        $user_id = $id;
+        // dd($user_id);
+        return view("home.upload-back", compact("user_id")); //->with('user_id', $user_id);
+    }
+
+    public function DlBack(Request $req)
+    {
+        $previousUrl = URL()->previous();
+        if (preg_match("/\/(\d+)$/", $previousUrl, $matches)) {
+            $user_id = $matches[1];
+        } else {
+            //Your URL didn't match.  This may or may not be a bad thing.
+        }
+        // dd($user_id);
+
+        $req->validate([
+            'file' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,png|max:2048'
+        ]);
+        $fileModel = new File;
+        if ($req->file()) {
+            $fileName = time() . '_' . 'Driving Licence - Back'; // $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
             $fileModel->document_type = "DL Back";
@@ -95,70 +103,151 @@ class FileUploadController extends Controller
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
             return back()
-                ->with('success', 'File has been uploaded.')
+                ->with('success', 'The back of the driving licence has been uploaded.')
                 ->with('file', $fileName)
                 ->with('user_id', $user_id);
         }
+    }
+
+    public function createIdProof($id)
+    {
+        $user_id = $id;
+        // dd($user_id);
+        return view('home.upload-poid')->with('user_id', $user_id);
     }
 
     public function IdProof(Request $req, $id)
     {
-        $user_id = $id;
+        $previousUrl = URL()->previous();
+        if (preg_match("/\/(\d+)$/", $previousUrl, $matches)) {
+            $user_id = $matches[1];
+        } else {
+            //Your URL didn't match.  This may or may not be a bad thing.
+        }
+        // dd($user_id);
 
         $req->validate([
             'file' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,png|max:2048'
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . $req->file->getClientOriginalName();
+            $fileName = time() . '_' . 'Proof of ID'; // $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
+            $fileModel->user_id = $user_id;
+            $fileModel->document_type = "Proof of ID";
             $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
             return back()
-                ->with('success', 'File has been uploaded.')
+                ->with('success', 'Proof of ID has been uploaded.')
                 ->with('file', $fileName)
                 ->with('user_id', $user_id);
         }
     }
 
-    public function AddressProof(Request $req, $id)
+    public function createAddProof($id)
     {
         $user_id = $id;
+        // dd($user_id);
+        return view('home.upload-poadd')->with('user_id', $user_id);
+    }
+
+    public function AddressProof(Request $req)
+    {
+        $previousUrl = URL()->previous();
+        if (preg_match("/\/(\d+)$/", $previousUrl, $matches)) {
+            $user_id = $matches[1];
+        } else {
+            //Your URL didn't match.  This may or may not be a bad thing.
+        }
+        // dd($user_id);
 
         $req->validate([
             'file' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,png|max:2048'
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . $req->file->getClientOriginalName();
+            $fileName = time() . '_' . 'Proof of Address'; // $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
+            $fileModel->user_id = $user_id;
+            $fileModel->document_type = "Proof of Address";
             $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
             return back()
-                ->with('success', 'File has been uploaded.')
+                ->with('success', 'Proof of address has been uploaded.')
                 ->with('file', $fileName)
                 ->with('user_id', $user_id);
         }
     }
 
-    public function InsuranceCertificate(Request $req, $id)
+    public function createInsProof($id)
     {
         $user_id = $id;
+        // dd($user_id);
+        return view('home.upload-poins')->with('user_id', $user_id);
+    }
+
+    public function InsuranceCertificate(Request $req)
+    {
+        $previousUrl = URL()->previous();
+        if (preg_match("/\/(\d+)$/", $previousUrl, $matches)) {
+            $user_id = $matches[1];
+        } else {
+            //Your URL didn't match.  This may or may not be a bad thing.
+        }
+        // dd($user_id);
 
         $req->validate([
             'file' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,png|max:2048'
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . $req->file->getClientOriginalName();
+            $fileName = time() . '_' . 'Insurance Certificate'; // $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
+            $fileModel->user_id = $user_id;
+            $fileModel->document_type = "Insurance Certificate";
             $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
             return back()
-                ->with('success', 'File has been uploaded.')
+                ->with('success', 'Insurance certificate has been uploaded.')
+                ->with('file', $fileName)
+                ->with('user_id', $user_id);
+        }
+    }
+
+    public function createCbt($id)
+    {
+        $user_id = $id;
+        // dd($user_id);
+        return view('home.upload-pocbt')->with('user_id', $user_id);
+    }
+
+    public function CbtProof(Request $req)
+    {
+        $previousUrl = URL()->previous();
+        if (preg_match("/\/(\d+)$/", $previousUrl, $matches)) {
+            $user_id = $matches[1];
+        } else {
+            //Your URL didn't match.  This may or may not be a bad thing.
+        }
+        // dd($user_id);
+
+        $req->validate([
+            'file' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,png|max:2048'
+        ]);
+        $fileModel = new File;
+        if ($req->file()) {
+            $fileName = time() . '_' . 'CBT Certificate'; // $req->file->getClientOriginalName();
+            $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
+            $fileModel->user_id = $user_id;
+            $fileModel->document_type = "CBT Certificate";
+            $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
+            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->save();
+            return back()
+                ->with('success', 'CBT has been uploaded.')
                 ->with('file', $fileName)
                 ->with('user_id', $user_id);
         }

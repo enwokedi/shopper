@@ -91,9 +91,18 @@ Route::post('file-upload', [DocumentController::class, 'store'])->name('file.sto
 
 Route::get('/upload-files/{id}', [FileUploadController::class, 'createForm']);
 Route::post('/upload-file/{id}', [FileUploadController::class, 'fileUpload'])->name('fileUpload');
-Route::post('/file-dl-front/{id}', [FileUploadController::class, 'createDlBack'])->name('frontUpload');
 Route::get('/file-dl-back/{id}', [FileUploadController::class, 'createDlBack'])->name('createDlBack');
-Route::post('/upload-back/{id}', [FileUploadController::class, 'dlBack'])->name('dlBack');
+Route::post('/upload-back/{id}', [FileUploadController::class, 'DlBack'])->name('DlBack');
+Route::get('/file-dl-front/{id}', [FileUploadController::class, 'createDlFront'])->name('frontUpload');
+Route::post('/upload-front/{id}', [FileUploadController::class, 'DlFront'])->name('DlFront');
+Route::get('/file-poid/{id}', [FileUploadController::class, 'createIdProof'])->name('createIdProof');
+Route::post('/upload-poid/{id}', [FileUploadController::class, 'IdProof'])->name('IdProof');
+Route::get('/file-poadd/{id}', [FileUploadController::class, 'createAddProof'])->name('createAddProof');
+Route::post('/upload-poadd/{id}', [FileUploadController::class, 'AddressProof'])->name('AddressProof');
+Route::get('/file-poins/{id}', [FileUploadController::class, 'createInsProof'])->name('createInsProof');
+Route::post('/upload-poins/{id}', [FileUploadController::class, 'InsuranceCertificate'])->name('InsuranceCertificate');
+Route::get('/file-pocbt/{id}', [FileUploadController::class, 'createCbt'])->name('createCbt');
+Route::post('/upload-pocbt/{id}', [FileUploadController::class, 'CbtProof'])->name('CbtProof');
 
 // Home Routes
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
