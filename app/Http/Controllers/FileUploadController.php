@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use App\Models\User;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\UserController;
@@ -281,5 +282,13 @@ class FileUploadController extends Controller
 
         return redirect($previousUrl)
             ->with('success', 'File has been deleted.');
+    }
+
+    public function generatePDF()
+    {
+        // $data = ['title' => 'Welcome to ItSolutionStuff.com'];
+        // $pdf = PDF::loadView('myPDF', $data);
+
+        // return $pdf->download('itsolutionstuff.pdf');
     }
 }
