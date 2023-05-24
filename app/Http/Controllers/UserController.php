@@ -116,6 +116,7 @@ class UserController extends Controller
         $documents = json_decode($d);
         $dlFront = "Driving Licence Front";
 
+        // dd($documents);
         // print_r("In Days: " . $days . "<br>");
         // print_r("In Months: " . $months . "<br>");
         // print_r("In Years: " . $years);

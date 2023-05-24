@@ -103,7 +103,6 @@ Route::get('/file-poins/{id}', [FileUploadController::class, 'createInsProof'])-
 Route::post('/upload-poins/{id}', [FileUploadController::class, 'InsuranceCertificate'])->name('InsuranceCertificate');
 Route::get('/file-pocbt/{id}', [FileUploadController::class, 'createCbt'])->name('createCbt');
 Route::post('/upload-pocbt/{id}', [FileUploadController::class, 'CbtProof'])->name('CbtProof');
-Route::get('/modal-documents', [FileUploadController::class, 'modalDocuments'])->name('modalDocuments');
 Route::get('/remove-upload/{id}', [FileUploadController::class, 'delete']);
 
 // Home Routes

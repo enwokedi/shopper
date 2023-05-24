@@ -59,7 +59,7 @@ class FileUploadController extends Controller
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . 'DL Front'; // $req->file->getClientOriginalName();
+            $fileName = time() . '_' . $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
             $fileModel->document_type = "Driving Licence Front";
@@ -69,10 +69,6 @@ class FileUploadController extends Controller
 
             return to_route('users.show', [$user_id])
                 ->with('success', 'The front of the driving licence has been uploaded.');
-            // return redirect()->action(
-            //     [UserController::class, 'users'],
-            //     ['id' => 15]
-            // );
             // return back()
             //     ->with('success', 'The front of the driving licence has been uploaded.')
             //     ->with('file', $fileName)
@@ -102,7 +98,7 @@ class FileUploadController extends Controller
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . 'DL - Back'; // $req->file->getClientOriginalName();
+            $fileName = time() . '_' . $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
             $fileModel->document_type = "Driving Licence - Back";
@@ -141,7 +137,7 @@ class FileUploadController extends Controller
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . 'Proof of ID'; // $req->file->getClientOriginalName();
+            $fileName = time() . '_' . 'PID'; // $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
             $fileModel->document_type = "Proof of ID";
@@ -180,7 +176,7 @@ class FileUploadController extends Controller
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . 'Proof of Address'; // $req->file->getClientOriginalName();
+            $fileName = time() . '_' . 'PAD'; // $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
             $fileModel->document_type = "Proof of Address";
@@ -219,7 +215,7 @@ class FileUploadController extends Controller
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . 'Insurance Certificate'; // $req->file->getClientOriginalName();
+            $fileName = time() . '_' . 'INS'; // $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
             $fileModel->document_type = "Insurance Certificate";
@@ -259,7 +255,7 @@ class FileUploadController extends Controller
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . 'CBT Certificate'; // $req->file->getClientOriginalName();
+            $fileName = time() . '_' . 'CBT' . '_' . $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
             $fileModel->document_type = "CBT Certificate";

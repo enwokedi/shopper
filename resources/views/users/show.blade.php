@@ -91,7 +91,14 @@
                                         <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
                                     </div>
                                     <div class="modal-body">
-                                        ...
+                                        <!-- Modal Contents Here -->
+                                        @foreach ($documents as $document)
+                                        @if($document->name)
+                                        <img src="{{ asset('storage/uploads/'.$document->name) }}" style="width:100%;">
+                                        @else
+                                        <span>No image found!</span>
+                                        @endif
+                                        @endforeach
                                     </div>
                                     <div class="modal-footer">
                                         <a type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</a>
@@ -152,7 +159,6 @@
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <a class="btn btn-outline-success" href="">Add Motorcycle</a>
                         </div>
-
                     </div>
                 </div>
                 <br>
@@ -201,7 +207,13 @@
         <div id="flush-collapseFour" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
                 <div class="container">
-                    <!-- List of vehicles rented should go here with link to each vehicles details -->
+                    <div class="container-fluid">
+                        <div class="container-fluid">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a class="btn btn-outline-success" href="">Add Payment</a>
+                            </div>
+                        </div>
+                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
