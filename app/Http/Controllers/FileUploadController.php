@@ -137,7 +137,7 @@ class FileUploadController extends Controller
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . 'PID'; // $req->file->getClientOriginalName();
+            $fileName = time() . '_' . $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
             $fileModel->document_type = "Proof of ID";
@@ -176,7 +176,7 @@ class FileUploadController extends Controller
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . 'PAD'; // $req->file->getClientOriginalName();
+            $fileName = time() . '_' . $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
             $fileModel->document_type = "Proof of Address";
@@ -215,7 +215,7 @@ class FileUploadController extends Controller
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . 'INS'; // $req->file->getClientOriginalName();
+            $fileName = time() . '_' . $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
             $fileModel->document_type = "Insurance Certificate";
@@ -255,7 +255,7 @@ class FileUploadController extends Controller
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . 'CBT' . '_' . $req->file->getClientOriginalName();
+            $fileName = time() . '_' . $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
             $fileModel->document_type = "CBT Certificate";
