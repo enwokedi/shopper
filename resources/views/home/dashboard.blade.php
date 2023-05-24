@@ -11,10 +11,10 @@
     <h1>Dashboard</h1>
     <!-- This area is used to dispay errors -->
 
-    <p class="lead text-center">Only authenticated users can access this section.</p>
+    <p class="lead text-center">Construction cannot start until all data repositories are assembled & populated.</p>
 
     <div class="container">
-        Dashboard Information
+        // Crack on...
     </div>
     @endauth
 

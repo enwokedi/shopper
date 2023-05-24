@@ -124,7 +124,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/is_for_sale', [MotorcycleController::class, 'isForSale'])->name('isForSale');
     Route::get('/unallocated', [MotorcycleController::class, 'isUnallocated'])->name('isUnallocated');
 
-    Route::get('registration-number', [MotorcycleController::class, 'registrationNumber'])->name('registrationNumber');
+    Route::post('registration-number', [MotorcycleController::class, 'registrationNumber'])->name('registrationNumber');
 
     // User Resources
     Route::resource('users', 'UserController');

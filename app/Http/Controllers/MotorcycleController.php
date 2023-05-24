@@ -105,8 +105,18 @@ class MotorcycleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $registrationNumber)
     {
+        $response = Http::withHeaders([
+            'x-api-key' => '5i0qXnN6SY3blfoFeWvlu9sTQCSdrf548nMS8vVO',
+            'Content-Type' => 'application/json',
+        ])->post('https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles', [
+            'registrationNumber' => $registrationNumber,
+        ]);
+
+        $motorcycle = json_decode($response->body());
+        dd($motorcycle);
+
         $validated = $request->validate([
             'registration' => 'required',
             'make' => 'required',
@@ -180,7 +190,7 @@ class MotorcycleController extends Controller
         //
     }
 
-    public function registrationNumber($registrationNumber)
+    public function registrationNumber(Request $request, $registrationNumber)
     {
         // $response = Http::withBody('{"registrationNumber": "LJ17YCR"}')->withHeaders(['x-api-key' => '5i0qXnN6SY3blfoFeWvlu9sTQCSdrf548nMS8vVO',])
         //     ->post('https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles');
@@ -194,5 +204,16 @@ class MotorcycleController extends Controller
 
         $motorcycle = json_decode($response->body());
         dd($motorcycle);
+
+        $motorcycle = new Motorcycle();
+        $motorcycle->registration = $request->registration;
+        $motorcycle->make = $request->make;
+        $motorcycle->model = $request->model;
+        $motorcycle->year = $request->year;
+        $motorcycle->displacement = $request->displacement;
+        $motorcycle->colour = $request->colour;
+        $motorcycle->availability = $request->availability;
+
+        $motorcycle->save();
     }
 }

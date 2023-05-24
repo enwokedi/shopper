@@ -24,26 +24,30 @@
     <br>
     <div class="container-fluid">
         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            View All Documents
+            Find Vehicle
         </button>
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Client Documents</h5>
+
+                    <!-- <div class="modal-header">
+                        <h5 class="modal-title w-100 text-center" id="staticBackdropLabel">ENTER REGISTRATION NUMBER</h5>
                         <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
-                    </div>
+                    </div> -->
                     <div class="modal-body">
                         <!-- Modal Contents Here -->
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-                        </div>
+                        <form action="{{ route('motorcycles.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="input-group mb-3">
+                                <input style="text-transform: uppercase" type="text" class="form-control text-center" placeholder="registration number" aria-label="Vehicle Registration Number" name="registrationNumber" id="registrationNumber">
+                            </div>
+                            <div class="d-grid gap-2 col-6 mx-auto" style="padding-bottom: 5px;">
+                                <a type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Add Vehicle</a>
+                            </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
-                        <a type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</a>
-                    </div>
+
                 </div>
             </div>
         </div>
