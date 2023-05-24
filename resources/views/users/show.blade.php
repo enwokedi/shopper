@@ -3,6 +3,10 @@
 @section('content')
 <div class="container">
     @auth
+    <h1>{{$user->first_name}} {{$user->last_name}}</h1>
+    <a href="{{  $user->phone_number }}">{{$user->phone_number}}</a><br>
+    <a href="{{  $user->email }}">{{$user->email}}</a>
+    <p>{{$user->street_address}}, {{$user->street_address_plus}}, {{$user->city}} {{$user->post_code}}</p>
     <div class="container-fluid">
         <div class="btn-group" role="group" aria-label="Basic example">
             <a class="btn btn-outline-success" href="{{ URL::to('users/') }}">Client List</a>
@@ -11,11 +15,6 @@
             <a class="btn btn-outline-success" href="{{ URL::to('users/' . $user->id . '/edit') }}">Edit Client</a>
         </div>
     </div>
-    <br>
-    <h1>{{$user->first_name}} {{$user->last_name}}</h1>
-    <a href="{{  $user->phone_number }}">{{$user->phone_number}}</a><br>
-    <a href="{{  $user->email }}">{{$user->email}}</a>
-    <p>{{$user->street_address}}, {{$user->street_address_plus}}, {{$user->city}} {{$user->post_code}}</p>
     <!-- This area is used to dispay errors -->
     @if ($message = Session::get('success'))
     <div class="alert alert-success">

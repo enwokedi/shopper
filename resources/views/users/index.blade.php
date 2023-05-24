@@ -3,11 +3,13 @@
 @section('content')
 <div class="container">
     @auth
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <a class="btn btn-outline-success" href="{{ URL::to('users/create') }}">Create New User</a>
-    </div>
     <h1>Clients</h1>
-
+    <!-- Page Button Group -->
+    <div class="container-fluid">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-success" href="{{ URL::to('users/create') }}">Create New User</a>
+        </div>
+    </div>
     <!-- This area is used to dispay errors -->
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
@@ -24,8 +26,6 @@
     </div>
     @endif
     <!-- This area is used to dispay errors -->
-
-    <p class="lead text-center">Only authenticated users can access this section.</p>
 
     <div class="container">
         <table class="table table-striped">

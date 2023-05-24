@@ -20,7 +20,7 @@ class MotorcycleController extends Controller
         $m = Motorcycle::all();
         $motorcycles = json_decode($m);
         // dd($motorcycles);
-        return view('home.index_bike', compact('motorcycles'));
+        return view('motorcycles.index', compact('motorcycles'));
     }
 
     /**

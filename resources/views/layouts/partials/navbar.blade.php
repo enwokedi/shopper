@@ -13,32 +13,13 @@
                     <li>
                         <a class="nav-link" href="/users">Clients</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Motorcycles
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/motorcycles">Rentals</a></li>
-                            <li><a class="dropdown-item" href="/motorcycles/create">Create</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                    <li>
+                        <a class="nav-link" href="/motorcycles">Motorcycles</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Payments
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/rentals">Rentals</a></li>
-                            <li><a class="dropdown-item" href="#">Menu Item</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Menu Item</a></li>
-                        </ul>
+                    <li>
+                        <a class="nav-link" href="">Payments</a>
                     </li>
+
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
