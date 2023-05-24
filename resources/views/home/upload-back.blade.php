@@ -6,7 +6,7 @@
     <h1>NGM Document Upload</h1>
 
     <div class="container mt-5">
-        <form action="/upload-poid/' . $user_id" method="post" enctype="multipart/form-data">
+        <form action="/upload-back/' . $user_id" method="post" enctype="multipart/form-data">
             <h3 class="text-center mb-5">Upload Proof of ID</h3>
             @csrf
             @if ($message = Session::get('success'))
@@ -27,6 +27,9 @@
                 <input type="file" name="file" class="custom-file-input" id="chooseFile">
                 <label class="custom-file-label" for="chooseFile">Select file</label>
             </div>
+            <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
+                Upload Files
+            </button>
         </form>
     </div>
 

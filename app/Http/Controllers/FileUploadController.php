@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
+use App\Http\Controllers\UserController;
 
 class FileUploadController extends Controller
 {
@@ -52,7 +53,6 @@ class FileUploadController extends Controller
         } else {
             //Your URL didn't match.  This may or may not be a bad thing.
         }
-        // dd($user_id);
 
         $req->validate([
             'file' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,png|max:2048'
@@ -62,14 +62,21 @@ class FileUploadController extends Controller
             $fileName = time() . '_' . 'DL Front'; // $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
-            $fileModel->document_type = "DL Front";
+            $fileModel->document_type = "Driving Licence Front";
             $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
-            return back()
-                ->with('success', 'The front of the driving licence has been uploaded.')
-                ->with('file', $fileName)
-                ->with('user_id', $user_id);
+
+            return to_route('users.show', [$user_id])
+                ->with('success', 'The front of the driving licence has been uploaded.');
+            // return redirect()->action(
+            //     [UserController::class, 'users'],
+            //     ['id' => 15]
+            // );
+            // return back()
+            //     ->with('success', 'The front of the driving licence has been uploaded.')
+            //     ->with('file', $fileName)
+            //     ->with('user_id', $user_id);
         }
     }
 
@@ -95,17 +102,20 @@ class FileUploadController extends Controller
         ]);
         $fileModel = new File;
         if ($req->file()) {
-            $fileName = time() . '_' . 'Driving Licence - Back'; // $req->file->getClientOriginalName();
+            $fileName = time() . '_' . 'DL - Back'; // $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
-            $fileModel->document_type = "DL Back";
+            $fileModel->document_type = "Driving Licence - Back";
             $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
-            return back()
-                ->with('success', 'The back of the driving licence has been uploaded.')
-                ->with('file', $fileName)
-                ->with('user_id', $user_id);
+
+            return to_route('users.show', [$user_id])
+                ->with('success', 'The back of the driving licence has been uploaded.');
+            // return back()
+            //     ->with('success', 'The back of the driving licence has been uploaded.')
+            //     ->with('file', $fileName)
+            //     ->with('user_id', $user_id);
         }
     }
 
@@ -138,10 +148,13 @@ class FileUploadController extends Controller
             $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
-            return back()
-                ->with('success', 'Proof of ID has been uploaded.')
-                ->with('file', $fileName)
-                ->with('user_id', $user_id);
+
+            return to_route('users.show', [$user_id])
+                ->with('success', 'Proof of ID has been uploaded.');
+            // return back()
+            //     ->with('success', 'Proof of ID has been uploaded.')
+            //     ->with('file', $fileName)
+            //     ->with('user_id', $user_id);
         }
     }
 
@@ -174,10 +187,13 @@ class FileUploadController extends Controller
             $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
-            return back()
-                ->with('success', 'Proof of address has been uploaded.')
-                ->with('file', $fileName)
-                ->with('user_id', $user_id);
+
+            return to_route('users.show', [$user_id])
+                ->with('success', 'Proof of Address has been uploaded.');
+            // return back()
+            //     ->with('success', 'Proof of address has been uploaded.')
+            //     ->with('file', $fileName)
+            //     ->with('user_id', $user_id);
         }
     }
 
@@ -210,19 +226,22 @@ class FileUploadController extends Controller
             $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
-            return back()
-                ->with('success', 'Insurance certificate has been uploaded.')
-                ->with('file', $fileName)
-                ->with('user_id', $user_id);
+
+            return to_route('users.show', [$user_id])
+                ->with('success', 'Insurance has been uploaded.');
+            // return back()
+            //     ->with('success', 'Insurance certificate has been uploaded.')
+            //     ->with('file', $fileName)
+            //     ->with('user_id', $user_id);
         }
     }
 
     public function createCbt($id)
     {
         $previousUrl = URL()->previous();
-        dd($previousUrl);
+
         $user_id = $id;
-        // dd($user_id);
+
         return view('home.upload-pocbt')->with('user_id', $user_id);
     }
 
@@ -234,7 +253,6 @@ class FileUploadController extends Controller
         } else {
             //Your URL didn't match.  This may or may not be a bad thing.
         }
-        dd($previousUrl);
 
         $req->validate([
             'file' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,png|max:2048'
@@ -248,10 +266,13 @@ class FileUploadController extends Controller
             $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
-            return redirect($previousUrl)
-                ->with('success', 'CBT has been uploaded.')
-                ->with('file', $fileName)
-                ->with('user_id', $user_id);
+
+            return to_route('users.show', [$user_id])
+                ->with('success', 'CBT has been uploaded.');
+            // return redirect($previousUrl)
+            //     ->with('success', 'CBT has been uploaded.')
+            //     ->with('file', $fileName)
+            //     ->with('user_id', $user_id);
         }
     }
 
