@@ -12,6 +12,7 @@ use App\Http\Controllers\Welcome\WelcomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\MotorcycleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,6 +119,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     // Motorcycle Resources
     Route::resource('motorcycles', 'MotorcycleController');
+    Route::get('/is_for_rent', [MotorcycleController::class, 'isForRent'])->name('isForRent');
+    Route::get('/is_rented', [MotorcycleController::class, 'isRented'])->name('isRented');
+    Route::get('/is_for_sale', [MotorcycleController::class, 'isForSale'])->name('isForSale');
+    Route::get('/unallocated', [MotorcycleController::class, 'isUnallocated'])->name('isUnallocated');
+
+    Route::get('registration-number', [MotorcycleController::class, 'registrationNumber'])->name('registrationNumber');
 
     // User Resources
     Route::resource('users', 'UserController');

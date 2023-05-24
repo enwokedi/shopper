@@ -293,9 +293,9 @@
             'dev_requirement' => false,
         ),
         'guzzlehttp/guzzle' => array(
-            'pretty_version' => '7.5.1',
-            'version' => '7.5.1.0',
-            'reference' => 'b964ca597e86b752cd994f27293e9fa6b6a95ed9',
+            'pretty_version' => '7.6.1',
+            'version' => '7.6.1.0',
+            'reference' => '8444a2bacf1960bc6a2b62ed86b8e72e11eebe51',
             'type' => 'library',
             'install_path' => __DIR__ . '/../guzzlehttp/guzzle',
             'aliases' => array(),
