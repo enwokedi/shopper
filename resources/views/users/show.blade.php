@@ -76,6 +76,30 @@
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <a class="btn btn-outline-success" href="{{ URL::to('/file-poins/' . $user->id) }}">Add Insurance</a>
                         </div>
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            View All Documents
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                        <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <br>
@@ -90,7 +114,7 @@
                                             <th scope="col">Document Type</th>
                                             <th scope="col"></th>
                                             <th scope="col"></th>
-                                            <th scope="col"><a class="btn btn-outline-success" href="{{ URL::to('/modal-documents/') }}">View All Docs</a></th>
+                                            <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
