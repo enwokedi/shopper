@@ -15,4 +15,9 @@ class Motorcycle extends Model
     {
         return $this->belongsTo(Rental::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

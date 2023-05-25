@@ -145,14 +145,21 @@
                 <div class="card shadow">
                     <div class="card-header">
                         <div class="card-body">
-                            <h5>Status Details</h5>
+                            <h5>Rental Details</h5>
                             <table class="table">
                                 <tbody>
-                                    <tr class="text-right">
-                                        <td> </td>
-                                        <td class="text-end"></td>
+                                    <tr>
+                                        <td>Status </td>
+                                        <td class="text-end">{{$motorcycle->availability}}</td>
                                     </tr>
-                                </tbody>
+                                    <tr>
+                                        <td>Weekly Rental Price </td>
+                                        <td class="text-end">£{{$motorcycle->rental_price}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rental Start Date </td>
+                                        <td class="text-end">{{$motorcycle->rental_start_date}}</td>
+                                    </tr>
                             </table>
                         </div>
                     </div>

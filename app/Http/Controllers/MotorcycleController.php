@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\View\View;
 use App\Models\Motorcycle;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 use Symfony\Component\Console\Input\Input;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Carbon;
 
 class MotorcycleController extends Controller
 {
@@ -152,8 +154,7 @@ class MotorcycleController extends Controller
         $m = Motorcycle::findOrFail($id);
         $motorcycle = json_decode($m);
 
-        // dd($motorcycles);
-        return view('motorcycles.show', compact('motorcycle')); //->with('motorcycle', $motorcycle);
+        return view('motorcycles.show')->with('motorcycle', $motorcycle);
     }
 
     /**
