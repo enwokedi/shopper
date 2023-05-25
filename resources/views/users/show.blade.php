@@ -182,11 +182,11 @@
                                     <td>{{$motorcycle->registration}}</th>
                                     <td>{{$motorcycle->make}}</th>
                                     <td>{{$motorcycle->model}}</th>
-                                    <td>{{$motorcycle->displacement}}</th>
+                                    <td>{{$motorcycle->engine}}</th>
                                     <td>{{$motorcycle->year}}</th>
                                     <td>{{$motorcycle->colour}}</th>
                                     <td>
-                                        <a class="btn btn-outline-success" href="{{ URL::to('users/' . $user->id) }}">Details</a>
+                                        <a class="btn btn-outline-success" href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -117,6 +117,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/dashboard', 'HomeController@dashboard')->name('home.dashboard'); // Edit later to use the correct controller
     Route::resource('rentals', 'RentalController');
 
+    // Payments Resources
+
     // Motorcycle Resources
     Route::resource('motorcycles', 'MotorcycleController');
     Route::get('/is_for_rent', [MotorcycleController::class, 'isForRent'])->name('isForRent');
