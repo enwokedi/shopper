@@ -4,26 +4,38 @@
 <div class="container">
     @auth
     <h1>{{ $count }} Motorcycle(s)</h1>
-    <div class="container-fluid">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/') }}">All</a>
+    <div class="container text-center">
+        <div class="row align-items-start">
+            <div class="col">
+                <div class="container-fluid">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/') }}">All</a>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-outline-primary" href="{{ URL::to('is_for_rent/') }}">For Rent</a>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-outline-primary" href="{{ URL::to('is_rented/') }}">Rented</a>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-outline-primary" href="{{ URL::to('is_for_sale/') }}">For Sale</a>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-outline-primary" href="{{ URL::to('unallocated/') }}">Unallocated</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="container-fluid">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-outline-primary" href="{{ URL::to('check-vehicle-reg/') }}">Check Reg</a>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-outline-primary" href="{{ URL::to('find-motorcycle/') }}">Add Motorcycle</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-outline-primary" href="{{ URL::to('is_for_rent/') }}">For Rent</a>
-        </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-outline-primary" href="{{ URL::to('is_rented/') }}">Rented</a>
-        </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-outline-primary" href="{{ URL::to('is_for_sale/') }}">For Sale</a>
-        </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-outline-primary" href="{{ URL::to('unallocated/') }}">Unallocated</a>
-        </div>
-    </div>
-    <br>
-    <div class="container-fluid">
-        <a class="btn btn-outline-primary" href="{{ URL::to('find-motorcycle/') }}">Check Reg</a>
     </div>
 
     <!-- This area is used to dispay errors -->

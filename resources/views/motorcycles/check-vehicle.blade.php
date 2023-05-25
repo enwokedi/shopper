@@ -6,8 +6,8 @@
 
 
     <div class="container mt-5">
-        <form action="/registration-number" method="post" enctype="multipart/form-data" class="form-inline text-center">
-            <h3 class="text-center mb-5">NGM VEHICLE CHECK</h3>
+        <form action="/vehicle-check" method="post" enctype="multipart/form-data" class="form-inline text-center">
+            <h3 class="text-center mb-5">REGISTRATION CHECK</h3>
             @csrf
             @if ($message = Session::get('success'))
             <div class="alert alert-success">

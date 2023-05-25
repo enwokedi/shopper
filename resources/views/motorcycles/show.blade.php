@@ -6,9 +6,14 @@
     <h1>{{ $motorcycle->registration }}</h1>
     <div class="container-fluid">
         <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/') }}">Edit Motorcycle</a>
+            <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/') }}">Back</a>
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-primary" href="">Edit</a>
         </div>
     </div>
+    <br>
+
     <!-- This area is used to dispay errors -->
     @if ($message = Session::get('success'))
     <div class="alert alert-success">

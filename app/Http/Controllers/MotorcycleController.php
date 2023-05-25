@@ -234,4 +234,49 @@ class MotorcycleController extends Controller
         return to_route('motorcycles.show', [$motorcycle->id])
             ->with('success', 'Vehicle details have been added to the database.');
     }
+
+    /**
+     * Show the form for finding a new motorcycle.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function vehicleCheckForm()
+    {
+        return view('motorcycles.check-vehicle');
+    }
+
+    public function vehicleCheck(Request $request)
+    {
+        $response = Http::withHeaders([
+            'x-api-key' => '5i0qXnN6SY3blfoFeWvlu9sTQCSdrf548nMS8vVO',
+            'Content-Type' => 'application/json',
+        ])->post('https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles', [
+            'registrationNumber' => $request->registrationNumber,
+        ]);
+
+        $request = json_decode($response->body());
+
+        $motorcycle = new Motorcycle();
+        $motorcycle->registration = $request->registrationNumber;
+        $motorcycle->make = $request->make;
+        $motorcycle->tax_status = $request->taxStatus;
+        $motorcycle->tax_due_date = $request->taxDueDate;
+        $motorcycle->mot_status = $request->motStatus;
+        $motorcycle->year = $request->yearOfManufacture;
+        $motorcycle->engine = $request->engineCapacity;
+        $motorcycle->co2_emissions = $request->co2Emissions;
+        $motorcycle->fuel_type = $request->fuelType;
+        $motorcycle->marked_for_export = $request->markedForExport;
+        $motorcycle->colour = $request->colour;
+        $motorcycle->type_approval = $request->typeApproval;
+        $motorcycle->last_v5_issue_date = $request->dateOfLastV5CIssued;
+        $motorcycle->mot_expiry_date = $request->motExpiryDate;
+        $motorcycle->wheel_plan = $request->wheelplan;
+        $motorcycle->month_of_first_registration = $request->monthOfFirstRegistration;
+
+        // dd($motorcycle);
+
+        return view('motorcycles.show', compact('motorcycle'))
+            ->with('success', 'Vehicle information retrieved successfully.');;
+    }
 }

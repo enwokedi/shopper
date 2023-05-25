@@ -126,6 +126,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/find-motorcycle', [MotorcycleController::class, 'findMotorcycle'])->name('findMotorcycle');
     Route::post('/registration-number', [MotorcycleController::class, 'registrationNumber'])->name('registrationNumber');
 
+    Route::get('/check-vehicle-reg', [MotorcycleController::class, 'vehicleCheckForm'])->name('vehicleCheckForm');
+    Route::post('/vehicle-check', [MotorcycleController::class, 'vehicleCheck'])->name('vehicleCheck');
+
     // User Resources
     Route::resource('users', 'UserController');
     Route::get('/users/show/{user_id}', 'UserController@show')->name('users.show');
