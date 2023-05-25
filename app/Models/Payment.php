@@ -17,4 +17,9 @@ class Payment extends Model
     {
         return $this->belongsTo(Rental::class, 'id', 'rental_id');
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'id', 'user_id');
+    }
 }
