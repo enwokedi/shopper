@@ -8,9 +8,6 @@
         <div class="btn-group" role="group" aria-label="Basic example">
             <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/') }}">Back</a>
         </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/' . $motorcycle->id . '/edit') }}">Edit</a>
-        </div>
     </div>
     <br>
 
@@ -42,23 +39,11 @@
                                 <tbody>
                                     <tr class="text-right">
                                         <td>Make </td>
-                                        <td class="text-end">{{ $motorcycle->make}}</td>
+                                        <td class="text-end">{{$motorcycle->make}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Model </td>
-                                        <td class="text-end">{{$motorcycle->model}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Colour </td>
-                                        <td class="text-end">{{$motorcycle->colour}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Engine </td>
-                                        <td class="text-end">{{$motorcycle->engine}}CC</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Year </td>
-                                        <td class="text-end">{{$motorcycle->year}}</td>
+                                        <td>Tax Status </td>
+                                        <td class="text-end">{{$motorcycle->tax_status}}</td>
                                     </tr>
                                     <tr>
                                         <td>Tax Due Date </td>
@@ -67,6 +52,14 @@
                                     <tr>
                                         <td>MOT Status </td>
                                         <td class="text-end">{{$motorcycle->mot_status}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Year </td>
+                                        <td class="text-end">{{$motorcycle->year}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Engine </td>
+                                        <td class="text-end">{{$motorcycle->engine}}</td>
                                     </tr>
                                     <tr>
                                         <td>C02 Emmissions </td>
@@ -83,6 +76,10 @@
                                     <tr>
                                         <td>Marked for Export </td>
                                         <td class="text-end">{{$motorcycle->marked_for_export}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Colour </td>
+                                        <td class="text-end">{{$motorcycle->colour}}</td>
                                     </tr>
                                     <tr>
                                         <td>Type Approval </td>
@@ -114,29 +111,14 @@
                 <div class="card shadow">
                     <div class="card-header">
                         <div class="card-body">
-                            <h5>Road Tax</h5>
+                            <h5>Mileage Details</h5>
                             <table class="table">
                                 <tbody>
-                                    <tr>
-                                        <td>Road Tax Status </td>
-                                        <td class="text-end">{{$motorcycle->tax_status}}</td>
+                                    <tr class="text-right">
+                                        <td> </td>
+                                        <td class="text-end"></td>
                                     </tr>
-                                    <tr>
-                                        <td>Road Tax Due Date </td>
-                                        <td class="text-end">{{$motorcycle->tax_due_date}}</td>
-                                    </tr>
-                            </table>
-                            <h5>MOT</h5>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>MOT Status </td>
-                                        <td class="text-end">{{$motorcycle->mot_status}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>MOT Expiry Date </td>
-                                        <td class="text-end">{{$motorcycle->mot_expiry_date}}</td>
-                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -145,7 +127,23 @@
                 <div class="card shadow">
                     <div class="card-header">
                         <div class="card-body">
-                            <h5>Status Details</h5>
+                            <h5>Insurance Information</h5>
+                            <table class="table">
+                                <tbody>
+                                    <tr class="text-right">
+                                        <td> </td>
+                                        <td class="text-end"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="card shadow">
+                    <div class="card-header">
+                        <div class="card-body">
+                            <h5>Additional Information</h5>
                             <table class="table">
                                 <tbody>
                                     <tr class="text-right">
@@ -160,7 +158,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <!--div class="container">
         <div class="row">
             <div class="col">
                 <div class="card shadow">
@@ -199,7 +197,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div-->
 
     @endauth
 

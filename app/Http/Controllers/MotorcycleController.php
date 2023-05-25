@@ -147,13 +147,13 @@ class MotorcycleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $m = Motorcycle::find($id);
+        $m = Motorcycle::findOrFail($id);
         $motorcycle = json_decode($m);
 
         // dd($motorcycles);
-        return view('motorcycles.show')->with('motorcycle', $motorcycle);
+        return view('motorcycles.show', compact('motorcycle')); //->with('motorcycle', $motorcycle);
     }
 
     /**
@@ -164,7 +164,10 @@ class MotorcycleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $m = Motorcycle::find($id);
+        $motorcycle = json_decode($m);
+
+        return view('motorcycles.edit', compact('motorcycle'));
     }
 
     /**
@@ -276,7 +279,7 @@ class MotorcycleController extends Controller
 
         // dd($motorcycle);
 
-        return view('motorcycles.show', compact('motorcycle'))
+        return view('motorcycles.show-check', compact('motorcycle'))
             ->with('success', 'Vehicle information retrieved successfully.');;
     }
 }
