@@ -153,7 +153,7 @@ class MotorcycleController extends Controller
         $motorcycle = json_decode($m);
 
         // dd($motorcycles);
-        return view('home.bike_details')->with('motorcycle', $motorcycle);
+        return view('motorcycles.show')->with('motorcycle', $motorcycle);
     }
 
     /**
@@ -190,10 +190,10 @@ class MotorcycleController extends Controller
         //
     }
 
-    public function registrationNumber(Request $request, $registrationNumber)
+    public function registrationNumber()
+    // public function registrationNumber(Request $request, $registrationNumber)
     {
-        // $response = Http::withBody('{"registrationNumber": "LJ17YCR"}')->withHeaders(['x-api-key' => '5i0qXnN6SY3blfoFeWvlu9sTQCSdrf548nMS8vVO',])
-        //     ->post('https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles');
+        $registrationNumber = 'GC18TJY';
 
         $response = Http::withHeaders([
             'x-api-key' => '5i0qXnN6SY3blfoFeWvlu9sTQCSdrf548nMS8vVO',
@@ -205,15 +205,15 @@ class MotorcycleController extends Controller
         $motorcycle = json_decode($response->body());
         dd($motorcycle);
 
-        $motorcycle = new Motorcycle();
-        $motorcycle->registration = $request->registration;
-        $motorcycle->make = $request->make;
-        $motorcycle->model = $request->model;
-        $motorcycle->year = $request->year;
-        $motorcycle->displacement = $request->displacement;
-        $motorcycle->colour = $request->colour;
-        $motorcycle->availability = $request->availability;
+        // $motorcycle = new Motorcycle();
+        // $motorcycle->registration = $request->registration;
+        // $motorcycle->make = $request->make;
+        // $motorcycle->model = $request->model;
+        // $motorcycle->year = $request->year;
+        // $motorcycle->displacement = $request->displacement;
+        // $motorcycle->colour = $request->colour;
+        // $motorcycle->availability = $request->availability;
 
-        $motorcycle->save();
+        // $motorcycle->save();
     }
 }

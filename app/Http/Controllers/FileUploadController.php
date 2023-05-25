@@ -70,10 +70,6 @@ class FileUploadController extends Controller
 
             return to_route('users.show', [$user_id])
                 ->with('success', 'The front of the driving licence has been uploaded.');
-            // return back()
-            //     ->with('success', 'The front of the driving licence has been uploaded.')
-            //     ->with('file', $fileName)
-            //     ->with('user_id', $user_id);
         }
     }
 
@@ -109,10 +105,6 @@ class FileUploadController extends Controller
 
             return to_route('users.show', [$user_id])
                 ->with('success', 'The back of the driving licence has been uploaded.');
-            // return back()
-            //     ->with('success', 'The back of the driving licence has been uploaded.')
-            //     ->with('file', $fileName)
-            //     ->with('user_id', $user_id);
         }
     }
 

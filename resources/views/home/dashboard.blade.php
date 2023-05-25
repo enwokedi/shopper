@@ -11,7 +11,7 @@
     <h1>Dashboard</h1>
     <!-- This area is used to dispay errors -->
 
-    <p class="lead text-center">Construction cannot start until all data repositories are assembled & populated.</p>
+    <p class="lead text-center">Construction cannot start until all data repositories are assembled & populated0.</p>
 
     <div class="container">
         // Crack on...
