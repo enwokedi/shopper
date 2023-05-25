@@ -200,7 +200,6 @@ class MotorcycleController extends Controller
         return view('motorcycles.find-bike');
     }
 
-    // public function registrationNumber()
     public function registrationNumber(Request $request)
     {
         $response = Http::withHeaders([
@@ -210,7 +209,7 @@ class MotorcycleController extends Controller
             'registrationNumber' => $request->registrationNumber,
         ]);
 
-        $motorcycle = json_decode($response->body());
+        $request = json_decode($response->body());
 
         $motorcycle = new Motorcycle();
         $motorcycle->registration = $request->registrationNumber;
@@ -232,6 +231,7 @@ class MotorcycleController extends Controller
 
         $motorcycle->save();
 
-        dd($motorcycle->id);
+        return to_route('motorcycles.show', [$motorcycle->id])
+            ->with('success', 'Vehicle details have been added to the database.');
     }
 }

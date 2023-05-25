@@ -123,8 +123,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/is_rented', [MotorcycleController::class, 'isRented'])->name('isRented');
     Route::get('/is_for_sale', [MotorcycleController::class, 'isForSale'])->name('isForSale');
     Route::get('/unallocated', [MotorcycleController::class, 'isUnallocated'])->name('isUnallocated');
-
-
     Route::get('/find-motorcycle', [MotorcycleController::class, 'findMotorcycle'])->name('findMotorcycle');
     Route::post('/registration-number', [MotorcycleController::class, 'registrationNumber'])->name('registrationNumber');
 
