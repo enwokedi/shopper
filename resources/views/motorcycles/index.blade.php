@@ -23,7 +23,7 @@
     </div>
     <br>
     <div class="container-fluid">
-        <a class="btn btn-outline-primary" href="{{ URL::to('registration-number/') }}">Find Vehicle</a>
+        <a class="btn btn-outline-primary" href="{{ URL::to('find-motorcycle/') }}">Check Reg</a>
     </div>
 
     <!-- This area is used to dispay errors -->

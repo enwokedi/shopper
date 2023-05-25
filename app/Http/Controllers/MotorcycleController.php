@@ -96,7 +96,7 @@ class MotorcycleController extends Controller
      */
     public function create()
     {
-        return view('home.create_bike');
+        return view('motorcycles.create');
     }
 
     /**
@@ -190,30 +190,48 @@ class MotorcycleController extends Controller
         //
     }
 
-    public function registrationNumber()
-    // public function registrationNumber(Request $request, $registrationNumber)
+    /**
+     * Show the form for finding a new motorcycle.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function findMotorcycle()
     {
-        $registrationNumber = 'GC18TJY';
+        return view('motorcycles.find-bike');
+    }
 
+    // public function registrationNumber()
+    public function registrationNumber(Request $request)
+    {
         $response = Http::withHeaders([
             'x-api-key' => '5i0qXnN6SY3blfoFeWvlu9sTQCSdrf548nMS8vVO',
             'Content-Type' => 'application/json',
         ])->post('https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles', [
-            'registrationNumber' => $registrationNumber,
+            'registrationNumber' => $request->registrationNumber,
         ]);
 
         $motorcycle = json_decode($response->body());
-        dd($motorcycle);
 
-        // $motorcycle = new Motorcycle();
-        // $motorcycle->registration = $request->registration;
-        // $motorcycle->make = $request->make;
-        // $motorcycle->model = $request->model;
-        // $motorcycle->year = $request->year;
-        // $motorcycle->displacement = $request->displacement;
-        // $motorcycle->colour = $request->colour;
-        // $motorcycle->availability = $request->availability;
+        $motorcycle = new Motorcycle();
+        $motorcycle->registration = $request->registrationNumber;
+        $motorcycle->make = $request->make;
+        $motorcycle->tax_status = $request->taxStatus;
+        $motorcycle->tax_due_date = $request->taxDueDate;
+        $motorcycle->mot_status = $request->motStatus;
+        $motorcycle->year = $request->yearOfManufacture;
+        $motorcycle->engine = $request->engineCapacity;
+        $motorcycle->co2_emissions = $request->co2Emissions;
+        $motorcycle->fuel_type = $request->fuelType;
+        $motorcycle->marked_for_export = $request->markedForExport;
+        $motorcycle->colour = $request->colour;
+        $motorcycle->type_approval = $request->typeApproval;
+        $motorcycle->last_v5_issue_date = $request->dateOfLastV5CIssued;
+        $motorcycle->mot_expiry_date = $request->motExpiryDate;
+        $motorcycle->wheel_plan = $request->wheelplan;
+        $motorcycle->month_of_first_registration = $request->monthOfFirstRegistration;
 
-        // $motorcycle->save();
+        $motorcycle->save();
+
+        dd($motorcycle->id);
     }
 }

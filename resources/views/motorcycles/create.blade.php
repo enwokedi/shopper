@@ -3,95 +3,120 @@
 @section('content')
 <div class="container">
     @auth
-    <div class="btn-group pull-right" role="group" aria-label="Basic example">
-        <a class="btn btn-outline-success" href="{{ URL::to('motorcycles/') }}">All Users</a>
-    </div>
-    <div class="container-fluid">
-        <h1>Add Motorcycle</h1>
+    <h1>{{ $motorcycle->registration }}</h1>
+    <!-- This area is used to dispay errors -->
 
-        <!-- This area is used to dispay errors -->
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <strong>{{ $message }}</strong>
+    <p class="lead text-center">Only authenticated users can access this section.</p>
+
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    <h4>Vehicle Details</h4>
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div class="container">
+                        <div class="row align-items-start">
+                            <form action="/motorcycles" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" placeholder="Make" name="make" id="make" value="{{$motorcycle->make}}">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" placeholder="Model" name="model" id="model" value="{{$motorcycle->model}}">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" placeholder="Colour" name="colour" id="colour" value="{{old('$motorcycle->colour')}}">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" id="fuel_type" name="fuel_type" placeholder="Fuel Type" value="{{$motorcycle->fuel_type}}">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" placeholder="Engine" name="engine" id="engine" value="{{$motorcycle->engine}}">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" placeholder="Year" name="year" id="year" value="{{$motorcycle->year}}">
+                                </div>
+                                <div>
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" placeholder="Euro Status" name="euro_status" id="euro_status" value="{{$motorcycle->euro_status}}">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" placeholder="Vehicle Age" name="vehicle_age" id="vehicle_age" value="">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" placeholder="Registration Place" name="registration_place" id="registration_place" v0alue="{{$motorcycle->registration_place}}">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" placeholder="Registration Date" name="registration_date" id="registration_date" value="{{$motorcycle->registration_date}}">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" placeholder="Last V5C Issue Date" name="last_v5_issue_date" id="last_v5_issue_date" value="{{$motorcycle->last_v5_issue_date}}">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" placeholder="Type Approval" name="type_approval" id="type_approval" value="{{$motorcycle->type_approval}}">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" placeholder="Wheel Plan" name="wheel_plan" id="wheel_plan" value="{{$motorcycle->wheel_plan}}">
+                                </div>
+                                <button type="submit" class="btn btn-outline-success">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            <h4>Mileage Information</h4>
+                        </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <div class="container">
+                                <div class="row align-items-start">
+                                    <div class="col">
+                                        Name:<br>
+                                        Driving Licence:<br>
+                                        Address:<br>
+                                        Mobile:<br>
+                                        Email:<br>
+                                        Nationality:<br>
+                                    </div>
+                                    <div class="col">
+                                        <br>
+                                        <br>
+
+                                    </div>
+                                    <div class="col">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                            <h4>Insurance Details</h4>
+                        </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            Payment history...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @endauth
+
+            @guest
+            <h1>Homepage</h1>
+            <p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
+            @endguest
         </div>
-        @endif
-        @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-        <!-- This area is used to dispay errors -->
-
-        <p class="lead text-center">Only authenticated users can access this section.</p>
-
-    </div>
-    <div class="container">
-        <form action="/motorcycles" method="post" enctype="multipart/form-data">
-            @csrf
-            <div>
-                <h4>Details</h4>
-            </div>
-            <div class="mb-3">
-                <input class="form-control" type="text" placeholder="First Name*" aria-label="default input example" name="first_name" id="first_name" value="{{old('first_name')}}">
-            </div>
-            <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Last Name*" aria-label="default input example" name="last_name" id="last_name" value="{{old('last_name')}}">
-            </div>
-            <div class="mb-3">
-                <select class="form-select" aria-label="Select Gender" name="gender" id="gender" value="{{old('gender')}}">
-                    <option selected>Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Phone Number*" aria-label="default input example" name="phone_number" id="phone_number" value="{{old('phone_number')}}">
-            </div>
-            <div class="mb-3">
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email Address*" value="{{old('email')}}">
-            </div>
-            <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Nationality*" aria-label="default input example" name="nationality" id="nationality" value="{{old('nationality')}}">
-            </div>
-            <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Driving Licence*" aria-label="default input example" name="driving_licence" id="driving_licence" value="{{old('driving_licence')}}">
-            </div>
-            <div>
-                <h4>Address</h4>
-            </div>
-            <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Address Line 1*" aria-label="default input example" name="street_address" id="street_address" value="{{old('street_address')}}">
-            </div>
-            <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Secondary Address Line" aria-label="default input example" name="street_address_plus" id="street_address_plus" value="{{old('street_address_plus')}}">
-            </div>
-            <div class="mb-3">
-                <input class="form-control" type="text" placeholder="City" aria-label="default input example" name="city" id="city" value="{{old('city')}}">
-            </div>
-            <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Post Code" aria-label="default input example" name="post_code" id="post_code" value="{{old('post_code')}}">
-            </div>
-
-            <!-- <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-            </div> -->
-            <!-- <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div> -->
-            <button type="submit" class="btn btn-outline-success">Submit</button>
-        </form>
-    </div>
-    @endauth
-
-    @guest
-    <h1>Homepage</h1>
-    <p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
-    @endguest
-</div>
-@endsection
+        @endsection

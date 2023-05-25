@@ -3,11 +3,11 @@
 @section('content')
 <div class="container">
     @auth
-    <h1>NGM Document Upload</h1>
+
 
     <div class="container mt-5">
-        <form action="/upload-poins/' . $user_id" method="post" enctype="multipart/form-data">
-            <h3 class="text-center mb-5">Upload Insurance Certificate</h3>
+        <form action="/registration-number" method="post" enctype="multipart/form-data" class="form-inline text-center">
+            <h3 class="text-center mb-5">NGM VEHICLE CHECK</h3>
             @csrf
             @if ($message = Session::get('success'))
             <div class="alert alert-success">
@@ -23,21 +23,34 @@
                 </ul>
             </div>
             @endif
-            <div class="custom-file">
-                <input type="file" name="file" class="custom-file-input" id="chooseFile">
-                <label class="custom-file-label" for="chooseFile">Select file</label>
-            </div>
-            <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
-                Upload Files
-            </button>
+            <div class="container text-center">
+                <div class="row align-items-start">
+                    <div class="col">
+
+                    </div>
+                    <div class="col">
+                        <div class="mb-3 text-center">
+                            <input class="form-control" type="text" placeholder="ENTER REG" name="registrationNumber" id="registrationNumber">
+                        </div>
+
+                        <div class="d-grid gap-2 col-12 mx-auto">
+                            <button class="btn btn-primary btn-block mt-4" type="submit" name="submit">ADD MOTORCYCLE</button>
+                            <button class="btn btn-primary" type="button">BACK</button>
+                        </div>
         </form>
     </div>
+    <div class="col">
 
-    @endauth
+    </div>
+</div>
+</div>
+</div>
 
-    @guest
-    <h1>Homepage</h1>
-    <p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
-    @endguest
+@endauth
+
+@guest
+<h1>Homepage</h1>
+<p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
+@endguest
 </div>
 @endsection
