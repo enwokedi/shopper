@@ -132,6 +132,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/unallocated', [MotorcycleController::class, 'isUnallocated'])->name('isUnallocated');
     Route::get('/find-motorcycle', [MotorcycleController::class, 'findMotorcycle'])->name('findMotorcycle');
     Route::post('/registration-number', [MotorcycleController::class, 'registrationNumber'])->name('registrationNumber');
+    Route::get('/motorcycles-for-rent/{id}', [MotorcycleController::class, 'clientForRent'])->name('clientForRent');
+    Route::get('/rental/{motorcycle_id}', [MotorcycleController::class, 'addToClient'])->name('motorcycles.users.update');
 
     Route::get('/check-vehicle-reg', [MotorcycleController::class, 'vehicleCheckForm'])->name('vehicleCheckForm');
     Route::post('/vehicle-check', [MotorcycleController::class, 'vehicleCheck'])->name('vehicleCheck');

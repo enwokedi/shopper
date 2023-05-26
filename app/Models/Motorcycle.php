@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Motorcycle extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
     public $timestamps = false;
 
     public function rental()

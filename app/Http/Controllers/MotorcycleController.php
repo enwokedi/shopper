@@ -43,6 +43,33 @@ class MotorcycleController extends Controller
         return view('motorcycles.index', compact('motorcycles', 'count'));
     }
 
+    public function clientForRent(Request $request, $id)
+    {
+        $user_id = $id;
+        $request->session()->put('user_id', $id);
+
+        $m = Motorcycle::all()
+            ->where('is_for_rent', 1);
+        $motorcycles = json_decode($m);
+
+        $count = $m->count();
+        return view('motorcycles.index-for-rent', compact('motorcycles', 'count', 'user_id'));
+    }
+
+    public function addToClient(Request $request, $motorcycle_id)
+    {
+        $user_id = $request->session()->get('user_id', 'default');
+
+        Motorcycle::findOrFail($motorcycle_id)->update([
+            'is_for_rent' => 0,
+            'is_rented' => 1,
+            'user_id' => $user_id,
+        ]);
+
+        return to_route('users.show', [$user_id])
+            ->with('success', 'Motorcycle added.');
+    }
+
     /**
      * Display a listing of the resource.
      *

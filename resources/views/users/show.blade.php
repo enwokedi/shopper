@@ -159,7 +159,7 @@
                 <div class="accordion-body">
                     <div class="container-fluid">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <a class="btn btn-outline-success" href="">Add Motorcycle</a>
+                            <a class="btn btn-outline-success" href="{{ URL::to('/motorcycles-for-rent/' . $user->id) }}">Add Motorcycle</a>
                         </div>
                     </div>
                 </div>
