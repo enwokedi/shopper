@@ -59,6 +59,7 @@ class MotorcycleController extends Controller
     public function addToClient(Request $request, $motorcycle_id)
     {
         $user_id = $request->session()->get('user_id', 'default');
+        $request->session()->put('motorcycle_id', $motorcycle_id);
 
         Motorcycle::findOrFail($motorcycle_id)->update([
             'is_for_rent' => 0,
@@ -67,7 +68,7 @@ class MotorcycleController extends Controller
         ]);
 
         return to_route('users.show', [$user_id])
-            ->with('success', 'Motorcycle added.');
+            ->with('success', 'Motorcycle assigned to this client.');
     }
 
     /**

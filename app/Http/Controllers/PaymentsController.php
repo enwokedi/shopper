@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Payment;
 use Illuminate\Support\Carbon;
 use App\Models\User;
+use App\Models\Motorcycle;
 
 class PaymentsController extends Controller
 {
@@ -16,7 +17,13 @@ class PaymentsController extends Controller
      */
     public function index()
     {
-        //
+        $p = Payment::all()->where('payment_date', null);
+        $payments = json_decode($p);
+        $count = $p->count();
+
+        // $users = User::all()->where('id', $payments->user_id);
+
+        return view('payments.index', compact('payments', 'count'));
     }
 
     /**
@@ -32,6 +39,7 @@ class PaymentsController extends Controller
     public function createRental($id)
     {
         $user_id = $id;
+
         return view('payments.create-rental', compact('user_id'));
     }
 
@@ -46,6 +54,8 @@ class PaymentsController extends Controller
         $weeklyPayments = $request->amount;
         $deposit = $request->amount * 3;
 
+        $motorcycle_id = $request->session()->get('motorcycle_id', 'default');
+
         // Store the deposit amount along with details
         $payment = new Payment();
         $payment->payment_type = $request->payment_type;
@@ -53,6 +63,7 @@ class PaymentsController extends Controller
         $payment->payment_due_date = Carbon::now();
         $payment->payment_date = Carbon::now();
         $payment->user_id = $user_id;
+        // $payment->motorcycle_id = $motorcycle_id;
         $payment->save();
 
         // Create first rental payment
@@ -132,7 +143,7 @@ class PaymentsController extends Controller
     public function update(Request $request, $payment_id)
     {
         $dt = Carbon::now();
-        $nextDueDate = $dt->addDays(8);
+        $nextDueDate = $dt->addDays(7);
 
         Payment::findOrFail($payment_id)->update([
 
