@@ -9,7 +9,7 @@
         </div>
     </div>
     <br>
-    <h1>Edit {{ $user->first_name }} {{ $user->last_name }}</h1>
+    <h1>Update Payment</h1>
 
     <!-- This area is used to dispay errors -->
     @if ($message = Session::get('success'))

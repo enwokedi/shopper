@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\MotorcycleController;
+use App\Http\Controllers\PaymentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,6 +119,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::resource('rentals', 'RentalController');
 
     // Payments Resources
+    Route::resource('payments', 'PaymentsController');
+    Route::get('/client-payment/{id}', [PaymentsController::class, 'userPayment'])->name('userPayment');
 
     // Motorcycle Resources
     Route::resource('motorcycles', 'MotorcycleController');

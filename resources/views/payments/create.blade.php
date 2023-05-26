@@ -5,7 +5,7 @@
     @auth
 
     <div class="container-fluid">
-        <h1>Update Payment</h1>
+        <h1>Add Client Payment</h1>
 
         <!-- This area is used to dispay errors -->
         @if ($message = Session::get('success'))
@@ -36,13 +36,17 @@
                 <h4>Payment</h4>
             </div>
             <div hidden class="mb-3">
-                <input class="form-control" type="text" name="user_id" id="user_id" value="{{$payment->user_id}}">
+                <input class="form-control" type="text" placeholder="User ID" name="user_id" id="user_id" value="{{$user_id}}">
             </div>
             <div class="mb-3">
-                <input class="form-control" type="text" ame="amount" id="amount" value="{{$payment_type}}">
+                <select class="form-select" placeholder="Select Payment Type" name="payment_type" id="payment_type" value="{{old('payment_type')}}">
+                    <option value=""></option>
+                    <option value="rental">Rental</option>
+                    <option value="deposit">Deposit</option>
+                </select>
             </div>
             <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Amount" name="amount" id="amount" value="{{$payment->amount}}">
+                <input class="form-control" type="text" placeholder="Amount" name="amount" id="amount" value="{{old('amount')}}">
             </div>
             <button type="submit" class="btn btn-outline-success">Submit</button>
         </form>

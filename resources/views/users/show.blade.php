@@ -7,14 +7,7 @@
     <a href="{{  $user->phone_number }}">{{$user->phone_number}}</a><br>
     <a href="{{  $user->email }}">{{$user->email}}</a>
     <p>{{$user->street_address}}, {{$user->street_address_plus}}, {{$user->city}} {{$user->post_code}}</p>
-    <div class="container-fluid">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-outline-success" href="{{ URL::to('users/') }}">Client List</a>
-        </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-outline-success" href="{{ URL::to('users/' . $user->id . '/edit') }}">Edit Client</a>
-        </div>
-    </div>
+
     <!-- This area is used to dispay errors -->
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
@@ -31,6 +24,16 @@
     </div>
     @endif
     <!-- This area is used to dispay errors -->
+</div>
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-success" href="{{ URL()->previous() }}">Back</a>
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-success" href="{{ URL::to('users/' . $user->id . '/edit') }}">Edit Client</a>
+        </div>
+    </div>
 </div>
 <div class="accordion accordion-flush" id="accordionFlushExample">
     <div class="accordion-item">
@@ -209,16 +212,17 @@
                     <div class="container-fluid">
                         <div class="container-fluid">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <a class="btn btn-outline-success" href="">Add Payment</a>
+                                <a class="btn btn-outline-success" href="{{ URL::to('/client-payment/' . $user->id) }}">Add Payment</a>
                             </div>
                         </div>
                     </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th scope="col">Payment Type</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Due Date</th>
-                                <th scope="col">Received</th>
+                                <th scope="col">Date Paid</th>
                                 <th scope="col">Payment Date</th>
                                 <th scope="col"></th>
                             </tr>
@@ -226,12 +230,13 @@
                         <tbody>
                             @foreach ($payments as $payment)
                             <tr>
-                                <td>£{{$payment->amount}}.00</th>
+                                <td class="text-capitalize">{{$payment->payment_type}}</th>
+                                <td>£{{$payment->amount}}</th>
                                 <td>{{$payment->payment_due_date}}</th>
-                                <td>{{$payment->received}}</th>
+                                <td>{{$payment->payment_date}}</th>
                                 <td>{{$payment->payment_date}}</th>
                                 <td>
-                                    <a class="btn btn-outline-success" href="{{ URL::to('users/' . $user->id) }}">Details</a>
+                                    <a class="btn btn-outline-success" href="{{ URL::to('/client-payment/' . $payment->id) }}">Edit</a>
                                 </td>
                             </tr>
                             @endforeach

@@ -232,7 +232,6 @@ class MotorcycleController extends Controller
         $motorcycle->mot_expiry_date = $request->motExpiryDate;
         $motorcycle->wheel_plan = $request->wheelplan;
         $motorcycle->month_of_first_registration = $request->monthOfFirstRegistration;
-
         $motorcycle->save();
 
         return to_route('motorcycles.show', [$motorcycle->id])

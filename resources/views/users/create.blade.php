@@ -3,9 +3,6 @@
 @section('content')
 <div class="container">
     @auth
-    <div class="btn-group pull-right" role="group" aria-label="Basic example">
-        <a class="btn btn-outline-success" href="{{ URL::to('users/') }}">All Users</a>
-    </div>
     <div class="container-fluid">
         <h1>Create New Client</h1>
 
@@ -25,10 +22,13 @@
         </div>
         @endif
         <!-- This area is used to dispay errors -->
-
-        <p class="lead text-center">Only authenticated users can access this section.</p>
-
     </div>
+    <div class="container-fluid">
+        <div class="btn-group pull-right" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-success" href="{{ URL()->previous() }}">Back</a>
+        </div>
+    </div>
+    <br>
     <div class="container">
         <form action="/users" method="post" enctype="multipart/form-data">
             @csrf
