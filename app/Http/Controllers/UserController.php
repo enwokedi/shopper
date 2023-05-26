@@ -101,7 +101,7 @@ class UserController extends Controller
         $motorcycles = json_decode($m);
 
         // $p = Payment::all()->where('user_id', $id);
-        $p = Payment::orderBy('payment_due_date', 'DESC')->where('user_id', $id)->get();
+        $p = Payment::orderBy('id', 'DESC')->where('user_id', $id)->get();
         $payments = json_decode($p);
 
         $now = Carbon::now();

@@ -29,8 +29,49 @@ class PaymentsController extends Controller
         return view('payments.create');
     }
 
-    public function userPayment($payment_id)
+    public function createRental($id)
     {
+        $user_id = $id;
+        return view('payments.create-rental', compact('user_id'));
+    }
+
+    public function storeRental(Request $request)
+    {
+        $validated = $request->validate([
+            'payment_type' => 'required',
+            'amount' => 'required',
+        ]);
+
+        $user_id = $request->user_id;
+        $weeklyPayments = $request->amount;
+        $deposit = $request->amount * 3;
+
+        // Store the deposit amount along with details
+        $payment = new Payment();
+        $payment->payment_type = $request->payment_type;
+        $payment->amount = $deposit;
+        $payment->payment_due_date = Carbon::now();
+        $payment->payment_date = Carbon::now();
+        $payment->user_id = $user_id;
+        $payment->save();
+
+        // Create first rental payment
+        $payment = new Payment();
+        $payment->payment_type = 'rental';
+        $payment->amount = $weeklyPayments;
+        $payment->payment_due_date = Carbon::now();
+        $payment->user_id = $user_id;
+        $payment->save();
+
+        return to_route('users.show', [$payment->user_id])
+            ->with('success', 'Deposit has been recorded. Now record first week rental.');
+    }
+
+
+    public function userPayment($id)
+    {
+        $user_id = $id;
+        return view('payments.create', compact('user_id'));
     }
 
     /**
@@ -49,7 +90,7 @@ class PaymentsController extends Controller
         $payment = new Payment();
         $payment->payment_type = $request->payment_type;
         $payment->amount = $request->amount;
-        $payment->payment_date = Carbon::now();
+        // $payment->payment_date = Carbon::now();
         $payment->user_id = $request->user_id;
         $payment->save();
 
@@ -90,13 +131,22 @@ class PaymentsController extends Controller
      */
     public function update(Request $request, $payment_id)
     {
+        $dt = Carbon::now();
+        $nextDueDate = $dt->addDays(8);
+
         Payment::findOrFail($payment_id)->update([
 
             'amount' => $request->amount,
-
             'payment_date' => Carbon::now(),
 
         ]);
+
+        $payment = new Payment();
+        $payment->payment_type = 'rental';
+        $payment->amount = $request->amount;
+        $payment->payment_due_date = $nextDueDate;
+        $payment->user_id = $request->user_id;
+        $payment->save();
 
         return to_route('users.show', [$request->user_id])
             ->with('success', 'Payment has been recorded.');

@@ -212,7 +212,7 @@
                     <div class="container-fluid">
                         <div class="container-fluid">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <a class="btn btn-outline-success" href="{{ URL::to('/client-payment/' . $user->id) }}">Add Payment</a>
+                                <a class="btn btn-outline-success" href="{{ URL::to('/create-rental/' . $user->id) }}">Rental Deposit</a>
                             </div>
                         </div>
                     </div>
@@ -222,7 +222,6 @@
                                 <th scope="col">Payment Type</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Due Date</th>
-                                <th scope="col">Date Paid</th>
                                 <th scope="col">Payment Date</th>
                                 <th scope="col"></th>
                             </tr>
@@ -233,7 +232,6 @@
                                 <td class="text-capitalize">{{$payment->payment_type}}</th>
                                 <td>£{{$payment->amount}}</th>
                                 <td>{{$payment->payment_due_date}}</th>
-                                <td>{{$payment->payment_date}}</th>
                                 <td>{{$payment->payment_date}}</th>
                                 <td>
                                     <a class="btn btn-outline-success" href="{{ URL::to('payments/' . $payment->id . '/edit') }}">Edit</a>

@@ -5,7 +5,7 @@
     @auth
 
     <div class="container-fluid">
-        <h1>Create Payment</h1>
+        <h1>Take Deposit</h1>
 
         <!-- This area is used to dispay errors -->
         @if ($message = Session::get('success'))
@@ -30,7 +30,7 @@
     </div>
     <br>
     <div class="container">
-        <form action="/payments" method="post" enctype="multipart/form-data">
+        <form action="/store-rental" method="post" enctype="multipart/form-data">
             @csrf
             <div>
                 <h4>Payment</h4>
@@ -39,11 +39,7 @@
                 <input class="form-control" type="text" placeholder="User ID" name="user_id" id="user_id" value="{{$user_id}}">
             </div>
             <div class="mb-3">
-                <select class="form-select" placeholder="Select Payment Type" name="payment_type" id="payment_type" value="{{old('payment_type')}}">
-                    <option value=""></option>
-                    <option value="rental">Rental</option>
-                    <option value="deposit">Deposit</option>
-                </select>
+                <input hidden class="form-control text-capitalize" type="text" placeholder="Payment Type" name="payment_type" id="payment_type" value="deposit">
             </div>
             <div class="mb-3">
                 <input class="form-control" type="text" placeholder="Amount" name="amount" id="amount" value="{{old('amount')}}">

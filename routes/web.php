@@ -120,7 +120,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     // Payments Resources
     Route::resource('payments', 'PaymentsController');
-    Route::get('/client-payment/{id}', [PaymentsController::class, 'userPayment'])->name('userPayment');
+    Route::get('/create-payment/{id}', [PaymentsController::class, 'userPayment'])->name('userPayment');
+    Route::get('/create-rental/{id}', [PaymentsController::class, 'createRental'])->name('createRental');
+    Route::post('/store-rental', [PaymentsController::class, 'storeRental'])->name('storeRental');
 
     // Motorcycle Resources
     Route::resource('motorcycles', 'MotorcycleController');
