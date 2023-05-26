@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Payment extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
     /**
      * Get the rental agreement this payment belongs to

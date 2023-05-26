@@ -236,7 +236,7 @@
                                 <td>{{$payment->payment_date}}</th>
                                 <td>{{$payment->payment_date}}</th>
                                 <td>
-                                    <a class="btn btn-outline-success" href="{{ URL::to('/client-payment/' . $payment->id) }}">Edit</a>
+                                    <a class="btn btn-outline-success" href="{{ URL::to('payments/' . $payment->id . '/edit') }}">Edit</a>
                                 </td>
                             </tr>
                             @endforeach

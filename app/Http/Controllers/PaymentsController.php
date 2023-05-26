@@ -31,10 +31,6 @@ class PaymentsController extends Controller
 
     public function userPayment($payment_id)
     {
-        $p = Payment::all()->where('id', $payment_id);
-        $payment = json_decode($p);
-        dd($payment);
-        return view('payments.edit', compact('payment'));
     }
 
     /**
@@ -78,9 +74,11 @@ class PaymentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($payment_id)
     {
-        $payment = Payment::findOrFail($id);
+        $payment = Payment::findOrFail($payment_id);
+
+        return view('payments.edit', compact('payment'));
     }
 
     /**
@@ -95,20 +93,13 @@ class PaymentsController extends Controller
         Payment::findOrFail($payment_id)->update([
 
             'amount' => $request->amount,
-            'received' => $request->received,
 
-            'status' => 1,
             'payment_date' => Carbon::now(),
 
         ]);
 
-
-        $notification = array(
-            'message' => 'Payment Updated Successfully',
-            'alert-type' => 'success'
-        );
-
-        return redirect()->route('all.product')->with($notification);
+        return to_route('users.show', [$request->user_id])
+            ->with('success', 'Payment has been recorded.');
     }
 
     /**

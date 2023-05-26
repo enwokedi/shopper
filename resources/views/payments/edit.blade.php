@@ -30,7 +30,8 @@
     </div>
     <br>
     <div class="container">
-        <form action="/payments" method="post" enctype="multipart/form-data">
+        <form action="/payments/{{$payment->id}}" method="post" enctype="multipart/form-data">
+            @method('put')
             @csrf
             <div>
                 <h4>Payment</h4>
@@ -39,7 +40,7 @@
                 <input class="form-control" type="text" name="user_id" id="user_id" value="{{$payment->user_id}}">
             </div>
             <div class="mb-3">
-                <input class="form-control" type="text" ame="amount" id="amount" value="{{$payment_type}}">
+                <input class="form-control text-capitalize" type="text" ame="amount" id="amount" value="{{$payment->payment_type}}">
             </div>
             <div class="mb-3">
                 <input class="form-control" type="text" placeholder="Amount" name="amount" id="amount" value="{{$payment->amount}}">
