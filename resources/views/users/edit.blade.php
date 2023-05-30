@@ -3,9 +3,13 @@
 @section('content')
 <div class="container">
     @auth
+    <br>
     <div class="container-fluid">
         <div class="btn-group pull-right" role="group" aria-label="Basic example">
-            <a class="btn btn-primary" href="{{ URL::to('users/') }}">All Users</a>
+            <a class="btn btn-outline-success" href="{{ URL()->previous() }}">Back</a>
+        </div>
+        <div class="btn-group pull-right" role="group" aria-label="Basic example">
+            <a class="btn btn-success" href="{{ URL::to('users/') }}">All Users</a>
         </div>
     </div>
     <br>
@@ -84,7 +88,7 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div> -->
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
 @endauth

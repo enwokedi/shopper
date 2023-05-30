@@ -4,6 +4,12 @@
 <div class="container">
     @auth
     <h1>NGM Document Upload</h1>
+    <div class="conatiner-fluid">
+        <div class="btn-group pull-right" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-success" href="{{ URL()->previous() }}">Back</a>
+        </div>
+    </div>
+    <br>
 
     <div class="container mt-5">
         <form action="/upload-poins/' . $user_id" method="post" enctype="multipart/form-data">

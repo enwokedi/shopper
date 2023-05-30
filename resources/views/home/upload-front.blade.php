@@ -4,10 +4,17 @@
 <div class="container">
     @auth
     <h1>NGM Document Upload</h1>
+    <div class="conatiner-fluid">
+        <div class="btn-group pull-right" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-success" href="{{ URL()->previous() }}">Back</a>
+        </div>
+    </div>
+    <br>
 
     <div class="container mt-5">
         <form action="/upload-front/' . $user_id" method="post" enctype="multipart/form-data">
             <h3 class="text-center mb-5">Upload Front of Driving Licence</h3>
+
             @csrf
             @if ($message = Session::get('success'))
             <div class="alert alert-success">
@@ -23,6 +30,7 @@
                 </ul>
             </div>
             @endif
+
             <div class="custom-file">
                 <input type="file" name="file" class="custom-file-input" id="chooseFile">
                 <label class="custom-file-label" for="chooseFile">Select file</label>
