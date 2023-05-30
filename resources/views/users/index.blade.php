@@ -10,6 +10,8 @@
             <a class="btn btn-outline-success" href="{{ URL::to('users/create') }}">Create New User</a>
         </div>
     </div>
+    <br>
+
     <!-- This area is used to dispay errors -->
     @if ($message = Session::get('success'))
     <div class="alert alert-success">

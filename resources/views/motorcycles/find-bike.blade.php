@@ -4,6 +4,12 @@
 <div class="container">
     @auth
 
+    <div class="container-fluid">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/') }}">Back</a>
+        </div>
+    </div>
+    <br>
 
     <div class="container mt-5">
         <form action="/registration-number" method="post" enctype="multipart/form-data" class="form-inline text-center">

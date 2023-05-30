@@ -14,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -47,12 +48,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate and store the new client information
+        // Validate the incoming request
         $validated = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'phone_number' => 'required',
-            'email' => 'required',
+            'email' => 'required | unique:users',
             'nationality' => 'required',
             'driving_licence' => 'required',
             'street_address' => 'required',
@@ -60,6 +61,7 @@ class UserController extends Controller
             'post_code' => 'required',
         ]);
 
+        // Generating random 9 figure number - not used
         $a = 0;
         for ($i = 0; $i < 6; $i++) {
             $a .= mt_rand(0, 9);

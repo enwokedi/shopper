@@ -6,11 +6,13 @@ use Illuminate\View\View;
 use App\Models\Motorcycle;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Validator;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Console\Input\Input;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Redirect;
 
 class MotorcycleController extends Controller
 {
@@ -148,7 +150,7 @@ class MotorcycleController extends Controller
         dd($motorcycle);
 
         $validated = $request->validate([
-            'registration' => 'required',
+            'registration' => 'required | unique',
             'make' => 'required',
             'model' => 'required',
             'year' => 'required',
@@ -232,38 +234,51 @@ class MotorcycleController extends Controller
         return view('motorcycles.find-bike');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function registrationNumber(Request $request)
     {
-        $response = Http::withHeaders([
-            'x-api-key' => '5i0qXnN6SY3blfoFeWvlu9sTQCSdrf548nMS8vVO',
-            'Content-Type' => 'application/json',
-        ])->post('https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles', [
-            'registrationNumber' => $request->registrationNumber,
-        ]);
+        $bike = Motorcycle::all()->where('registration', '=', $request->registrationNumber);
 
-        $request = json_decode($response->body());
+        if (isset($bike)) {
+            return to_route('findMotorcycle')->with('success', 'Motorcycle already exists. Please enter a new registratrion number.');
+        } else 
+        if (is_null($bike)) {
+            $response = Http::withHeaders([
+                'x-api-key' => '5i0qXnN6SY3blfoFeWvlu9sTQCSdrf548nMS8vVO',
+                'Content-Type' => 'application/json',
+            ])->post('https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles', [
+                'registrationNumber' => $request->registrationNumber,
+            ]);
 
-        $motorcycle = new Motorcycle();
-        $motorcycle->registration = $request->registrationNumber;
-        $motorcycle->make = $request->make;
-        $motorcycle->tax_status = $request->taxStatus;
-        $motorcycle->tax_due_date = $request->taxDueDate;
-        $motorcycle->mot_status = $request->motStatus;
-        $motorcycle->year = $request->yearOfManufacture;
-        $motorcycle->engine = $request->engineCapacity;
-        $motorcycle->co2_emissions = $request->co2Emissions;
-        $motorcycle->fuel_type = $request->fuelType;
-        $motorcycle->marked_for_export = $request->markedForExport;
-        $motorcycle->colour = $request->colour;
-        $motorcycle->type_approval = $request->typeApproval;
-        $motorcycle->last_v5_issue_date = $request->dateOfLastV5CIssued;
-        $motorcycle->mot_expiry_date = $request->motExpiryDate;
-        $motorcycle->wheel_plan = $request->wheelplan;
-        $motorcycle->month_of_first_registration = $request->monthOfFirstRegistration;
-        $motorcycle->save();
+            $request = json_decode($response->body());
 
-        return to_route('motorcycles.show', [$motorcycle->id])
-            ->with('success', 'Vehicle details have been added to the database.');
+            $motorcycle = new Motorcycle();
+            $motorcycle->registration = $request->registrationNumber;
+            $motorcycle->make = $request->make;
+            $motorcycle->tax_status = $request->taxStatus;
+            $motorcycle->tax_due_date = $request->taxDueDate;
+            $motorcycle->mot_status = $request->motStatus;
+            $motorcycle->year = $request->yearOfManufacture;
+            $motorcycle->engine = $request->engineCapacity;
+            $motorcycle->co2_emissions = $request->co2Emissions;
+            $motorcycle->fuel_type = $request->fuelType;
+            $motorcycle->marked_for_export = $request->markedForExport;
+            $motorcycle->colour = $request->colour;
+            $motorcycle->type_approval = $request->typeApproval;
+            $motorcycle->last_v5_issue_date = $request->dateOfLastV5CIssued;
+            $motorcycle->mot_expiry_date = $request->motExpiryDate;
+            $motorcycle->wheel_plan = $request->wheelplan;
+            $motorcycle->month_of_first_registration = $request->monthOfFirstRegistration;
+            $motorcycle->save();
+
+            return to_route('motorcycles.show', [$motorcycle->id])
+                ->with('success', 'Vehicle details have been added to the database.');
+        }
     }
 
     /**

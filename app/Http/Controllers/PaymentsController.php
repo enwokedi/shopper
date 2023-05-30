@@ -51,27 +51,26 @@ class PaymentsController extends Controller
         ]);
 
         $user_id = $request->user_id;
-        $weeklyPayments = $request->amount;
-        $deposit = $request->amount * 3;
-
         $motorcycle_id = $request->session()->get('motorcycle_id', 'default');
 
         // Store the deposit amount along with details
         $payment = new Payment();
         $payment->payment_type = $request->payment_type;
-        $payment->amount = $deposit;
+        $payment->amount = $request->amount;
         $payment->payment_due_date = Carbon::now();
         $payment->payment_date = Carbon::now();
         $payment->user_id = $user_id;
+        $payment->payment_due_count = 7;
         // $payment->motorcycle_id = $motorcycle_id;
         $payment->save();
 
         // Create first rental payment
         $payment = new Payment();
         $payment->payment_type = 'rental';
-        $payment->amount = $weeklyPayments;
+        $payment->amount = $request->amount;
         $payment->payment_due_date = Carbon::now();
         $payment->user_id = $user_id;
+        $payment->payment_due_count = 7;
         $payment->save();
 
         return to_route('users.show', [$payment->user_id])
@@ -101,7 +100,7 @@ class PaymentsController extends Controller
         $payment = new Payment();
         $payment->payment_type = $request->payment_type;
         $payment->amount = $request->amount;
-        // $payment->payment_date = Carbon::now();
+        $payment->payment_date = Carbon::now();
         $payment->user_id = $request->user_id;
         $payment->save();
 
@@ -142,8 +141,11 @@ class PaymentsController extends Controller
      */
     public function update(Request $request, $payment_id)
     {
-        $dt = Carbon::now();
-        $nextDueDate = $dt->addDays(7);
+        $payments = Payment::findOrFail($payment_id);
+        $lastPaymentDate = $payments->payment_due_date;
+        Carbon::parse($lastPaymentDate);
+        $nextDueDate = Carbon::parse($payments->payment_due_date)->addDays(7);
+        // dd($nextDueDate);
 
         Payment::findOrFail($payment_id)->update([
 

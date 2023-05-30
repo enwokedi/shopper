@@ -75,15 +75,6 @@
             <div class="mb-3">
                 <input class="form-control" type="text" placeholder="Post Code" aria-label="default input example" name="post_code" id="post_code" value="{{old('post_code')}}">
             </div>
-
-            <!-- <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-            </div> -->
-            <!-- <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div> -->
             <button type="submit" class="btn btn-outline-success">Submit</button>
         </form>
     </div>

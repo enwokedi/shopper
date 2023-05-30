@@ -4,6 +4,7 @@
 <div class="container">
     @auth
     <h1>{{ $motorcycle->registration }}</h1>
+
     <!-- This area is used to dispay errors -->
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
