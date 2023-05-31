@@ -43,10 +43,13 @@
                     <input hidden class="form-control text-capitalize" type="text" placeholder="Payment Type" name="payment_type" id="payment_type" value="deposit">
                 </div>
                 <div class="mb-3">
-                    <input class="form-control" type="text" placeholder="Amount" name="amount" id="amount" value="{{old('amount')}}">
+                    <input class="form-control" type="text" placeholder="Deposit Amount" name="amount" id="amount" value="{{old('amount')}}">
                 </div>
                 <div class="mb-3">
-                    <p id="rentalDeposit"></p>
+                    <input class="form-control" type="text" placeholder="Deposit Weeks" name="weeks" id="weeks" value="">
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" type="text" placeholder="Deposit Total" name="deposit_total" id="deposit_total" value="">
                 </div>
                 <button type="submit" class="btn btn-outline-success">Submit</button>
             </form>

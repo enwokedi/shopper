@@ -154,26 +154,25 @@ class MotorcycleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $registrationNumber)
+    public function store(Request $request)
     {
         $response = Http::withHeaders([
             'x-api-key' => '5i0qXnN6SY3blfoFeWvlu9sTQCSdrf548nMS8vVO',
             'Content-Type' => 'application/json',
         ])->post('https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles', [
-            'registrationNumber' => $registrationNumber,
+            'registrationNumber' => $request->registration,
         ]);
 
         $motorcycle = json_decode($response->body());
-        dd($motorcycle);
 
         $validated = $request->validate([
-            'registration' => 'required | unique',
+            'registration' => 'required | unique:motorcycles',
             'make' => 'required',
             'model' => 'required',
             'year' => 'required',
             'displacement' => 'required',
             'colour' => 'required',
-            'availability' => 'required',
+
         ]);
 
         $motorcycle = new Motorcycle();

@@ -28,10 +28,11 @@
             <div class="col">
                 <div class="container-fluid">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a class="btn btn-outline-primary" href="{{ URL::to('check-vehicle-reg/') }}">Check Reg</a>
+                        <a class="btn btn-primary" href="{{ URL::to('/motorcycles/create') }}">Add Motorcycle</a>
+                        <!-- <a class="btn btn-outline-primary" href="{{ URL::to('find-motorcycle/') }}">Add Motorcycle</a> -->
                     </div>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a class="btn btn-outline-primary" href="{{ URL::to('find-motorcycle/') }}">Add Motorcycle</a>
+                        <a class="btn btn-outline-primary" href="{{ URL::to('check-vehicle-reg/') }}">Check Reg</a>
                     </div>
                 </div>
             </div>

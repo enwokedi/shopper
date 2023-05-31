@@ -70,7 +70,7 @@
                                         <input class="form-control" type="text" placeholder="Vehicle Age" name="vehicle_age" id="vehicle_age" value="">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Registration Place" name="registration_place" id="registration_place" v0alue="{{$motorcycle->registration_place}}">
+                                        <input class="form-control" type="text" placeholder="Registration Place" name="registration_place" id="registration_place" value="{{$motorcycle->registration_place}}">
                                     </div>
                                     <div class="mb-3">
                                         <input class="form-control" type="text" placeholder="Registration Date" name="registration_date" id="registration_date" value="{{$motorcycle->registration_date}}">
@@ -150,44 +150,6 @@
                             <div class="col">
 
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            <h4>Mileage Information</h4>
-                        </button>
-                    </h2>
-                    <div id="flush-collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            <div class="container">
-                                <div class="row align-items-start">
-                                    <div class="col">
-
-                                    </div>
-                                    <div class="col">
-                                        <br>
-                                        <br>
-
-                                    </div>
-                                    <div class="col">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed show" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                            <h4>Insurance Details</h4>
-                        </button>
-                    </h2>
-                    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            Payment history...
                         </div>
                     </div>
                 </div>
