@@ -196,9 +196,9 @@ class MotorcycleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, $motorcycle_id)
     {
-        $m = Motorcycle::findOrFail($id);
+        $m = Motorcycle::findOrFail($motorcycle_id);
         $motorcycle = json_decode($m);
 
         return view('motorcycles.show')->with('motorcycle', $motorcycle);

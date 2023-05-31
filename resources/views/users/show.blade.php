@@ -228,10 +228,9 @@
                                 <th scope="col">Reg</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Amount Due</th>
+                                <th scope="col">Received</th>
                                 <th scope="col">Due Date</th>
                                 <th scope="col">Payment Date</th>
-                                <th scope="col">Received</th>
                                 <th scope="col">Outstanding</th>
                                 <th scope="col"></th>
                             </tr>
@@ -242,9 +241,11 @@
                                 <td>{{$payment->payment_type}}</th>
                                 <td class="text-capitalize">{{$payment->payment_type}}</th>
                                 <td>£{{$payment->amount}}</th>
-                                <td>£{{$payment->amount}}</th>
+                                <td>???</th>
                                 <td>{{$payment->payment_due_date}}</th>
                                 <td>{{$payment->payment_date}}</th>
+                                <td></td>
+
                                 <td>
                                     <a class="btn btn-outline-success" href="{{ URL::to('payments/' . $payment->id . '/edit') }}">Update Payment</a>
                                 </td>
