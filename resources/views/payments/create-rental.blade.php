@@ -43,6 +43,9 @@
                     <input hidden class="form-control text-capitalize" type="text" placeholder="Payment Type" name="payment_type" id="payment_type" value="deposit">
                 </div>
                 <div class="mb-3">
+                    {{old('amount')}}
+                </div>
+                <div class="mb-3">
                     <input class="form-control" type="text" placeholder="Deposit Amount" name="amount" id="amount" value="{{old('amount')}}">
                 </div>
                 <div class="mb-3">

@@ -61,22 +61,22 @@
                     <br>
                     <div class="container-fluid">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <a class="btn btn-outline-success" href="{{ URL::to('/file-dl-front/' . $user->id) }}">Add DL Front</a>
+                            <a class="btn btn-outline-success" href="{{ URL::to('/file-dl-front/' . $user->id) }}">Licence Front</a>
                         </div>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <a class="btn btn-outline-success" href="{{ URL::to('/file-dl-back/' . $user->id) }}">Add DL Back</a>
+                            <a class="btn btn-outline-success" href="{{ URL::to('/file-dl-back/' . $user->id) }}">Licence Back</a>
                         </div>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <a class="btn btn-outline-success" href="{{ URL::to('/file-pocbt/' . $user->id) }}">Add CBT</a>
+                            <a class="btn btn-outline-success" href="{{ URL::to('/file-pocbt/' . $user->id) }}">CBT</a>
                         </div>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <a class="btn btn-outline-success" href="{{ URL::to('/file-poid/' . $user->id) }}">Add ID</a>
+                            <a class="btn btn-outline-success" href="{{ URL::to('/file-poid/' . $user->id) }}">ID</a>
                         </div>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <a class="btn btn-outline-success" href="{{ URL::to('/file-poadd/' . $user->id) }}">Add Address</a>
+                            <a class="btn btn-outline-success" href="{{ URL::to('/file-poadd/' . $user->id) }}">Proof of Address</a>
                         </div>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <a class="btn btn-outline-success" href="{{ URL::to('/file-poins/' . $user->id) }}">Add Insurance</a>
+                            <a class="btn btn-outline-success" href="{{ URL::to('/file-poins/' . $user->id) }}">Insurance</a>
                         </div>
 
                         <!-- Button trigger modal -->
@@ -121,7 +121,7 @@
                                         <tr>
                                             <th scope="col">Name</th>
                                             <th scope="col">Document Type</th>
-                                            <th scope="col"></th>
+                                            <th scope="col">Reg #</th>
                                             <th scope="col"></th>
                                             <th scope="col"></th>
                                         </tr>
@@ -131,10 +131,15 @@
                                         <tr>
                                             <td>{{ $document->name }}</td>
                                             <td>{{ $document->document_type }}</td>
-                                            <td></td>
+                                            <td>Registration ???</td>
                                             <td></td>
                                             <td>
-                                                <a class="btn btn-outline-success" href="/remove-upload/{{$document->id}}">Delete</a>
+                                                <div class="btn-group" role="group">
+                                                    <a class="btn btn-outline-success" href="/remove-upload/{{$document->id}}">View</a>
+                                                </div>
+                                                <div class="btn-group" role="group">
+                                                    <a class="btn btn-outline-danger" href="/remove-upload/{{$document->id}}">Delete</a>
+                                                </div>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -228,24 +233,23 @@
                                 <th scope="col">Reg</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Received</th>
                                 <th scope="col">Due Date</th>
-                                <th scope="col">Payment Date</th>
+                                <th scope="col">Received</th>
                                 <th scope="col">Outstanding</th>
+                                <th scope="col">Payment Date</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($payments as $payment)
                             <tr>
-                                <td>{{$payment->payment_type}}</th>
+                                <td>{{$payment->registration}}</th>
                                 <td class="text-capitalize">{{$payment->payment_type}}</th>
                                 <td>£{{$payment->amount}}</th>
-                                <td>???</th>
                                 <td>{{$payment->payment_due_date}}</th>
+                                <td>£{{$payment->received}}</th>
+                                <td class="text-danger">£{{$payment->outstanding}}</td>
                                 <td>{{$payment->payment_date}}</th>
-                                <td></td>
-
                                 <td>
                                     <a class="btn btn-outline-success" href="{{ URL::to('payments/' . $payment->id . '/edit') }}">Update Payment</a>
                                 </td>

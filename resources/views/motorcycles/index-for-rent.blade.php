@@ -51,7 +51,7 @@
             @foreach ($motorcycles as $motorcycle)
             <tr>
                 <th scope="row">{{$motorcycle->registration}}</th>
-                <td>{{$motorcycle->make}}</td>
+                <td class="text-capitalize">{{$motorcycle->make}}</td>
                 <td>{{$motorcycle->model}}</td>
                 <td>{{$motorcycle->engine}}CC</td>
                 <td>{{$motorcycle->year}}</td>

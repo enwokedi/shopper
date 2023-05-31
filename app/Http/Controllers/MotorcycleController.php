@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
+use App\Models\Payment;
 use App\Models\Motorcycle;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class MotorcycleController extends Controller
 {
@@ -52,7 +54,8 @@ class MotorcycleController extends Controller
         $request->session()->put('user_id', $id);
 
         $m = Motorcycle::all()
-            ->where('is_for_rent', 1);
+            ->where('is_for_rent', 1)
+            ->sortByDesc('id');
         $motorcycles = json_decode($m);
 
         $count = $m->count();
@@ -63,6 +66,9 @@ class MotorcycleController extends Controller
     {
         $user_id = $request->session()->get('user_id', 'default');
         $request->session()->put('motorcycle_id', $motorcycle_id);
+        $authUser = Auth::user();
+
+        $motorcycle = Motorcycle::findOrFail($motorcycle_id);
 
         Motorcycle::findOrFail($motorcycle_id)->update([
             'is_for_rent' => 0,
@@ -70,6 +76,33 @@ class MotorcycleController extends Controller
             'user_id' => $user_id,
             'availability' => 'rented',
         ]);
+
+        // Create deposit
+        $payment = new Payment();
+        $payment->payment_type = 'deposit';
+        $payment->amount = $motorcycle->rental_price * 3;
+        $payment->registration = $motorcycle->registration;
+        $payment->payment_due_date = Carbon::now();
+        $payment->received = 00.00;
+        $payment->outstanding = $payment->amount - $payment->received;
+        $payment->user_id = $user_id;
+        $payment->created_at = Carbon::now();
+        $payment->auth_user = $authUser->first_name;
+        $payment->save();
+
+        // Create first rental payment
+        $payment = new Payment();
+        $payment->payment_type = 'rental';
+        $payment->amount = $motorcycle->rental_price;
+        $payment->registration = $motorcycle->registration;
+        $payment->payment_due_date = Carbon::now();
+        $payment->received = 00.00;
+        $payment->outstanding = $payment->amount - $payment->received;
+        $payment->user_id = $user_id;
+        $payment->payment_due_count = 7;
+        $payment->created_at = Carbon::now();
+        $payment->auth_user = $authUser->first_name;
+        $payment->save();
 
         return to_route('users.show', [$user_id])
             ->with('success', 'Motorcycle assigned to this client.');
