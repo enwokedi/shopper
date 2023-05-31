@@ -177,6 +177,7 @@
                                     <th scope="col">Year</th>
                                     <th scope="col">Colour</th>
                                     <th scope="col"></th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -189,7 +190,12 @@
                                     <td>{{$motorcycle->year}}</th>
                                     <td>{{$motorcycle->colour}}</th>
                                     <td>
-                                        <a class="btn btn-outline-success" href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a class="btn btn-outline-success" href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
+                                        </div>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a class="btn btn-outline-success" href="{{ URL::to('remove-rental/' . $motorcycle->id) }}">Remove</a>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -219,17 +225,23 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Payment Type</th>
+                                <th scope="col">Reg</th>
+                                <th scope="col">Type</th>
                                 <th scope="col">Amount</th>
+                                <th scope="col">Amount Due</th>
                                 <th scope="col">Due Date</th>
                                 <th scope="col">Payment Date</th>
+                                <th scope="col">Received</th>
+                                <th scope="col">Outstanding</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($payments as $payment)
                             <tr>
+                                <td>{{$payment->payment_type}}</th>
                                 <td class="text-capitalize">{{$payment->payment_type}}</th>
+                                <td>£{{$payment->amount}}</th>
                                 <td>£{{$payment->amount}}</th>
                                 <td>{{$payment->payment_due_date}}</th>
                                 <td>{{$payment->payment_date}}</th>

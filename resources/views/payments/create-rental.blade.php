@@ -30,22 +30,30 @@
     </div>
     <br>
     <div class="container">
-        <form action="/store-rental" method="post" enctype="multipart/form-data">
-            @csrf
-            <div>
-                <h4>Payment</h4>
-            </div>
-            <div hidden class="mb-3">
-                <input class="form-control" type="text" placeholder="User ID" name="user_id" id="user_id" value="{{$user_id}}">
-            </div>
-            <div class="mb-3">
-                <input hidden class="form-control text-capitalize" type="text" placeholder="Payment Type" name="payment_type" id="payment_type" value="deposit">
-            </div>
-            <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Amount" name="amount" id="amount" value="{{old('amount')}}">
-            </div>
-            <button type="submit" class="btn btn-outline-success">Submit</button>
-        </form>
+        <div class="col">
+            <form action="/store-rental" method="post" enctype="multipart/form-data">
+                @csrf
+                <div>
+                    <h4>Payment</h4>
+                </div>
+                <div hidden class="mb-3">
+                    <input class="form-control" type="text" placeholder="User ID" name="user_id" id="user_id" value="{{$user_id}}">
+                </div>
+                <div class="mb-3">
+                    <input hidden class="form-control text-capitalize" type="text" placeholder="Payment Type" name="payment_type" id="payment_type" value="deposit">
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" type="text" placeholder="Amount" name="amount" id="amount" value="{{old('amount')}}">
+                </div>
+                <div class="mb-3">
+                    <p id="rentalDeposit"></p>
+                </div>
+                <button type="submit" class="btn btn-outline-success">Submit</button>
+            </form>
+        </div>
+        <div class="col">
+
+        </div>
     </div>
     @endauth
 

@@ -150,11 +150,11 @@
                                 <tbody>
                                     <tr>
                                         <td>Status </td>
-                                        <td class="text-end">{{$motorcycle->availability}}</td>
+                                        <td class="text-end text-capitalize">{{$motorcycle->availability}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Weekly Rental Price </td>
-                                        <td class="text-end">£{{$motorcycle->rental_price}}</td>
+                                        <td>Weekly Rental Price £</td>
+                                        <td class="text-end">{{$motorcycle->rental_price}}</td>
                                     </tr>
                                     <tr>
                                         <td>Rental Start Date </td>

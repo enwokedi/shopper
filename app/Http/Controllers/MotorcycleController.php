@@ -67,6 +67,23 @@ class MotorcycleController extends Controller
             'is_for_rent' => 0,
             'is_rented' => 1,
             'user_id' => $user_id,
+            'availability' => 'rented',
+        ]);
+
+        return to_route('users.show', [$user_id])
+            ->with('success', 'Motorcycle assigned to this client.');
+    }
+
+    public function removeFromClient(Request $request, $motorcycle_id)
+    {
+        $user_id = $request->session()->get('user_id', 'default');
+        $request->session()->put('motorcycle_id', $motorcycle_id);
+
+        Motorcycle::findOrFail($motorcycle_id)->update([
+            'is_for_rent' => 1,
+            'is_rented' => 0,
+            'user_id' => null,
+            'availability' => null,
         ]);
 
         return to_route('users.show', [$user_id])

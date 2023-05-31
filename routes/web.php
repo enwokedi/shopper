@@ -134,6 +134,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::post('/registration-number', [MotorcycleController::class, 'registrationNumber'])->name('registrationNumber');
     Route::get('/motorcycles-for-rent/{id}', [MotorcycleController::class, 'clientForRent'])->name('clientForRent');
     Route::get('/rental/{motorcycle_id}', [MotorcycleController::class, 'addToClient'])->name('motorcycles.users.update');
+    Route::get('/remove-rental/{motorcycle_id}', [MotorcycleController::class, 'removeFromClient'])->name('removeFromClient');
 
     Route::get('/check-vehicle-reg', [MotorcycleController::class, 'vehicleCheckForm'])->name('vehicleCheckForm');
     Route::post('/vehicle-check', [MotorcycleController::class, 'vehicleCheck'])->name('vehicleCheck');

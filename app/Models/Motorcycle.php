@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Motorcycle extends Model
 {
     use HasFactory;
-    // protected $guarded = [];
+    protected $guarded = [];
     protected $dates = [
         'payment_due_date',
         'payment_date',

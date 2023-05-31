@@ -18,11 +18,12 @@ class PaymentsController extends Controller
     public function index()
     {
         $p = Payment::all()->where('payment_date', null);
+        // dd($p);
         $payments = json_decode($p);
         $count = $p->count();
 
-        // $users = User::all()->where('id', $payments->user_id);
-
+        // $users = User::all()->where('user_id', $payments->user_id);
+        // dd($users);
         return view('payments.index', compact('payments', 'count'));
     }
 
