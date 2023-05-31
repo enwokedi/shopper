@@ -38,6 +38,7 @@
             </div>
         </div>
     </div>
+    <br>
 
     <!-- This area is used to dispay errors -->
     @if ($message = Session::get('success'))

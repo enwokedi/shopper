@@ -23,7 +23,7 @@ class MotorcycleController extends Controller
      */
     public function index()
     {
-        $m = Motorcycle::all();
+        $m = Motorcycle::orderBy('id', 'DESC')->get();
         $motorcycles = json_decode($m);
 
         $count = $m->count();
@@ -38,7 +38,8 @@ class MotorcycleController extends Controller
     public function isForRent()
     {
         $m = Motorcycle::all()
-            ->where('is_for_rent', 1);
+            ->where('is_for_rent', 1)
+            ->sortByDesc('id');
         $motorcycles = json_decode($m);
 
         $count = $m->count();
@@ -98,7 +99,8 @@ class MotorcycleController extends Controller
     public function isRented()
     {
         $m = Motorcycle::all()
-            ->where('is_rented', 1);
+            ->where('is_rented', 1)
+            ->sortByDesc('id');
         $motorcycles = json_decode($m);
 
         $count = $m->count();
@@ -170,7 +172,7 @@ class MotorcycleController extends Controller
             'make' => 'required',
             'model' => 'required',
             'year' => 'required',
-            'displacement' => 'required',
+            'engine' => 'required',
             'colour' => 'required',
 
         ]);
@@ -180,9 +182,13 @@ class MotorcycleController extends Controller
         $motorcycle->make = $request->make;
         $motorcycle->model = $request->model;
         $motorcycle->year = $request->year;
-        $motorcycle->displacement = $request->displacement;
+        $motorcycle->engine = $request->engine;
         $motorcycle->colour = $request->colour;
-        $motorcycle->availability = $request->availability;
+        $motorcycle->is_for_rent = $request->is_for_rent;
+        $motorcycle->is_rented = null;
+        $motorcycle->is_for_sale = null;
+        $motorcycle->is_sold = null;
+        $motorcycle->rental_price = $request->rental_price;
 
         $motorcycle->save();
 

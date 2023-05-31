@@ -44,8 +44,8 @@
             <div class="mb-3">
                 <select class="form-select" aria-label="Select Gender" name="gender" id="gender" value="{{old('gender')}}">
                     <option selected>Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
                 </select>
             </div>
             <div class="mb-3">

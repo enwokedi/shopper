@@ -35,56 +35,50 @@
                         <h4>Basic Setup Details</h4>
                         <form action="/motorcycles" method="post" enctype="multipart/form-data">
                             @csrf
-                            <select class="form-select mb-3" aria-label="Default select example">
+                            <div class="mb-3">
+                                <input class="form-control" type="text" placeholder="Registration" name="registration" id="registration" value="{{old('registration')}}">
+                            </div>
+                            <select class="form-select mb-3" aria-label="Select Make" name="make" id="make" value="{{old('make')}}">
                                 <option selected>Select Make</option>
                                 <option value="honda">Honda</option>
                                 <option value="yamaha">Yamaha</option>
                             </select>
                             <div class="mb-3">
-                                <input class="form-control" type="text" placeholder="Model" name="model" id="model">
+                                <input class="form-control" type="text" placeholder="Model" name="model" id="model" value="{{old('model')}}">
                             </div>
                             <div class="mb-3">
-                                <input class="form-control" type="text" placeholder="Colour" name="colour" id="colour">
+                                <input class="form-control" type="text" placeholder="Colour" name="colour" id="colour" value="{{old('colour')}}">
                             </div>
                             <div class="mb-3">
-                                <input class="form-control" type="text" placeholder="Fuel Type" id="fuel_type" name="year">
+                                <input class="form-control" type="text" placeholder="Fuel Type" id="fuel_type" name="year" value="{{old('petrol')}}">
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Engine" aria-label="engine" aria-describedby="engine" name="displacement" id="displacement">
+                                <input type="text" class="form-control" placeholder="Engine" aria-label="engine" aria-describedby="engine" name="engine" id="engine" value="{{old('engine')}}">
                                 <span class="input-group-text" id="engine_cc">CC</span>
-                            </div>
-                            <div class="mb-3">
-                                <input class="form-control" type="text" placeholder="Registration" name="registration" id="registration">
                             </div>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="is_for_rent">
+                                <input class="form-check-input" type="radio" name="is_for_rent" id="is_for_rent" value="1">
                                 <label class="form-check-label" for="is_for_rent">
                                     For Rent
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="is_rented">
+                                <input class="form-check-input" type="radio" name="is_rented" id="is_rented" value="1">
                                 <label class="form-check-label" for="is_rented">
                                     Rented
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="is_for_sale">
+                                <input class="form-check-input" type="radio" name="is_for_sale" id="is_for_sale" value="1">
                                 <label class="form-check-label" for="is_for_sale">
                                     For Sale
                                 </label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="id_sold">
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="radio" name="is_sold" id="is_sold" value="1">
                                 <label class="form-check-label" for="is_sold">
                                     Sold
-                                </label>
-                            </div>
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="is_for_rent">
-                                <label class="form-check-label" for="is_for_rent">
-                                    For Rent
                                 </label>
                             </div>
                             <div class="input-group mb-3">
@@ -92,10 +86,6 @@
                                 <input type="text" class="form-control" aria-label="Rental Price (to the nearest pound)" name="rental_price" id="rental_price">
                                 <span class="input-group-text">.00</span>
                             </div>
-                            <div class="mb-3">
-                                <input class="form-control" type="text" placeholder="Rental Deposit Weeks" name="rentatl_deposit_weeks" id="rental_deposit_weeks">
-                            </div>
-
 
                             <button type="submit" class="btn btn-outline-primary">Submit</button>
                         </form>
