@@ -259,7 +259,9 @@
                                 <td>£{{$rental->received}}</th>
                                 <td>{{$rental->payment_date}}</th>
                                 <td>
-                                    <a class="btn btn-outline-success" href="{{ URL::to('create-payment/' . $rental->id) }}">Payments</a>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-outline-success" href="{{ URL::to('create-payment/' . $rental->id) }}">Payments</a>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach

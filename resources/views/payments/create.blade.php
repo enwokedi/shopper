@@ -46,10 +46,49 @@
                 </select>
             </div>
             <div class="mb-3">
-                <input class="form-control" type="text" placeholder="Amount" name="amount" id="amount" value="{{old('amount')}}">
+                <input class="form-control" type="text" placeholder="Amount Received" name="received" id="received" value="{{old('received')}}">
+            </div>
+            <div class="mb-3">
+                <input class="form-control" type="text" placeholder="Payment Description" name="description" id="description" value="{{old('description')}}">
             </div>
             <button type="submit" class="btn btn-outline-success">Submit</button>
         </form>
+    </div>
+    <br>
+    <div class="container-fluid">
+        <h4>Payment History</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Reg</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Outstanding</th>
+                    <th scope="col">Received</th>
+                    <th scope="col">Payment Date</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($payments as $payment)
+                <tr>
+                    <td>{{$payment->registration}}</th>
+                    <td class="text-capitalize">{{$payment->payment_type}}</th>
+                    <td>£{{$payment->received}}</th>
+                    <td>{{$payment->payment_due_date}}</th>
+                    <td class="text-danger">£{{$payment->outstanding}}</td>
+                    <td>£{{$payment->received}}</th>
+                    <td>{{$payment->payment_date}}</th>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-outline-danger" href="{{ URL::to('payments/delete/' . $payment->id) }}">Void</a>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
     @endauth
 

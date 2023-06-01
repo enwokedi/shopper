@@ -86,10 +86,14 @@ class PaymentsController extends Controller
     }
 
 
-    public function userPayment($rental_id)
+    public function userPayment(Request $request, $rental_id)
     {
-        // $user_id = $id;
-        return view('payments.create', compact('rental_id'));
+        $user_id = $request->session()->get('user_id');
+
+        $payments = Payment::all()
+            ->where('user_id', $user_id);
+
+        return view('payments.create', compact('rental_id', 'payments'));
     }
 
     /**
@@ -103,23 +107,31 @@ class PaymentsController extends Controller
         $user_id = $request->session()->get('user_id');
         $rental_id = $request->rental_id;
         $rental = Rental::findOrFail($rental_id);
+        $motorcycle_id = $request->session()->get('motorcycle_id');
+        $motorcycle = Motorcycle::findOrFail($motorcycle_id);
 
         $validated = $request->validate([
             'payment_type' => 'required',
-            'amount' => 'required',
+            'received' => 'required',
+            'description' => 'max:255',
         ]);
 
         $payment = new Payment();
         $payment->payment_type = $request->payment_type;
-        $payment->amount = $request->amount;
+        $payment->outstanding = $rental->outstanding;
+        $payment->received = $request->received;
         $payment->payment_date = Carbon::now();
-        $payment->user_id = $request->user_id;
+        $payment->user_id = $user_id;
+        $payment->motorcycle_id = $motorcycle_id;
+        $payment->rental_id = $rental_id;
+        $payment->registration = $motorcycle->registration;
+        $payment->description = $request->description;
         $payment->save();
 
         Rental::findOrFail($rental_id)->update([
 
-            'received' => $request->amount,
-            'outstanding' => $rental->amount - $request->amount,
+            'received' => $request->received,
+            'outstanding' => $rental->outstanding - $request->received,
             'payment_date' => Carbon::now(),
 
         ]);

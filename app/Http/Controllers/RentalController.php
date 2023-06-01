@@ -177,6 +177,8 @@ class RentalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rental = Rental::find($id);
+
+        $rental->delete();
     }
 }

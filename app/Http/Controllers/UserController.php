@@ -117,6 +117,9 @@ class UserController extends Controller
             $request->session()->put('rental_id', $rental_id);
         }
 
+        $payments = Payment::all()
+            ->where('user_id', $user_id);
+
         // dd($rentals);
 
         $now = Carbon::now();
@@ -138,7 +141,7 @@ class UserController extends Controller
 
         $address = UserAddress::all()->where('user_id', $user_id);
         // dd($days);
-        return view("users.show", compact("user", "address", "documents", "dlFront", "motorcycles", "rentals", "days"));
+        return view("users.show", compact("user", "address", "documents", "dlFront", "motorcycles", "rentals", "days", "payments"));
     }
 
     /**
