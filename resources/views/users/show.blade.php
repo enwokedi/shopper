@@ -35,6 +35,7 @@
         </div>
     </div>
 </div>
+<br>
 <div class="accordion accordion-flush" id="accordionFlushExample">
     <div class="accordion-item">
         <div class="accordion-item">
@@ -241,8 +242,8 @@
                                 <th scope="col">Type</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Due Date</th>
-                                <th scope="col">Received</th>
                                 <th scope="col">Outstanding</th>
+                                <th scope="col">Received</th>
                                 <th scope="col">Payment Date</th>
                                 <th scope="col"></th>
                             </tr>
@@ -254,11 +255,11 @@
                                 <td class="text-capitalize">{{$rental->payment_type}}</th>
                                 <td>£{{$rental->amount}}</th>
                                 <td>{{$rental->payment_due_date}}</th>
-                                <td>£{{$rental->received}}</th>
                                 <td class="text-danger">£{{$rental->outstanding}}</td>
+                                <td>£{{$rental->received}}</th>
                                 <td>{{$rental->payment_date}}</th>
                                 <td>
-                                    <a class="btn btn-outline-success" href="{{ URL::to('payments/create') }}">Payments</a>
+                                    <a class="btn btn-outline-success" href="{{ URL::to('create-payment/' . $rental->id) }}">Payments</a>
                                 </td>
                             </tr>
                             @endforeach

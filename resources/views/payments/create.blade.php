@@ -5,7 +5,7 @@
     @auth
 
     <div class="container-fluid">
-        <h1>Create Payment</h1>
+        <h1>Record Payment</h1>
 
         <!-- This area is used to dispay errors -->
         @if ($message = Session::get('success'))
@@ -33,10 +33,10 @@
         <form action="/payments" method="post" enctype="multipart/form-data">
             @csrf
             <div>
-                <h4>Payment</h4>
+                <h4>Payment Type</h4>
             </div>
             <div hidden class="mb-3">
-                <input class="form-control" type="text" placeholder="User ID" name="user_id" id="user_id" value="{{$user_id}}">
+                <input class="form-control" type="text" placeholder="Rental ID" name="rental_id" id="rental_id" value="{{$rental_id}}">
             </div>
             <div class="mb-3">
                 <select class="form-select" placeholder="Select Payment Type" name="payment_type" id="payment_type" value="{{old('payment_type')}}">

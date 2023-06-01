@@ -39,6 +39,11 @@ class PaymentsController extends Controller
         return view('payments.create');
     }
 
+    public function createPayment()
+    {
+        return view('payments.create');
+    }
+
     public function createRental($id)
     {
         $user_id = $id;
@@ -81,10 +86,10 @@ class PaymentsController extends Controller
     }
 
 
-    public function userPayment($id)
+    public function userPayment($rental_id)
     {
-        $user_id = $id;
-        return view('payments.create', compact('user_id'));
+        // $user_id = $id;
+        return view('payments.create', compact('rental_id'));
     }
 
     /**
@@ -95,6 +100,10 @@ class PaymentsController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = $request->session()->get('user_id');
+        $rental_id = $request->rental_id;
+        $rental = Rental::findOrFail($rental_id);
+
         $validated = $request->validate([
             'payment_type' => 'required',
             'amount' => 'required',
@@ -107,7 +116,15 @@ class PaymentsController extends Controller
         $payment->user_id = $request->user_id;
         $payment->save();
 
-        return to_route('users.show', [$payment->user_id])
+        Rental::findOrFail($rental_id)->update([
+
+            'received' => $request->amount,
+            'outstanding' => $rental->amount - $request->amount,
+            'payment_date' => Carbon::now(),
+
+        ]);
+
+        return to_route('users.show', [$user_id])
             ->with('success', 'Payment has been recorded.');
     }
 

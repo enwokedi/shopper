@@ -101,6 +101,7 @@ class UserController extends Controller
         $u = User::find($user_id);
         $user = json_decode($u);
         $authUser = Auth::user();
+        $request->session()->put('user_id', $user_id);
 
         $motorcycles = Motorcycle::all()
             ->where('user_id', $user_id);
@@ -111,12 +112,12 @@ class UserController extends Controller
         }
 
         $rentals = Rental::orderBy('id', 'DESC')->where('user_id', $user_id)->get();
-        // $rentals = json_decode($r);
-        // dd($rentals);
+        foreach ($rentals as $rental) {
+            $rental_id = $rental->id;
+            $request->session()->put('rental_id', $rental_id);
+        }
 
-        // Add relevant ID's to the session
-        $request->session()->put('user_id', $user_id);
-        // $request->session()->put('motorcycle_id', $motorcycle_id);
+        // dd($rentals);
 
         $now = Carbon::now();
         $toDate = Carbon::parse("2023-05-29");

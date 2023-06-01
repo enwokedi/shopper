@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
+use App\Models\Rental;
 use App\Models\Payment;
 use App\Models\Motorcycle;
 use App\Models\User;
@@ -78,31 +79,31 @@ class MotorcycleController extends Controller
         ]);
 
         // Create deposit
-        $payment = new Payment();
-        $payment->payment_type = 'deposit';
-        $payment->amount = $motorcycle->rental_price * 3;
-        $payment->registration = $motorcycle->registration;
-        $payment->payment_due_date = Carbon::now();
-        $payment->received = 00.00;
-        $payment->outstanding = $payment->amount - $payment->received;
-        $payment->user_id = $user_id;
-        $payment->created_at = Carbon::now();
-        $payment->auth_user = $authUser->first_name;
-        $payment->save();
+        $rental = new Rental();
+        $rental->payment_type = 'deposit';
+        $rental->amount = $motorcycle->rental_price * 3;
+        $rental->registration = $motorcycle->registration;
+        $rental->payment_due_date = Carbon::now();
+        $rental->received = 00.00;
+        $rental->outstanding = $rental->amount;
+        $rental->user_id = $user_id;
+        $rental->created_at = Carbon::now();
+        $rental->auth_user = $authUser->first_name;
+        $rental->save();
 
         // Create first rental payment
-        $payment = new Payment();
-        $payment->payment_type = 'rental';
-        $payment->amount = $motorcycle->rental_price;
-        $payment->registration = $motorcycle->registration;
-        $payment->payment_due_date = Carbon::now();
-        $payment->received = 00.00;
-        $payment->outstanding = $payment->amount - $payment->received;
-        $payment->user_id = $user_id;
-        $payment->payment_due_count = 7;
-        $payment->created_at = Carbon::now();
-        $payment->auth_user = $authUser->first_name;
-        $payment->save();
+        $rental = new Rental();
+        $rental->payment_type = 'rental';
+        $rental->amount = $motorcycle->rental_price;
+        $rental->registration = $motorcycle->registration;
+        $rental->payment_due_date = Carbon::now();
+        $rental->received = 00.00;
+        $rental->outstanding = $rental->amount;
+        $rental->user_id = $user_id;
+        $rental->payment_due_count = 7;
+        $rental->created_at = Carbon::now();
+        $rental->auth_user = $authUser->first_name;
+        $rental->save();
 
         return to_route('users.show', [$user_id])
             ->with('success', 'Motorcycle assigned to this client.');
@@ -121,7 +122,7 @@ class MotorcycleController extends Controller
         ]);
 
         return to_route('users.show', [$user_id])
-            ->with('success', 'Motorcycle assigned to this client.');
+            ->with('success', 'Motorcycle removed from this client.');
     }
 
     /**
