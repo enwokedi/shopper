@@ -175,7 +175,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Registration</th>
+                                    <th scope="col">Reg</th>
                                     <th scope="col">Make</th>
                                     <th scope="col">Model</th>
                                     <th scope="col">CC</th>
@@ -183,17 +183,31 @@
                                     <th scope="col">Colour</th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($motorcycles as $motorcycle)
                                 <tr>
-                                    <td>{{$motorcycle->registration}}</th>
-                                    <td>{{$motorcycle->make}}</th>
-                                    <td>{{$motorcycle->model}}</th>
-                                    <td>{{$motorcycle->engine}}</th>
-                                    <td>{{$motorcycle->year}}</th>
-                                    <td>{{$motorcycle->colour}}</th>
+                                    <td>{{$motorcycle->registration}}</td>
+                                    <td>{{$motorcycle->make}}</td>
+                                    <td>{{$motorcycle->model}}</td>
+                                    <td>{{$motorcycle->engine}}</td>
+                                    <td>{{$motorcycle->year}}</td>
+                                    <td>{{$motorcycle->colour}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <a class="btn btn-outline-success" href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
@@ -214,19 +228,12 @@
     <div class="accordion-item">
         <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapse0Four">
-                <h4>Payments</h4>
+                <h4>Contracts</h4>
             </button>
         </h2>
         <div id="flush-collapseFour" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
                 <div class="container">
-                    <div class="container-fluid">
-                        <div class="container-fluid">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a class="btn btn-outline-success" href="{{ URL::to('/create-rental/' . $user->id) }}">Rental Deposit</a>
-                            </div>
-                        </div>
-                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -241,17 +248,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($payments as $payment)
+                            @foreach ($rentals as $rental)
                             <tr>
-                                <td>{{$payment->registration}}</th>
-                                <td class="text-capitalize">{{$payment->payment_type}}</th>
-                                <td>£{{$payment->amount}}</th>
-                                <td>{{$payment->payment_due_date}}</th>
-                                <td>£{{$payment->received}}</th>
-                                <td class="text-danger">£{{$payment->outstanding}}</td>
-                                <td>{{$payment->payment_date}}</th>
+                                <td>{{$rental->registration}}</th>
+                                <td class="text-capitalize">{{$rental->payment_type}}</th>
+                                <td>£{{$rental->amount}}</th>
+                                <td>{{$rental->payment_due_date}}</th>
+                                <td>£{{$rental->received}}</th>
+                                <td class="text-danger">£{{$rental->outstanding}}</td>
+                                <td>{{$rental->payment_date}}</th>
                                 <td>
-                                    <a class="btn btn-outline-success" href="{{ URL::to('payments/' . $payment->id . '/edit') }}">Update Payment</a>
+                                    <a class="btn btn-outline-success" href="{{ URL::to('payments/create') }}">Payments</a>
                                 </td>
                             </tr>
                             @endforeach

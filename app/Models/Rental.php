@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Rental extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
     /**
      * Get the user that owns this contract.
@@ -23,7 +24,7 @@ class Rental extends Model
      */
     public function motorcycle()
     {
-        return $this->hasMany(Motorcycle::class);
+        return $this->hasMany(Motorcycle::class, 'id', 'motorcycle_id');
     }
 
     /**
@@ -31,6 +32,6 @@ class Rental extends Model
      */
     public function payment()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class, 'id', 'payment_id');
     }
 }

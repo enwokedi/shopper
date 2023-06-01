@@ -7,6 +7,8 @@ use App\Models\Payment;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\Motorcycle;
+use App\Models\Rental;
+use Illuminate\View\View;
 
 class PaymentsController extends Controller
 {
@@ -142,25 +144,26 @@ class PaymentsController extends Controller
      */
     public function update(Request $request, $payment_id)
     {
-        $payments = Payment::findOrFail($payment_id);
-        $lastPaymentDate = $payments->payment_due_date;
+        $payment = Payment::findOrFail($payment_id);
+        $lastPaymentDate = $payment->payment_due_date;
         Carbon::parse($lastPaymentDate);
-        $nextDueDate = Carbon::parse($payments->payment_due_date)->addDays(7);
+        $nextDueDate = Carbon::parse($payment->payment_due_date)->addDays(7);
         // dd($nextDueDate);
 
         Payment::findOrFail($payment_id)->update([
 
-            'amount' => $request->amount,
+            'received' => $request->amount,
+            'outstanding' => $payment->amount - $request->amount,
             'payment_date' => Carbon::now(),
 
         ]);
 
-        $payment = new Payment();
-        $payment->payment_type = 'rental';
-        $payment->amount = $request->amount;
-        $payment->payment_due_date = $nextDueDate;
-        $payment->user_id = $request->user_id;
-        $payment->save();
+        // $payment = new Payment();
+        // $payment->payment_type = 'rental';
+        // $payment->amount = $request->amount;
+        // $payment->payment_due_date = $nextDueDate;
+        // $payment->user_id = $request->user_id;
+        // $payment->save();
 
         return to_route('users.show', [$request->user_id])
             ->with('success', 'Payment has been recorded.');

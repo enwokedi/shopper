@@ -118,7 +118,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/dashboard', 'HomeController@dashboard')->name('home.dashboard'); // Edit later to use the correct controller
     Route::resource('rentals', 'RentalController');
 
-    // Payments Resources
+    // Rental Resources
+    Route::resource('rentals', 'RentalController');
+
+    // Payment Resources
     Route::resource('payments', 'PaymentsController');
     Route::get('/create-payment/{id}', [PaymentsController::class, 'userPayment'])->name('userPayment');
     Route::get('/create-rental/{id}', [PaymentsController::class, 'createRental'])->name('createRental');

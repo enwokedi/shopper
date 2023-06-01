@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\File;
 use App\Models\User;
 use Nette\Utils\Json;
+use App\Models\Rental;
 use App\models\Payment;
 use App\Models\Motorcycle;
 use Illuminate\Support\Js;
@@ -13,6 +14,8 @@ use App\Models\UserAddress;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -93,18 +96,27 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $user_id)
     {
-        $u = User::find($id);
+        $u = User::find($user_id);
         $user = json_decode($u);
+        $authUser = Auth::user();
 
-        $m = Motorcycle::all()
-            ->where('user_id', $id);
-        $motorcycles = json_decode($m);
+        $motorcycles = Motorcycle::all()
+            ->where('user_id', $user_id);
 
-        // $p = Payment::all()->where('user_id', $id);
-        $p = Payment::orderBy('id', 'DESC')->where('user_id', $id)->get();
-        $payments = json_decode($p);
+        foreach ($motorcycles as $motorcycle) {
+            $motorcycle_id = $motorcycle->id;
+            $request->session()->put('motorcycle_id', $motorcycle_id);
+        }
+
+        $rentals = Rental::orderBy('id', 'DESC')->where('user_id', $user_id)->get();
+        // $rentals = json_decode($r);
+        // dd($rentals);
+
+        // Add relevant ID's to the session
+        $request->session()->put('user_id', $user_id);
+        // $request->session()->put('motorcycle_id', $motorcycle_id);
 
         $now = Carbon::now();
         $toDate = Carbon::parse("2023-05-29");
@@ -114,7 +126,7 @@ class UserController extends Controller
         $months = $toDate->diffInMonths($fromDate);
         $years = $toDate->diffInYears($fromDate);
 
-        $d = File::all()->where('user_id', $id);
+        $d = File::all()->where('user_id', $user_id);
         $documents = json_decode($d);
         $dlFront = "Driving Licence Front";
 
@@ -123,9 +135,9 @@ class UserController extends Controller
         // print_r("In Months: " . $months . "<br>");
         // print_r("In Years: " . $years);
 
-        $address = UserAddress::all()->where('user_id', $id);
+        $address = UserAddress::all()->where('user_id', $user_id);
         // dd($days);
-        return view("users.show", compact("user", "address", "documents", "dlFront", "motorcycles", "payments", "days"));
+        return view("users.show", compact("user", "address", "documents", "dlFront", "motorcycles", "rentals", "days"));
     }
 
     /**

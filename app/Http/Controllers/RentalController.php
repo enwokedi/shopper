@@ -3,23 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\models\Payment;
+use Illuminate\Support\Carbon;
 use App\Models\user;
 use App\Models\Motorcycle;
 use App\Models\Rental;
-use App\models\Payment;
 use Illuminate\View\View;
 
 class RentalController extends Controller
 {
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function index()
-    // {
-    //     $rentals = User::find(5)->rentals;
-    // }
     /**
      * Display a listing of the resource.
      *
@@ -27,32 +19,72 @@ class RentalController extends Controller
      */
     public function index()
     {
-
-        $u = User::whereHas('rentals', function ($query) {
-            return $query->where('user_id', '>', 0);
-        })->get();
-
-        $users = json_decode($u);
-
-        foreach ($users as $user) {
-            $r = Rental::all()
-                ->where('user_id', $user->id);
-        }
-
+        $r = Rental::all()->where('payment_date', null);
+        // dd($p);
         $rentals = json_decode($r);
-        // dd($rentals);
+        $count = $r->count();
 
-        return view("home.index_rentals", compact("rentals", "users"));
+        // $users = User::all()->where('user_id', $payments->user_id);
+        // dd($users);
+        return view('rentals.index', compact('rentals', 'count'));
     }
 
     /**
-     * Show the form for creating a new rental.
+     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        echo "Add Client";
+        return view('payments.create');
+    }
+
+    public function createRental($id)
+    {
+        $user_id = $id;
+
+        return view('payments.create-rental', compact('user_id'));
+    }
+
+    public function storeRental(Request $request)
+    {
+        $validated = $request->validate([
+            'payment_type' => 'required',
+            'amount' => 'required',
+        ]);
+
+        $user_id = $request->user_id;
+        $motorcycle_id = $request->session()->get('motorcycle_id', 'default');
+
+        // Store the deposit amount along with details
+        $payment = new Payment();
+        $payment->payment_type = $request->payment_type;
+        $payment->amount = $request->amount;
+        $payment->payment_due_date = Carbon::now();
+        $payment->payment_date = Carbon::now();
+        $payment->user_id = $user_id;
+        $payment->payment_due_count = 7;
+        // $payment->motorcycle_id = $motorcycle_id;
+        $payment->save();
+
+        // Create first rental payment
+        $payment = new Payment();
+        $payment->payment_type = 'rental';
+        $payment->amount = $request->amount;
+        $payment->payment_due_date = Carbon::now();
+        $payment->user_id = $user_id;
+        $payment->payment_due_count = 7;
+        $payment->save();
+
+        return to_route('users.show', [$payment->user_id])
+            ->with('success', 'Deposit has been recorded. Now record first week rental.');
+    }
+
+
+    public function userPayment($id)
+    {
+        $user_id = $id;
+        return view('payments.create', compact('user_id'));
     }
 
     /**
@@ -61,14 +93,22 @@ class RentalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store(Request $request)
     {
-        // Get specific rental agreement
-        $rental = Rental::find($id);
+        $validated = $request->validate([
+            'payment_type' => 'required',
+            'amount' => 'required',
+        ]);
 
-        // Show the view and pass1 the rental to it
-        return View::make('home.show_rentals')
-            ->with('rental', $rental);
+        $payment = new Payment();
+        $payment->payment_type = $request->payment_type;
+        $payment->amount = $request->amount;
+        $payment->payment_date = Carbon::now();
+        $payment->user_id = $request->user_id;
+        $payment->save();
+
+        return to_route('users.show', [$payment->user_id])
+            ->with('success', 'Payment has been recorded.');
     }
 
     /**
@@ -77,24 +117,9 @@ class RentalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $r = Rental::find($id);
-        $rental = json_decode($r);
-
-        $m = Motorcycle::all()
-            ->where('rental_id', $id);
-        $motorcycles = json_decode($m);
-
-        $uid = $r->user_id;
-        $use = User::find($uid);
-        $user = json_decode($use);
-
-        $p = Payment::all()->where('user_id', $uid);
-        $payments = json_decode($p);
-
-        // dd($motorcycles);
-        return view("home.show-payments-due", compact("rental", "user", "motorcycles", "payments"));
+        //
     }
 
     /**
@@ -103,9 +128,11 @@ class RentalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($payment_id)
     {
-        return view('home.edit');
+        $payment = Payment::findOrFail($payment_id);
+
+        return view('payments.edit', compact('payment'));
     }
 
     /**
@@ -115,9 +142,31 @@ class RentalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $payment_id)
     {
-        //
+        $payment = Payment::findOrFail($payment_id);
+        $lastPaymentDate = $payment->payment_due_date;
+        Carbon::parse($lastPaymentDate);
+        $nextDueDate = Carbon::parse($payment->payment_due_date)->addDays(7);
+        // dd($nextDueDate);
+
+        Payment::findOrFail($payment_id)->update([
+
+            'received' => $request->amount,
+            'outstanding' => $payment->amount - $request->amount,
+            'payment_date' => Carbon::now(),
+
+        ]);
+
+        // $payment = new Payment();
+        // $payment->payment_type = 'rental';
+        // $payment->amount = $request->amount;
+        // $payment->payment_due_date = $nextDueDate;
+        // $payment->user_id = $request->user_id;
+        // $payment->save();
+
+        return to_route('users.show', [$request->user_id])
+            ->with('success', 'Payment has been recorded.');
     }
 
     /**
