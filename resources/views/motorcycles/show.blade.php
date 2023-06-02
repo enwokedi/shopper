@@ -56,6 +56,11 @@
                                         <td>Engine </td>
                                         <td class="text-end">{{$motorcycle->engine}}CC</td>
                                     </tr>
+
+                                    <tr>
+                                        <td>Fuel Type </td>
+                                        <td class="text-end">{{$motorcycle->fuel_type}}</td>
+                                    </tr>
                                     <tr>
                                         <td>Year </td>
                                         <td class="text-end">{{$motorcycle->year}}</td>
@@ -75,10 +80,6 @@
                                     <tr>
                                         <td>Tax Status </td>
                                         <td class="text-end">{{$motorcycle->tax_status}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fuel Type </td>
-                                        <td class="text-end">{{$motorcycle->fuel_type}}</td>
                                     </tr>
                                     <tr>
                                         <td>Marked for Export </td>
@@ -111,30 +112,7 @@
                 </div>
             </div>
             <div class="col">
-                <div class="card shadow">
-                    <div class="card-header">
-                        <div class="card-body">
-                            <h5 class="text-capitalize">Status: {{$motorcycle->availability}}</h5>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>Rental Start Date</td>
-                                        <td class="text-end">{{$motorcycle->rental_start_date}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Weekly Rental Price</td>
-                                        <td class="text-end">£{{$motorcycle->rental_price}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Auto Generated Deposit Amount </td>
-                                        <td class="text-end">£{{$motorcycle->rental_deposit}}</td>
-                                    </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="card shadow">
+            <div class="card shadow">
                     <div class="card-header">
                         <div class="card-body">
                             <h5>Deposit Payment</h5>
@@ -157,7 +135,29 @@
                         </div>
                     </div>
                 </div>
-
+                <br>
+                <div class="card shadow">
+                    <div class="card-header">
+                        <div class="card-body">
+                            <h5 class="text-capitalize">Status: {{$motorcycle->availability}}</h5>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Rental Start Date</td>
+                                        <td class="text-end">{{$motorcycle->rental_start_date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weekly Rental Price</td>
+                                        <td class="text-end">£{{$motorcycle->rental_price}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Auto Generated Deposit Amount </td>
+                                        <td class="text-end">£{{$motorcycle->rental_deposit}}</td>
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <br>
                 <div class="card shadow">
                     <div class="card-header">
@@ -215,7 +215,7 @@
                                         <td class="text-danger">£{{$payment->outstanding}}</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <!-- <a class="btn btn-outline-danger" href=" URL::to('payment/' . $payment->id) ">Void</a> -->
+                                                <a class="btn btn-outline-danger" href=" URL::to('notes/' . $payment->id) ">Notes</a>
                                             </div>
                                         </td>
                                     </tr>

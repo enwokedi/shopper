@@ -73,6 +73,7 @@ class MotorcycleController extends Controller
         $motorcycle = Motorcycle::findOrFail($motorcycle_id);
         $motorcycleDeposit = $motorcycle->rental_price * 2;
         $rentalPrice = $motorcycle->rental_price;
+        $registration = $motorcycle->registration;
         $todayDate = Carbon::now();
 
         // Create deposit
@@ -104,6 +105,29 @@ class MotorcycleController extends Controller
         $payment->motorcycle_id = $motorcycle_id;
         $payment->save();
 
+        $response = Http::withHeaders([
+            'x-api-key' => '5i0qXnN6SY3blfoFeWvlu9sTQCSdrf548nMS8vVO',
+            'Content-Type' => 'application/json',
+        ])->post('https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles', [
+            'registrationNumber' => $registration,
+        ]);
+
+        $request = json_decode($response->body());
+
+        // $motorcycle->;
+        // $motorcycle->;
+        // $motorcycle->;
+
+        // $motorcycle->;
+
+        // $motorcycle->;
+
+        // $motorcycle->;
+        // $motorcycle->;
+        // $motorcycle->;
+
+        // $motorcycle->;
+
         // Update Motorcycle Status
         Motorcycle::findOrFail($motorcycle_id)->update([
             'is_for_rent' => 0,
@@ -112,6 +136,21 @@ class MotorcycleController extends Controller
             'availability' => 'rented',
             'rental_deposit' => $motorcycleDeposit,
             'rental_start_date' => $todayDate,
+            'make' => $request->make,
+            'colour' => $request->colour,
+            'year' => $request->yearOfManufacture,
+            'engine' => $request->engineCapacity,
+            'fuel_type' => $request->fuelType,
+            'wheel_plan' => $request->wheelplan,
+            'tax_status' => $request->taxStatus,
+            'tax_due_date' => $request->taxDueDate,
+            'mot_status' => $request->motStatus,
+            'co2_emissions' => $request->co2Emissions,
+            'marked_for_export' => $request->markedForExport,
+            'type_approval' => $request->typeApproval,
+            'last_v5_issue_date' => $request->dateOfLastV5CIssued,
+            'mot_expiry_date' => $request->motExpiryDate,
+            'month_of_first_registration' => $request->monthOfFirstRegistration,
         ]);
 
         return to_route('motorcycles.show', [$motorcycle_id])
