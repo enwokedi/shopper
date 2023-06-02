@@ -66,6 +66,10 @@
                                         <td class="text-end">{{$motorcycle->year}}</td>
                                     </tr>
                                     <tr>
+                                        <td>Tax Status </td>
+                                        <td class="text-end">{{$motorcycle->tax_status}}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Tax Due Date </td>
                                         <td class="text-end">{{$motorcycle->tax_due_date}}</td>
                                     </tr>
@@ -73,13 +77,14 @@
                                         <td>MOT Status </td>
                                         <td class="text-end">{{$motorcycle->mot_status}}</td>
                                     </tr>
+
+                                    <tr>
+                                        <td>MOT Expiry Date </td>
+                                        <td class="text-end">{{$motorcycle->mot_expiry_date}}</td>
+                                    </tr>
                                     <tr>
                                         <td>C02 Emmissions </td>
                                         <td class="text-end">{{$motorcycle->co2_emissions}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tax Status </td>
-                                        <td class="text-end">{{$motorcycle->tax_status}}</td>
                                     </tr>
                                     <tr>
                                         <td>Marked for Export </td>
@@ -92,10 +97,6 @@
                                     <tr>
                                         <td>Last V5 Issue Date </td>
                                         <td class="text-end">{{$motorcycle->last_v5_issue_date}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>MOT Expiry Date </td>
-                                        <td class="text-end">{{$motorcycle->mot_expiry_date}}</td>
                                     </tr>
                                     <tr>
                                         <td>Wheel Plan </td>
@@ -127,9 +128,9 @@
                                     </div>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">£</span>
-                                        <input type="text" class="form-control" placeholder="Change Deposit" aria-label="Change Deposit" name="rental_deposit" id="rental_deposit" value="{{old('$motorcycle->rental_deposit')}}">
+                                        <input type="text" class="form-control" placeholder="00.00" aria-label="Change Deposit" name="rental_deposit" id="rental_deposit" value="{{old('$motorcycle->rental_deposit')}}">
                                     </div>
-                                    <button type="submit" class="btn btn-outline-success">SUBMIT</button>
+                                    <button type="submit" class="btn btn-outline-primary">SUBMIT</button>
                                 </form>
                             </div>
                         </div>
@@ -151,8 +152,16 @@
                                         <td class="text-end">£{{$motorcycle->rental_price}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Auto Generated Deposit Amount </td>
+                                        <td>Default Deposit </td>
                                         <td class="text-end">£{{$motorcycle->rental_deposit}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tax Status </td>
+                                        <td class="text-end">{{$motorcycle->tax_status}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MOT Status </td>
+                                        <td class="text-end">{{$motorcycle->mot_status}}</td>
                                     </tr>
                             </table>
                         </div>
@@ -174,9 +183,9 @@
                                     </div>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">£</span>
-                                        <input type="text" class="form-control" placeholder="Take Payment" aria-label="Take Payment" name="received" id="received" value="{{old('received')}}">
+                                        <input type="text" class="form-control" placeholder="00.00" aria-label="Take Payment" name="received" id="received" value="{{old('received')}}">
                                     </div>
-                                    <button type="submit" class="btn btn-outline-success">SUBMIT</button>
+                                    <button type="submit" class="btn btn-outline-primary">SUBMIT</button>
                                 </form>
                             </div>
                         </div>
@@ -215,7 +224,7 @@
                                         <td class="text-danger">£{{$payment->outstanding}}</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a class="btn btn-outline-danger" href=" URL::to('notes/' . $payment->id) ">Notes</a>
+                                                <a class="btn btn-outline-primary" href="{{URL::to('notes/' . $payment->id . '/edit')}}">Notes</a>
                                             </div>
                                         </td>
                                     </tr>

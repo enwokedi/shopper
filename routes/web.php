@@ -129,7 +129,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::post('/store-rental', [PaymentsController::class, 'storeRental'])->name('storeRental');
     Route::get('/payment/{id}', [PaymentsController::class, 'voidPayment'])->name('voidPayment');
 
-    // Motorcycle Resources
+    // Notes
+    Route::resource('notes', 'NotesController');
+
+    // MOTORCYCLE
     Route::resource('motorcycles', 'MotorcycleController');
     Route::get('/is_for_rent', [MotorcycleController::class, 'isForRent'])->name('isForRent');
     Route::get('/is_rented', [MotorcycleController::class, 'isRented'])->name('isRented');
@@ -142,8 +145,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::post('/take-payment/{id}', [MotorcycleController::class, 'takePayment'])->name('takePayment');
     Route::get('/rental/{motorcycle_id}', [MotorcycleController::class, 'addToClient'])->name('motorcycles.users.update');
     Route::get('/remove-rental/{motorcycle_id}', [MotorcycleController::class, 'removeFromClient'])->name('removeFromClient');
-
-
     Route::get('/check-vehicle-reg', [MotorcycleController::class, 'vehicleCheckForm'])->name('vehicleCheckForm');
     Route::post('/vehicle-check', [MotorcycleController::class, 'vehicleCheck'])->name('vehicleCheck');
 

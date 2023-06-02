@@ -114,20 +114,6 @@ class MotorcycleController extends Controller
 
         $request = json_decode($response->body());
 
-        // $motorcycle->;
-        // $motorcycle->;
-        // $motorcycle->;
-
-        // $motorcycle->;
-
-        // $motorcycle->;
-
-        // $motorcycle->;
-        // $motorcycle->;
-        // $motorcycle->;
-
-        // $motorcycle->;
-
         // Update Motorcycle Status
         Motorcycle::findOrFail($motorcycle_id)->update([
             'is_for_rent' => 0,
