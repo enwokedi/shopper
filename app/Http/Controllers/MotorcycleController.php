@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MotorcycleController extends Controller
 {
@@ -84,7 +85,7 @@ class MotorcycleController extends Controller
         $payment->outstanding = $payment->rental_deposit;
         $payment->user_id = $user_id;
         $payment->created_at = $todayDate;
-        $payment->auth_user = $authUser->first_name . $authUser->last_name;
+        $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
         $payment->motorcycle_id = $motorcycle_id;
         $payment->save();
 
@@ -99,7 +100,7 @@ class MotorcycleController extends Controller
         $payment->user_id = $user_id;
         $payment->payment_due_count = 7;
         $payment->created_at = $todayDate;
-        $payment->auth_user = $authUser->first_name . $authUser->last_name;
+        $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
         $payment->motorcycle_id = $motorcycle_id;
         $payment->save();
 
@@ -119,7 +120,54 @@ class MotorcycleController extends Controller
 
     public function updateDeposit(Request $request)
     {
-        dd($request);
+        $validated = $request->validate([
+            'rental_deposit' => 'required',
+        ]);
+
+        $transaction = Payment::all()
+        ->where('motorcycle_id', $request->motorcycle_id)
+        ->where('payment_type', 'deposit');
+        
+        foreach($transaction as $outstanding)
+        {
+            $outstanding = $outstanding->outstanding - $request->rental_deposit;
+        }
+
+        $payment = DB::table('payments')
+            ->where('motorcycle_id', '=', $request->motorcycle_id)
+            ->where('payment_type', '=', 'deposit')
+            ->update(['outstanding' => $outstanding]);
+
+        return to_route('motorcycles.show', [$request->motorcycle_id])
+            ->with('success', 'Rental deposit updated.');
+    }
+
+    public function takePayment(Request $request)
+    {
+        // Manually update client payments
+
+        // Validate incoming data
+        $validated = $request->validate([
+            'received' => 'required',
+            'description' => 'required',
+        ]);
+        
+        $transaction = Payment::all()
+        ->where('motorcycle_id', $request->motorcycle_id)
+        ->where('payment_type', 'rental');
+        
+        foreach($transaction as $outstanding)
+        {
+            $outstanding = $outstanding->outstanding - $request->received;
+        }
+
+        $payment = DB::table('payments')
+            ->where('motorcycle_id', '=', $request->motorcycle_id)
+            ->where('payment_type', '=', 'rental')
+            ->update(['outstanding' => $outstanding]);
+
+        return to_route('motorcycles.show', [$request->motorcycle_id])
+            ->with('success', 'Rental Paid.');
     }
 
     public function removeFromClient(Request $request, $motorcycle_id)

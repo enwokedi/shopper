@@ -118,6 +118,10 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
+                                        <td>Rental Start Date</td>
+                                        <td class="text-end">{{$motorcycle->rental_start_date}}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Weekly Rental Price</td>
                                         <td class="text-end">£{{$motorcycle->rental_price}}</td>
                                     </tr>
@@ -138,13 +142,10 @@
                                 <form action="/update-deposit/{{$motorcycle->id}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div hidden class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Rental ID" name="rental_id" id="rental_id" value="{{$motorcycle->rental_id}}">
-                                    </div>
-                                    <div hidden class="mb-3">
                                         <input class="form-control" type="text" placeholder="Motorcycle ID" name="motorcycle_id" id="motorcycle_id" value="{{$motorcycle->id}}">
                                     </div>
                                     <div hidden class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Rental Type" name="payment_type" id="payment_type" value="$rental->payment_type">
+                                        <input class="form-control" type="text" placeholder="Rental Type" name="payment_type" id="payment_type" value="deposit">
                                     </div>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">£</span>
@@ -163,19 +164,20 @@
                         <div class="card-body">
                             <h5>Record Payment</h5>
                             <div class="container">
-                                <form action="/payments" method="post" enctype="multipart/form-data">
+                                <form action="/take-payment/{{$motorcycle->id}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div hidden class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Rental ID" name="rental_id" id="rental_id" value="{{$motorcycle->rental_id}}">
+                                        <input class="form-control" type="text" placeholder="Motorcycle ID" name="motorcycle_id" id="motorcycle_id" value="{{$motorcycle->id}}">
                                     </div>
                                     <div hidden class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Rental Type" name="payment_type" id="payment_type" value="$rental->payment_type">
+                                        <input class="form-control" type="text" placeholder="Rental Type" name="payment_type" id="payment_type" value="rental">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">£</span>
+                                        <input type="text" class="form-control" placeholder="Take Payment" aria-label="Take Payment" name="received" id="received" value="{{old('received')}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Amount Received" name="received" id="received" value="old('received')">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Payment Description" name="description" id="description" value="old('description')">
+                                        <input class="form-control" type="text" placeholder="Payment Description" name="description" id="description">
                                     </div>
                                     <button type="submit" class="btn btn-outline-success">PAID</button>
                                 </form>
