@@ -71,7 +71,7 @@ class MotorcycleController extends Controller
         $authUser = Auth::user();
 
         $motorcycle = Motorcycle::findOrFail($motorcycle_id);
-        $motorcycleDeposit = $motorcycle->rental_price * 3;
+        $motorcycleDeposit = $motorcycle->rental_price * 2;
         $rentalPrice = $motorcycle->rental_price;
         $todayDate = Carbon::now();
 
@@ -132,11 +132,16 @@ class MotorcycleController extends Controller
         {
             $outstanding = $outstanding->outstanding - $request->rental_deposit;
         }
+        $paymentDate = Carbon::now();
 
         $payment = DB::table('payments')
             ->where('motorcycle_id', '=', $request->motorcycle_id)
             ->where('payment_type', '=', 'deposit')
-            ->update(['outstanding' => $outstanding]);
+            ->update([
+                'outstanding' => $outstanding,
+                'received' => $request->rental_deposit,
+                'payment_date' => $paymentDate,
+            ]);
 
         return to_route('motorcycles.show', [$request->motorcycle_id])
             ->with('success', 'Rental deposit updated.');
@@ -149,7 +154,6 @@ class MotorcycleController extends Controller
         // Validate incoming data
         $validated = $request->validate([
             'received' => 'required',
-            'description' => 'required',
         ]);
         
         $transaction = Payment::all()
@@ -161,10 +165,16 @@ class MotorcycleController extends Controller
             $outstanding = $outstanding->outstanding - $request->received;
         }
 
+        $paymentDate = Carbon::now();
+
         $payment = DB::table('payments')
             ->where('motorcycle_id', '=', $request->motorcycle_id)
             ->where('payment_type', '=', 'rental')
-            ->update(['outstanding' => $outstanding]);
+            ->update([
+                'outstanding' => $outstanding,
+                'received' => $request->received,
+                'payment_date' => $paymentDate,
+            ]);
 
         return to_route('motorcycles.show', [$request->motorcycle_id])
             ->with('success', 'Rental Paid.');

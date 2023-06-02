@@ -137,7 +137,7 @@
                 <div class="card shadow">
                     <div class="card-header">
                         <div class="card-body">
-                            <h5>Deposit Amount</h5>
+                            <h5>Deposit Payment</h5>
                             <div class="container">
                                 <form action="/update-deposit/{{$motorcycle->id}}" method="post" enctype="multipart/form-data">
                                     @csrf
@@ -151,7 +151,7 @@
                                         <span class="input-group-text" id="basic-addon1">£</span>
                                         <input type="text" class="form-control" placeholder="Change Deposit" aria-label="Change Deposit" name="rental_deposit" id="rental_deposit" value="{{old('$motorcycle->rental_deposit')}}">
                                     </div>
-                                    <button type="submit" class="btn btn-outline-success">CHANGE</button>
+                                    <button type="submit" class="btn btn-outline-success">SUBMIT</button>
                                 </form>
                             </div>
                         </div>
@@ -162,7 +162,7 @@
                 <div class="card shadow">
                     <div class="card-header">
                         <div class="card-body">
-                            <h5>Record Payment</h5>
+                            <h5>Rental Payment</h5>
                             <div class="container">
                                 <form action="/take-payment/{{$motorcycle->id}}" method="post" enctype="multipart/form-data">
                                     @csrf
@@ -176,10 +176,7 @@
                                         <span class="input-group-text" id="basic-addon1">£</span>
                                         <input type="text" class="form-control" placeholder="Take Payment" aria-label="Take Payment" name="received" id="received" value="{{old('received')}}">
                                     </div>
-                                    <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Payment Description" name="description" id="description">
-                                    </div>
-                                    <button type="submit" class="btn btn-outline-success">PAID</button>
+                                    <button type="submit" class="btn btn-outline-success">SUBMIT</button>
                                 </form>
                             </div>
                         </div>
@@ -200,27 +197,25 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Reg</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Outstanding</th>
                                         <th scope="col">Due Date</th>
+                                        <th scope="col">Type</th>
                                         <th scope="col">Received</th>
                                         <th scope="col">Payment Date</th>
+                                        <th scope="col">Outstanding</th>  
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($payments as $payment)
                                     <tr>
-                                        <td>{{$payment->registration}}</th>
-                                        <td class="text-capitalize">{{$payment->payment_type}}</th>
+                                        <td>{{$payment->payment_due_date}}</td>
+                                        <td class="text-capitalize">{{$payment->payment_type}}</td>
+                                        <td>£{{$payment->received}}</td>
+                                        <td>{{$payment->payment_date}}</td>
                                         <td class="text-danger">£{{$payment->outstanding}}</td>
-                                        <td>{{$payment->payment_due_date}}</th>
-                                        <td>£{{$payment->received}}</th>
-                                        <td>{{$payment->payment_date}}</th>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a class="btn btn-outline-danger" href=" URL::to('payment/' . $payment->id) ">Void</a>
+                                                <!-- <a class="btn btn-outline-danger" href=" URL::to('payment/' . $payment->id) ">Void</a> -->
                                             </div>
                                         </td>
                                     </tr>
