@@ -42,7 +42,7 @@
                                 <tbody>
                                     <tr class="text-right">
                                         <td>Make </td>
-                                        <td class="text-end">{{ $motorcycle->make}}</td>
+                                        <td class="text-end text-capitalize">{{ $motorcycle->make}}</td>
                                     </tr>
                                     <tr>
                                         <td>Model </td>
@@ -114,28 +114,16 @@
                 <div class="card shadow">
                     <div class="card-header">
                         <div class="card-body">
-                            <h5>Road Tax</h5>
+                            <h5 class="text-capitalize">Status: {{$motorcycle->availability}}</h5>
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td>Road Tax Status </td>
-                                        <td class="text-end">{{$motorcycle->tax_status}}</td>
+                                        <td>Weekly Rental Price</td>
+                                        <td class="text-end">£{{$motorcycle->rental_price}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Road Tax Due Date </td>
-                                        <td class="text-end">{{$motorcycle->tax_due_date}}</td>
-                                    </tr>
-                            </table>
-                            <h5>MOT</h5>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>MOT Status </td>
-                                        <td class="text-end">{{$motorcycle->mot_status}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>MOT Expiry Date </td>
-                                        <td class="text-end">{{$motorcycle->mot_expiry_date}}</td>
+                                        <td>Auto Generated Deposit Amount </td>
+                                        <td class="text-end">£{{$motorcycle->rental_deposit}}</td>
                                     </tr>
                             </table>
                         </div>
@@ -145,28 +133,60 @@
                 <div class="card shadow">
                     <div class="card-header">
                         <div class="card-body">
-                            <h5>Rental Details</h5>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>Status </td>
-                                        <td class="text-end text-capitalize">{{$motorcycle->availability}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Weekly Rental Price £</td>
-                                        <td class="text-end">{{$motorcycle->rental_price}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rental Start Date </td>
-                                        <td class="text-end">{{$motorcycle->rental_start_date}}</td>
-                                    </tr>
-                            </table>
+                            <h5>Deposit Amount</h5>
+                            <div class="container">
+                                <form action="/update-deposit/{{$motorcycle->id}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div hidden class="mb-3">
+                                        <input class="form-control" type="text" placeholder="Rental ID" name="rental_id" id="rental_id" value="{{$motorcycle->rental_id}}">
+                                    </div>
+                                    <div hidden class="mb-3">
+                                        <input class="form-control" type="text" placeholder="Motorcycle ID" name="motorcycle_id" id="motorcycle_id" value="{{$motorcycle->id}}">
+                                    </div>
+                                    <div hidden class="mb-3">
+                                        <input class="form-control" type="text" placeholder="Rental Type" name="payment_type" id="payment_type" value="$rental->payment_type">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">£</span>
+                                        <input type="text" class="form-control" placeholder="Change Deposit" aria-label="Change Deposit" name="rental_deposit" id="rental_deposit" value="{{old('$motorcycle->rental_deposit')}}">
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-success">CHANGE</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="card shadow">
+                    <div class="card-header">
+                        <div class="card-body">
+                            <h5>Record Payment</h5>
+                            <div class="container">
+                                <form action="/payments" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div hidden class="mb-3">
+                                        <input class="form-control" type="text" placeholder="Rental ID" name="rental_id" id="rental_id" value="{{$motorcycle->rental_id}}">
+                                    </div>
+                                    <div hidden class="mb-3">
+                                        <input class="form-control" type="text" placeholder="Rental Type" name="payment_type" id="payment_type" value="$rental->payment_type">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input class="form-control" type="text" placeholder="Amount Received" name="received" id="received" value="old('received')">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input class="form-control" type="text" placeholder="Payment Description" name="description" id="description" value="old('description')">
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-success">PAID</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col">
@@ -174,31 +194,35 @@
                     <div class="card-header">
 
                         <div class="card-body">
-                            <h5>Insurance Information</h5>
-                            <table class="table">
-                                <tbody>
-                                    <tr class="text-right">
-                                        <td> </td>
-                                        <td class="text-end"></td>
+                            <h5>Payment History</h5>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Reg</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Outstanding</th>
+                                        <th scope="col">Due Date</th>
+                                        <th scope="col">Received</th>
+                                        <th scope="col">Payment Date</th>
+                                        <th scope="col"></th>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow">
-                    <div class="card-header">
-
-                        <div class="card-body">
-                            <h5>Additional Information</h5>
-                            <table class="table">
+                                </thead>
                                 <tbody>
-                                    <tr class="text-right">
-                                        <td> </td>
-                                        <td class="text-end"></td>
+                                    @foreach ($payments as $payment)
+                                    <tr>
+                                        <td>{{$payment->registration}}</th>
+                                        <td class="text-capitalize">{{$payment->payment_type}}</th>
+                                        <td class="text-danger">£{{$payment->outstanding}}</td>
+                                        <td>{{$payment->payment_due_date}}</th>
+                                        <td>£{{$payment->received}}</th>
+                                        <td>{{$payment->payment_date}}</th>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a class="btn btn-outline-danger" href=" URL::to('payment/' . $payment->id) ">Void</a>
+                                            </div>
+                                        </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -14,6 +14,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\MotorcycleController;
 use App\Http\Controllers\PaymentsController;
+use App\Models\Motorcycle;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,6 +127,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/create-payment/{id}', [PaymentsController::class, 'userPayment'])->name('userPayment');
     Route::get('/create-rental/{id}', [PaymentsController::class, 'createRental'])->name('createRental');
     Route::post('/store-rental', [PaymentsController::class, 'storeRental'])->name('storeRental');
+    Route::get('/payment/{id}', [PaymentsController::class, 'voidPayment'])->name('voidPayment');
 
     // Motorcycle Resources
     Route::resource('motorcycles', 'MotorcycleController');
@@ -136,8 +138,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/find-motorcycle', [MotorcycleController::class, 'findMotorcycle'])->name('findMotorcycle');
     Route::post('/registration-number', [MotorcycleController::class, 'registrationNumber'])->name('registrationNumber');
     Route::get('/motorcycles-for-rent/{id}', [MotorcycleController::class, 'clientForRent'])->name('clientForRent');
+    Route::post('/update-deposit/{id}', [MotorcycleController::class, 'updateDeposit'])->name('updateDeposit');
     Route::get('/rental/{motorcycle_id}', [MotorcycleController::class, 'addToClient'])->name('motorcycles.users.update');
     Route::get('/remove-rental/{motorcycle_id}', [MotorcycleController::class, 'removeFromClient'])->name('removeFromClient');
+
 
     Route::get('/check-vehicle-reg', [MotorcycleController::class, 'vehicleCheckForm'])->name('vehicleCheckForm');
     Route::post('/vehicle-check', [MotorcycleController::class, 'vehicleCheck'])->name('vehicleCheck');

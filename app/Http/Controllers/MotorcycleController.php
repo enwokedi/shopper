@@ -66,47 +66,60 @@ class MotorcycleController extends Controller
     public function addToClient(Request $request, $motorcycle_id)
     {
         $user_id = $request->session()->get('user_id', 'default');
-        $request->session()->put('motorcycle_id', $motorcycle_id);
+        // $request->session()->put('motorcycle_id', $motorcycle_id);
         $authUser = Auth::user();
 
         $motorcycle = Motorcycle::findOrFail($motorcycle_id);
+        $motorcycleDeposit = $motorcycle->rental_price * 3;
+        $rentalPrice = $motorcycle->rental_price;
+        $todayDate = Carbon::now();
 
+        // Create deposit
+        $payment = new Payment();
+        $payment->payment_type = 'deposit';
+        $payment->rental_deposit = $motorcycleDeposit;
+        $payment->registration = $motorcycle->registration;
+        $payment->payment_due_date = $todayDate;
+        $payment->received = 00.00;
+        $payment->outstanding = $payment->rental_deposit;
+        $payment->user_id = $user_id;
+        $payment->created_at = $todayDate;
+        $payment->auth_user = $authUser->first_name . $authUser->last_name;
+        $payment->motorcycle_id = $motorcycle_id;
+        $payment->save();
+
+        // Create first rental payment
+        $payment = new Payment();
+        $payment->payment_type = 'rental';
+        $payment->rental_price = $rentalPrice;
+        $payment->registration = $motorcycle->registration;
+        $payment->payment_due_date = $todayDate;
+        $payment->received = 00.00;
+        $payment->outstanding = $payment->rental_price;
+        $payment->user_id = $user_id;
+        $payment->payment_due_count = 7;
+        $payment->created_at = $todayDate;
+        $payment->auth_user = $authUser->first_name . $authUser->last_name;
+        $payment->motorcycle_id = $motorcycle_id;
+        $payment->save();
+
+        // Update Motorcycle Status
         Motorcycle::findOrFail($motorcycle_id)->update([
             'is_for_rent' => 0,
             'is_rented' => 1,
             'user_id' => $user_id,
             'availability' => 'rented',
+            'rental_deposit' => $motorcycleDeposit,
+            'rental_start_date' => $todayDate,
         ]);
 
-        // Create deposit
-        $rental = new Rental();
-        $rental->payment_type = 'deposit';
-        $rental->amount = $motorcycle->rental_price * 3;
-        $rental->registration = $motorcycle->registration;
-        $rental->payment_due_date = Carbon::now();
-        $rental->received = 00.00;
-        $rental->outstanding = $rental->amount;
-        $rental->user_id = $user_id;
-        $rental->created_at = Carbon::now();
-        $rental->auth_user = $authUser->first_name;
-        $rental->save();
-
-        // Create first rental payment
-        $rental = new Rental();
-        $rental->payment_type = 'rental';
-        $rental->amount = $motorcycle->rental_price;
-        $rental->registration = $motorcycle->registration;
-        $rental->payment_due_date = Carbon::now();
-        $rental->received = 00.00;
-        $rental->outstanding = $rental->amount;
-        $rental->user_id = $user_id;
-        $rental->payment_due_count = 7;
-        $rental->created_at = Carbon::now();
-        $rental->auth_user = $authUser->first_name;
-        $rental->save();
-
-        return to_route('users.show', [$user_id])
+        return to_route('motorcycles.show', [$motorcycle_id])
             ->with('success', 'Motorcycle assigned to this client.');
+    }
+
+    public function updateDeposit(Request $request)
+    {
+        dd($request);
     }
 
     public function removeFromClient(Request $request, $motorcycle_id)
@@ -237,10 +250,16 @@ class MotorcycleController extends Controller
      */
     public function show(Request $request, $motorcycle_id)
     {
+        // Motorcycle Details
         $m = Motorcycle::findOrFail($motorcycle_id);
         $motorcycle = json_decode($m);
 
-        return view('motorcycles.show')->with('motorcycle', $motorcycle);
+        // Motorcycle Payment History
+        $payments = Payment::all()
+            ->where('motorcycle_id', $motorcycle_id)
+            ->sortByDesc('id');
+
+        return view('motorcycles.show', compact('motorcycle', 'payments'));
     }
 
     /**

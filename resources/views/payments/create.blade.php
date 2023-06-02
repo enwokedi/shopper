@@ -33,17 +33,13 @@
         <form action="/payments" method="post" enctype="multipart/form-data">
             @csrf
             <div>
-                <h4>Payment Type</h4>
+                <h4 class="text-capitalize">{{$rental->payment_type}}</h4>
             </div>
             <div hidden class="mb-3">
                 <input class="form-control" type="text" placeholder="Rental ID" name="rental_id" id="rental_id" value="{{$rental_id}}">
             </div>
-            <div class="mb-3">
-                <select class="form-select" placeholder="Select Payment Type" name="payment_type" id="payment_type" value="{{old('payment_type')}}">
-                    <option value=""></option>
-                    <option value="rental">Rental</option>
-                    <option value="deposit">Deposit</option>
-                </select>
+            <div hidden class="mb-3">
+                <input class="form-control" type="text" placeholder="Rental Type" name="payment_type" id="payment_type" value="{{$rental->payment_type}}">
             </div>
             <div class="mb-3">
                 <input class="form-control" type="text" placeholder="Amount Received" name="received" id="received" value="{{old('received')}}">
@@ -82,7 +78,7 @@
                     <td>{{$payment->payment_date}}</th>
                     <td>
                         <div class="btn-group" role="group">
-                            <a class="btn btn-outline-danger" href="{{ URL::to('payments/delete/' . $payment->id) }}">Void</a>
+                            <a class="btn btn-outline-danger" href="{{ URL::to('payment/' . $payment->id) }}">Void</a>
                         </div>
                     </td>
                 </tr>

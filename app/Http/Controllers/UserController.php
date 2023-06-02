@@ -64,7 +64,7 @@ class UserController extends Controller
             'post_code' => 'required',
         ]);
 
-        // Generating random 9 figure number - not used
+        // Generating random 9 figure number - used to generate unique UserName
         $a = 0;
         for ($i = 0; $i < 6; $i++) {
             $a .= mt_rand(0, 9);
@@ -119,8 +119,6 @@ class UserController extends Controller
 
         $payments = Payment::all()
             ->where('user_id', $user_id);
-
-        // dd($rentals);
 
         $now = Carbon::now();
         $toDate = Carbon::parse("2023-05-29");

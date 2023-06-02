@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\Motorcycle;
 use App\Models\Rental;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class PaymentsController extends Controller
@@ -89,11 +90,13 @@ class PaymentsController extends Controller
     public function userPayment(Request $request, $rental_id)
     {
         $user_id = $request->session()->get('user_id');
+        $rental = Rental::findOrFail($rental_id);
 
         $payments = Payment::all()
-            ->where('user_id', $user_id);
+            ->where('user_id', $user_id)
+            ->sortByDesc('id');
 
-        return view('payments.create', compact('rental_id', 'payments'));
+        return view('payments.create', compact('rental_id', 'payments', 'rental'));
     }
 
     /**
@@ -102,7 +105,7 @@ class PaymentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $motorcycle_id)
     {
         $user_id = $request->session()->get('user_id');
         $rental_id = $request->rental_id;
@@ -117,8 +120,9 @@ class PaymentsController extends Controller
         ]);
 
         $payment = new Payment();
-        $payment->payment_type = $request->payment_type;
-        $payment->outstanding = $rental->outstanding;
+        $payment->payment_type = $rental->payment_type;
+        $payment->outstanding = $rental->outstanding - $request->received;
+        $payment->payment_due_date = $rental->payment_due_date;
         $payment->received = $request->received;
         $payment->payment_date = Carbon::now();
         $payment->user_id = $user_id;
@@ -136,7 +140,7 @@ class PaymentsController extends Controller
 
         ]);
 
-        return to_route('users.show', [$user_id])
+        return to_route('motorcyles.show', [$motorcycle_id])
             ->with('success', 'Payment has been recorded.');
     }
 
@@ -198,14 +202,67 @@ class PaymentsController extends Controller
             ->with('success', 'Payment has been recorded.');
     }
 
+    public function voidPayment(Request $request, $id)
+    {
+        $payment = Payment::all();
+        // dd($payment);
+        $rental_id = $request->session()->get('rental_id');
+        // dd($rental_id);
+        $authUser = Auth::user();
+
+        $rental = Rental::findOrFail($rental_id);
+
+        Payment::findOrFail($id)->update([
+            'deleted_at' => Carbon::now(),
+        ]);
+
+        Rental::findOrFail($rental_id)->update([
+
+            // 'received' => $payment->received - $payment->received,
+            'outstanding' => $rental->outstanding + $payment->received,
+            'deleted_at' => Carbon::now(),
+            'deleted_by' => $authUser,
+
+        ]);
+
+        $payment->delete();
+
+        return redirect('/create-payment/$rental_id')
+            ->with('success', 'Payment voided.');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $payment = Payment::all();
+        dd($payment);
+        $rental_id = $request->session()->get('rental_id');
+        // dd($rental_id);
+        $authUser = Auth::user();
+
+        $rental = Rental::findOrFail($rental_id);
+
+        Payment::findOrFail($id)->update([
+            'deleted_at' => Carbon::now(),
+        ]);
+
+        Rental::findOrFail($rental_id)->update([
+
+            'received' => $payment->received - $payment->received,
+            'outstanding' => $rental->outstanding + $payment->received,
+            'deleted_at' => Carbon::now(),
+            'deleted_by' => $authUser,
+
+        ]);
+
+        $payment->delete();
+
+        return redirect('/create-payment/$rental_id')
+            ->with('success', 'Payment voided.');
     }
 }

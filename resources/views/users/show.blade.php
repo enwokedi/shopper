@@ -242,7 +242,7 @@
                                 <th scope="col">Type</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Due Date</th>
-                                <th scope="col">Outstanding</th>
+                                <!-- <th scope="col">Outstanding</th> -->
                                 <th scope="col">Received</th>
                                 <th scope="col">Payment Date</th>
                                 <th scope="col"></th>
@@ -255,7 +255,7 @@
                                 <td class="text-capitalize">{{$rental->payment_type}}</th>
                                 <td>£{{$rental->amount}}</th>
                                 <td>{{$rental->payment_due_date}}</th>
-                                <td class="text-danger">£{{$rental->outstanding}}</td>
+                                    <!-- <td class="text-danger">£{{$rental->outstanding}}</td> -->
                                 <td>£{{$rental->received}}</th>
                                 <td>{{$rental->payment_date}}</th>
                                 <td>
