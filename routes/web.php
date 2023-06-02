@@ -56,7 +56,7 @@ Route::controller(SalesController::class)->group(function () {
 
 // Oxford Product Routes
 Route::controller(OxfordController::class)->group(function () {
-    Route::get('/oxcat/{category_id}', 'getProductCategory')->name('product.category');
+    Route::get('/category/{category_id}', 'getProductCategory')->name('product.category');
     Route::get('/item/{id}', 'getOxfordProduct')->name('item.details');
 });
 

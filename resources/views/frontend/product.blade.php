@@ -62,7 +62,7 @@
                                 <form action="{{ route('store.cart', $product->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="content-detail form-group">
-                                        <h2 class="product-title" value="{{$product->description}}" name="name">{{$product->description}}</h2>
+                                        <h2 class="product-title form-control" value=" {{$product->description}}" name="name">{{$product->description}}</h2>
                                         <div class="flat-star style-1">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -71,7 +71,7 @@
                                             <i class="fa fa-star-half-o"></i>
                                             <span>(1)</span>
                                         </div>
-                                        <p>{!! $product->extended_description !!}</p>
+                                        <p>{{ html_entity_decode($product->extended_description) }}</p>
                                         <div class="price margin-top-24">
                                             <ins><span class="amount" value="{{$product->price}}" name="price" id="price">£{{$product->price}}</span></ins>
                                         </div>
@@ -80,7 +80,7 @@
                                             <li><span>Colour: {{ $product->colour }}</span></li>
                                         </ul>
                                         <div class="product-categories margin-top-22">
-                                            <span>SKU: </span><a class="product_code" href="#">{{ $product->sku }}</a>
+                                            <span>SKU: </span><a href="#">{{ $product->sku }}</a>
                                         </div>
                                         <div class="product-categories margin-top-22">
                                             <span>Category: </span><a href="#">{{ucfirst($category)}}</a>
