@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
+use App\Models\Note;
+use App\Models\User;
 use App\Models\Rental;
 use App\Models\Payment;
+use Illuminate\View\View;
 use App\Models\Motorcycle;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Console\Input\Input;
-use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class MotorcycleController extends Controller
 {
@@ -335,12 +336,17 @@ class MotorcycleController extends Controller
         $m = Motorcycle::findOrFail($motorcycle_id);
         $motorcycle = json_decode($m);
 
+        // Motorcycle Payment Notes
+        $notes = Note::all()
+            ->where('motorcycle_id', $motorcycle_id)
+            ->sortByDesc('id');
+
         // Motorcycle Payment History
         $payments = Payment::all()
             ->where('motorcycle_id', $motorcycle_id)
             ->sortByDesc('id');
 
-        return view('motorcycles.show', compact('motorcycle', 'payments'));
+        return view('motorcycles.show', compact('motorcycle', 'payments', 'notes'));
     }
 
     /**

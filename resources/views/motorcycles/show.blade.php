@@ -4,42 +4,35 @@
 
 @auth
 <h1>{{ $motorcycle->registration }}</h1>
-<div class="container-fluid">
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <a class="btn btn-outline-primary" href="{{ url()->previous() }}">Back</a>
-    </div>
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/' . $motorcycle->id . '/edit') }}">Edit</a>
-    </div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Notes
-    </button>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a class="btn btn-outline-primary" href="{{ url()->previous() }}">Back</a>
+</div>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/' . $motorcycle->id . '/edit') }}">Edit</a>
+</div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+<!-- Modal -->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    View Notes
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                @foreach ($notes as $note)
+                <p>{{ $note->created_at }} {{ $note->note }} <br>
+                    @endforeach
+            </div>
+            <div class="container d-grid gap-2" style="padding-bottom: 10px">
+                <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <a class="btn btn-outline-primary" href="/notes">Modal Test</a>
-    </div>
 </div>
 <br>
-
 <!-- This area is used to dispay errors -->
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
@@ -204,8 +197,7 @@
                     <div class="card-body">
                         <h5>Rental Payment</h5>
                         <div class="container">
-                            <form action="/take-payment/{{$motorcycle->id}}" method="post"
-                                enctype="multipart/form-data">
+                            <form action="/notes/create" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div hidden class="mb-3">
                                     <input class="form-control" type="text" placeholder="Motorcycle ID"
@@ -258,48 +250,25 @@
                                     <td>£{{$payment->received}}</td>
                                     <td>{{$payment->payment_date}}</td>
                                     <td class="text-danger">£{{$payment->outstanding}}</td>
-                                    <td>
-                                        <!-- Button trigger modal -->
-                                        <a class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop-{{ $payment->id }}">
-                                            Note
-                                        </a>
+                                    <form action="/notes" method="POST" enctype="multipart/form-data">
+                                        <td>
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="staticBackdrop-{{ $payment->id }}"
-                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                                                            Take Note</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <form action="/take-note/$payment->id" method="POST"
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        <div class="modal-body">
-                                                            <div class="input-group">
-                                                                <input hidden name="payment_id" id="payment_id"
-                                                                    value="{{ $payment->id }}">
-                                                                <textarea class="form-control"
-                                                                    aria-label="With textarea" id="notes" name="notes"
-                                                                    value="{{ $payment->notes }}">{{ $payment->notes
-                                                                }}</textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save</a>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                            @csrf
+                                            <input hidden name="payment_id" id="payment_id" value="{{ $payment->id }}">
+                                            <input hidden name="motorcycle_id" id="motorcycle_id"
+                                                value="{{ $motorcycle->id }}">
+                                            <div class="mb-3">
+                                                <input class="form-control" type="text" placeholder="Add Note"
+                                                    name="note" id="note" value="{{ old('note') }}">
                                             </div>
-                                        </div>
-                                    </td>
+
+
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-outline-primary pull-right"
+                                                type="submit">Save</button>
+                                        </td>
+                                    </form>
                                 </tr>
                                 @endforeach
                             </tbody>

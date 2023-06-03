@@ -28,8 +28,8 @@ class Payment extends Model
         return $this->belongsTo(User::class, 'id', 'user_id');
     }
 
-    public function note()
+    public function note(): HasMany
     {
-        return $this->hasMany(Note::class);
+        return $this->hasMany(Note::class, 'payment_id', 'id');
     }
 }

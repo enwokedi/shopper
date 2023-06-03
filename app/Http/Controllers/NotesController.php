@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note;
 use Illuminate\Http\Request;
+use App\Models\Payment;
 
-class PaymentNotesController extends Controller
+class NotesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($motorcycle_id)
     {
-        //
+        $paymentNotes = Payment::find($motorcycle_id)->notes();
+
+        // Using this section to test modal functionaility with Laravel
+        return view('motorcycles.notemodal');
     }
 
     /**
@@ -34,7 +39,20 @@ class PaymentNotesController extends Controller
      */
     public function store(Request $request)
     {
-        echo "Store Function";
+        $motorcycle_id = $request->motorcycle_id;
+
+        $validated = $request->validate([
+            'note' => 'required',
+        ]);
+
+        $note = new Note();
+        $note->payment_id = $request->payment_id;
+        $note->motorcycle_id = $request->motorcycle_id;
+        $note->note = $request->note;
+        $note->save();
+
+        return to_route('motorcycles.show', [$motorcycle_id])
+            ->with('success', 'Note has logged against payment.');
     }
 
     /**
@@ -68,7 +86,7 @@ class PaymentNotesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        echo "Update function...";
     }
 
     /**

@@ -72,7 +72,7 @@ Route::get('/checkout', [CartController::class, 'checkout'])->name('product.chec
 //     Route::post('/cart', 'store')->name('cart.store');
 // });
 
-// Contact All Routes 
+// Contact All Routes
 Route::controller(ContactController::class)->group(function () {
     Route::get('/contact', 'Contact')->name('contact.me');
     Route::get('/contact/call-back', 'CallMeBack')->name('contact.call-back');
@@ -130,7 +130,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/payment/{id}', [PaymentsController::class, 'voidPayment'])->name('voidPayment');
 
     // Notes
-    Route::resource('notes', 'PaymentNotesController');
+    Route::resource('/notes', 'NotesController');
 
     // MOTORCYCLE
     Route::resource('motorcycles', 'MotorcycleController');
