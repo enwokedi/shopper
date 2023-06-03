@@ -23,7 +23,7 @@
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
             @endforeach
-            </ui>
+        </ul>
     </div>
     @endif
     <!-- This area is used to dispay errors -->
@@ -31,11 +31,13 @@
     <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
             <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                     <h4>Vehicle</h4>
                 </button>
             </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
+            <div id="flush-collapseOne" class="accordion-collapse collapse show"
+                data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                     <div class="container">
                         <div class="row align-items-start">
@@ -44,45 +46,62 @@
                                 <form action="/motorcycles" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Make" name="make" id="make" value="{{$motorcycle->make}}">
+                                        <input class="form-control" type="text" placeholder="Make" name="make" id="make"
+                                            value="{{$motorcycle->make}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Model" name="model" id="model" value="{{$motorcycle->model}}">
+                                        <input class="form-control" type="text" placeholder="Model" name="model"
+                                            id="model" value="{{$motorcycle->model}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Colour" name="colour" id="colour" value="{{old('$motorcycle->colour')}}">
+                                        <input class="form-control" type="text" placeholder="Colour" name="colour"
+                                            id="colour" value="{{old('$motorcycle->colour')}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="email" class="form-control" id="fuel_type" name="fuel_type" placeholder="Fuel Type" value="{{$motorcycle->fuel_type}}">
+                                        <input type="email" class="form-control" id="fuel_type" name="fuel_type"
+                                            placeholder="Fuel Type" value="{{$motorcycle->fuel_type}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Engine" name="engine" id="engine" value="{{$motorcycle->engine}}">
+                                        <input class="form-control" type="text" placeholder="Engine" name="engine"
+                                            id="engine" value="{{$motorcycle->engine}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Year" name="year" id="year" value="{{$motorcycle->year}}">
+                                        <input class="form-control" type="text" placeholder="Year" name="year" id="year"
+                                            value="{{$motorcycle->year}}">
                                     </div>
                                     <div>
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Euro Status" name="euro_status" id="euro_status" value="{{$motorcycle->euro_status}}">
+                                        <input class="form-control" type="text" placeholder="Euro Status"
+                                            name="euro_status" id="euro_status" value="{{$motorcycle->euro_status}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Vehicle Age" name="vehicle_age" id="vehicle_age" value="">
+                                        <input class="form-control" type="text" placeholder="Vehicle Age"
+                                            name="vehicle_age" id="vehicle_age" value="">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Registration Place" name="registration_place" id="registration_place" value="{{$motorcycle->registration_place}}">
+                                        <input class="form-control" type="text" placeholder="Registration Place"
+                                            name="registration_place" id="registration_place"
+                                            value="{{$motorcycle->registration_place}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Registration Date" name="registration_date" id="registration_date" value="{{$motorcycle->registration_date}}">
+                                        <input class="form-control" type="text" placeholder="Registration Date"
+                                            name="registration_date" id="registration_date"
+                                            value="{{$motorcycle->registration_date}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Last V5C Issue Date" name="last_v5_issue_date" id="last_v5_issue_date" value="{{$motorcycle->last_v5_issue_date}}">
+                                        <input class="form-control" type="text" placeholder="Last V5C Issue Date"
+                                            name="last_v5_issue_date" id="last_v5_issue_date"
+                                            value="{{$motorcycle->last_v5_issue_date}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Type Approval" name="type_approval" id="type_approval" value="{{$motorcycle->type_approval}}">
+                                        <input class="form-control" type="text" placeholder="Type Approval"
+                                            name="type_approval" id="type_approval"
+                                            value="{{$motorcycle->type_approval}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Wheel Plan" name="wheel_plan" id="wheel_plan" value="{{$motorcycle->wheel_plan}}">
+                                        <input class="form-control" type="text" placeholder="Wheel Plan"
+                                            name="wheel_plan" id="wheel_plan" value="{{$motorcycle->wheel_plan}}">
                                     </div>
                                     <button type="submit" class="btn btn-outline-success">Submit</button>
                                 </form>
@@ -92,57 +111,74 @@
                                 <form action="/motorcycles" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="{{ $motorcycle->is_for_sale }}" id="is_for_sale">
+                                        <input class="form-check-input" type="checkbox"
+                                            value="{{ $motorcycle->is_for_sale }}" id="is_for_sale">
                                         <label class="form-check-label" for="is_for_sale">
                                             For Sale
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="{{ $motorcycle->is_sold }}" id="is_sold">
+                                        <input class="form-check-input" type="checkbox"
+                                            value="{{ $motorcycle->is_sold }}" id="is_sold">
                                         <label class="form-check-label" for="is_sold">
                                             Sold
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="{{ $motorcycle->is_for_rent }}" id="is_for_rent">
+                                        <input class="form-check-input" type="checkbox"
+                                            value="{{ $motorcycle->is_for_rent }}" id="is_for_rent">
                                         <label class="form-check-label" for="is_for_rent">
                                             For Rent
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="{{ $motorcycle->is_rented }}" id="is_rented">
+                                        <input class="form-check-input" type="checkbox"
+                                            value="{{ $motorcycle->is_rented }}" id="is_rented">
                                         <label class="form-check-label" for="is_rented">
                                             Rented
                                         </label>
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Engine" name="engine" id="engine" value="{{$motorcycle->engine}}">
+                                        <input class="form-control" type="text" placeholder="Engine" name="engine"
+                                            id="engine" value="{{$motorcycle->engine}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Year" name="year" id="year" value="{{$motorcycle->year}}">
+                                        <input class="form-control" type="text" placeholder="Year" name="year" id="year"
+                                            value="{{$motorcycle->year}}">
                                     </div>
                                     <div>
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Euro Status" name="euro_status" id="euro_status" value="{{$motorcycle->euro_status}}">
+                                        <input class="form-control" type="text" placeholder="Euro Status"
+                                            name="euro_status" id="euro_status" value="{{$motorcycle->euro_status}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Vehicle Age" name="vehicle_age" id="vehicle_age" value="">
+                                        <input class="form-control" type="text" placeholder="Vehicle Age"
+                                            name="vehicle_age" id="vehicle_age" value="">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Registration Place" name="registration_place" id="registration_place" v0alue="{{$motorcycle->registration_place}}">
+                                        <input class="form-control" type="text" placeholder="Registration Place"
+                                            name="registration_place" id="registration_place"
+                                            v0alue="{{$motorcycle->registration_place}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Registration Date" name="registration_date" id="registration_date" value="{{$motorcycle->registration_date}}">
+                                        <input class="form-control" type="text" placeholder="Registration Date"
+                                            name="registration_date" id="registration_date"
+                                            value="{{$motorcycle->registration_date}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Last V5C Issue Date" name="last_v5_issue_date" id="last_v5_issue_date" value="{{$motorcycle->last_v5_issue_date}}">
+                                        <input class="form-control" type="text" placeholder="Last V5C Issue Date"
+                                            name="last_v5_issue_date" id="last_v5_issue_date"
+                                            value="{{$motorcycle->last_v5_issue_date}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Type Approval" name="type_approval" id="type_approval" value="{{$motorcycle->type_approval}}">
+                                        <input class="form-control" type="text" placeholder="Type Approval"
+                                            name="type_approval" id="type_approval"
+                                            value="{{$motorcycle->type_approval}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control" type="text" placeholder="Wheel Plan" name="wheel_plan" id="wheel_plan" value="{{$motorcycle->wheel_plan}}">
+                                        <input class="form-control" type="text" placeholder="Wheel Plan"
+                                            name="wheel_plan" id="wheel_plan" value="{{$motorcycle->wheel_plan}}">
                                     </div>
                                     <button type="submit" class="btn btn-outline-success">Submit</button>
                                 </form>

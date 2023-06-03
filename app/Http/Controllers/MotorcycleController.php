@@ -150,11 +150,10 @@ class MotorcycleController extends Controller
         ]);
 
         $transaction = Payment::all()
-        ->where('motorcycle_id', $request->motorcycle_id)
-        ->where('payment_type', 'deposit');
-        
-        foreach($transaction as $outstanding)
-        {
+            ->where('motorcycle_id', $request->motorcycle_id)
+            ->where('payment_type', 'deposit');
+
+        foreach ($transaction as $outstanding) {
             $outstanding = $outstanding->outstanding - $request->rental_deposit;
         }
         $paymentDate = Carbon::now();
@@ -180,13 +179,12 @@ class MotorcycleController extends Controller
         $validated = $request->validate([
             'received' => 'required',
         ]);
-        
+
         $transaction = Payment::all()
-        ->where('motorcycle_id', $request->motorcycle_id)
-        ->where('payment_type', 'rental');
-        
-        foreach($transaction as $outstanding)
-        {
+            ->where('motorcycle_id', $request->motorcycle_id)
+            ->where('payment_type', 'rental');
+
+        foreach ($transaction as $outstanding) {
             $outstanding = $outstanding->outstanding - $request->received;
         }
 
@@ -404,7 +402,7 @@ class MotorcycleController extends Controller
 
         if (isset($bike)) {
             return to_route('findMotorcycle')->with('success', 'Motorcycle already exists. Please enter a new registratrion number.');
-        } else 
+        } else
         if (is_null($bike)) {
             $response = Http::withHeaders([
                 'x-api-key' => '5i0qXnN6SY3blfoFeWvlu9sTQCSdrf548nMS8vVO',

@@ -29,7 +29,7 @@
         @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
         @endforeach
-        </ui>
+    </ul>
 </div>
 @endif
 <!-- This area is used to dispay errors -->

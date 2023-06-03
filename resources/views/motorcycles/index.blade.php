@@ -52,7 +52,7 @@
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
             @endforeach
-            </ui>
+        </ul>
     </div>
     @endif
     <!-- This area is used to dispay errors -->
@@ -81,7 +81,8 @@
                     <td>{{$motorcycle->colour}}</td>
                     <td></td>
                     <td>
-                        <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
+                        <a class="btn btn-outline-primary"
+                            href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
                     </td>
                 </tr>
                 @endforeach

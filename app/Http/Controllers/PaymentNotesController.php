@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class NotesController extends Controller
+class PaymentNotesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class NotesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo "Store Function";
     }
 
     /**
@@ -56,7 +56,7 @@ class NotesController extends Controller
      */
     public function edit($id)
     {
-        echo "Edit Function";
+        //
     }
 
     /**

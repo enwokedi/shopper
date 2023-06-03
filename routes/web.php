@@ -130,7 +130,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/payment/{id}', [PaymentsController::class, 'voidPayment'])->name('voidPayment');
 
     // Notes
-    Route::resource('notes', 'NotesController');
+    Route::resource('notes', 'PaymentNotesController');
 
     // MOTORCYCLE
     Route::resource('motorcycles', 'MotorcycleController');

@@ -23,7 +23,7 @@
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
             @endforeach
-            </ui>
+        </ul>
     </div>
     @endif
 
@@ -36,29 +36,36 @@
                         <form action="/motorcycles" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
-                                <input class="form-control" type="text" placeholder="Registration" name="registration" id="registration" value="{{old('registration')}}">
+                                <input class="form-control" type="text" placeholder="Registration" name="registration"
+                                    id="registration" value="{{old('registration')}}">
                             </div>
-                            <select class="form-select mb-3" aria-label="Select Make" name="make" id="make" value="{{old('make')}}">
+                            <select class="form-select mb-3" aria-label="Select Make" name="make" id="make"
+                                value="{{old('make')}}">
                                 <option selected>Select Make</option>
                                 <option value="honda">Honda</option>
                                 <option value="yamaha">Yamaha</option>
                             </select>
                             <div class="mb-3">
-                                <input class="form-control" type="text" placeholder="Model" name="model" id="model" value="{{old('model')}}">
+                                <input class="form-control" type="text" placeholder="Model" name="model" id="model"
+                                    value="{{old('model')}}">
                             </div>
                             <div class="mb-3">
-                                <input class="form-control" type="text" placeholder="Colour" name="colour" id="colour" value="{{old('colour')}}">
+                                <input class="form-control" type="text" placeholder="Colour" name="colour" id="colour"
+                                    value="{{old('colour')}}">
                             </div>
                             <div class="mb-3">
-                                <input class="form-control" type="text" placeholder="Fuel Type" id="fuel_type" name="year" value="{{old('petrol')}}">
+                                <input class="form-control" type="text" placeholder="Fuel Type" id="fuel_type"
+                                    name="year" value="{{old('petrol')}}">
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Engine" aria-label="engine" aria-describedby="engine" name="engine" id="engine" value="{{old('engine')}}">
+                                <input type="text" class="form-control" placeholder="Engine" aria-label="engine"
+                                    aria-describedby="engine" name="engine" id="engine" value="{{old('engine')}}">
                                 <span class="input-group-text" id="engine_cc">CC</span>
                             </div>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="is_for_rent" id="is_for_rent" value="1">
+                                <input class="form-check-input" type="radio" name="is_for_rent" id="is_for_rent"
+                                    value="1">
                                 <label class="form-check-label" for="is_for_rent">
                                     For Rent
                                 </label>
@@ -70,7 +77,8 @@
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="is_for_sale" id="is_for_sale" value="1">
+                                <input class="form-check-input" type="radio" name="is_for_sale" id="is_for_sale"
+                                    value="1">
                                 <label class="form-check-label" for="is_for_sale">
                                     For Sale
                                 </label>
@@ -83,7 +91,8 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">£</span>
-                                <input type="text" class="form-control" aria-label="Rental Price (to the nearest pound)" name="rental_price" id="rental_price">
+                                <input type="text" class="form-control" aria-label="Rental Price (to the nearest pound)"
+                                    name="rental_price" id="rental_price">
                                 <span class="input-group-text">.00</span>
                             </div>
 
