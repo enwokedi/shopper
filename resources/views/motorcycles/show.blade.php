@@ -4,30 +4,32 @@
 
 @auth
 <h1>{{ $motorcycle->registration }}</h1>
-<div class="btn-group" role="group" aria-label="Basic example">
-    <a class="btn btn-outline-primary" href="{{ url()->previous() }}">Back</a>
-</div>
-<div class="btn-group" role="group" aria-label="Basic example">
-    <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/' . $motorcycle->id . '/edit') }}">Edit</a>
-</div>
+<div class="mt-3">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a class="btn btn-outline-primary" href="{{ url()->previous() }}">Back</a>
+    </div>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/' . $motorcycle->id . '/edit') }}">Edit</a>
+    </div>
 
-<!-- Modal -->
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    View Notes
-</button>
+    <!-- Modal -->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        View Notes
+    </button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                @foreach ($notes as $note)
-                <p>{{ $note->created_at }} {{ $note->note }} <br>
-                    @endforeach
-            </div>
-            <div class="container d-grid gap-2" style="padding-bottom: 10px">
-                <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Close</button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @foreach ($notes as $note)
+                    <p>{{ $note->created_at }} {{ $note->note }} <br>
+                        @endforeach
+                </div>
+                <div class="container d-grid gap-2" style="padding-bottom: 10px">
+                    <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -137,22 +139,17 @@
                     <div class="card-body">
                         <h5>Deposit Payment</h5>
                         <div class="container">
-                            <form action="/update-deposit/{{$motorcycle->id}}" method="post"
-                                enctype="multipart/form-data">
+                            <form action="/update-deposit/{{$motorcycle->id}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div hidden class="mb-3">
-                                    <input class="form-control" type="text" placeholder="Motorcycle ID"
-                                        name="motorcycle_id" id="motorcycle_id" value="{{$motorcycle->id}}">
+                                    <input class="form-control" type="text" placeholder="Motorcycle ID" name="motorcycle_id" id="motorcycle_id" value="{{$motorcycle->id}}">
                                 </div>
                                 <div hidden class="mb-3">
-                                    <input class="form-control" type="text" placeholder="Rental Type"
-                                        name="payment_type" id="payment_type" value="deposit">
+                                    <input class="form-control" type="text" placeholder="Rental Type" name="payment_type" id="payment_type" value="deposit">
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1">£</span>
-                                    <input type="text" class="form-control" placeholder="00.00"
-                                        aria-label="Change Deposit" name="rental_deposit" id="rental_deposit"
-                                        value="{{old('$motorcycle->rental_deposit')}}">
+                                    <input type="text" class="form-control" placeholder="00.00" aria-label="Change Deposit" name="rental_deposit" id="rental_deposit" value="{{old('$motorcycle->rental_deposit')}}">
                                 </div>
                                 <button type="submit" class="btn btn-outline-primary">SUBMIT</button>
                             </form>
@@ -164,7 +161,7 @@
             <div class="card shadow">
                 <div class="card-header">
                     <div class="card-body">
-                        <h5 class="text-capitalize">Status: {{$motorcycle->availability}}</h5>
+                        <h5 class="text-capitalize">Status: {{$motorcycle->availability}} @ £{{$motorcycle->rental_price}} / Week</h5>
                         <table class="table">
                             <tbody>
                                 <tr>
@@ -173,11 +170,11 @@
                                 </tr>
                                 <tr>
                                     <td>Weekly Rental Price</td>
-                                    <td class="text-end">£{{$motorcycle->rental_price}}</td>
+                                    <td class="text-end" id="rental_price"><span class="input-group-text" id="rental_price">£{{$motorcycle->rental_price}}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Default Deposit </td>
-                                    <td class="text-end">£{{$motorcycle->rental_deposit}}</td>
+                                    <td class="text-end"><span class="input-group-text" id="rental_deposit2">£{{$motorcycle->rental_deposit}}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Tax Status </td>
@@ -200,18 +197,14 @@
                             <form action="/notes/create" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div hidden class="mb-3">
-                                    <input class="form-control" type="text" placeholder="Motorcycle ID"
-                                        name="motorcycle_id" id="motorcycle_id" value="{{$motorcycle->id}}">
+                                    <input class="form-control" type="text" placeholder="Motorcycle ID" name="motorcycle_id" id="motorcycle_id" value="{{$motorcycle->id}}">
                                 </div>
                                 <div hidden class="mb-3">
-                                    <input class="form-control" type="text" placeholder="Rental Type"
-                                        name="payment_type" id="payment_type" value="rental">
+                                    <input class="form-control" type="text" placeholder="Rental Type" name="payment_type" id="payment_type" value="rental">
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1">£</span>
-                                    <input type="text" class="form-control" placeholder="00.00"
-                                        aria-label="Take Payment" name="received" id="received"
-                                        value="{{old('received')}}">
+                                    <input type="text" class="form-control" placeholder="00.00" aria-label="Take Payment" name="received" id="received" value="{{old('received')}}">
                                 </div>
                                 <button type="submit" class="btn btn-outline-primary">SUBMIT</button>
                             </form>
@@ -255,18 +248,15 @@
 
                                             @csrf
                                             <input hidden name="payment_id" id="payment_id" value="{{ $payment->id }}">
-                                            <input hidden name="motorcycle_id" id="motorcycle_id"
-                                                value="{{ $motorcycle->id }}">
+                                            <input hidden name="motorcycle_id" id="motorcycle_id" value="{{ $motorcycle->id }}">
                                             <div class="mb-3">
-                                                <input class="form-control" type="text" placeholder="Add Note"
-                                                    name="note" id="note" value="{{ old('note') }}">
+                                                <input class="form-control" type="text" placeholder="Add Note" name="note" id="note" value="{{ old('note') }}">
                                             </div>
 
 
                                         </td>
                                         <td>
-                                            <button class="btn btn-outline-primary pull-right"
-                                                type="submit">Save</button>
+                                            <button class="btn btn-outline-primary pull-right" type="submit">Save</button>
                                         </td>
                                     </form>
                                 </tr>

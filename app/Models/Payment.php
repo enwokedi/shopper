@@ -32,4 +32,9 @@ class Payment extends Model
     {
         return $this->hasMany(Note::class, 'payment_id', 'id');
     }
+
+    public function paymenttransaction(): HasMany
+    {
+        return $this->hasMany(PaymentTransaction::class, 'payment_transaction_id', 'id');
+    }
 }

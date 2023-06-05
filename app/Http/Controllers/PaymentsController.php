@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Payment;
+use App\Models\PaymentTransaction;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\Motorcycle;

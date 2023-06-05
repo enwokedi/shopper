@@ -73,7 +73,7 @@
             <tbody>
                 @foreach ($motorcycles as $motorcycle)
                 <tr>
-                    <th scope="row">{{$motorcycle->registration}}</th>
+                    <th class="text-uppercase" scope="row">{{$motorcycle->registration}}</th>
                     <td>{{$motorcycle->make}}</td>
                     <td>{{$motorcycle->model}}</td>
                     <td>{{$motorcycle->engine}}CC</td>
@@ -81,8 +81,7 @@
                     <td>{{$motorcycle->colour}}</td>
                     <td></td>
                     <td>
-                        <a class="btn btn-outline-primary"
-                            href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
+                        <a class="btn btn-outline-primary" href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
                     </td>
                 </tr>
                 @endforeach

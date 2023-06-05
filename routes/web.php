@@ -15,6 +15,8 @@ use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\MotorcycleController;
 use App\Http\Controllers\PaymentsController;
 use App\Models\Motorcycle;
+use App\Models\Payment;
+use Laravel\Cashier\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
