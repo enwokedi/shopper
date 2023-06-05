@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Motorcycle;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use App\Models\Payment;
@@ -41,6 +42,8 @@ class NotesController extends Controller
     {
         $motorcycle_id = $request->motorcycle_id;
 
+        $payment = Payment::findOrFail($request->payment_id);
+
         $validated = $request->validate([
             'note' => 'required',
         ]);
@@ -48,6 +51,7 @@ class NotesController extends Controller
         $note = new Note();
         $note->payment_id = $request->payment_id;
         $note->motorcycle_id = $request->motorcycle_id;
+        $note->payment_type = $payment->payment_type;
         $note->note = $request->note;
         $note->save();
 

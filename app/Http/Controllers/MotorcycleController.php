@@ -124,7 +124,7 @@ class MotorcycleController extends Controller
         }
         $paymentDate = Carbon::now();
 
-        // $lastOutstanding = DB::table('payments')->latest('updated_at')->first();
+        $authUser = Auth::user();
 
         $payment = new Payment();
         $payment->payment_due_date = $motorcycle->rental_start_date;
@@ -135,6 +135,7 @@ class MotorcycleController extends Controller
         $payment->user_id = $motorcycle->user_id;
         $payment->motorcycle_id = $request->motorcycle_id;
         $payment->registration = $motorcycle->registration;
+        $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
         $payment->save();
 
         return to_route('motorcycles.show', [$request->motorcycle_id])
@@ -161,7 +162,7 @@ class MotorcycleController extends Controller
         }
         $paymentDate = Carbon::now();
 
-        // $lastOutstanding = DB::table('payments')->latest('updated_at')->first();
+        $authUser = Auth::user();
 
         $payment = new Payment();
         $payment->payment_due_date = $motorcycle->rental_start_date;
@@ -172,6 +173,7 @@ class MotorcycleController extends Controller
         $payment->user_id = $motorcycle->user_id;
         $payment->motorcycle_id = $request->motorcycle_id;
         $payment->registration = $motorcycle->registration;
+        $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
         $payment->save();
 
         return to_route('motorcycles.show', [$request->motorcycle_id])

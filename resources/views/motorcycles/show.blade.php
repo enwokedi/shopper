@@ -24,8 +24,8 @@
             <div class="modal-content">
                 <div class="modal-body">
                     @foreach ($notes as $note)
-                    <p>{{ $note->created_at }} {{ $note->note }} <br>
-                        @endforeach
+                    <p class="text-capitalize"><strong>{{ $note->payment_type }}</strong> {{ $note->created_at   }} {{ $note->note }}</p><br>
+                    @endforeach
                 </div>
                 <div class="container d-grid gap-2" style="padding-bottom: 10px">
                     <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Close</button>
@@ -161,7 +161,7 @@
             <div class="card shadow">
                 <div class="card-header">
                     <div class="card-body">
-                        <h5 class="text-capitalize">Status: {{$motorcycle->availability}} @ £{{$motorcycle->rental_price}} / Week</h5>
+                        <h5 class="text-capitalize">Status: {{$motorcycle->availability}}</h5>
                         <table class="table">
                             <tbody>
                                 <tr>
