@@ -194,7 +194,7 @@
                     <div class="card-body">
                         <h5>Rental Payment</h5>
                         <div class="container">
-                            <form action="/notes/create" method="post" enctype="multipart/form-data">
+                            <form action="/take-payment/{{$motorcycle->id}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div hidden class="mb-3">
                                     <input class="form-control" type="text" placeholder="Motorcycle ID" name="motorcycle_id" id="motorcycle_id" value="{{$motorcycle->id}}">
@@ -219,11 +219,11 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
+            <h4>Payment History</h4>
             <div class="card shadow">
                 <div class="card-header">
-
                     <div class="card-body">
-                        <h5>Payment History</h5>
+                        <h5>Rental</h5>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -236,7 +236,54 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($payments as $payment)
+                                @foreach ($rentalpayments as $payment)
+                                <tr>
+                                    <td>{{$payment->payment_due_date}}</td>
+                                    <td class="text-capitalize">{{$payment->payment_type}}</td>
+                                    <td>£{{$payment->received}}</td>
+                                    <td>{{$payment->payment_date}}</td>
+                                    <td class="text-danger">£{{$payment->outstanding}}</td>
+                                    <form action="/notes" method="POST" enctype="multipart/form-data">
+                                        <td>
+
+                                            @csrf
+                                            <input hidden name="payment_id" id="payment_id" value="{{ $payment->id }}">
+                                            <input hidden name="motorcycle_id" id="motorcycle_id" value="{{ $motorcycle->id }}">
+                                            <div class="mb-3">
+                                                <input class="form-control" type="text" placeholder="Add Note" name="note" id="note" value="{{ old('note') }}">
+                                            </div>
+
+
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-outline-primary pull-right" type="submit">Save</button>
+                                        </td>
+                                    </form>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card shadow">
+                <div class="card-header">
+                    <div class="card-body">
+                        <h5>Deposit</h5>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Due Date</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Received</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Due</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($depositpayments as $payment)
                                 <tr>
                                     <td>{{$payment->payment_due_date}}</td>
                                     <td class="text-capitalize">{{$payment->payment_type}}</td>

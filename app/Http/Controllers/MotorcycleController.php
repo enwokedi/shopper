@@ -105,6 +105,7 @@ class MotorcycleController extends Controller
         return redirect('/motorcycles');
     }
 
+    // Manually take deposit payment
     public function updateDeposit(Request $request)
     {
         $validated = $request->validate([
@@ -112,7 +113,7 @@ class MotorcycleController extends Controller
         ]);
 
         $motorcycle = Motorcycle::findOrFail($request->motorcycle_id);
-        dd($motorcycle);
+        // dd($motorcycle);
 
         $transaction = Payment::all()
             ->where('motorcycle_id', $request->motorcycle_id)
@@ -123,34 +124,33 @@ class MotorcycleController extends Controller
         }
         $paymentDate = Carbon::now();
 
+        // $lastOutstanding = DB::table('payments')->latest('updated_at')->first();
+
         $payment = new Payment();
+        $payment->payment_due_date = $motorcycle->rental_start_date;
         $payment->payment_type = 'deposit';
         $payment->received = $request->rental_deposit;
         $payment->payment_date = $paymentDate;
+        $payment->outstanding = $outstanding;
+        $payment->user_id = $motorcycle->user_id;
+        $payment->motorcycle_id = $request->motorcycle_id;
+        $payment->registration = $motorcycle->registration;
         $payment->save();
-
-        // $payment = DB::table('payments')
-        //     ->where('motorcycle_id', '=', $request->motorcycle_id)
-        //     ->where('payment_type', '=', 'deposit')
-        //     ->update([
-        //         'outstanding' => $outstanding,
-        //         'received' => $request->rental_deposit,
-        //         'payment_date' => $paymentDate,
-        //     ]);
-
 
         return to_route('motorcycles.show', [$request->motorcycle_id])
             ->with('success', 'Rental deposit updated.');
     }
 
+    // Manually take the rental payment
     public function takePayment(Request $request)
     {
-        // Manually update client payments
-
         // Validate incoming data
         $validated = $request->validate([
             'received' => 'required',
         ]);
+
+        $motorcycle = Motorcycle::findOrFail($request->motorcycle_id);
+        // dd($motorcycle);
 
         $transaction = Payment::all()
             ->where('motorcycle_id', $request->motorcycle_id)
@@ -159,20 +159,23 @@ class MotorcycleController extends Controller
         foreach ($transaction as $outstanding) {
             $outstanding = $outstanding->outstanding - $request->received;
         }
-
         $paymentDate = Carbon::now();
 
-        $payment = DB::table('payments')
-            ->where('motorcycle_id', '=', $request->motorcycle_id)
-            ->where('payment_type', '=', 'rental')
-            ->update([
-                'outstanding' => $outstanding,
-                'received' => $request->received,
-                'payment_date' => $paymentDate,
-            ]);
+        // $lastOutstanding = DB::table('payments')->latest('updated_at')->first();
+
+        $payment = new Payment();
+        $payment->payment_due_date = $motorcycle->rental_start_date;
+        $payment->payment_type = 'rental';
+        $payment->received = $request->received;
+        $payment->payment_date = $paymentDate;
+        $payment->outstanding = $outstanding;
+        $payment->user_id = $motorcycle->user_id;
+        $payment->motorcycle_id = $request->motorcycle_id;
+        $payment->registration = $motorcycle->registration;
+        $payment->save();
 
         return to_route('motorcycles.show', [$request->motorcycle_id])
-            ->with('success', 'Rental Paid.');
+            ->with('success', 'Rental payment updated.');
     }
 
     // Find motorcycles for sale
@@ -327,7 +330,7 @@ class MotorcycleController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Motorcycle details & transactional data
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -344,11 +347,17 @@ class MotorcycleController extends Controller
             ->sortByDesc('id');
 
         // Motorcycle Payment History
-        $payments = Payment::all()
+        $depositpayments = Payment::all()
             ->where('motorcycle_id', $motorcycle_id)
+            ->where('payment_type', '=', 'deposit')
             ->sortByDesc('id');
 
-        return view('motorcycles.show', compact('motorcycle', 'payments', 'notes'));
+        $rentalpayments = Payment::all()
+            ->where('motorcycle_id', $motorcycle_id)
+            ->where('payment_type', '=', 'rental')
+            ->sortByDesc('id');
+
+        return view('motorcycles.show', compact('motorcycle', 'depositpayments', 'rentalpayments', 'notes'));
     }
 
     /**
