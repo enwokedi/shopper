@@ -29,9 +29,20 @@
                 </ul>
             </div>
             @endif
-            <div class="custom-file">
+            <div class="form-group">
+                @foreach ($motorcycles as $motorcycle)
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="registration" id="registration" value="{{ $motorcycle->registration }}">
+                    <label class="form-check-label" for="is_for_rent">
+                        Select {{ $motorcycle->registration }} as insured motorcycle
+                    </label>
+                </div>
+                @endforeach
+
+            </div>
+            <div class="custom-file mt-3">
                 <input type="file" name="file" class="custom-file-input" id="chooseFile">
-                <label class="custom-file-label" for="chooseFile">Select file</label>
+                <label class="custom-file-label" for="chooseFile">Select Document</label>
             </div>
             <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
                 Upload Files

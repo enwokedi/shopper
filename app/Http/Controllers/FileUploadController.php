@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\UserController;
+use App\Models\Motorcycle;
 
 class FileUploadController extends Controller
 {
@@ -189,12 +190,17 @@ class FileUploadController extends Controller
     public function createInsProof($id)
     {
         $user_id = $id;
-        // dd($user_id);
-        return view('home.upload-poins')->with('user_id', $user_id);
+
+        $motorcycles = Motorcycle::all()
+            ->where('user_id', $id);
+        // dd($motorcycles);
+        return view('home.upload-poins', compact('user_id', 'motorcycles')); //->with('user_id', $user_id);
     }
 
     public function InsuranceCertificate(Request $req)
     {
+        $registration = $req->registration;
+
         $previousUrl = URL()->previous();
         if (preg_match("/\/(\d+)$/", $previousUrl, $matches)) {
             $user_id = $matches[1];
@@ -212,6 +218,7 @@ class FileUploadController extends Controller
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->user_id = $user_id;
             $fileModel->document_type = "Insurance Certificate";
+            $fileModel->registration = $registration;
             $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();

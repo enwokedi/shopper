@@ -39,7 +39,7 @@
     <div class="col">
         <p>
             <strong>Nationality: </strong>{{ $user->nationality }}<br>
-            <strong>Driving Licence: </strong>{{ $user->driving_licence }}<br>
+            <!-- <strong>Driving Licence: </strong>{{ $user->driving_licence }}<br> -->
         </p>
     </div>
     <div class="col">
@@ -67,13 +67,12 @@
 </div>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+<!-- <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     View All Documents
-</button>
+</button> -->
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -81,7 +80,7 @@
                 <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
             </div>
             <div class="modal-body">
-                <!-- Modal Contents Here -->
+
                 @foreach ($documents as $document)
                 @if($document->name)
                 <img src="{{ asset('storage/uploads/'.$document->name) }}" style="width:100%;">
@@ -95,16 +94,16 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="row align-items-start">
+<div class="row align-items-start mt-3">
     <div class="panel-body">
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Document Type</th>
-                    <th scope="col">Reg #</th>
+                    <th scope="col">Registration</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
@@ -114,12 +113,9 @@
                 <tr>
                     <td>{{ $document->name }}</td>
                     <td>{{ $document->document_type }}</td>
-                    <td>Registration ???</td>
-                    <td></td>
+                    <td>{{ $document->registration }}</td>
+                    <td><a href="{{ url('/storage/uploads', $document->name) }}" target="_blank">View</a></td>
                     <td>
-                        <div class="btn-group" role="group">
-                            <a class="btn btn-outline-success" href="/remove-upload/{{$document->id}}">View</a>
-                        </div>
                         <div class="btn-group" role="group">
                             <a class="btn btn-outline-danger" href="/remove-upload/{{$document->id}}">Delete</a>
                         </div>
@@ -140,7 +136,7 @@
     <br>
 
     <!-- List of vehicles rented should go here with link to each vehicles details -->
-    <table class="table table-striped">
+    <table class="table table-striped mt-3">
         <thead>
             <tr>
                 <th scope="col">Reg</th>
@@ -178,12 +174,10 @@
                 <td></td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a class="btn btn-outline-success"
-                            href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
+                        <a class="btn btn-outline-success" href="{{ URL::to('motorcycles/' . $motorcycle->id) }}">Details</a>
                     </div>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a class="btn btn-outline-success"
-                            href="{{ URL::to('remove-rental/' . $motorcycle->id) }}">Remove</a>
+                        <a class="btn btn-outline-success" href="{{ URL::to('remove-rental/' . $motorcycle->id) }}">Remove</a>
                     </div>
                 </td>
             </tr>
