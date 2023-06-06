@@ -151,14 +151,16 @@ class MotorcycleController extends Controller
         ]);
 
         $motorcycle = Motorcycle::findOrFail($request->motorcycle_id);
-        // dd($motorcycle);
+
+        $rentalPrice = $motorcycle->rental_price;
+        $registration = $motorcycle->registration;
 
         $transaction = Payment::all()
             ->where('motorcycle_id', $request->motorcycle_id)
             ->where('payment_type', 'rental');
 
-        foreach ($transaction as $outstanding) {
-            $outstanding = $outstanding->outstanding - $request->received;
+        foreach ($transaction as $tran) {
+            $outstanding = $tran->outstanding - $request->received;
         }
         $paymentDate = Carbon::now();
 
@@ -175,6 +177,58 @@ class MotorcycleController extends Controller
         $payment->registration = $motorcycle->registration;
         $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
         $payment->save();
+
+        // Work out next payment
+        foreach ($transaction as $transaction) {
+            // $formatted_dt1=Carbon::parse($a->date);
+            $now = Carbon::now();
+            $todayDate = Carbon::parse($now);
+            $nextPayDate = Carbon::parse($transaction->payment_next_date);
+            $days = $nextPayDate->diffInDays($todayDate);
+
+            if ($payment->outstanding = $payment->received) {
+                // Create next rental payment
+                $payment = new Payment();
+                $payment->payment_type = 'rental';
+                $payment->rental_price = $rentalPrice;
+                $payment->registration = $motorcycle->registration;
+                $payment->payment_due_date = $todayDate;
+                $payment->payment_next_date = $nextPayDate;
+                $payment->received = 00.00;
+                $payment->outstanding = $payment->rental_price;
+                $payment->user_id = $motorcycle->user_id;
+                $payment->payment_due_count = 7;
+                $payment->created_at = $todayDate;
+                $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
+                $payment->motorcycle_id = $motorcycle->id;
+                $payment->save();
+            } elseif ($days = 1)
+                // Code this out here...
+                $payment = new Payment();
+            $payment->payment_type = 'rental';
+            $payment->rental_price = $rentalPrice;
+            $payment->registration = $motorcycle->registration;
+            $payment->payment_due_date = $todayDate;
+            $payment->payment_next_date = $nextPayDate;
+            $payment->received = 00.00;
+            $payment->outstanding = $payment->rental_price;
+            $payment->user_id = $motorcycle->user_id;
+            $payment->payment_due_count = 7;
+            $payment->created_at = $todayDate;
+            $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
+            $payment->motorcycle_id = $motorcycle->id;
+            $payment->save();
+        };
+
+        // $toDate = Carbon::parse("2023-05-29");
+        // $fromDate = Carbon::parse("2022-08-20");
+        // $days = $toDate->diffInDays($now);
+        // $months = $toDate->diffInMonths($fromDate);
+        // $years = $toDate->diffInYears($fromDate);
+
+        // print_r("In Days: " . $days . "<br>");
+        // print_r("In Months: " . $months . "<br>");
+        // print_r("In Years: " . $years);
 
         return to_route('motorcycles.show', [$request->motorcycle_id])
             ->with('success', 'Rental payment updated.');
@@ -207,6 +261,8 @@ class MotorcycleController extends Controller
         $rentalPrice = $motorcycle->rental_price;
         $registration = $motorcycle->registration;
         $todayDate = Carbon::now();
+        $nextPayDate = Carbon::now();
+        $nextPayDate->addDays(7);
 
         // Create deposit
         $payment = new Payment();
@@ -228,6 +284,7 @@ class MotorcycleController extends Controller
         $payment->rental_price = $rentalPrice;
         $payment->registration = $motorcycle->registration;
         $payment->payment_due_date = $todayDate;
+        $payment->payment_next_date = $nextPayDate;
         $payment->received = 00.00;
         $payment->outstanding = $payment->rental_price;
         $payment->user_id = $user_id;

@@ -210,7 +210,8 @@ class FileUploadController extends Controller
         // dd($user_id);
 
         $req->validate([
-            'file' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,png|max:2048'
+            'file' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,png|max:2048',
+            'registration' => 'required',
         ]);
         $fileModel = new File;
         if ($req->file()) {

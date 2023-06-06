@@ -200,6 +200,9 @@
                                     <input class="form-control" type="text" placeholder="Motorcycle ID" name="motorcycle_id" id="motorcycle_id" value="{{$motorcycle->id}}">
                                 </div>
                                 <div hidden class="mb-3">
+                                    <input hidden name="user_id" id="user_id" value="{{ $motorcycle->user_id }}">
+                                </div>
+                                <div hidden class="mb-3">
                                     <input class="form-control" type="text" placeholder="Rental Type" name="payment_type" id="payment_type" value="rental">
                                 </div>
                                 <div class="input-group mb-3">
@@ -245,15 +248,12 @@
                                     <td class="text-danger">£{{$payment->outstanding}}</td>
                                     <form action="/notes" method="POST" enctype="multipart/form-data">
                                         <td>
-
                                             @csrf
                                             <input hidden name="payment_id" id="payment_id" value="{{ $payment->id }}">
                                             <input hidden name="motorcycle_id" id="motorcycle_id" value="{{ $motorcycle->id }}">
                                             <div class="mb-3">
                                                 <input class="form-control" type="text" placeholder="Add Note" name="note" id="note" value="{{ old('note') }}">
                                             </div>
-
-
                                         </td>
                                         <td>
                                             <button class="btn btn-outline-primary pull-right" type="submit">Save</button>
@@ -292,15 +292,12 @@
                                     <td class="text-danger">£{{$payment->outstanding}}</td>
                                     <form action="/notes" method="POST" enctype="multipart/form-data">
                                         <td>
-
                                             @csrf
                                             <input hidden name="payment_id" id="payment_id" value="{{ $payment->id }}">
                                             <input hidden name="motorcycle_id" id="motorcycle_id" value="{{ $motorcycle->id }}">
                                             <div class="mb-3">
                                                 <input class="form-control" type="text" placeholder="Add Note" name="note" id="note" value="{{ old('note') }}">
                                             </div>
-
-
                                         </td>
                                         <td>
                                             <button class="btn btn-outline-primary pull-right" type="submit">Save</button>
