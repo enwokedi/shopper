@@ -139,7 +139,7 @@
     <table class="table table-striped mt-3">
         <thead>
             <tr>
-                <th scope="col">Reg</th>
+                <th scope="col">Registration</th>
                 <th scope="col">Make</th>
                 <th scope="col">Model</th>
                 <th scope="col">CC</th>

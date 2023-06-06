@@ -226,12 +226,18 @@
             <div class="card shadow">
                 <div class="card-header">
                     <div class="card-body">
-                        <h5>Rental</h5>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Rental</h5>
+                            </div>
+                            <div class="col">
+                                <a class="btn btn-outline-primary pull-right" href="/create-payment/{{$motorcycle->id}}">New Week</a>
+                            </div>
+                        </div>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Due Date</th>
-                                    <th scope="col">Type</th>
+                                    <th scope="col">Due On</th>
                                     <th scope="col">Received</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Due</th>
@@ -242,7 +248,6 @@
                                 @foreach ($rentalpayments as $payment)
                                 <tr>
                                     <td>{{$payment->payment_due_date}}</td>
-                                    <td class="text-capitalize">{{$payment->payment_type}}</td>
                                     <td>£{{$payment->received}}</td>
                                     <td>{{$payment->payment_date}}</td>
                                     <td class="text-danger">£{{$payment->outstanding}}</td>
@@ -275,7 +280,6 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Due Date</th>
-                                    <th scope="col">Type</th>
                                     <th scope="col">Received</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Due</th>
@@ -286,7 +290,6 @@
                                 @foreach ($depositpayments as $payment)
                                 <tr>
                                     <td>{{$payment->payment_due_date}}</td>
-                                    <td class="text-capitalize">{{$payment->payment_type}}</td>
                                     <td>£{{$payment->received}}</td>
                                     <td>{{$payment->payment_date}}</td>
                                     <td class="text-danger">£{{$payment->outstanding}}</td>

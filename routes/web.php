@@ -144,6 +144,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::post('/registration-number', [MotorcycleController::class, 'registrationNumber'])->name('registrationNumber');
     Route::get('/motorcycles-for-rent/{id}', [MotorcycleController::class, 'clientForRent'])->name('clientForRent');
     Route::post('/update-deposit/{id}', [MotorcycleController::class, 'updateDeposit'])->name('updateDeposit');
+    Route::get('/create-payment/{id}', [MotorcycleController::class, 'createPayment'])->name('createPayment');
     Route::post('/take-payment/{id}', [MotorcycleController::class, 'takePayment'])->name('takePayment');
     Route::get('/rental/{motorcycle_id}', [MotorcycleController::class, 'addToClient'])->name('motorcycles.users.update');
     Route::get('/remove-rental/{motorcycle_id}', [MotorcycleController::class, 'removeFromClient'])->name('removeFromClient');
