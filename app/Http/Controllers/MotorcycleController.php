@@ -179,26 +179,33 @@ class MotorcycleController extends Controller
         $rentalPrice = $motorcycle->rental_price;
         $registration = $motorcycle->registration;
 
-        $transaction = Payment::all()
+        $transaction = Payment::orderBy('updated_at', 'DESC')
             ->where('motorcycle_id', $request->motorcycle_id)
             ->where('payment_type', 'rental')
-            ->where('outstanding', '>', 0);
+            ->where('outstanding', '>', 0)
+            ->first();
+
+        // $transaction = Payment::all()
+        //     ->where('motorcycle_id', $request->motorcycle_id)
+        //     ->where('payment_type', 'rental')
+        //     ->where('outstanding', '>', 0);
         // dd($transaction);
 
-        foreach ($transaction as $tran) {
-            $outstanding = $tran->outstanding - $request->received;
-        }
+        // foreach ($transaction as $tran) {
+        //     $outstanding = $tran->outstanding - $request->received;
+        // }
         $paymentDate = Carbon::now();
 
         $authUser = Auth::user();
-
+        // dd($request);
         $payment = new Payment();
+        $payment->payment_id = $transaction->id;
         $payment->payment_due_date = $motorcycle->rental_start_date;
         $payment->rental_price = $motorcycle->rental_price;
         $payment->payment_type = 'rental';
         $payment->received = $request->received;
         $payment->payment_date = $paymentDate;
-        $payment->outstanding = $outstanding;
+        $payment->outstanding = $transaction->outstanding - $request->received;
         $payment->user_id = $motorcycle->user_id;
         $payment->motorcycle_id = $request->motorcycle_id;
         $payment->registration = $motorcycle->registration;
@@ -260,7 +267,7 @@ class MotorcycleController extends Controller
         $payment->registration = $motorcycle->registration;
         $payment->payment_due_date = $todayDate;
         $payment->payment_next_date = $nextPayDate;
-        $payment->received = 00.00;
+        $payment->received = 00.01;
         $payment->outstanding = $payment->rental_price;
         $payment->user_id = $user_id;
         $payment->payment_due_count = 7;
@@ -386,12 +393,19 @@ class MotorcycleController extends Controller
             ->where('payment_type', '=', 'deposit')
             ->sortByDesc('id');
 
+        $newpayments = Payment::all()
+            ->where('motorcycle_id', $motorcycle_id)
+            ->where('payment_type', '=', 'rental')
+            ->where('outstanding', '>', 1)
+            ->where('received', '=', 0)
+            ->sortByDesc('id');
+
         $rentalpayments = Payment::all()
             ->where('motorcycle_id', $motorcycle_id)
             ->where('payment_type', '=', 'rental')
-            ->sortByDesc('id');
+            ->sortByDesc('updated_at');
 
-        return view('motorcycles.show', compact('motorcycle', 'depositpayments', 'rentalpayments', 'notes'));
+        return view('motorcycles.show', compact('motorcycle', 'depositpayments', 'rentalpayments', 'newpayments', 'notes'));
     }
 
     /**
