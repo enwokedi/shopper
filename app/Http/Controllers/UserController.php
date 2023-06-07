@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Address;
 use App\Models\File;
 use App\Models\User;
 use Nette\Utils\Json;
 use App\Models\Rental;
+use App\Mail\UserEmail;
+use App\Models\Address;
 use App\models\Payment;
 use App\Models\Motorcycle;
 use Illuminate\Support\Js;
 use App\Models\UserAddress;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
+
 
 class UserController extends Controller
 {
@@ -176,5 +179,21 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function sendEmail(Request $request)
+    {
+        $users = User::whereIn("id", $request->ids)->get();
+
+        foreach ($users as $key => $user) {
+            Mail::to($user->email)->send(new UserEmail($user));
+        }
+
+        return response()->json(['success' => 'Send email successfully.']);
     }
 }

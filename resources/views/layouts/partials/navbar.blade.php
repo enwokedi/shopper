@@ -1,23 +1,23 @@
 <header class="container">
-    <nav class="navbar navbar-expand">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">NGM Admin | Version 1.0.0</a>
+            <a class="navbar-brand" href="#">NGM Administration</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">DASHBOARD</a>
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="/users">CLIENTS</a>
+                        <a class="nav-link" href="/users">Clients</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="/motorcycles">MOTORCYCLES</a>
+                        <a class="nav-link" href="/motorcycles">Motorcycles</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="/payments">PAYMENTS</a>
+                        <a class="nav-link" href="/payments">Payments Due</a>
                     </li>
 
                 </ul>

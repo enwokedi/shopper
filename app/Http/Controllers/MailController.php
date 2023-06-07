@@ -6,6 +6,7 @@ use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactUs;
+use App\Mail\RentalDue;
 use Illuminate\Support\Carbon;
 
 class MailController extends Controller
@@ -17,5 +18,10 @@ class MailController extends Controller
         Mail::to('fake@mail.com')->send(new ContactUs($name));
 
         // return view('thank-you');
+    }
+
+    public function rentalDueMail($email, $name)
+    {
+        Mail::to($email)->send(new RentalDue($name));
     }
 }

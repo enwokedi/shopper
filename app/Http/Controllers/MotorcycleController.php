@@ -22,13 +22,12 @@ use Symfony\Component\Console\Input\Input;
 class MotorcycleController extends Controller
 {
     // Calculate next payment days
-    public function nextRentalPayment($motorcycle_id)
+    public function nextRentalPayment()
     {
         // Update motocycle rental next payment date
-        $motorcycle = Motorcycle::find($motorcycle_id);
-        $next_payment_date = $motorcycle->next_payment_date;
-        $motorcycle->next_payment_date = $next_payment_date->addDays(7);
-        $motorcycle->save();
+        $motorcycles = Motorcycle::where('next_payment_date', '<=', Carbon::now()->addDay()->toDateTimeString())->get();
+
+        dd($motorcycles);
     }
 
     /**
@@ -74,11 +73,6 @@ class MotorcycleController extends Controller
         // dd($motorcycleGov);
         $validated = $request->validate([
             'registration' => 'required | unique:motorcycles',
-            // 'make' => 'required',
-            // 'model' => 'required',
-            // 'year' => 'required',
-            // 'engine' => 'required',
-            // 'colour' => 'required',
 
         ]);
 
@@ -89,25 +83,21 @@ class MotorcycleController extends Controller
         $motorcycle->year = $motorcycleGov->yearOfManufacture;
         $motorcycle->engine = $motorcycleGov->engineCapacity;
         $motorcycle->colour = $motorcycleGov->colour;
-        $motorcycle->is_for_rent = $request->is_for_rent;
-        // $motorcycle->is_rented = null;
-        $motorcycle->is_for_sale = $request->is_sold;
-        $motorcycle->is_sold = $request->is_sold;
+        $motorcycle->availability = $request->availability;
         $motorcycle->rental_price = $request->rental_price;
-
         $motorcycle->year = $motorcycleGov->yearOfManufacture;
         $motorcycle->fuel_type = $motorcycleGov->fuelType;
         $motorcycle->wheel_plan = $motorcycleGov->wheelplan;
         $motorcycle->tax_status = $motorcycleGov->taxStatus;
         $motorcycle->tax_due_date = $motorcycleGov->taxDueDate;
-        // $motorcycle->mot_status = $motorcycleGov->motStatus;
-        // $motorcycle->mot_expiry_date = $motorcycleGov->motExpiryDate;
+        $motorcycle->mot_status = $motorcycleGov->motStatus;
+        $motorcycle->mot_expiry_date = $motorcycleGov->motExpiryDate;
         $motorcycle->co2_emissions = $motorcycleGov->co2Emissions;
         $motorcycle->marked_for_export = $motorcycleGov->markedForExport;
         $motorcycle->type_approval = $request->typeApproval;
         $motorcycle->last_v5_issue_date = $motorcycleGov->dateOfLastV5CIssued;
         $motorcycle->month_of_first_registration = $motorcycleGov->monthOfFirstRegistration;
-        // $motorcycle->euro_status = $motorcycleGov->euroStatus;
+        $motorcycle->euro_status = $motorcycleGov->euroStatus;
         $motorcycle->availability = $request->availability;
 
         $motorcycle->save();
@@ -323,6 +313,7 @@ class MotorcycleController extends Controller
             'last_v5_issue_date' => $request->dateOfLastV5CIssued,
             'mot_expiry_date' => $request->motExpiryDate,
             'month_of_first_registration' => $request->monthOfFirstRegistration,
+            'next_payment_date' => $nextPayDate,
         ]);
 
         return to_route('motorcycles.show', [$motorcycle_id])
