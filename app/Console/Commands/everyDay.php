@@ -43,6 +43,6 @@ class everyDay extends Command
 
         // $motorcycle->save();
 
-        // return Command::SUCCESS;
+        return Command::SUCCESS;
     }
 }

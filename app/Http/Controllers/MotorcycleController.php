@@ -15,6 +15,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\MailController;
+use App\Mail\RentalDue;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Console\Input\Input;
@@ -24,10 +27,21 @@ class MotorcycleController extends Controller
     // Calculate next payment days
     public function nextRentalPayment()
     {
-        // Update motocycle rental next payment date
-        $motorcycles = Motorcycle::where('next_payment_date', '<=', Carbon::now()->addDay()->toDateTimeString())->get();
+        // Find motocycle rental next payment date
+        $motorcycles = Motorcycle::where('next_payment_date', '<=', Carbon::now()->addDay()->toDateTimeString())->first();
+        $motorcycle = json_decode($motorcycles);
 
-        dd($motorcycles);
+        // Locate user details
+        $users = User::where('id', $motorcycle->user_id)->get();
+
+        // Send reminder email
+        foreach ($users as $key => $user) {
+            Mail::to($user->email)->send(new RentalDue($user));
+        }
+
+        // Set motorcycle next payment date
+
+        // Create new weeks contract
     }
 
     /**

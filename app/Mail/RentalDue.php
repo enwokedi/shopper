@@ -13,15 +13,15 @@ class RentalDue extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name;
+    public $user;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($user)
     {
-        $this->name = $name;
+        $this->user = $user;
     }
 
     public function build()
@@ -37,7 +37,7 @@ class RentalDue extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Contact Us',
+            subject: 'Weekly Rental Due',
         );
     }
 
