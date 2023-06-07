@@ -21,6 +21,16 @@ use Symfony\Component\Console\Input\Input;
 
 class MotorcycleController extends Controller
 {
+    // Calculate next payment days
+    public function nextRentalPayment($motorcycle_id)
+    {
+        // Update motocycle rental next payment date
+        $motorcycle = Motorcycle::find($motorcycle_id);
+        $next_payment_date = $motorcycle->next_payment_date;
+        $motorcycle->next_payment_date = $next_payment_date->addDays(7);
+        $motorcycle->save();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -144,22 +154,30 @@ class MotorcycleController extends Controller
     public function createPayment()
     {
         $last = DB::table('payments')->latest()->first();
-        // dd($last);
+        dd($last);
         $payment_due_date = Carbon::parse($last->payment_due_date);
         $payment_due_date->addDays(7);
-
         $authUser = Auth::user();
 
+        $motorcycle = Motorcycle::findOrFail($last->motorcycle_id);
+        $rentalPrice = $motorcycle->rental_price;
+        $todayDate = Carbon::now();
+        $nextPayDate = Carbon::now();
+        $nextPayDate->addDays(7);
+
         $payment = new Payment();
-        $payment->payment_due_date = $payment_due_date;
-        $payment->rental_price = $last->rental_price;
         $payment->payment_type = 'rental';
+        $payment->rental_price = $rentalPrice;
+        $payment->registration = $motorcycle->registration;
+        $payment->payment_due_date = $nextPayDate->addDays(7);
+        $payment->payment_next_date = $nextPayDate->addDays(7);
         $payment->received = 00.00;
-        $payment->outstanding = 00.00;
+        $payment->outstanding = $rentalPrice;
         $payment->user_id = $last->user_id;
-        $payment->motorcycle_id = $last->motorcycle_id;
-        $payment->registration = $last->registration;
+        $payment->payment_due_count = 7;
+        $payment->created_at = $todayDate;
         $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
+        $payment->motorcycle_id = $last->motorcycle_id;
         $payment->save();
 
         return to_route('motorcycles.show', [$last->motorcycle_id])
@@ -182,22 +200,21 @@ class MotorcycleController extends Controller
         $transaction = Payment::orderBy('updated_at', 'DESC')
             ->where('motorcycle_id', $request->motorcycle_id)
             ->where('payment_type', 'rental')
+            ->where('created_at', '<=', Carbon::now())
             ->where('outstanding', '>', 0)
             ->first();
 
-        // $transaction = Payment::all()
-        //     ->where('motorcycle_id', $request->motorcycle_id)
-        //     ->where('payment_type', 'rental')
-        //     ->where('outstanding', '>', 0);
-        // dd($transaction);
+        $updatePayment = Payment::where('created_at', '<=', Carbon::now())
+            ->where('motorcycle_id', $request->motorcycle_id)
+            ->where('payment_type', 'rental')
+            ->where('outstanding', '>', 0)
+            ->get();
+        // dd($updatePayment);
 
-        // foreach ($transaction as $tran) {
-        //     $outstanding = $tran->outstanding - $request->received;
-        // }
         $paymentDate = Carbon::now();
 
         $authUser = Auth::user();
-        // dd($request);
+
         $payment = new Payment();
         $payment->payment_id = $transaction->id;
         $payment->payment_due_date = $motorcycle->rental_start_date;
@@ -244,7 +261,23 @@ class MotorcycleController extends Controller
         $registration = $motorcycle->registration;
         $todayDate = Carbon::now();
         $nextPayDate = Carbon::now();
-        $nextPayDate->addDays(7);
+        // $nextPayDate->addDays(7);
+
+        // Create first rental payment
+        $payment = new Payment();
+        $payment->payment_type = 'rental';
+        $payment->rental_price = $rentalPrice;
+        $payment->registration = $motorcycle->registration;
+        $payment->payment_due_date = $todayDate;
+        $payment->payment_next_date = $nextPayDate->addDays(7);
+        $payment->received = null;
+        $payment->outstanding = $payment->rental_price;
+        $payment->user_id = $user_id;
+        $payment->payment_due_count = 7;
+        $payment->created_at = $todayDate;
+        $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
+        $payment->motorcycle_id = $motorcycle_id;
+        $payment->save();
 
         // Create deposit
         $payment = new Payment();
@@ -255,22 +288,6 @@ class MotorcycleController extends Controller
         $payment->received = 00.00;
         $payment->outstanding = $payment->rental_deposit;
         $payment->user_id = $user_id;
-        $payment->created_at = $todayDate;
-        $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
-        $payment->motorcycle_id = $motorcycle_id;
-        $payment->save();
-
-        // Create first rental payment
-        $payment = new Payment();
-        $payment->payment_type = 'rental';
-        $payment->rental_price = $rentalPrice;
-        $payment->registration = $motorcycle->registration;
-        $payment->payment_due_date = $todayDate;
-        $payment->payment_next_date = $nextPayDate;
-        $payment->received = 00.01;
-        $payment->outstanding = $payment->rental_price;
-        $payment->user_id = $user_id;
-        $payment->payment_due_count = 7;
         $payment->created_at = $todayDate;
         $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
         $payment->motorcycle_id = $motorcycle_id;
@@ -403,6 +420,7 @@ class MotorcycleController extends Controller
         $rentalpayments = Payment::all()
             ->where('motorcycle_id', $motorcycle_id)
             ->where('payment_type', '=', 'rental')
+            // ->where('outstanding', '>', 0)
             ->sortByDesc('updated_at');
 
         return view('motorcycles.show', compact('motorcycle', 'depositpayments', 'rentalpayments', 'newpayments', 'notes'));

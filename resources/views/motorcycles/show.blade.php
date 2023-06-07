@@ -169,6 +169,10 @@
                                     <td class="text-end">{{$motorcycle->rental_start_date}}</td>
                                 </tr>
                                 <tr>
+                                    <td>Next Payment Date</td>
+                                    <td class="text-end">{{$motorcycle->next_payment_date}}</td>
+                                </tr>
+                                <tr>
                                     <td>Weekly Rental Price</td>
                                     <td class="text-end" id="rental_price"><span class="input-group-text" id="rental_price">£{{$motorcycle->rental_price}}</span></td>
                                 </tr>
@@ -237,10 +241,10 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Due On</th>
+                                    <th scope="col">Due Date</th>
+                                    <th scope="col">Payment Date</th>
                                     <th scope="col">Received</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Due</th>
+                                    <th scope="col">Outstanding</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -248,8 +252,8 @@
                                 @foreach ($rentalpayments as $payment)
                                 <tr>
                                     <td>{{$payment->payment_due_date}}</td>
-                                    <td>£{{$payment->received}}</td>
                                     <td>{{$payment->payment_date}}</td>
+                                    <td>£{{$payment->received}}</td>
                                     <td class="text-danger">£{{$payment->outstanding}}</td>
                                     <form action="/notes" method="POST" enctype="multipart/form-data">
                                         <td>
@@ -280,9 +284,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Due Date</th>
+                                    <th scope="col">Payment Date</th>
                                     <th scope="col">Received</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Due</th>
+                                    <th scope="col">Outstanding</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -290,8 +294,8 @@
                                 @foreach ($depositpayments as $payment)
                                 <tr>
                                     <td>{{$payment->payment_due_date}}</td>
-                                    <td>£{{$payment->received}}</td>
                                     <td>{{$payment->payment_date}}</td>
+                                    <td>£{{$payment->received}}</td>
                                     <td class="text-danger">£{{$payment->outstanding}}</td>
                                     <form action="/notes" method="POST" enctype="multipart/form-data">
                                         <td>

@@ -10,10 +10,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Payment extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $guarded = [];
-
-    use SoftDeletes;
+    protected $dates = [
+        'payment_due_date',
+        'payment_date',
+        'created_at',
+        'updated_at',
+    ];
 
     /**
      * Get the rental agreement this payment belongs to
