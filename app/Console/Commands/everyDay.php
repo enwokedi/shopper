@@ -36,12 +36,6 @@ class everyDay extends Command
     public function handle()
     {
         return (new MotorcycleController)->nextRentalPayment();
-        // return (new MailController)->rentalDueMail($client->email, $client->first_name);
-
-        // $next_payment_date = $motorcycle->next_payment_date;
-        // $motorcycle->next_payment_date = $next_payment_date->addDays(7);
-
-        // $motorcycle->save();
 
         return Command::SUCCESS;
     }

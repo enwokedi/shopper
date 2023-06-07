@@ -234,9 +234,6 @@
                             <div class="col">
                                 <h5>Rental</h5>
                             </div>
-                            <div class="col">
-                                <a class="btn btn-outline-primary pull-right" href="/create-payment/{{$motorcycle->id}}">New Week</a>
-                            </div>
                         </div>
                         <table class="table table-striped">
                             <thead>

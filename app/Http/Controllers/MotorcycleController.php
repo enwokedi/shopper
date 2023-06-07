@@ -40,8 +40,31 @@ class MotorcycleController extends Controller
         }
 
         // Set motorcycle next payment date
+        $motorcycle = Motorcycle::find($motorcycle->id);
+        $today = Carbon::now();
+        $motorcycle->next_payment_date = $today->addWeek();
+        $motorcycle->save();
 
         // Create new weeks contract
+        $todayDate = Carbon::now();
+        $lastPayment = DB::table('payments')->latest()->first();
+        // $authUser = Auth::user();
+        $rentalPrice = $motorcycle->rental_price;
+
+        $payment = new Payment();
+        $payment->payment_type = 'rental';
+        $payment->rental_price = $rentalPrice;
+        $payment->registration = $motorcycle->registration;
+        $payment->payment_due_date = $motorcycle->next_payment_date;
+        $payment->payment_next_date = $motorcycle->next_payment_date;
+        $payment->received = 00.00;
+        $payment->outstanding = $rentalPrice;
+        $payment->user_id = $motorcycle->user_id;
+        $payment->payment_due_count = 7;
+        $payment->created_at = $todayDate;
+        $payment->auth_user = 'System Generated Entry';
+        $payment->motorcycle_id = $motorcycle->id;
+        $payment->save();
     }
 
     /**
