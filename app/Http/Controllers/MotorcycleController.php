@@ -28,6 +28,7 @@ class MotorcycleController extends Controller
     public function nextRentalPayment()
     {
         // Find motocycle rental next payment date
+        // $motorcycles = Motorcycle::where('npd_test', '<=', Carbon::now()->addDay()->toDateTimeString())->first();
         $motorcycles = Motorcycle::where('next_payment_date', '<=', Carbon::now()->addDay()->toDateTimeString())->first();
         $motorcycle = json_decode($motorcycles);
 
@@ -42,7 +43,7 @@ class MotorcycleController extends Controller
         // Set motorcycle next payment date
         $motorcycle = Motorcycle::find($motorcycle->id);
         $today = Carbon::now();
-        $motorcycle->next_payment_date = $today->addWeek();
+        $motorcycle->next_payment_date = $today->addDays(7);
         $motorcycle->save();
 
         // Create new weeks contract
@@ -52,6 +53,7 @@ class MotorcycleController extends Controller
         $rentalPrice = $motorcycle->rental_price;
 
         $payment = new Payment();
+        $payment->created_at = $todayDate;
         $payment->payment_type = 'rental';
         $payment->rental_price = $rentalPrice;
         $payment->registration = $motorcycle->registration;
@@ -61,7 +63,7 @@ class MotorcycleController extends Controller
         $payment->outstanding = $rentalPrice;
         $payment->user_id = $motorcycle->user_id;
         $payment->payment_due_count = 7;
-        $payment->created_at = $todayDate;
+
         $payment->auth_user = 'System Generated Entry';
         $payment->motorcycle_id = $motorcycle->id;
         $payment->save();
@@ -178,37 +180,40 @@ class MotorcycleController extends Controller
             ->with('success', 'Rental deposit updated.');
     }
 
-    public function createPayment()
+    public function createBill($motorcycle_id)
     {
-        $last = DB::table('payments')->latest()->first();
-        dd($last);
-        $payment_due_date = Carbon::parse($last->payment_due_date);
-        $payment_due_date->addDays(7);
-        $authUser = Auth::user();
+        // Get todays date
+        $today = Carbon::now('Europe/London');
 
-        $motorcycle = Motorcycle::findOrFail($last->motorcycle_id);
+        // Find the motorcycle the bill will go against
+        $motorcycle = Motorcycle::findOrFail($motorcycle_id);
+
+        // Get the motorcycle rental price and next payment date
         $rentalPrice = $motorcycle->rental_price;
-        $todayDate = Carbon::now();
-        $nextPayDate = Carbon::now();
+        $rentalStartDate = $motorcycle->rental_start_date;
+        // (new Carbon($request->tgl_mulai))->addDays(3);
+        $nextPayDate = new Carbon($motorcycle->next_payment_date);
+
+        // Determine the difference between the motorcycle rental start date & next payment date
+        $rentalStartDateDiff = $today->diffInDays($rentalStartDate);
+        $nextPayDateDiffInDays = $today->diffInDays($nextPayDate);
         $nextPayDate->addDays(7);
 
+        // Create new rental bill using $motorcycle_id
         $payment = new Payment();
         $payment->payment_type = 'rental';
+        $payment->payment_due_date = $nextPayDate;
         $payment->rental_price = $rentalPrice;
         $payment->registration = $motorcycle->registration;
-        $payment->payment_due_date = $nextPayDate->addDays(7);
-        $payment->payment_next_date = $nextPayDate->addDays(7);
-        $payment->received = 00.00;
+        $payment->received = null;
         $payment->outstanding = $rentalPrice;
-        $payment->user_id = $last->user_id;
-        $payment->payment_due_count = 7;
-        $payment->created_at = $todayDate;
-        $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
-        $payment->motorcycle_id = $last->motorcycle_id;
+        $payment->user_id = $motorcycle->user_id;
+        $payment->created_at = $today;
+        $payment->motorcycle_id = $motorcycle->id;
         $payment->save();
 
-        return to_route('motorcycles.show', [$last->motorcycle_id])
-            ->with('success', 'Rental payment updated.');
+        //     return to_route('motorcycles.show', [$last->motorcycle_id])
+        //         ->with('success', 'Rental payment updated.');
     }
 
     // Manually take the rental payment
@@ -217,25 +222,29 @@ class MotorcycleController extends Controller
         // Validate incoming data
         $validated = $request->validate([
             'received' => 'required',
+            'payment_id' => 'required',
         ]);
+        // dd($request);
 
         $motorcycle = Motorcycle::findOrFail($request->motorcycle_id);
-
+        $motorcycle = json_decode($motorcycle);
+        // dd($motorcycle->id);
         $rentalPrice = $motorcycle->rental_price;
         $registration = $motorcycle->registration;
 
-        $transaction = Payment::orderBy('updated_at', 'DESC')
-            ->where('motorcycle_id', $request->motorcycle_id)
+        $transaction = Payment::all()
+            ->where('motorcycle_id', $motorcycle->id)
             ->where('payment_type', 'rental')
-            ->where('created_at', '<=', Carbon::now())
+            // ->where('created_at', '<=', Carbon::now())
+            // ->where('id', 'payment_id')
             ->where('outstanding', '>', 0)
             ->first();
-
-        $updatePayment = Payment::where('created_at', '<=', Carbon::now())
-            ->where('motorcycle_id', $request->motorcycle_id)
-            ->where('payment_type', 'rental')
-            ->where('outstanding', '>', 0)
-            ->get();
+        // dd($transaction->id);
+        // $updatePayment = Payment::where('created_at', '<=', Carbon::now())
+        //     ->where('motorcycle_id', $request->motorcycle_id)
+        //     ->where('payment_type', 'rental')
+        //     ->where('outstanding', '>', 0)
+        //     ->get();
         // dd($updatePayment);
 
         $paymentDate = Carbon::now();
@@ -423,10 +432,18 @@ class MotorcycleController extends Controller
      */
     public function show(Request $request, $motorcycle_id)
     {
+        $today = Carbon::now('Europe/London');
+        $dayAfter = Carbon::now()->modify('+2 day')->format('Y-m-d');
+
         // Motorcycle Details
         $m = Motorcycle::findOrFail($motorcycle_id);
         $motorcycle = json_decode($m);
 
+        $nextPayDate = (new Carbon($motorcycle->next_payment_date))->addDay();
+        // dd($nextPayDate);
+        $nextPayDateDiffInDays = $today->diffInDays($nextPayDate);
+
+        // dd($nextPayDateDiffInDays);
         // Motorcycle Payment Notes
         $notes = Note::all()
             ->where('motorcycle_id', $motorcycle_id)
@@ -448,8 +465,9 @@ class MotorcycleController extends Controller
         $rentalpayments = Payment::all()
             ->where('motorcycle_id', $motorcycle_id)
             ->where('payment_type', '=', 'rental')
-            // ->where('outstanding', '>', 0)
+            // ->where('payment_due_date', '<', $dayAfter)
             ->sortByDesc('updated_at');
+
 
         return view('motorcycles.show', compact('motorcycle', 'depositpayments', 'rentalpayments', 'newpayments', 'notes'));
     }

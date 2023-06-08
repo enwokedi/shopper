@@ -213,6 +213,9 @@
                                     <span class="input-group-text" id="basic-addon1">£</span>
                                     <input type="text" class="form-control" placeholder="00.00" aria-label="Take Payment" name="received" id="received" value="{{old('received')}}">
                                 </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="PayID Required" aria-label="Payment ID" name="payment_id" id="payment_id" value="{{old('payment_id')}}">
+                                </div>
                                 <button type="submit" class="btn btn-outline-primary">SUBMIT</button>
                             </form>
                         </div>
@@ -238,6 +241,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th scope="col">PayID</th>
                                     <th scope="col">Due Date</th>
                                     <th scope="col">Payment Date</th>
                                     <th scope="col">Received</th>
@@ -248,6 +252,7 @@
                             <tbody>
                                 @foreach ($rentalpayments as $payment)
                                 <tr>
+                                    <td>{{$payment->id}}</td>
                                     <td>{{$payment->payment_due_date}}</td>
                                     <td>{{$payment->payment_date}}</td>
                                     <td>£{{$payment->received}}</td>

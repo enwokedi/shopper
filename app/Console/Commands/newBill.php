@@ -5,21 +5,21 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Http\Controllers\MotorcycleController;
 
-class everyDay extends Command
+class newBill extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'daily:updates';
+    protected $signature = 'create:bill';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Daily updates including payment data';
+    protected $description = 'Automatic creation of new rental payment';
 
     /**
      * Execute the console command.
@@ -28,8 +28,7 @@ class everyDay extends Command
      */
     public function handle()
     {
-        return (new MotorcycleController)->nextRentalPayment();
-
+        return (new MotorcycleController)->createBill(59);
         return Command::SUCCESS;
     }
 }
