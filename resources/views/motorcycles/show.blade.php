@@ -241,7 +241,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">PayID</th>
+                                    <th scope="col">Transaction ID</th>
                                     <th scope="col">Due Date</th>
                                     <th scope="col">Payment Date</th>
                                     <th scope="col">Received</th>

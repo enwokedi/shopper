@@ -46,27 +46,28 @@ class MotorcycleController extends Controller
         $motorcycle->next_payment_date = $today->addDays(7);
         $motorcycle->save();
 
+        return $this->createBill($motorcycle->id);
         // Create new weeks contract
-        $todayDate = Carbon::now();
-        $lastPayment = DB::table('payments')->latest()->first();
-        // $authUser = Auth::user();
-        $rentalPrice = $motorcycle->rental_price;
+        // $todayDate = Carbon::now();
+        // $lastPayment = DB::table('payments')->latest()->first();
+        // // $authUser = Auth::user();
+        // $rentalPrice = $motorcycle->rental_price;
 
-        $payment = new Payment();
-        $payment->created_at = $todayDate;
-        $payment->payment_type = 'rental';
-        $payment->rental_price = $rentalPrice;
-        $payment->registration = $motorcycle->registration;
-        $payment->payment_due_date = $motorcycle->next_payment_date;
-        $payment->payment_next_date = $motorcycle->next_payment_date;
-        $payment->received = 00.00;
-        $payment->outstanding = $rentalPrice;
-        $payment->user_id = $motorcycle->user_id;
-        $payment->payment_due_count = 7;
+        // $payment = new Payment();
+        // $payment->created_at = $todayDate;
+        // $payment->payment_type = 'rental';
+        // $payment->rental_price = $rentalPrice;
+        // $payment->registration = $motorcycle->registration;
+        // $payment->payment_due_date = $motorcycle->next_payment_date;
+        // $payment->payment_next_date = $motorcycle->next_payment_date;
+        // $payment->received = 00.00;
+        // $payment->outstanding = $rentalPrice;
+        // $payment->user_id = $motorcycle->user_id;
+        // $payment->payment_due_count = 7;
 
-        $payment->auth_user = 'System Generated Entry';
-        $payment->motorcycle_id = $motorcycle->id;
-        $payment->save();
+        // $payment->auth_user = 'System Generated Entry';
+        // $payment->motorcycle_id = $motorcycle->id;
+        // $payment->save();
     }
 
     /**
@@ -212,6 +213,12 @@ class MotorcycleController extends Controller
         $payment->motorcycle_id = $motorcycle->id;
         $payment->save();
 
+        // Set motorcycle next payment date
+        $motorcycle = Motorcycle::find($motorcycle->id);
+        $today = Carbon::now();
+        $motorcycle->next_payment_date = $nextPayDate;
+        $motorcycle->save();
+
         //     return to_route('motorcycles.show', [$last->motorcycle_id])
         //         ->with('success', 'Rental payment updated.');
     }
@@ -251,19 +258,26 @@ class MotorcycleController extends Controller
 
         $authUser = Auth::user();
 
-        $payment = new Payment();
-        $payment->payment_id = $transaction->id;
-        $payment->payment_due_date = $motorcycle->rental_start_date;
-        $payment->rental_price = $motorcycle->rental_price;
-        $payment->payment_type = 'rental';
+        $payment = Payment::find($request->payment_id);
         $payment->received = $request->received;
         $payment->payment_date = $paymentDate;
-        $payment->outstanding = $transaction->outstanding - $request->received;
-        $payment->user_id = $motorcycle->user_id;
-        $payment->motorcycle_id = $request->motorcycle_id;
-        $payment->registration = $motorcycle->registration;
+        $payment->outstanding = $transaction->outstanding - $payment->received;
         $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
         $payment->save();
+
+        // $payment = new Payment();
+        // $payment->payment_id = $request->payment_id;
+        // $payment->payment_due_date = $transaction->payment_due_date;
+        // $payment->rental_price = $motorcycle->rental_price;
+        // $payment->payment_type = 'rental';
+        // $payment->received = $request->received;
+        // $payment->payment_date = $paymentDate;
+        // $payment->outstanding = $transaction->outstanding - $request->received;
+        // $payment->user_id = $motorcycle->user_id;
+        // $payment->motorcycle_id = $request->motorcycle_id;
+        // $payment->registration = $motorcycle->registration;
+        // $payment->auth_user = $authUser->first_name . " " . $authUser->last_name;
+        // $payment->save();
 
         return to_route('motorcycles.show', [$request->motorcycle_id])
             ->with('success', 'Rental payment updated.');
@@ -466,7 +480,7 @@ class MotorcycleController extends Controller
             ->where('motorcycle_id', $motorcycle_id)
             ->where('payment_type', '=', 'rental')
             // ->where('payment_due_date', '<', $dayAfter)
-            ->sortByDesc('updated_at');
+            ->sortByDesc('id');
 
 
         return view('motorcycles.show', compact('motorcycle', 'depositpayments', 'rentalpayments', 'newpayments', 'notes'));
