@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Welcome;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Models\Category;
+
 
 class WelcomeController extends Controller
 {

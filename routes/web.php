@@ -153,7 +153,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     // User Resources
     Route::resource('users', 'UserController');
-    Route::get('/users/show/{user_id}', 'UserController@show')->name('users.show');
+    // Route::get('/users/show/{user_id}', 'UserController@show')->name('users.show');
 
     Route::group(['middleware' => ['guest']], function () {
         /**
